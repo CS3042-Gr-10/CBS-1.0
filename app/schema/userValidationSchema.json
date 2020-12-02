@@ -1,0 +1,41 @@
+{
+    "getSchema":{
+       "type": "object",
+       "required": [
+         "id"     
+       ],
+       "properties": {
+         "id" : {
+           "type": "string"
+         }
+       }
+    },
+    "postSchema":{
+        "type": "object",
+        "required": [
+          "name"     
+        ],
+        "properties": {
+          "name" : {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 10
+          },
+          "age" : {
+            "type" : "integer",
+            "minimum": 1,
+            "maximum": 150
+          },
+          "state":{
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 10
+          },
+          "country": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 10
+          }
+        }
+     }
+}
