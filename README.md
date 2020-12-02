@@ -23,5 +23,5 @@ _follow up_
     "pm2": "^2.9.1",
     "pug": "2.0.4"
   },`
-  4. run following command to check weather you have connected to the GCI SQL.
+  4. run following command to check weather you have connected to the GCI SQL. \
   `node app.js`
