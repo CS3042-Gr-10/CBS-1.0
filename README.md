@@ -1,7 +1,7 @@
 # CBS-1.0
 implementation of the online banking system, use pr-SRS repo for all you testing scripts.
 
-_follow up_
+#_follow up_
 1. clone to preferable place the repo after it forked from this repo
 2. Init npm \
 `npm init --yes`
@@ -25,3 +25,15 @@ _follow up_
   },`
   4. run following command to check weather you have connected to the GCI SQL. \
   `node app.js`
+
+# SYNC WITH THE MASTER REPO
+_follow up_
+1. go into the repo clones folder through **cmd**
+2. run following commands \
+`git remote add upstream https://github.com/CS3042-Gr-10/CBS-1.0.git`
+
+# EVERYDAY before edit the codes
+_follow up_
+1. run following commands \
+`git fetch upstream`
+`git merge upstream/main main` **or** `git merge upstream/master master`
