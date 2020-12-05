@@ -12,6 +12,7 @@ const AuthenticRoute = require('../app/routes/authentic.route');
 const BankManagerRoute = require('../app/routes/BankManager.route');
 const CustomerRoute = require('../app/routes/Customer.route');
 const EmployeeRoute = require('../app/routes/Employee.route');
+const ErrorRoute = require('../app/routes/error.route');
 const errorCode = require('../common/error-code');
 const errorMessage = require('../common/error-methods');
 const checkToken = require('./secureRoute');
@@ -37,18 +38,18 @@ dbfunc.connectionCheck.then((data) =>{
 
 app.use(bodyParser.json());
 
-var router = express.Router();
-app.use('/api',router);
-AuthenticRoute.init(router);
+const router = express.Router();
+//app.use('/api',router);
 
-var secureApi = express.Router();
+
+//const secureApi = express.Router();
 
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 //body parser middleware
 
-app.use('/secureApi',secureApi);
+//app.use('/secureApi',secureApi);
 //secureApi.use(checkToken);
 
 
@@ -63,21 +64,18 @@ app.get('/', (req,res) => {
     res.send('hello world');
 });
 
-//Login Page
-app.get('/login',(req,res)=>{
-    res.send('<h2>Login Page</h2>')
-});
+app.use('/',router);
 
-//Sign up
-app.get('/signup',(req,res)=>{
-    res.send('<h2>Sign Page</h2>')
-});
-
-UserRoute.init(secureApi);
+AuthenticRoute.init(router);
+//UserRoute.init(router);
+BankManagerRoute.init(router);
+CustomerRoute.init(router);
+EmployeeRoute.init(router);
+ErrorRoute.init(router);
 //BankManagerRoute.init(secureApi);
 
-var ApiConfig = {
+const ApiConfig = {
     app: app
-}
+};
 
 module.exports = ApiConfig;

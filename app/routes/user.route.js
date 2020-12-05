@@ -1,9 +1,9 @@
 const userService = require('../services/user.service');
-var schema = require('../schema/userValidationSchema.json')
-var iValidator = require('../../common/iValidator');
-var errorCode = require('../../common/error-code');
-var errorMessage = require('../../common/error-methods');
-var mail = require('./../../common/mailer.js');
+const schema = require('../schema/userValidationSchema.json');
+const iValidator = require('../../common/iValidator');
+const errorCode = require('../../common/error-code');
+const errorMessage = require('../../common/error-methods');
+const mail = require('./../../common/mailer.js');
 
 
 function init(router) {
