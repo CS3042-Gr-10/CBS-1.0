@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Styles/dashboard.css">
+    <link rel="stylesheet" href="./Styles/dycalendar.min.css">
+    <title>Seychelles Bank (Pvt) Ltd.</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown mr-4">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Banking Options</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item active" href="#">Dashboard</a>
+                            <a class="dropdown-item" href="#">Accounts</a>
+                            <a class="dropdown-item" href="#">Loans</a>
+                            <a class="dropdown-item" href="#">Deposits</a>
+                        </div>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                    <a class="btn btn-secondary my-2 my-sm-0" href="login.html" role="button">LOG OUT</a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="wrapper_1">
+            <div>
+                <h3>Pasindu Udawatta</h3>
+                <h5>6593 5412 3987<span class="badge badge-primary ml-4">Savings</span></h5>
+                <hr class="my-4">
+                <h6 class="balance">Balance</h6>
+                <h6>SCR<span class="balance_amount ml-2">56,301.56</span><span class="badge badge-success ml-3">ACTIVE</span></h6>
+                <h6 class="balance mt-3">Remaining Withdrawals for the Month - <span>4</span></h6>
+            </div>
+            <div class="calendar-parent">
+                <div class="calendar-container center">
+                    <div id="dycalendar-today-with-skin-shadow" class="dycalendar-container skin-blue round-edge shadow-default"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper_2">
+            <div>
+                <h4>Transfer to</h4>
+                <input type="text" class="form-control mt-3" id="exampleFormControlInput1" placeholder="Rceiver's Account Number">
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">SCR</span>
+                    </div>
+                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+                <button type="button" class="btn btn-primary mt-3">Transfer</button>
+            </div>
+            <div>
+                <h4>Pay</h4>
+                <div class="input-group mt-3">
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Select a Template">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Templates</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Template 1</a>
+                            <a class="dropdown-item" href="#">Template 2</a>
+                            <a class="dropdown-item" href="#">Template 3</a>
+                        </div>
+                    </div>
+                  </div>
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">SCR</span>
+                    </div>
+                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+                <button type="button" class="btn btn-primary mt-3">Pay</button>
+            </div>
+            <div class="three_buttons">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Place a Fixed Deposit</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block mt-4">Obtain a Loan</button>
+                <button type="button" class="btn btn-outline-secondary btn-lg btn-block mt-4">Report an Issue</button>
+            </div>
+        </div>
+    </main>
+    <footer class="bottom">Seychells Bank (Pvt) Ltd. - Version 1.0.0 © 2020 | <a href="">Visit Us</a></footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./Scripts/dycalendar-jquery.min.js"></script>
+    <script>
+        dycalendar.draw({ target: '#dycalendar-today-with-skin-shadow', type: 'month', monthformat: "full", highlighttoday: true, prevnextbutton: "show"});
+    </script>
+</body>
+</html>
