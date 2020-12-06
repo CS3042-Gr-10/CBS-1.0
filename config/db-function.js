@@ -24,3 +24,5 @@ module.exports = {
     connectionCheck:connectionCheck(),
     connectionRelease:connectionRelease()   
 }
+
+
