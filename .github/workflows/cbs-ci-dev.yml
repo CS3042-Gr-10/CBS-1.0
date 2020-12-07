@@ -8,19 +8,15 @@ on:
   pull_request:
     branches: 
       - developer
-
 jobs:
   test:
-    name: setup env
+    name: Running Units Tests
     runs-on: ubuntu-latest
-    
+
     steps:
-      - uses: action/chechout@v1
-      - name: use Node.js ${{ matrix.node-version }}
-        uses: action/setip-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Instrall
-        run: npm install 
-    
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
 
