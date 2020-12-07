@@ -16,7 +16,7 @@ jobs:
     
     steps:
       - uses: action/chechout@v1
-      - name: use Node.js ${{ matix.node-version }}
+      - name: use Node.js ${{ matrix.node-version }}
         uses: action/setip-node@v1
         with:
           node-version: ${{ matrix.node-version }}
