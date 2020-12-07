@@ -1,22 +1,19 @@
 # testing CI pipeline
-name: CBS project continuous intergration pipeline.
+name: Node Continuous Integration
 
 on:
-  push:
-    branches: 
-      - main
   pull_request:
-    branches: 
-      - developer
+    branches: [ developer ]
+
+
 jobs:
-  test:
-    name: Running Units Tests
+  test_pull_request:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm test
+      - run: npm run build`
