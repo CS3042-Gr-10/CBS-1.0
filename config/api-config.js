@@ -1,17 +1,20 @@
-var express = require("express");
-var app = express();
-var path  = require('path');
+const express = require("express");
+const app = express();
+const path = require('path');
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
-var db = require('./database');
-var dbfunc = require('./db-function');
-var http  = require('http')
-var bodyParser = require('body-parser');
-var UserRoute = require('../app/routes/user.route');
-var AuthenticRoute = require('../app/routes/authentic.route');
-var errorCode = require('../common/error-code')
-var errorMessage = require('../common/error-methods')
-var checkToken = require('./secureRoute');
+const db = require('./database');
+const dbfunc = require('./db-function');
+const http = require('http');
+const bodyParser = require('body-parser');
+const UserRoute = require('../app/routes/user.route');
+const AuthenticRoute = require('../app/routes/authentic.route');
+const BankManagerRoute = require('../app/routes/BankManager.route');
+const CustomerRoute = require('../app/routes/Customer.route');
+const EmployeeRoute = require('../app/routes/Employee.route');
+const errorCode = require('../common/error-code');
+const errorMessage = require('../common/error-methods');
+const checkToken = require('./secureRoute');
 
 // var schedule = require('node-schedule');
  
@@ -46,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //body parser middleware
 
 app.use('/secureApi',secureApi);
-secureApi.use(checkToken);
+//secureApi.use(checkToken);
 
 
 app.use(function (err, req, res, next) {
@@ -60,10 +63,21 @@ app.get('/', (req,res) => {
     res.send('hello world');
 });
 
-var ApiConfig = {
-  app: app
-}
+//Login Page
+app.get('/login',(req,res)=>{
+    res.send('<h2>Login Page</h2>')
+});
+
+//Sign up
+app.get('/signup',(req,res)=>{
+    res.send('<h2>Sign Page</h2>')
+});
 
 UserRoute.init(secureApi);
+//BankManagerRoute.init(secureApi);
+
+var ApiConfig = {
+    app: app
+}
 
 module.exports = ApiConfig;

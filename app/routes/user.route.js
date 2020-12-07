@@ -11,7 +11,7 @@ function init(router) {
         .get(getAllUsers)
         .post(addUser);
     router.route('/user/:id')
-        .get(getUserById)
+        .get(test)
         .delete(deleteUser)
         .put(updateUser); 
 }
@@ -23,6 +23,10 @@ function getAllUsers(req,res) {
       mail.mail(err);
       res.send(err);
     });
+}
+
+function test(req,res){
+    res.send('<h1>Lol heyy 180118T</h1>');
 }
 
 function getUserById(req,res) {
