@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+main {
+  margin: 1.5%;
+}
+.wrapper_1 {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 1.5%;
+}
+.wrapper_1 > div {
+  background: #eee;
+  padding: 3%;
+}
+.balance {
+  color: rgb(0, 119, 255);
+}
+.balance_amount {
+  font-size: xx-large;
+}
+.calendar-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper_2 {
+  margin-top: 1.5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.5%;
+}
+.wrapper_2 > div {
+  background: #eee;
+  padding: 3%;
+}
+footer {
+  text-align: center;
+  margin-bottom: 0.5%;
+}
