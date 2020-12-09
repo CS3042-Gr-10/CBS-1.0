@@ -13,18 +13,18 @@
     "postSchema":{
         "type": "object",
         "required": [
-          "username"     
+          "login_username"
         ],
         "properties": {
-          "username" : {
+          "login_username" : {
             "type": "string",
             "minLength": 1,
-            "maxLength": 10
+            "maxLength": 15
           },
-          "password" : {
+          "login_pwd" : {
             "type" : "string",
             "minLength": 1,
-            "maxLength": 10
+            "maxLength": 15
           }
         }
      }
