@@ -16,7 +16,20 @@ const ErrorRoute = require('../app/routes/error.route');
 const errorCode = require('../common/error-code');
 const errorMessage = require('../common/error-methods');
 const checkToken = require('./secureRoute');
+const hbs = require('express-handlebars')
 
+
+app.set('views', path.join(appRoot,'app/views'))
+
+app.engine('hbs',hbs({
+    extname:'hbs',
+    defaultLayout: 'index',
+    layoutsDir:path.join(appRoot,'app/views/layouts'),
+    partialsDir:path.join(appRoot,'app/views/partials'),
+
+}));
+
+app.set('view engine', "hbs");
 // var schedule = require('node-schedule');
  
 // var j = schedule.scheduleJob('*/1 * * * *', function(){
@@ -45,6 +58,10 @@ const router = express.Router();
 //const secureApi = express.Router();
 
 //set static folder
+app.use(express.urlencoded({
+    extended:true
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 //body parser middleware
@@ -58,20 +75,20 @@ app.use(function (err, req, res, next) {
   res.status(500).send('Something broke!');
 });
 
+app.use('/',router);
+
 
 // index route
 app.get('/', (req,res) => {
-    res.send('hello world');
+    res.render('login');
 });
-
-app.use('/',router);
 
 AuthenticRoute.init(router);
 //UserRoute.init(router);
-BankManagerRoute.init(router);
-CustomerRoute.init(router);
-EmployeeRoute.init(router);
-ErrorRoute.init(router);
+//BankManagerRoute.init(router);
+//CustomerRoute.init(router);
+//EmployeeRoute.init(router);
+//ErrorRoute.init(router);
 //BankManagerRoute.init(secureApi);
 
 const ApiConfig = {

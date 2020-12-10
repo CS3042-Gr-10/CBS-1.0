@@ -10,27 +10,17 @@ const jwt = require('jsonwebtoken');
 
 function init(router) {
     router.route('/login')
-        .get(LoadLoginPage)
-        .post(authentic); 
-    router.route('/signup')
-        .get(LoadSignupPage)
-        .post(signup);
+        .post(loginAction);
 }
 
-function LoadLoginPage(req,res){
-    res.sendFile('D:\\Academic_PC\\Sem 4\\DBMS\\CBS-1.0\\app\\views\\login.html')
-}
 
-function LoadSignupPage(req,res){
-    res.send('<h2>SignUP</h2>')
-}
-
-function authentic(req,res) {
+function loginAction(req,res) {
     console.log(req.body);
     const authenticData = req.body;
 
     //Validating the input entity
     const json_format = iValidator.json_schema(schema.postSchema, authenticData, "authentic");
+    console.log(json_format.valid == false);
     if (json_format.valid == false) {
      return res.status(422).send(json_format.errorMessage);
     }
