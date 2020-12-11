@@ -10,29 +10,30 @@ const jwt = require('jsonwebtoken');
 
 function init(router) {
     router.route('/login')
-        .post(authentic); 
-    router.route('/signup')
-          .post(signup); 
+        .post(loginAction);
 }
 
-function authentic(req,res) {
-  var authenticData=req.body;
-  
-  //Validating the input entity
-   var json_format = iValidator.json_schema(schema.postSchema, authenticData, "authentic");
-   if (json_format.valid == false) {
-     return res.status(422).send(json_format.errorMessage);
-   }
 
-   authenticService.authentic(authenticData).then((data) => {
-   if(data) {
-      var username = data.username;
-      const token = jwt.sign({username},'my_secret_key',{ expiresIn: 60*60*24 });
-      res.json({
-        "success":true,
-        "data":data,
-        "token":token
-      });
+function loginAction(req,res) {
+    console.log(req.body);
+    const authenticData = req.body;
+
+    //Validating the input entity
+    const json_format = iValidator.json_schema(schema.postSchema, authenticData, "authentic");
+    console.log(json_format.valid == false);
+    if (json_format.valid == false) {
+     return res.status(422).send(json_format.errorMessage);
+    }
+
+    authenticService.authentic(authenticData).then((data) => {
+    if(data) {
+        const username = data.username;
+        const token = jwt.sign({username},'my_secret_key',{ expiresIn: 60*60*24 });
+        res.json({
+                  "success":true,
+                  "data":data,
+                  "token":token
+        });
     }
   }).catch((err) => {
     mail.mail(err);
