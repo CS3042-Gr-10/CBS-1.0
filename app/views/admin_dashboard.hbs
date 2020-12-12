@@ -14,34 +14,14 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Dashboard</a>
+            <a class="navbar-brand" href="#">Administrator Dashboard</a>
+            <img src="./Images/shield_lock.svg" alt="" width="32" height="32" title="Bootstrap">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown mr-4">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Banking Options</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item active" href="#">Dashboard</a>
-                            <a class="dropdown-item" href="#">Accounts</a>
-                            <a class="dropdown-item" href="#">Loans</a>
-                            <a class="dropdown-item" href="#">Deposits</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown mr-4">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#" data-toggle="modal"
-                                data-target="#changePasswordModal">Change Password</a>
-                        </div>
-                    </li>
-                    <li class="nav-item mr-4">
-                        <a class="nav-link" href="#">Contact Us</a>
-                    </li>
                     <a class="btn btn-secondary my-2 my-sm-0" href="login.html" role="button">LOG OUT</a>
                 </ul>
             </div>
@@ -51,13 +31,7 @@
         <div class="wrapper_1">
             <div>
                 <h3>{{ full_name }}</h3>
-                <h5>{{ acc_no }}<span class="badge badge-primary ml-4">{{ acc_type}}</span></h5>
                 <hr class="my-4">
-                <h6 class="balance">Balance</h6>
-                <h6>SCR<span class="balance_amount ml-2">{{ acc_balance }}</span><span
-                        class="badge badge-success ml-3">ACTIVE</span></h6>
-                <h6 class="balance mt-3">Remaining Withdrawals for the Month - <span>{{ remaining_withdrawals }}</span>
-                </h6>
             </div>
             <div class="calendar-parent">
                 <div class="calendar-container center">
@@ -68,58 +42,51 @@
         </div>
         <div class="wrapper_2">
             <div>
-                <h4>Transfer to</h4>
+                <h4>Transaction Report</h4>
                 <form action="#" method="POST">
-                    <input type="text" class="form-control mt-3" id="receiving_acc_no" name="receiving_acc_no"
-                        placeholder="Rceiver's Account Number">
-                    <div class="input-group mt-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">SCR</span>
+                    <select id="inputState" class="form-control mt-3">
+                        <option selected>Select the Branch Name</option>
+                        <option value="1">Branch 1</option>
+                        <option value="2">Branch 2</option>
+                        <option value="3">Branch 3</option>
+                    </select>
+                    <div class="form-row mt-3">
+                        <div class="col">
+                            <input type="date" class="form-control" placeholder="Starting Date">
                         </div>
-                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
-                            id="transfer_amount" name="transfer_amount" placeholder="Enter the Amount">
-                        <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
+                        <div class="col">
+                            <input type="date" class="form-control" placeholder="Ending Date">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3">Transfer</button>
+                    <button type="button" class="btn btn-primary mt-3">Generate Report</button>
                 </form>
             </div>
             <div>
-                <h4>Pay</h4>
+                <h4>Late Loan Installment Report</h4>
                 <form action="#" method="POST">
-                    <div class="input-group mt-3">
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button"
-                            placeholder="Select a Template">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="paying_template"
-                                name="paying_template">Templates</button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">{{ Template 1 }}</a>
-                                <a class="dropdown-item" href="#">{{ Template 2 }}</a>
-                                <a class="dropdown-item" href="#">{{ Template 3 }}</a>
-                            </div>
+                    <select id="inputState" class="form-control mt-3">
+                        <option selected>Select the Branch Name</option>
+                        <option value="1">Branch 1</option>
+                        <option value="2">Branch 2</option>
+                        <option value="3">Branch 3</option>
+                    </select>
+                    <div class="form-row mt-3">
+                        <div class="col">
+                            <input type="date" class="form-control" placeholder="Starting Date">
+                        </div>
+                        <div class="col">
+                            <input type="date" class="form-control" placeholder="Ending Date">
                         </div>
                     </div>
-                    <div class="input-group mt-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">SCR</span>
-                        </div>
-                        <input type="number" class="form-control" id="paying_amount" name="paying_amount"
-                            aria-label="Amount (to the nearest dollar)" placeholder="Enter the Amount">
-                        <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary mt-3">Pay</button>
+                    <button type="button" class="btn btn-primary mt-3">Generate Report</button>
                 </form>
             </div>
             <div class="three_buttons">
-                <button type="button" href="#" class="btn btn-primary btn-lg btn-block">Place a Fixed Deposit</button>
-                <button type="button" href="#" class="btn btn-primary btn-lg btn-block mt-4">Obtain a Loan</button>
-                <button type="button" href="#" class="btn btn-outline-secondary btn-lg btn-block mt-4">Report an
-                    Issue</button>
+                <a href="employee_reg_form.html" type="button" class="btn btn-primary btn-lg btn-block">Create an
+                    Employee Account</a>
+                <button type="button" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal"
+                    data-target="#changePasswordModal">Change Password</button>
+                <button type="button" class="btn btn-outline-secondary btn-lg btn-block mt-4">Report an Issue</button>
             </div>
         </div>
     </main>
@@ -168,7 +135,6 @@
             </div>
         </div>
     </div>
-
 
     <footer class="bottom">Seychells Bank (Pvt) Ltd. - Version 1.0.0 © 2020 | <a href="">Visit Us</a></footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
