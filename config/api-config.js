@@ -84,10 +84,10 @@ app.get('/', (req,res) => {
 });
 
 AuthenticRoute.init(router);
+EmployeeRoute.init(router);
 //UserRoute.init(router);
 //BankManagerRoute.init(router);
 //CustomerRoute.init(router);
-//EmployeeRoute.init(router);
 //ErrorRoute.init(router);
 //BankManagerRoute.init(secureApi);
 

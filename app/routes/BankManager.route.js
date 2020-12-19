@@ -18,6 +18,23 @@ function init(router) {
         .put(updateUser);
 }
 
+function getUserById(req,res) {
+
+    let userId = req.params;
+
+    let json_format = iValidator.json_schema(schema.getSchema,userId,"user");
+    if (json_format.valid == false) {
+        return res.status(422).send(json_format.errorMessage);
+    }
+
+    userService.getUserById(userId).then((data) => {
+        res.send(data);
+    }).catch((err) => {
+        mail.mail(err);
+        res.send(err);
+    });
+}
+
 
 
 

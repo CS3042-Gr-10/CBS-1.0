@@ -15,33 +15,32 @@
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-    </expand>
-    <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:developer" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-    </select>
+    </expand>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="Routing Functionality added , new service files add ignore the login.html  #3">
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Increasing BankManager functionality">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Admin.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/BankManager.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Customer.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Employee.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/Admin.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schema/CustomerRegistrationSchema.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/Admin.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user-model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/loginValidationSchema.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/loginValidationSchema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/error.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/group.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/index.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layout.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/login.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/login.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/main.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/index.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/user.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/registration_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_reg_form.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,20 +50,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="Devin Yasith De Silva &lt;57395782+devindesilva@users.noreply.github.com&gt;" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1l4KHqtgtL3F5vyoYGA3FheekgT" />
+  <component name="ProjectId" id="1lYmBkvr3SzMANN7em73eZ1kLAo" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -74,7 +67,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -86,46 +78,19 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
-    <property name="ts.external.directory.path" value="C:\Users\ACER\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\202.7319.49\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\views\layouts" />
-    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="" />
-      <created>1606850838275</created>
+      <changelist id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="" />
+      <created>1607782267028</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1606850838275</updated>
-      <workItem from="1606850839362" duration="625000" />
-      <workItem from="1607013785825" duration="8255000" />
-      <workItem from="1607110124313" duration="6718000" />
-      <workItem from="1607146271501" duration="9504000" />
-      <workItem from="1607231200025" duration="1348000" />
-      <workItem from="1607396465822" duration="7095000" />
-      <workItem from="1607501739046" duration="2079000" />
+      <updated>1607782267028</updated>
+      <workItem from="1607782268847" duration="973000" />
+      <workItem from="1608356901347" duration="8875000" />
     </task>
-    <task id="LOCAL-00001" summary="Initial Routing Fixes #3">
-      <created>1607146784957</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1607146784957</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Routing Functionality added , new service files add ignore the login.html  #3">
-      <created>1607206033608</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1607206033608</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,19 +101,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="developer" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -156,34 +109,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial Routing Fixes #3" />
-    <MESSAGE value="Routing Functionality added , new service files add ignore the login.html  #3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Routing Functionality added , new service files add ignore the login.html  #3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="395" y="91" key="#Inspections" timestamp="1607502476055">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="395" y="91" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1607502476055" />
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607435249554">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1607435249554" />
-    <state x="438" y="191" key="EditFileWatcherDialog" timestamp="1607014853142">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="438" y="191" key="EditFileWatcherDialog/0.0.1536.824@0.0.1536.824" timestamp="1607014853142" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1607014099107">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607014099107" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1607206357118">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1607206357118" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607013820362">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1607013820362" />
+    <MESSAGE value="Increasing BankManager functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Increasing BankManager functionality" />
   </component>
 </project>
