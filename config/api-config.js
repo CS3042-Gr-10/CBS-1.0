@@ -62,7 +62,8 @@ app.use(express.urlencoded({
     extended:true
 }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+console.log(path.join(appRoot, 'public'));
+app.use(express.static(path.join(appRoot, 'public')));
 
 //body parser middleware
 
