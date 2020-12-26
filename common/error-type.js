@@ -1,9 +1,9 @@
-const RedirectGeneralError = (req,res)=>{
+function RedirectGeneralError(req,res){
     res.redirect('/error');
 };
 
-const RedirectNoAccessError = (req,res)=>{
-    res.redirect('/error/NoAccessError')
+function RedirectNoAccessError(req,res){
+    res.redirect('/error/NoAccessError');
 };
 
 module.exports = {

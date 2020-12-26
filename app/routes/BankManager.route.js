@@ -1,42 +1,19 @@
-
 const userService = require('../services/user.service');
-const schema = require('../schema/userValidationSchema.json');
+const user_schema = require('../schema/userValidationSchema.json');
+const customer_reg_schema = require('../schema/CustomerRegistrationSchema.json');
 const iValidator = require('../../common/iValidator');
 const errorCode = require('../../common/error-code');
-const errortype = require('../../common/error-type');
 const errorMessage = require('../../common/error-methods');
 const mail = require('./../../common/mailer.js');
-//const errors = require('../app/routes/error.route')
+const errortype = require('../../common/error-type');
 const GeneralError = errortype.RedirectGeneralError;
 
 function init(router) {
-    router.route('/BankManager')
-        .get(GeneralError);
-    router.route('/BankManager/:id')
-        .get(getUserById)
-        .delete(deleteUser)
-        .put(updateUser);
+    router.route('/Employee')
+        .get(GeneralError)
+    //router.route('/Employee/:id/registerCustomer')
+    //    .get(registerCustomerAction)
+    //    .post(registerCustomer)
 }
-
-function getUserById(req,res) {
-
-    let userId = req.params;
-
-    let json_format = iValidator.json_schema(schema.getSchema,userId,"user");
-    if (json_format.valid == false) {
-        return res.status(422).send(json_format.errorMessage);
-    }
-
-    userService.getUserById(userId).then((data) => {
-        res.send(data);
-    }).catch((err) => {
-        mail.mail(err);
-        res.send(err);
-    });
-}
-
-
-
-
 
 module.exports.init = init;

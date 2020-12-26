@@ -25,22 +25,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Increasing BankManager functionality">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/Admin.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/BankManager.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/Customer.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/Employee.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/Admin.route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schema/CustomerRegistrationSchema.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/Admin.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user-model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/authentic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/authentic.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/user.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/registration_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_reg_form.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/authentic.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/authentic.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/login.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/login.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/error-type.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/error-type.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +83,20 @@
       <option name="presentableId" value="Default" />
       <updated>1607782267028</updated>
       <workItem from="1607782268847" duration="973000" />
-      <workItem from="1608356901347" duration="8875000" />
+      <workItem from="1608356901347" duration="8942000" />
+      <workItem from="1608516754191" duration="4941000" />
+      <workItem from="1608718447223" duration="601000" />
+      <workItem from="1608723983126" duration="1831000" />
+      <workItem from="1608982597960" duration="3904000" />
     </task>
+    <task id="LOCAL-00001" summary="Increasing BankManager functionality">
+      <created>1608377195585</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1608377195585</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,5 +117,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Increasing BankManager functionality" />
     <option name="LAST_COMMIT_MESSAGE" value="Increasing BankManager functionality" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1608377213901">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608377213901" />
   </component>
 </project>
