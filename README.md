@@ -37,3 +37,5 @@ _follow up_
 1. run following commands \
 `git fetch upstream`
 `git merge upstream/main main` **or** `git merge upstream/master master`
+# sign in to google sql database.\
+`mysql --host=34.93.201.200 --user=root --password`
