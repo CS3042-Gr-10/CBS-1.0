@@ -1,11 +1,11 @@
-var db = require('../../config/database');
-var dbFunc = require('../../config/db-function');
+const db = require('../../config/database');
+const dbFunc = require('../../config/db-function');
 const bcrypt = require('bcryptjs');
 
-var authenticModel = {
+const authenticModel = {
     authentic: authentic,
     signup: signup
-}
+};
 
 function authentic(authenticData) {
     return new Promise((resolve, reject) => {
@@ -20,7 +20,7 @@ function authentic(authenticData) {
                         resolve(rows);
                     }
                     else {
-                        reject({"success":false,"message":"password doesnot match"});
+                        reject({"success":false,"message":"password doesn't match"});
                     }
                 });
 

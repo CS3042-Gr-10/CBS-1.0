@@ -62,7 +62,8 @@ app.use(express.urlencoded({
     extended:true
 }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+console.log(path.join(appRoot, 'public'));
+app.use(express.static(path.join(appRoot, 'public')));
 
 //body parser middleware
 
@@ -84,10 +85,10 @@ app.get('/', (req,res) => {
 });
 
 AuthenticRoute.init(router);
+EmployeeRoute.init(router);
 //UserRoute.init(router);
 //BankManagerRoute.init(router);
 //CustomerRoute.init(router);
-//EmployeeRoute.init(router);
 //ErrorRoute.init(router);
 //BankManagerRoute.init(secureApi);
 
