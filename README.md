@@ -27,3 +27,7 @@ _follow up_
 1. run following commands \
    `git fetch upstream`
    `git merge upstream/main main` **or** `git merge upstream/master master`
+
+# Connect to database over terminal
+$`mysql -u u05dacvdhduk0jzi -h bpi9zrldmffepsxk5zeg-mysql.services.clever-cloud.com bpi9zrldmffepsxk5zeg -P 3306 -p`
+

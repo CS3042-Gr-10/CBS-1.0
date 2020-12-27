@@ -4,66 +4,35 @@ var iValidator = require('../../common/iValidator');
 var errorCode = require('../../common/error-code');
 var errorMessage = require('../../common/error-methods');
 var mail = require('./../../common/mailer.js');
-const errortype = require('../../common/error-type');
-const GeneralError = errortype.RedirectGeneralError;
 
+ 
 const jwt = require('jsonwebtoken');
 
 function init(router) {
     router.route('/login')
-        .post(loginAction);
+        .post(authentic); 
+    router.route('/signup')
+          .post(signup); 
 }
 
-function clean(backend_data){
-    const data = backend_data;
-    return(data)
-}
-
-function loginAction(req,res) {
-    console.log(req.body);
-    const authenticData = req.body;
-
-    //Validating the input entity
-    const json_format = iValidator.json_schema(schema.postSchema, authenticData, "authentic");
-    console.log(json_format.valid == false);
-    if (json_format.valid == false) {
+function authentic(req,res) {
+  var authenticData=req.body;
+  
+  //Validating the input entity
+   var json_format = iValidator.json_schema(schema.postSchema, authenticData, "authentic");
+   if (json_format.valid == false) {
      return res.status(422).send(json_format.errorMessage);
-    }
+   }
 
-    authenticService.authentic(authenticData).then((data) => {
-    if(data) {
-        const username = data.username;
-        const acl = data.acl;
-        //const token = jwt.sign({username},'my_secret_key',{ expiresIn: 60*60*24 });
-        //res.json({
-        //          "success":true,
-        //          "data":data,
-                  //"token":token
-        //});
-        const cleaned = clean(data);
-        if(acl === "employee"){
-            res.render(
-                'employee_dashboard',
-                cleaned
-            )
-        }else if (acl === "manager"){
-            res.render(
-                'employee_dashboard',
-                cleaned
-            )
-        }else if (acl === "customer"){
-            res.render(
-                'manager_dashboard',
-                cleaned
-            )
-        }else if (acl === "admin"){
-            res.render(
-                'admin_dashboard',
-                cleaned
-            )
-        }else{
-            //error
-        }
+   authenticService.authentic(authenticData).then((data) => {
+   if(data) {
+      var username = data.username;
+      const token = jwt.sign({username},'my_secret_key',{ expiresIn: 60*60*24 });
+      res.json({
+        "success":true,
+        "data":data,
+        "token":token
+      });
     }
   }).catch((err) => {
     mail.mail(err);
@@ -71,7 +40,6 @@ function loginAction(req,res) {
   });
 
 }
-
 
 
 function signup(req,res) {

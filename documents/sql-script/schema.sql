@@ -38,6 +38,24 @@ CREATE TABLE `Post` (
   PRIMARY KEY (`post_id`)
 );
 
+CREATE TABLE `Customer` (
+  `customer_id` INT(11) not NULL,
+  `name` varchar(100) not NULL,
+  `first_name` varchar(25),
+  `last_name` varchar(25),
+  `full_name` varchar(100) AS (concat_ws(first_name,' ', last_name)),
+  `dob` date not NULL,
+  `create_date` date not NULL,
+  `NIC` varchar(20),
+  `gender` varchar(25),
+  `house_no` varchar(25) not NULL,
+  `street` varchar(25) not NULL,
+  `city` varchar(25),
+  `post_id` BIT(3) not NULL,
+  PRIMARY KEY (`customer_id`),
+  constraint fk_customer_id FOREIGN KEY (customer_id) REFERENCES AccountOwner (owner_id)
+);
+
 CREATE TABLE `Employee` (
   `emp_id` INT(11) not NULL,
   `name` varchar(100) not NULL,
@@ -148,17 +166,6 @@ CREATE TABLE `Organization` (
   PRIMARY KEY (`org_id`)
 );
 
-CREATE TABLE `Branch` (
-  `branch_id` int(8),
-  `location` <type>,
-  `   -street ` varchar(25),
-  `   -city` varchar(25),
-  `postal_code` int(8),
-  `grade` int(8),
-  `branch_manager()` int(16),
-  PRIMARY KEY (`branch_id`)
-);
-
 CREATE TABLE `Withdrawl` (
   `trans_id` int(64),
   `acc_id` int(32),
@@ -167,24 +174,6 @@ CREATE TABLE `Withdrawl` (
   PRIMARY KEY (`trans_id`)
 );
 
-CREATE TABLE `Employee` (
-  `emp_id` int(16),
-  `name` <type>,
-  `   -first_name` varchar(25),
-  `   -last_name` varchar(25),
-  `dob` datetime,
-  `age()` int(8),
-  `create_date` datetime,
-  `postal_code` int(8),
-  `NIC` varchar(20),
-  `branch_id` int(8),
-  `gender` varchar(25),
-  `address` <type>,
-  `   -street` varchar(25),
-  `   -city` varchar(25),
-  `post_id` int(8),
-  PRIMARY KEY (`emp_id`)
-);
 
 CREATE TABLE `Saving Account ` (
   `saving_acc_id` int(8),
@@ -206,23 +195,7 @@ CREATE TABLE `FD Account Plan` (
   PRIMARY KEY (`fd_plan_id`)
 );
 
-CREATE TABLE `Customer` (
-  `customer_id` int(16),
-  `name` <type>,
-  `   -first_name` varchar(25),
-  `   -last_name` varchar(25),
-  `dob` datetime,
-  `age()` int(8),
-  `create_date` datetime,
-  `postal_code` int(8),
-  `NIC` varchar(20),
-  `gender` varchar(25),
-  `address` <type>,
-  `   -street` varchar(25),
-  `   -city` varchar(25),
-  `` <type>,
-  PRIMARY KEY (`customer_id`)
-);
+
 
 
 CREATE TABLE `Check` (
