@@ -1,4 +1,4 @@
-var userModel = require("../models/user-model.js");
+var userModel = require("../models/user.model.js");
 
 
 var userService = {

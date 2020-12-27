@@ -1,0 +1,22 @@
+{
+  "getSchema":{},
+  "postSchema":{
+    "type": "object",
+    "required": [
+      "full_name",
+      "name_with_initials",
+      "age",
+      "dob",
+      "perm_address",
+      "zip_code",
+      "nic",
+      "gender",
+      "contact",
+      "acc_type",
+      "username",
+      "email"
+
+    ],
+    "properties": {}
+  }
+}
