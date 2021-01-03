@@ -15,6 +15,22 @@ function init(router) {
         .put(updateUser);
 }
 
+function indexAction(req,res,data){
+    //EmployeeService.
+    res.render('employee_dashboard',
+        {
+            "full_name": data.username
+        }
+    )
+    //userService.getUserById(userId).then((data) => {
+
+    //}).catch((err) => {
+    //    mail.mail(err);
+    //    res.send(err);
+    //});
+}
+
 
 
 module.exports.init = init;
+module.exports.home = indexAction;

@@ -9,14 +9,19 @@ const authenticModel = {
 
 function authentic(authenticData) {
     return new Promise((resolve, reject) => {
-        db.query(`SELECT * FROM user WHERE username ='${authenticData.username}'`, (error, rows, fields) => {
+        //console.log(`SELECT * FROM User WHERE username ='${authenticData.login_username}'`);
+        db.query(`SELECT * FROM User WHERE username ='${authenticData.login_username}'`, (error, rows, fields) => {
             if (error) {
+                //console.log('error');
                 reject(error);
             } else {
-                bcrypt.compare(authenticData.password, rows[0].password, function (err, isMatch) {
+                //console.log('no error')
+                //console.log(rows[0].password);
+                bcrypt.compare(authenticData.login_pwd, rows[0].password, function (err, isMatch) {
                     if (err) {
                         reject(error);
                     } else if (isMatch) {
+                        console.log(rows[0]);
                         resolve(rows);
                     }
                     else {
