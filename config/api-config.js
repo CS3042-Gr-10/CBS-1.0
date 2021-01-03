@@ -1,18 +1,35 @@
-var express = require("express");
-var app = express();
-var path  = require('path');
+const express = require("express");
+const app = express();
+const path = require('path');
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
-var db = require('./database');
-var dbfunc = require('./db-function');
-var http  = require('http')
-var bodyParser = require('body-parser');
-var UserRoute = require('../app/routes/user.route');
-var AuthenticRoute = require('../app/routes/authentic.route');
-var errorCode = require('../common/error-code')
-var errorMessage = require('../common/error-methods')
-var checkToken = require('./secureRoute');
+const db = require('./database');
+const dbfunc = require('./db-function');
+const http = require('http');
+const bodyParser = require('body-parser');
+const UserRoute = require('../app/routes/user.route');
+const AuthenticRoute = require('../app/routes/authentic.route');
+const BankManagerRoute = require('../app/routes/BankManager.route');
+const CustomerRoute = require('../app/routes/Customer.route');
+const EmployeeRoute = require('../app/routes/Employee.route');
+const ErrorRoute = require('../app/routes/error.route');
+const errorCode = require('../common/error-code');
+const errorMessage = require('../common/error-methods');
+const checkToken = require('./secureRoute');
+const hbs = require('express-handlebars')
 
+
+app.set('views', path.join(appRoot,'app/views'))
+
+app.engine('hbs',hbs({
+    extname:'hbs',
+    defaultLayout: 'index',
+    layoutsDir:path.join(appRoot,'app/views/layouts'),
+    partialsDir:path.join(appRoot,'app/views/partials'),
+
+}));
+
+app.set('view engine', "hbs");
 // var schedule = require('node-schedule');
  
 // var j = schedule.scheduleJob('*/1 * * * *', function(){
@@ -34,19 +51,24 @@ dbfunc.connectionCheck.then((data) =>{
 
 app.use(bodyParser.json());
 
-var router = express.Router();
-app.use('/api',router);
-AuthenticRoute.init(router);
+const router = express.Router();
+//app.use('/api',router);
 
-var secureApi = express.Router();
+
+//const secureApi = express.Router();
 
 //set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({
+    extended:true
+}));
+
+console.log(path.join(appRoot, 'public'));
+app.use(express.static(path.join(appRoot, 'public')));
 
 //body parser middleware
 
-app.use('/secureApi',secureApi);
-secureApi.use(checkToken);
+//app.use('/secureApi',secureApi);
+//secureApi.use(checkToken);
 
 
 app.use(function (err, req, res, next) {
@@ -54,16 +76,24 @@ app.use(function (err, req, res, next) {
   res.status(500).send('Something broke!');
 });
 
+app.use('/',router);
+
 
 // index route
 app.get('/', (req,res) => {
-    res.send('hello world');
+    res.render('login');
 });
 
-var ApiConfig = {
-  app: app
-}
+AuthenticRoute.init(router);
+EmployeeRoute.init(router);
+//UserRoute.init(router);
+//BankManagerRoute.init(router);
+//CustomerRoute.init(router);
+//ErrorRoute.init(router);
+//BankManagerRoute.init(secureApi);
 
-UserRoute.init(secureApi);
+const ApiConfig = {
+    app: app
+};
 
 module.exports = ApiConfig;

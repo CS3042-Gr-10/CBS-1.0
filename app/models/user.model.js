@@ -25,7 +25,7 @@ function getAllUser() {
 
 function getUserById(id) {
     return new Promise((resolve,reject) => {
-        db.query("SELECT * FROM test WHERE id ="+id.id,(error,rows,fields)=>{
+        db.query('SELECT * FROM test WHERE id = ?',[id.id],(error,rows,fields)=>{
             if(!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
@@ -50,7 +50,6 @@ function addUser(user) {
           });
         });
 }
-
 
 
 function updateUser(id,user) {

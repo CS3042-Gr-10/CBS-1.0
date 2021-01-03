@@ -3,14 +3,11 @@ const fs = require('fs');
 
 
 module.exports = mysql.createPool({
-    host: '34.93.201.200',
-    user: 'root',
-    password: 'admin',
-    ssl: {
-        ca: fs.readFileSync('./documents/ssl-keys-8/server-ca.pem'),
-        key: fs.readFileSync('./documents/ssl-keys-8/client-key.pem'),
-        cert: fs.readFileSync('./documents/ssl-keys-8/client-cert.pem')
-    }
+    user: 'u05dacvdhduk0jzi',
+    host: 'bpi9zrldmffepsxk5zeg-mysql.services.clever-cloud.com',
+    database: 'bpi9zrldmffepsxk5zeg',
+    port: 3306,
+    password: 'GRWM2e4bac8RVsmQIfHo',
 })
 
 

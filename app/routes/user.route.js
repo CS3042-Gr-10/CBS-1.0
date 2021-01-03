@@ -1,9 +1,9 @@
 const userService = require('../services/user.service');
-var schema = require('../schema/userValidationSchema.json')
-var iValidator = require('../../common/iValidator');
-var errorCode = require('../../common/error-code');
-var errorMessage = require('../../common/error-methods');
-var mail = require('./../../common/mailer.js');
+const schema = require('../schema/userValidationSchema.json');
+const iValidator = require('../../common/iValidator');
+const errorCode = require('../../common/error-code');
+const errorMessage = require('../../common/error-methods');
+const mail = require('./../../common/mailer.js');
 
 
 function init(router) {
@@ -11,7 +11,7 @@ function init(router) {
         .get(getAllUsers)
         .post(addUser);
     router.route('/user/:id')
-        .get(getUserById)
+        .get(test)
         .delete(deleteUser)
         .put(updateUser); 
 }
@@ -23,6 +23,10 @@ function getAllUsers(req,res) {
       mail.mail(err);
       res.send(err);
     });
+}
+
+function test(req,res){
+    res.send('<h1>Lol heyy 180118T</h1>');
 }
 
 function getUserById(req,res) {
