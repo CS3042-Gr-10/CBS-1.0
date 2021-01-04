@@ -2,7 +2,7 @@
 CREATE TABLE `User` (
   `user_id` INT(11) not NULL AUTO_INCREMENT,
   `user_type` char(1) not NULL,
-  `username` varchar(25) not NULL,
+  `username` varchar(25) not NULL UNIQUE,
   `password` varchar(255) not NULL,
   `acc_level` int(8) not NULL,
   `is_deleted` BIT(2) not NULL Default 0,
