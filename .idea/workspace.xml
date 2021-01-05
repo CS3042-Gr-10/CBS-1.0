@@ -24,14 +24,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="resolving conflict">
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Customer.route.js session done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/authentic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/authentic.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/Customer.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/Customer.service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +102,7 @@
       <workItem from="1609211929019" duration="9223000" />
       <workItem from="1609569273727" duration="721000" />
       <workItem from="1609642538521" duration="9336000" />
-      <workItem from="1609816213456" duration="9196000" />
+      <workItem from="1609816213456" duration="11831000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -157,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609823453106</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Customer.route.js session done">
+      <created>1609825722517</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1609825722517</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +186,8 @@
     <MESSAGE value="initial setup for session in the system." />
     <MESSAGE value="adding middleware to system" />
     <MESSAGE value="resolving conflict" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolving conflict" />
+    <MESSAGE value="Customer.route.js session done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Customer.route.js session done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609816603721">
