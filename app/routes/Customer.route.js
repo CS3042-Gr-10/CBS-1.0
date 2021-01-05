@@ -8,10 +8,9 @@ const ifLoggedIn = require('./../Middleware/ifLoggedIn')
 const ifCustomer = require('./../Middleware/ifCustomer')
 const GeneralError = errortype.RedirectGeneralError;
 
-
 function init(router) {
-    router.use(ifLoggedIn)
-    router.use(ifCustomer)
+    router.use('/Customer', ifLoggedIn)
+    router.use('/Customer', ifCustomer)
     router.route('/Customer')
         .get(GeneralError)
     router.route('/Customer/:id')

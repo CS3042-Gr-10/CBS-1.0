@@ -94,16 +94,18 @@ app.use('/',router);
 
 // index route
 app.get('/', (req,res) => {
-    res.render('login');
+    res.render('login',
+        {
+            error: req.query.error,
+            }
+        );
 });
 
 AuthenticRoute.init(router);
 EmployeeRoute.init(router);
-//UserRoute.init(router);
-//BankManagerRoute.init(router);
+BankManagerRoute.init(router);
 CustomerRoute.init(router);
-//ErrorRoute.init(router);
-//BankManagerRoute.init(secureApi);
+ErrorRoute.init(router);
 
 const ApiConfig = {
     app: app

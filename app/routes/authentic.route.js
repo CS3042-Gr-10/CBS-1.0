@@ -4,6 +4,8 @@ const iValidator = require('../../common/iValidator');
 const errorCode = require('../../common/error-code');
 const errorMessage = require('../../common/error-methods');
 const mail = require('./../../common/mailer.js');
+const errortype = require('../../common/error-type');
+const GeneralError = errortype.RedirectGeneralError;
 
 const jwt = require('jsonwebtoken');
 
@@ -35,16 +37,17 @@ function authentic(req,res) {
         }else if (data.acc_level === 2){
             res.redirect(`/Employee/${req.session.user.username}`)
         }else if (data.acc_level === 3){
+            res.redirect(`/BankManager/${req.session.user.username}`)
             //something
-        }else if (data.acc_level === 4){
+        }else if (data.acc_level === 0){
+            res.redirect(`/Admin/${req.session.user.username}`)
            //something
        }else{
-
+            GeneralError(req,res);
         }
     }
   }).catch((err) => {
-    mail.mail(err);
-    res.json(err);
+       res.redirect(`/?error=${err}`);
   });
 
 }

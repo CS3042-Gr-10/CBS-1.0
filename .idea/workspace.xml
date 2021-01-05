@@ -24,17 +24,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="initial setup for session in the system.">
-      <change afterPath="$PROJECT_DIR$/app/Middleware/ifAdmin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Middleware/ifBankManager.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Middleware/ifEmployee.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Middleware/ifNotLoggedIn.js" afterDir="false" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="resolving conflict">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/authentic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/authentic.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
     </list>
@@ -111,7 +106,7 @@
       <workItem from="1609211929019" duration="9223000" />
       <workItem from="1609569273727" duration="721000" />
       <workItem from="1609642538521" duration="9336000" />
-      <workItem from="1609816213456" duration="6918000" />
+      <workItem from="1609816213456" duration="9196000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -148,7 +143,21 @@
       <option name="project" value="LOCAL" />
       <updated>1609700404031</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="adding middleware to system">
+      <created>1609823176818</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1609823176818</updated>
+    </task>
+    <task id="LOCAL-00007" summary="resolving conflict">
+      <created>1609823453106</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1609823453106</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,7 +181,9 @@
     <MESSAGE value="Login page fully complete-addition fixed#17" />
     <MESSAGE value="login fully completed with database calls with Employee.route.js home page completed as well, added common code required by all 4 actors" />
     <MESSAGE value="initial setup for session in the system." />
-    <option name="LAST_COMMIT_MESSAGE" value="initial setup for session in the system." />
+    <MESSAGE value="adding middleware to system" />
+    <MESSAGE value="resolving conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolving conflict" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609816603721">
@@ -183,6 +194,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609254037386" />
+    <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1609823400890">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1609823400890" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1609700353893">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
