@@ -4,11 +4,6 @@ const iValidator = require('../../common/iValidator');
 const errorCode = require('../../common/error-code');
 const errorMessage = require('../../common/error-methods');
 const mail = require('./../../common/mailer.js');
-const Employee = require('./Employee.route');
-const Admin = require('./Admin.route');
-const BankManager = require('./BankManager.route');
-const Customer = require('./Customer.route');
-
 
 const jwt = require('jsonwebtoken');
 
@@ -30,10 +25,15 @@ function authentic(req,res) {
    console.log(authenticData)
    authenticService.authentic(authenticData).then((data) => {
    if(data) {
+       console.log(req.session_id);
+       req.session.user = {};
+       req.session.user.email = data.email;
+       req.session.user.username = data.username;
+       req.session.user.acc_level = data.acc_level;
         if (data.acc_level === 1){
-            Customer.home(req,res,data)
+            res.redirect(`/Customer/${req.session.user.username}`)
         }else if (data.acc_level === 2){
-            Employee.home(req,res,data)
+            res.redirect(`/Employee/${req.session.user.username}`)
         }else if (data.acc_level === 3){
             //something
         }else if (data.acc_level === 4){

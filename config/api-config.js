@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const mysql = require('mysql');
 const db = require('./database');
+const dbfunc = require('./db-function')
 const http = require('http');
 const AuthenticRoute = require('../app/routes/authentic.route');
 const BankManagerRoute = require('../app/routes/BankManager.route');
@@ -14,7 +15,6 @@ const errorMessage = require('../common/error-methods');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-require('dotenv').config();
 const MySQLDBStore = require('express-mysql-session')(session);
 const hbs = require('express-handlebars')
 
@@ -57,7 +57,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: SECRET,
+    store:sessionStore,
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
@@ -100,7 +101,7 @@ AuthenticRoute.init(router);
 EmployeeRoute.init(router);
 //UserRoute.init(router);
 //BankManagerRoute.init(router);
-//CustomerRoute.init(router);
+CustomerRoute.init(router);
 //ErrorRoute.init(router);
 //BankManagerRoute.init(secureApi);
 

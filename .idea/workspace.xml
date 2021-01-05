@@ -24,13 +24,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/models/session.model.js" afterDir="false" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="initial setup for session in the system.">
+      <change afterPath="$PROJECT_DIR$/app/Middleware/ifAdmin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Middleware/ifBankManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Middleware/ifEmployee.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Middleware/ifNotLoggedIn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +75,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Middleware" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -78,6 +84,14 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -96,7 +110,8 @@
       <workItem from="1609174470363" duration="1330000" />
       <workItem from="1609211929019" duration="9223000" />
       <workItem from="1609569273727" duration="721000" />
-      <workItem from="1609642538521" duration="8678000" />
+      <workItem from="1609642538521" duration="9336000" />
+      <workItem from="1609816213456" duration="6918000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -126,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609232045736</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="initial setup for session in the system.">
+      <created>1609700404031</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1609700404031</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,16 +171,21 @@
     <MESSAGE value="Login page fully complete fixed#17" />
     <MESSAGE value="Login page fully complete-addition fixed#17" />
     <MESSAGE value="login fully completed with database calls with Employee.route.js home page completed as well, added common code required by all 4 actors" />
-    <option name="LAST_COMMIT_MESSAGE" value="login fully completed with database calls with Employee.route.js home page completed as well, added common code required by all 4 actors" />
+    <MESSAGE value="initial setup for session in the system." />
+    <option name="LAST_COMMIT_MESSAGE" value="initial setup for session in the system." />
   </component>
   <component name="WindowStateProjectService">
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609816603721">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1609816603721" />
     <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1609254037386">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609254037386" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1609232104308">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1609700353893">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609232104308" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609700353893" />
   </component>
 </project>
