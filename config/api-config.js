@@ -2,12 +2,9 @@ const express = require("express");
 const app = express();
 const path = require('path');
 const mysql = require('mysql');
-const jwt = require('jsonwebtoken');
 const db = require('./database');
-const dbfunc = require('./db-function');
+const dbfunc = require('./db-function')
 const http = require('http');
-const bodyParser = require('body-parser');
-const UserRoute = require('../app/routes/user.route');
 const AuthenticRoute = require('../app/routes/authentic.route');
 const BankManagerRoute = require('../app/routes/BankManager.route');
 const CustomerRoute = require('../app/routes/Customer.route');
@@ -15,9 +12,16 @@ const EmployeeRoute = require('../app/routes/Employee.route');
 const ErrorRoute = require('../app/routes/error.route');
 const errorCode = require('../common/error-code');
 const errorMessage = require('../common/error-methods');
-const checkToken = require('./secureRoute');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const MySQLDBStore = require('express-mysql-session')(session);
 const hbs = require('express-handlebars')
 
+const sessionStore = new MySQLDBStore({
+    createDatabaseTable: false,
+    endConnectionOnClose: false
+},db)
 
 app.set('views', path.join(appRoot,'app/views'))
 
@@ -49,7 +53,16 @@ dbfunc.connectionCheck.then((data) =>{
   next();
 });
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(session({
+    secret: SECRET,
+    store:sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
+}));
 
 const router = express.Router();
 //app.use('/api',router);
@@ -81,16 +94,18 @@ app.use('/',router);
 
 // index route
 app.get('/', (req,res) => {
-    res.render('login');
+    res.render('login',
+        {
+            error: req.query.error,
+            }
+        );
 });
 
 AuthenticRoute.init(router);
 EmployeeRoute.init(router);
-//UserRoute.init(router);
-//BankManagerRoute.init(router);
-//CustomerRoute.init(router);
-//ErrorRoute.init(router);
-//BankManagerRoute.init(secureApi);
+BankManagerRoute.init(router);
+CustomerRoute.init(router);
+ErrorRoute.init(router);
 
 const ApiConfig = {
     app: app

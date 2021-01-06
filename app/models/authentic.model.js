@@ -25,7 +25,7 @@ function authentic(authenticData) {
                         resolve(rows);
                     }
                     else {
-                        reject({"success":false,"message":"password doesn't match"});
+                        reject({"success":false,"message":"Password doesn't match"});
                     }
                 });
 

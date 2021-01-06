@@ -18,11 +18,12 @@ function init(router) {
         .post(registerCustomer)
 }
 
-function indexAction(req,res,data){
+function indexAction(req,res){
+    const userID = req.session.username;
     //EmployeeService.
     res.render('employee_dashboard',
         {
-            "full_name": data.username
+            "full_name": userID
         }
     )
     //userService.getUserById(userId).then((data) => {

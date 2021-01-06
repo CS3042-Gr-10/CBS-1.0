@@ -1,5 +1,6 @@
 const path = require('path')
 global.appRoot = path.resolve(__dirname);
+global.SECRET = "SeychellesBank"
 const apis = require("./config/api-config");
 const PORT = 9890;
 
