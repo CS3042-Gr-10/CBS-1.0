@@ -228,14 +228,3 @@ CREATE TABLE `Transfer` (
   FOREIGN KEY (to_acc_id) REFERENCES SavingAccount (saving_acc_id)
 );
 
-
-
-
-
-
-
-
-
-
-
-
