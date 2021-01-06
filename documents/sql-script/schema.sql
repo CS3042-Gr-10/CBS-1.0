@@ -1,4 +1,11 @@
 
+CREATE TABLE `Session`(
+  `session_id` varchar(128) not NULL,
+  `expires` int(11) unsigned not NULL,
+  `data` mediumtext,
+  PRIMARY KEY (`session_id`)
+);
+
 CREATE TABLE `User` (
   `user_id` INT(11) not NULL AUTO_INCREMENT,
   `user_type` char(1) not NULL,
@@ -174,50 +181,61 @@ CREATE TABLE `Loan` (
   FOREIGN KEY (sv_acc_id) REFERENCES SavingAccount (saving_acc_id),
   FOREIGN KEY (branch_id) REFERENCES Branch (branch_id)
 );
--------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-CREATE TABLE `Deposit` (
-  `trans_id` int(64),
-  `depositer_type` bool,
-  `depositer_id` int(64),
+CREATE TABLE `Transaction` (
+  `trans_id` int(64) not NULL AUTO_INCREMENT,
+  `trans_type` char(1) not NULL,
+  `amount` Numeric(10,2) not NULL,
+  `date` timestamp,
   PRIMARY KEY (`trans_id`)
 );
 
-CREATE TABLE `Transfer` (
-  `trans_id` int(64),
-  `from_acc_id` int(32),
-  `to_acc_id` int(32),
-  PRIMARY KEY (`trans_id`)
+CREATE TABLE `Cheque` (
+  `cheque_id` int(48) not NULL AUTO_INCREMENT,
+  `amount` Numeric(10,2) not NULL,
+  `from_id` int(32) not NULL,
+  `to_id` int(32) not NULL,
+  `date` timestamp,
+  PRIMARY KEY (`cheque_id`),
+  FOREIGN KEY (from_id) REFERENCES Account (acc_id),
+  FOREIGN KEY (to_id) REFERENCES Account (acc_id)
+);
+
+CREATE TABLE `Deposit` (
+  `trans_id` int(48) not NULL,
+  `depositer_type` BIT(2) not NULL,
+  `cheque_id` int(48) ,
+  PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (cheque_id) REFERENCES Cheque (cheque_id)
 );
 
 CREATE TABLE `Withdrawl` (
-  `trans_id` int(64),
-  `acc_id` int(32),
-  `withdrawl_type` int(8),
-  `withdrawer_id` int(64),
-  PRIMARY KEY (`trans_id`)
+  `trans_id` int(48) not NULL,
+  `acc_id` int(32) not NULL,
+  `withdrawl_type` BIT(2) not NULL,
+  `withdrawer_id` INT(11) not NULL,
+  PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (acc_id) REFERENCES Account (acc_id),
+  FOREIGN KEY (withdrawer_id) REFERENCES AccountOwner (owner_id)
+);
+
+CREATE TABLE `Transfer` (
+  `trans_id` int(48) not NULL,
+  `from_acc_id` int(32) not NULL,
+  `to_acc_id` int(32) not NULL,
+  PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (from_acc_id) REFERENCES SavingAccount (saving_acc_id),
+  FOREIGN KEY (to_acc_id) REFERENCES SavingAccount (saving_acc_id)
 );
 
 
-CREATE TABLE `Check` (
-  `check_id` int(64),
-  `amount` int(32),
-  `from_id` int(32),
-  `to_id` int(32),
-  `date` datetime,
-  `` <type>,
-  PRIMARY KEY (`check_id`)
-);
 
 
-CREATE TABLE `Transaction` (
-  `trans_id` int(64),
-  `trans_type` int(8),
-  `amount` int(32),
-  `date` datatime,
-  `` <type>,
-  `` <type>,
-  PRIMARY KEY (`trans_id`)
-);
+
+
+
+
+
+
+
 
