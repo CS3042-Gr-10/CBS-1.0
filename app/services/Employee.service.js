@@ -50,3 +50,36 @@ function storeEmployee(emp){
         return Promise.reject(error)
       }
 }
+
+function getEmployeeByID(emp){
+  try {  
+    let results = []
+
+    return new Promise(function(resolve, reject) {
+      db.beginTransaction(function(err) {
+          if (err) { throw err; }
+          db.query('SELECT * FROM Employee where emp_id = ?', [emp.id], function(err, result) {
+            if (err) { 
+              db.rollback(function() {
+                throw err;
+              });
+            } 
+              db.commit(function(err) {
+                if (err) { 
+                  db.rollback(function() {
+                    throw err;
+                  });
+                }
+                console.log('Transaction Completed Successfully.');
+                db.end();
+              });
+            
+          });
+        });
+      });
+    
+  
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
