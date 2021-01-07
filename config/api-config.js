@@ -14,14 +14,8 @@ const errorCode = require('../common/error-code');
 const errorMessage = require('../common/error-methods');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const MySQLDBStore = require('express-mysql-session')(session);
 const hbs = require('express-handlebars')
-
-const sessionStore = new MySQLDBStore({
-    createDatabaseTable: false,
-    endConnectionOnClose: false
-},db)
+const SessionHandler = require('./SessionHandler');
 
 app.set('views', path.join(appRoot,'app/views'))
 
@@ -56,13 +50,8 @@ dbfunc.connectionCheck.then((data) =>{
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(session({
-    secret: SECRET,
-    store:sessionStore,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
-}));
+
+app.use(SessionHandler.session_object);
 
 const router = express.Router();
 //app.use('/api',router);
@@ -81,7 +70,6 @@ app.use(express.static(path.join(appRoot, 'public')));
 //body parser middleware
 
 //app.use('/secureApi',secureApi);
-//secureApi.use(checkToken);
 
 
 app.use(function (err, req, res, next) {
@@ -93,14 +81,6 @@ app.use('/',router);
 
 
 // index route
-app.get('/', (req,res) => {
-    res.render('login',
-        {
-            error: req.query.error,
-            }
-        );
-});
-
 AuthenticRoute.init(router);
 EmployeeRoute.init(router);
 BankManagerRoute.init(router);
