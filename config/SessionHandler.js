@@ -6,13 +6,13 @@ const sessionStore = new MySQLDBStore(
   {
     createDatabaseTable: false,
     clearExpired:false,
-    endConnectionOnClose: false
+    endConnectionOnClose: false,
+    connectionLimit:1
   }, db);
 
 const session_object = session({
   name:SESS_NAME,
   secret: SECRET,
-  store:sessionStore,
   resave: false,
   saveUninitialized: false,
   cookie: {
