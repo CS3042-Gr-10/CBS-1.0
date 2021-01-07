@@ -13,18 +13,22 @@ function authentic(authenticData) {
         db.query(`SELECT * FROM User WHERE username ='${authenticData.login_username}'`, (error, rows, fields) => {
             if (error) {
                 //console.log('error');
+                dbFunc.connectionRelease;
                 reject(error);
             } else {
                 //console.log('no error')
                 //console.log(rows[0].password);
                 bcrypt.compare(authenticData.login_pwd, rows[0].password, function (err, isMatch) {
                     if (err) {
+                        dbFunc.connectionRelease;
                         reject(error);
                     } else if (isMatch) {
+                        dbFunc.connectionRelease;
                         console.log(rows[0]);
                         resolve(rows);
                     }
                     else {
+                        dbFunc.connectionRelease;
                         reject({"success":false,"message":"Password doesn't match"});
                     }
                 });
