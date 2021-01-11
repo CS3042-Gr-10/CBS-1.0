@@ -31,9 +31,9 @@ CREATE TABLE `Branch` (
   `street` varchar(25) not NULL,
   `city` varchar(25) not NULL,
   `postal_code` int(8) not NULL,
-  `address` varchar(200) AS (concat_ws(street,'/', city, '[', postal_code, ']')),
   `grade` int(3),
   `branch_manager` INT(11),
+  `contact_No` int(10) unsigned,
   `is_deleted` BIT(2) not NULL Default 0, 
   PRIMARY KEY (`branch_id`)
 );
@@ -47,31 +47,30 @@ CREATE TABLE `Post` (
 
 CREATE TABLE `Customer` (
   `customer_id` INT(11) not NULL,
-  `name` varchar(100) not NULL,
-  `first_name` varchar(25),
-  `last_name` varchar(25),
-  `full_name` varchar(100) AS (concat_ws(first_name,' ', last_name)),
+  `full_name` varchar(100) not NULL,
+  `name_with_init` varchar(100) not NULL,
   `dob` date not NULL,
-  `create_date` date not NULL,
+  `created_date` date not NULL,
   `NIC` varchar(20),
   `gender` varchar(25),
   `house_no` varchar(25) not NULL,
   `street` varchar(25) not NULL,
   `city` varchar(25),
-  `post_id` BIT(3) not NULL,
+  `postal_code` int(8),
+  `contact_primary` int(10),
+  `contact_secondary` int(10),
   PRIMARY KEY (`customer_id`),
   constraint fk_customer_id FOREIGN KEY (customer_id) REFERENCES AccountOwner (owner_id)
 );
 
 CREATE TABLE `Employee` (
   `emp_id` INT(11) not NULL,
-  `name` varchar(100) not NULL,
-  `first_name` varchar(25),
-  `last_name` varchar(25),
-  `full_name` varchar(100) AS (concat_ws(first_name,' ', last_name)),
+  `full_name` varchar(100) not NULL,
+  `name_with_init` varchar(100) not NULL,
   `dob` Date not NULL,
-  `create_date` date not NULL,
+  `created_date` date not NULL,
   `postal_code` int(8) not NULL,
+  `contact_No` int(10),
   `NIC` varchar(20) not NULL UNIQUE,
   `branch_id` int(5) not NULL,
   `gender` varchar(25),
@@ -93,6 +92,7 @@ ALTER TABLE Branch add CONSTRAINT branch_manager_fk
 CREATE TABLE `Organization` (
   `org_id` int(8) not NULL,
   `name` varchar(25) not NULL,
+  `contact_No` int(10),
   `branch_id` int(5) not NULL,
   `created_date` date not NULL,
   PRIMARY KEY (`org_id`),
@@ -157,6 +157,7 @@ CREATE TABLE `FixedDeposit` (
   `branch_id` int(5) not NULL,
   `opened_date` Date,
   `balance` Numeric(20,2),
+  `state` BIT(2),
   PRIMARY KEY (`fd_id`),
   FOREIGN KEY (cusotmer_id) REFERENCES AccountOwner (owner_id),
   FOREIGN KEY (acc_plan_id) REFERENCES  FDAccountPlan (fd_plan_id),
@@ -174,8 +175,8 @@ CREATE TABLE `Loan` (
   `state` int(4) not NULL,
   `sv_acc_id` int(32) not NULL,
   `loan_interrest_rate` Numeric(4,2),
-  `num_mon_paid` int(8) not NULL Default 0,
-  `branch_id` int(5) not NULL,
+  `branch_id` int(5) not NULL
+  `deleted` BIT(2),
   PRIMARY KEY (`loan_id`),
   FOREIGN KEY (customer_id) REFERENCES AccountOwner (owner_id),
   FOREIGN KEY (sv_acc_id) REFERENCES SavingAccount (saving_acc_id),
@@ -227,4 +228,13 @@ CREATE TABLE `Transfer` (
   FOREIGN KEY (from_acc_id) REFERENCES SavingAccount (saving_acc_id),
   FOREIGN KEY (to_acc_id) REFERENCES SavingAccount (saving_acc_id)
 );
+
+CREATE TABLE `LoanPayment` (
+  `trans_id` int(64),
+  `loan_id` int(32),
+  PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (loan_id) REFERENCES Loan (loan_id)
+);
+
+
 
