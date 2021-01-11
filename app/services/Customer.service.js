@@ -1,5 +1,10 @@
+
+
 const db = require('../../config/database');
 const dbFunc = require('../../config/db-function');
+
+
+const CustomerModel = require("../models/Customer.model");
 
 function storeCustomer(customer){
     try {  
@@ -58,3 +63,4 @@ function storeCustomer(customer){
         return Promise.reject(error)
       }
 }
+
