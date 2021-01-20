@@ -36,12 +36,19 @@
 <input class="accNum" type="number" name="accNum"><br>
 <button type="submit">Show Account Details</button><br>
 
-<p>Account Details.</p>
+<h3>Account Details.</h3>
+<p>{{ full_name }}<p>
+<p>{{ acc_number }}<p>
+<p>{{ NIC_number }}<p>
+<p>{{ open_date }}<p>
+<p>{{ acc_type }}</p>
 
+<h3>Recent Transactions.</h3>
 
-<p>Recent Transactions.</p>
+{{!-- colour of the amount => red=withdraw(money out), blue=deposit(money in) --}}
 
-
+<p>{{ date_time_amount }}</p>
+<p>{{ date_time_amount }}</p>
 
 <button type="button" onclick="document.location='employee_transaction.hbs'">Do a Transaction</button><br>
 <button type="button" onclick="document.location='employee_dashboard.hbs'">Back</button>
