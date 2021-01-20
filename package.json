@@ -31,13 +31,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DevinDeSilva/CBS-1.0.git"
+    "url": "git+https://github.com/CS3042-Gr-10/CBS-1.0.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DevinDeSilva/CBS-1.0/issues"
+    "url": "https://github.com/CS3042-Gr-10/CBS-1.0/issues"
   },
-  "homepage": "https://github.com/DevinDeSilva/CBS-1.0#readme"
+  "homepage": "https://github.com/CS3042-Gr-10/CBS-1.0#readme"
 }
