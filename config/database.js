@@ -8,6 +8,7 @@ module.exports = mysql.createPool({
     database: 'bpi9zrldmffepsxk5zeg',
     port: 3306,
     password: 'GRWM2e4bac8RVsmQIfHo',
+    connectionLimit:20
 })
 
 

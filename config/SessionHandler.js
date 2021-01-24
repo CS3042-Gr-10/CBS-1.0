@@ -7,7 +7,6 @@ const sessionStore = new MySQLDBStore(
     createDatabaseTable: false,
     clearExpired:false,
     endConnectionOnClose: false,
-    connectionLimit:1
   }, db);
 
 const session_object = session({

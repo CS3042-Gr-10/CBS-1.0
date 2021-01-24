@@ -1,9 +1,11 @@
-const EmployeeService = require('../services/Employee.service');
 const customer_reg_schema = require('../schema/CustomerRegistrationSchema.json');
 const iValidator = require('../../common/iValidator');
 const errorCode = require('../../common/error-code');
 const errorMessage = require('../../common/error-methods');
 const errortype = require('../../common/error-type');
+const Errors = require('../../common/error');
+const UserService = require('../services/user.service');
+const EmployeeService = require('../services/Employee.service')
 const GeneralError = errortype.RedirectGeneralError;
 
 function init(router) {
@@ -18,14 +20,23 @@ function init(router) {
         .post(registerCustomer)
 }
 
-function indexAction(req,res){
-    const userID = req.session.username;
-    //EmployeeService.
-    res.render('employee_dashboard',
-        {
-            "full_name": userID
+async function indexAction(req,res){
+    const userID = req.session.user.username;
+    try{
+        const User = await UserService.getUserById(userID);
+        if (!User){
+            throw new Errors.BadRequest('An Error Occurred in the Database');
         }
-    )
+
+        res.render('employee_dashboard',
+          {
+              url_params: req.params,
+              User:User
+          }
+        )
+    }catch (e){
+        res.redirect(`/?error=${e}`);
+    }
     //userService.getUserById(userId).then((data) => {
 
     //}).catch((err) => {
@@ -34,7 +45,9 @@ function indexAction(req,res){
     //});
 }
 
-function registerCustomerAction(req,res){
+async function registerCustomerAction(req,res){
+
+    const branch_data =
     res.render('customer_reg_form',
         {
 
@@ -52,6 +65,7 @@ function registerCustomer(req,res){
     if (json_format.valid == false) {
         return res.status(422).send(json_format.errorMessage);
     }
+
 
 
 }

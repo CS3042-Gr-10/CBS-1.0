@@ -21,12 +21,37 @@
         <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="database connection error">
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="disabled database sessions">
+      <change afterPath="$PROJECT_DIR$/common/error.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Admin.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/branch.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/BankManager.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/branch.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Customer.model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Employee.model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/authentic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/authentic.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/session.model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Admin.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Admin.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/Customer.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/Customer.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/user.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/SessionHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/SessionHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +89,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Middleware" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Software engineering/agri-app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -76,10 +101,11 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\common" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
     </key>
   </component>
@@ -119,7 +145,14 @@
       <workItem from="1609569273727" duration="721000" />
       <workItem from="1609642538521" duration="9336000" />
       <workItem from="1609816213456" duration="13236000" />
-      <workItem from="1609912684808" duration="17207000" />
+      <workItem from="1609912684808" duration="19076000" />
+      <workItem from="1610252598209" duration="4953000" />
+      <workItem from="1610475561573" duration="2114000" />
+      <workItem from="1610505626339" duration="5008000" />
+      <workItem from="1610681568685" duration="860000" />
+      <workItem from="1610683651549" duration="2417000" />
+      <workItem from="1610777498218" duration="6696000" />
+      <workItem from="1611383427668" duration="1225000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -198,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610015654614</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="disabled database sessions">
+      <created>1610027670564</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1610027670564</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,17 +268,18 @@
     <MESSAGE value="Added template functions to Customer.route.js" />
     <MESSAGE value="Added template functions to BankManager.route.js" />
     <MESSAGE value="database connection error" />
-    <option name="LAST_COMMIT_MESSAGE" value="database connection error" />
+    <MESSAGE value="disabled database sessions" />
+    <option name="LAST_COMMIT_MESSAGE" value="disabled database sessions" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609816603721">
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1610258550478">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1609816603721" />
-    <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1609254037386">
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1610258550478" />
+    <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1611383451665">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609254037386" />
+    <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1611383451665" />
     <state width="1500" height="208" key="GridCell.Tab.0.bottom" timestamp="1610002186804">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -259,9 +300,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1609823400890" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1610016267240">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1610027744275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1610016267240" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1610027744275" />
   </component>
 </project>

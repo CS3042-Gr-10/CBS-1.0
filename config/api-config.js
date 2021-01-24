@@ -79,6 +79,16 @@ app.use(function (err, req, res, next) {
 
 app.use('/',router);
 
+router.route('/something/something')
+  .get(something);
+
+function something(req,res){
+  res.render('employee_dashboard',
+    {
+      full_name:'Devin',
+    }
+    );
+}
 
 // index route
 AuthenticRoute.init(router);

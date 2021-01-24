@@ -3,6 +3,8 @@ const iValidator = require('../../common/iValidator');
 const errorCode = require('../../common/error-code');
 const errorMessage = require('../../common/error-methods');
 const error_type = require('../../common/error-type');
+const UserService = require('../services/user.service');
+const Errors = require('../../common/error');
 const GeneralError = error_type.RedirectGeneralError;
 
 function init(router) {
@@ -13,13 +15,24 @@ function init(router) {
     //    .post(registerCustomer)
 }
 
-function indexAction(req,res,data){
+async function indexAction(req,res){
     //EmployeeService.
-    res.render('employee_dashboard',
-        {
-            "full_name": data.username
-        }
+  const userID = req.session.user.username;
+  try{
+    const User = await UserService.getUserById(userID);
+    if (!User){
+      throw new Errors.BadRequest('An Error Occurred in the Database');
+    }
+
+    res.render('admin_dashboard',
+      {
+        url_params: req.params,
+        User:User
+      }
     )
+  }catch (e){
+    res.redirect(`/?error=${e}`);
+  }
     //userService.getUserById(userId).then((data) => {
 
     //}).catch((err) => {

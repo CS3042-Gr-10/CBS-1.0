@@ -16,6 +16,7 @@ function init(router) {
     router.route('/login')
         .post(authentic); 
     router.route('/logout')
+        .get(logout)
         .post(logout);
 }
 
@@ -33,7 +34,7 @@ function authentic(req,res) {
     //Validating the input entity
     const json_format = iValidator.json_schema(schema.postSchema, authenticData, "authentic");
     if (json_format.valid == false) {
-     return res.status(422).send(json_format.errorMessage);
+     return res.render(`/login?error=${json_format.errorMessage}`);
    }
    console.log(authenticData)
    authenticService.authentic(authenticData).then((data) => {
@@ -99,9 +100,7 @@ function logout(req, res){
   res.redirect('/')
 }
 
-function editProfile(){
 
-}
 
 
 

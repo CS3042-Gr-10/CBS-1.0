@@ -7,6 +7,8 @@ const authenticModel = {
     signup: signup
 };
 
+
+
 function authentic(authenticData) {
     return new Promise((resolve, reject) => {
         //console.log(`SELECT * FROM User WHERE username ='${authenticData.login_username}'`);
