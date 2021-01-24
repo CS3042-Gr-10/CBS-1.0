@@ -47,7 +47,8 @@ CREATE TABLE `Post` (
 
 CREATE TABLE `Customer` (
   `customer_id` INT(11) not NULL,
-  `full_name` varchar(100) not NULL,
+  `first_name` varchar(100) not NULL,
+  `last_name` varchar(100),
   `name_with_init` varchar(100) not NULL,
   `dob` date not NULL,
   `created_date` date not NULL,
@@ -65,7 +66,8 @@ CREATE TABLE `Customer` (
 
 CREATE TABLE `Employee` (
   `emp_id` INT(11) not NULL,
-  `full_name` varchar(100) not NULL,
+  `first_name` varchar(100) not NULL,
+  `last_name` varchar(100) not NULL,
   `name_with_init` varchar(100) not NULL,
   `dob` Date not NULL,
   `created_date` date not NULL,
@@ -175,7 +177,7 @@ CREATE TABLE `Loan` (
   `state` int(4) not NULL,
   `sv_acc_id` int(32) not NULL,
   `loan_interrest_rate` Numeric(4,2),
-  `branch_id` int(5) not NULL
+  `branch_id` int(5) not NULL,
   `deleted` BIT(2),
   PRIMARY KEY (`loan_id`),
   FOREIGN KEY (customer_id) REFERENCES AccountOwner (owner_id),
