@@ -2,6 +2,12 @@
 const db = require('../config/database');
 var dbFunc = require('../config/db-function');
 
+var AccountModel = {
+    addAccount,
+    depositMoneySvAcc,
+    withdrawSvAcc
+}
+
 function addAccount(acc) {
 
     //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_account.sql 
@@ -56,3 +62,4 @@ function withdrawSvAcc(deposit) {
     });
 }
 
+module.exports = AccountModel;

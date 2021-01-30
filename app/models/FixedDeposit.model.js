@@ -2,6 +2,10 @@
 const db = require('../config/database');
 var dbFunc = require('../config/db-function');
 
+var FDModel = {
+    addCFixedDeposit
+}
+
 function addCFixedDeposit(acc) {
 
     //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_fd.sql 
@@ -19,3 +23,5 @@ function addCFixedDeposit(acc) {
         });
     });
 }
+
+module.exports = FDModel;

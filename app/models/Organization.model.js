@@ -2,6 +2,11 @@
 const db = require('../config/database');
 var dbFunc = require('../config/db-function');
 
+var OrgModel = {
+    getOrgDetails,
+    addOrg
+}
+
 function getOrgDetails(id) {
     return new Promise((resolve, reject) => {
         db.query('SELECT * from Organization where org_id = ?',id, (error, rows, fields) => {
@@ -34,3 +39,5 @@ function addOrg(acc) {
         });
     });
 }
+
+module.exports = OrgModel;
