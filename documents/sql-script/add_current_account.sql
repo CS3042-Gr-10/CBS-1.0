@@ -1,13 +1,11 @@
-CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `add_account`(
+CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `add_current_account`(
 	IN branch_id int(5),
     IN manager_id int(11),
     IN acc_balance decimal(20,2),
     IN usr_id int(11),
-    IN acc_type int(2),
-    IN account_plan_id int(8)
+    IN acc_type varchar(20)
 )
 BEGIN
-
 	DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -20,12 +18,12 @@ BEGIN
 
     START TRANSACTION;
     
-        insert into Account (branch_id, manager_id, user_id, acc_type, created_date)
-        values (branch_id, manager_id, user_id, acc_type, curdate());
-        
-        insert into SavingAccount (saving_acc_id, acc_plan_id, acc_balance)
-        values (last_insert_id(), account_plan_id, acc_balance);
-        
+	insert into Account (branch_id, manager_id, user_id, acc_type, created_date)
+    values (branch_id, manager_id, user_id, acc_type, curdate());
+    
+    insert into SavingAccount (acc_id,  balance)
+    values (last_insert_id(),  acc_balance);
+    
 	COMMIT WORK;
     
 END
