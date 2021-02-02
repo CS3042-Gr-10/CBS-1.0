@@ -1,12 +1,12 @@
-var db = require('../../config/database');
-var dbFunc = require('../../config/db-function');
+const db = require('../../config/database')
+const dbFunc = require('../../config/db-function')
 
-var userModel = {
-   getAllUser:getAllUser,
-   addUser:addUser,
-   updateUser:updateUser,
-   deleteUser:deleteUser,
-   getUserById:getUserById
+const userModel = {
+  getAllUser: getAllUser,
+  addUser: addUser,
+  updateUser: updateUser,
+  deleteUser: deleteUser,
+  getUserById: getUserById
 }
 
 function getAllUser() {

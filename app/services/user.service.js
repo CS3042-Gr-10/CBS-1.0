@@ -1,4 +1,4 @@
-const userModel = require('../models/user.model.js')
+//onst userModel = require('../models/user.model.js')
 
 const userService = {
     getUserById: getUserById,

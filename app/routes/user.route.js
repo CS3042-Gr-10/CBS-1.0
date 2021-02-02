@@ -1,4 +1,4 @@
-const userService = require('../services/user.service');
+//const userService = require('../services/user.service');
 const schema = require('../schema/userValidationSchema.json');
 const iValidator = require('../../common/iValidator');
 const errorCode = require('../../common/error-code');
