@@ -1,0 +1,67 @@
+{
+  "getSchema":{},
+
+  "postSchema":{
+    "type": "object",
+    "required": [
+      "full_name",
+      "name_with_initials",
+      "age",
+      "dob",
+      "perm_address",
+      "postal_code",
+      "nic",
+      "gender",
+      "contact",
+      "username",
+      "email",
+      "branch",
+      "acc_level"
+
+    ],
+    "properties": {
+      "age": {
+        "type": ["string","integer"],
+        "minimum": 13
+      },
+      "dob": {
+        "type": "string",
+        "format": "date"
+      },
+      "perm_address": {
+        "type": "string",
+        "maxLength": 256
+      },
+      "postal_code": {
+        "type": "string",
+        "maxLength": 8
+      },
+      "nic": {
+        "description": "must be string of length 10 and must contain lower case letter at the end",
+        "type": "string",
+        "pattern": "^[0-9]{9}[a-z]{1}$"
+      },
+      "gender": {
+        "enum": ["female", "male" ,"other_gender"]
+      },
+      "acc_level": {
+        "enum": ["employee", "manager"]
+      },
+      "contact": {
+        "type": "string",
+        "maxLength":7 ,
+        "minLength":7
+      },
+      "username": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 15
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      }
+
+    }
+  }
+}
