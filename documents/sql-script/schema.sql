@@ -109,12 +109,13 @@ CREATE TABLE `Account` (
   `branch_id` int(5) not NULL,
   `manager_id` INT(11),
   `user_id` INT(11) not NULL,
-  `acc_type` int(2) not NULL,
+  `acc_type` varchar(20) not NULL,
   `created date` Date not NULL,
   PRIMARY KEY (`acc_id`),
   FOREIGN KEY (branch_id) REFERENCES Branch (branch_id),
   FOREIGN KEY (manager_id) REFERENCES Employee (user_id),
-  FOREIGN KEY (user_id) REFERENCES AccountOwner (user_id)
+  FOREIGN KEY (user_id) REFERENCES AccountOwner (user_id),
+  Check (acc_type in ("SAVINGS", "CURRENT"))
 );
 
 CREATE TABLE `SavingAccoutPlan` (
@@ -137,12 +138,11 @@ CREATE TABLE `SavingAccount` (
   FOREIGN KEY (acc_plan_id) REFERENCES SavingAccoutPlan (acc_plan_id)
 );
 
-CREATE TABLE `Current Deposit` (
+CREATE TABLE `CurrentDeposit` (
   `acc_id` INT(32) not NULL,
   `remaining_balance` Numeric(20,2),
-  `state` int(4) not NULL,
   PRIMARY KEY (`acc_id`),
-  FOREIGN KEY (acc_id) REFERENCES Account (acc_id)
+  FOREIGN KEY (acc_id) REFERENCES Account (acc_id),
 );
 
 CREATE TABLE `FDAccountPlan` (
