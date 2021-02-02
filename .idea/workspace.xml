@@ -31,11 +31,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="something">
-      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Cheque.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/FixedDeposit.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Loan.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Organization.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Transaction.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/add_account.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/add_customer.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/add_emp.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/add_fd.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/add_org.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/deposit_mn_sv_acc.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/transfer_mn.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/withdraw_sv_acc.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Customer.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Customer.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Employee.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Employee.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/Customer.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/Customer.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/documents/sql-script/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/documents/sql-script/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +151,9 @@
       <workItem from="1610683651549" duration="2417000" />
       <workItem from="1610777498218" duration="6696000" />
       <workItem from="1611383427668" duration="1225000" />
-      <workItem from="1611469514943" duration="1718000" />
+      <workItem from="1611469514943" duration="2473000" />
+      <workItem from="1611932821219" duration="674000" />
+      <workItem from="1612249245885" duration="2055000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -230,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611469699297</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="something">
+      <created>1611471569646</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1611471569646</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

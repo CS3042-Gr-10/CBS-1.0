@@ -189,8 +189,10 @@ CREATE TABLE `Transaction` (
   `trans_id` int(64) not NULL AUTO_INCREMENT,
   `trans_type` char(1) not NULL,
   `amount` Numeric(10,2) not NULL,
+  `emp_id` int(16),
   `date` timestamp,
-  PRIMARY KEY (`trans_id`)
+  PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (emp_id) REFERENCES Employee (emp_id)
 );
 
 CREATE TABLE `Cheque` (
@@ -206,10 +208,11 @@ CREATE TABLE `Cheque` (
 
 CREATE TABLE `Deposit` (
   `trans_id` int(48) not NULL,
-  `depositer_type` BIT(2) not NULL,
-  `cheque_id` int(48) ,
+  `deposit_type` BIT(2) not NULL,
+  `acc_id` int(32) ,
   PRIMARY KEY (`trans_id`),
-  FOREIGN KEY (cheque_id) REFERENCES Cheque (cheque_id)
+  FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
+  FOREIGN KEY (acc_id) REFERENCES SavingAccount (saving_acc_id)
 );
 
 CREATE TABLE `Withdrawl` (
@@ -218,6 +221,7 @@ CREATE TABLE `Withdrawl` (
   `withdrawl_type` BIT(2) not NULL,
   `withdrawer_id` INT(11) not NULL,
   PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
   FOREIGN KEY (acc_id) REFERENCES Account (acc_id),
   FOREIGN KEY (withdrawer_id) REFERENCES AccountOwner (owner_id)
 );
@@ -227,6 +231,7 @@ CREATE TABLE `Transfer` (
   `from_acc_id` int(32) not NULL,
   `to_acc_id` int(32) not NULL,
   PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
   FOREIGN KEY (from_acc_id) REFERENCES SavingAccount (saving_acc_id),
   FOREIGN KEY (to_acc_id) REFERENCES SavingAccount (saving_acc_id)
 );
@@ -235,6 +240,7 @@ CREATE TABLE `LoanPayment` (
   `trans_id` int(64),
   `loan_id` int(32),
   PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
   FOREIGN KEY (loan_id) REFERENCES Loan (loan_id)
 );
 
