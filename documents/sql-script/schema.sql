@@ -11,17 +11,19 @@ CREATE TABLE `User` (
   `user_type` char(1) not NULL,
   `username` varchar(25) not NULL UNIQUE,
   `password` varchar(255) not NULL,
-  `acc_level` int(8) not NULL,
+  `email` varchar(100) not NULL,
+  `acc_level` varchar(10) not NULL,
   `is_deleted` BIT(2) not NULL Default 0,
   PRIMARY KEY (`user_id`),
-  Check (user_type in ('E','A'))
+  Check (user_type in ('E','A')),
+  Check (acc_level in ("CUSTOMER", "EMPLOYEE","BANK-MANAGER"))
 );
 
 CREATE TABLE `AccountOwner` (
-  `owner_id` INT(11) not NULL,
+  `user_id` INT(11) not NULL,
   `owner_type` char(1) not NULL,
-  PRIMARY KEY (`owner_id`),
-  FOREIGN KEY (owner_id) REFERENCES User(user_id),
+  PRIMARY KEY (`user_id`),
+  FOREIGN KEY (user_id) REFERENCES User(user_id),
   Check (owner_type in ('O','U'))
 );
 
@@ -46,7 +48,7 @@ CREATE TABLE `Post` (
 );
 
 CREATE TABLE `Customer` (
-  `customer_id` INT(11) not NULL,
+  `user_id` INT(11) not NULL,
   `first_name` varchar(100) not NULL,
   `last_name` varchar(100),
   `name_with_init` varchar(100) not NULL,
@@ -60,12 +62,12 @@ CREATE TABLE `Customer` (
   `postal_code` int(8),
   `contact_primary` int(10),
   `contact_secondary` int(10),
-  PRIMARY KEY (`customer_id`),
-  constraint fk_customer_id FOREIGN KEY (customer_id) REFERENCES AccountOwner (owner_id)
+  PRIMARY KEY (`user_id`),
+  constraint fk_customer_id FOREIGN KEY (user_id) REFERENCES AccountOwner (user_id)
 );
 
 CREATE TABLE `Employee` (
-  `emp_id` INT(11) not NULL,
+  `user_id` INT(11) not NULL,
   `first_name` varchar(100) not NULL,
   `last_name` varchar(100) not NULL,
   `name_with_init` varchar(100) not NULL,
@@ -80,25 +82,25 @@ CREATE TABLE `Employee` (
   `street` varchar(25) not NULL,
   `city` varchar(25),
   `post_id` BIT(3) not NULL,
-  PRIMARY KEY (`emp_id`),
-  constraint fk_emp FOREIGN KEY (emp_id) REFERENCES User (user_id),
+  PRIMARY KEY (`user_id`),
+  constraint fk_emp FOREIGN KEY (user_id) REFERENCES User (user_id),
   FOREIGN KEY (post_id) REFERENCES Post(post_id)
 );
 
 ALTER TABLE Branch add CONSTRAINT branch_manager_fk
   FOREIGN KEY  (branch_manager)
-  REFERENCES Employee (emp_id)
+  REFERENCES Employee (user_id)
   ON DELETE RESTRICT                            
   ON UPDATE RESTRICT;
 
 CREATE TABLE `Organization` (
-  `org_id` int(8) not NULL,
+  `user_id` int(8) not NULL,
   `name` varchar(25) not NULL,
   `contact_No` int(10),
   `branch_id` int(5) not NULL,
   `created_date` date not NULL,
-  PRIMARY KEY (`org_id`),
-  FOREIGN KEY (org_id) REFERENCES AccountOwner (owner_id),
+  PRIMARY KEY (`user_id`),
+  FOREIGN KEY (user_id) REFERENCES AccountOwner (user_id),
   FOREIGN KEY (branch_id) REFERENCES Branch (branch_id)
 );
 
@@ -111,8 +113,8 @@ CREATE TABLE `Account` (
   `created date` Date not NULL,
   PRIMARY KEY (`acc_id`),
   FOREIGN KEY (branch_id) REFERENCES Branch (branch_id),
-  FOREIGN KEY (manager_id) REFERENCES Employee (emp_id),
-  FOREIGN KEY (user_id) REFERENCES AccountOwner (owner_id)
+  FOREIGN KEY (manager_id) REFERENCES Employee (user_id),
+  FOREIGN KEY (user_id) REFERENCES AccountOwner (user_id)
 );
 
 CREATE TABLE `SavingAccoutPlan` (
@@ -127,20 +129,20 @@ CREATE TABLE `SavingAccoutPlan` (
 );
 
 CREATE TABLE `SavingAccount` (
-  `saving_acc_id` INT(32) not NULL,
+  `acc_id` INT(32) not NULL,
   `acc_plan_id` int(4) not NULL,
   `acc_balance` Numeric(20,2),
-  PRIMARY KEY (`saving_acc_id`),
-  FOREIGN KEY (saving_acc_id) REFERENCES Account (acc_id),
+  PRIMARY KEY (`acc_id`),
+  FOREIGN KEY (acc_id) REFERENCES Account (acc_id),
   FOREIGN KEY (acc_plan_id) REFERENCES SavingAccoutPlan (acc_plan_id)
 );
 
 CREATE TABLE `Current Deposit` (
-  `current_acc_id` INT(32) not NULL,
+  `acc_id` INT(32) not NULL,
   `remaining_balance` Numeric(20,2),
   `state` int(4) not NULL,
-  PRIMARY KEY (`current_acc_id`),
-  FOREIGN KEY (current_acc_id) REFERENCES Account (acc_id)
+  PRIMARY KEY (`acc_id`),
+  FOREIGN KEY (acc_id) REFERENCES Account (acc_id)
 );
 
 CREATE TABLE `FDAccountPlan` (
@@ -161,38 +163,55 @@ CREATE TABLE `FixedDeposit` (
   `balance` Numeric(20,2),
   `state` BIT(2),
   PRIMARY KEY (`fd_id`),
-  FOREIGN KEY (cusotmer_id) REFERENCES AccountOwner (owner_id),
+  FOREIGN KEY (cusotmer_id) REFERENCES AccountOwner (user_id),
   FOREIGN KEY (acc_plan_id) REFERENCES  FDAccountPlan (fd_plan_id),
-  FOREIGN KEY (sv_acc_id) REFERENCES SavingAccount (saving_acc_id),
+  FOREIGN KEY (sv_acc_id) REFERENCES SavingAccount (acc_id),
   FOREIGN KEY (branch_id) REFERENCES Branch (branch_id)
 );
 
 CREATE TABLE `Loan` (
   `loan_id` INT(32) not NULL AUTO_INCREMENT,
-  `requested_date` Date,
-  `accepted_date` Date,
-  `loan_init_type` int(2) not NULL,
+  `loan_type` varchar(20) not NULL,
   `customer_id` int(16) not NULL,
   `loaned_amount` Numeric(20,2) not NULL,
-  `state` int(4) not NULL,
-  `sv_acc_id` int(32) not NULL,
   `loan_interrest_rate` Numeric(4,2),
-  `branch_id` int(5) not NULL,
+  `aggreed_num_installements` int(4) not NULL,
+  `finished_num_installements` int(4) not NULL,
   `deleted` BIT(2),
   PRIMARY KEY (`loan_id`),
-  FOREIGN KEY (customer_id) REFERENCES AccountOwner (owner_id),
-  FOREIGN KEY (sv_acc_id) REFERENCES SavingAccount (saving_acc_id),
-  FOREIGN KEY (branch_id) REFERENCES Branch (branch_id)
+  FOREIGN KEY (customer_id) REFERENCES AccountOwner (user_id),
+  Check (loan_type in ("PERSONAL", "BUSINESS"))
 );
+
+CREATE TABLE `StandardLoan` (
+  `loan_id` int(32) not NULL,
+  `branch_id` int(5) not NULL,
+  `accepted_date` Date,
+  `state` varchar(20) not NULL,
+  PRIMARY KEY (`loan_id`),
+  FOREIGN KEY (loan_id) REFERENCES Loan (loan_id),
+  FOREIGN KEY (branch_id) REFERENCES Branch (branch_id),
+  Check (state in ("PENDING", "PAID", "NOT-PAID", "COMPLETE"))
+)
+
+CREATE TABLE `OnlineLoan` (
+  `loan_id` int(32) not NULL,
+  `created_date` Date,
+  `fd_acc_id` int(32) not NULL,
+  `state` varchar(20) not NULL,
+  PRIMARY KEY (`loan_id`),
+  FOREIGN KEY (loan_id) REFERENCES Loan (loan_id),
+  FOREIGN KEY (fd_acc_id) REFERENCES FixedDeposit (fd_id),
+  Check (state in ("PAID", "NOT-PAID", "COMPLETE"))
+)
 
 CREATE TABLE `Transaction` (
   `trans_id` int(64) not NULL AUTO_INCREMENT,
   `trans_type` char(1) not NULL,
   `amount` Numeric(10,2) not NULL,
-  `emp_id` int(16),
   `date` timestamp,
   PRIMARY KEY (`trans_id`),
-  FOREIGN KEY (emp_id) REFERENCES Employee (emp_id)
+  Check (trans_type in ("T", "W", "D", "L"))
 );
 
 CREATE TABLE `Cheque` (
@@ -212,10 +231,29 @@ CREATE TABLE `Deposit` (
   `acc_id` int(32) ,
   PRIMARY KEY (`trans_id`),
   FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
-  FOREIGN KEY (acc_id) REFERENCES SavingAccount (saving_acc_id)
+  FOREIGN KEY (acc_id) REFERENCES SavingAccount (acc_id),
+  Check (deposit_type in ("MONEY", "CHEQUE", "TRANSFER"))
 );
 
-CREATE TABLE `Withdrawl` (
+CREATE TABLE `ChequeDeposit` (
+  `trans_id` int(48) not NULL,
+  `cheque_id` int(48) not NULL,
+  `emp_id` int(16),
+  PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (emp_id) REFERENCES Employee (user_id),
+  FOREIGN KEY (trans_id) REFERENCES Deposit (trans_id),
+  FOREIGN KEY (cheque_id) REFERENCES Cheque (cheque_id)
+)
+
+CREATE TABLE `MoneyDeposit` (
+  `trans_id` int(48) not NULL,
+  `emp_id` int(16),
+  PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (emp_id) REFERENCES Employee (user_id),
+  FOREIGN KEY (trans_id) REFERENCES Deposit (trans_id)
+)
+
+CREATE TABLE `Withdraw` (
   `trans_id` int(48) not NULL,
   `acc_id` int(32) not NULL,
   `withdrawl_type` BIT(2) not NULL,
@@ -223,8 +261,22 @@ CREATE TABLE `Withdrawl` (
   PRIMARY KEY (`trans_id`),
   FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
   FOREIGN KEY (acc_id) REFERENCES Account (acc_id),
-  FOREIGN KEY (withdrawer_id) REFERENCES AccountOwner (owner_id)
+  FOREIGN KEY (withdrawer_id) REFERENCES AccountOwner (user_id)
 );
+
+CREATE TABLE `MoneyWithdraw` (
+  `trans_id` int(48) not NULL,
+  `emp_id` int(16),
+  PRIMARY KEY (`trans_id`),
+  FOREIGN KEY (emp_id) REFERENCES Employee (user_id),
+  FOREIGN KEY (trans_id) REFERENCES Withdraw (trans_id)
+)
+
+CREATE TABLE `ATMWithdraw` (
+  `trans_id` int(48) not NULL,
+  `atm_point` int(4) not NULL,
+  FOREIGN KEY (trans_id) REFERENCES Withdraw (trans_id)
+)
 
 CREATE TABLE `Transfer` (
   `trans_id` int(48) not NULL,
@@ -232,8 +284,8 @@ CREATE TABLE `Transfer` (
   `to_acc_id` int(32) not NULL,
   PRIMARY KEY (`trans_id`),
   FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
-  FOREIGN KEY (from_acc_id) REFERENCES SavingAccount (saving_acc_id),
-  FOREIGN KEY (to_acc_id) REFERENCES SavingAccount (saving_acc_id)
+  FOREIGN KEY (from_acc_id) REFERENCES SavingAccount (acc_id),
+  FOREIGN KEY (to_acc_id) REFERENCES SavingAccount (acc_id)
 );
 
 CREATE TABLE `LoanPayment` (
