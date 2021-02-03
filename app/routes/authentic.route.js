@@ -4,19 +4,27 @@ const iValidator = require('../../common/iValidator');
 const errorCode = require('../../common/error-code');
 const errorMessage = require('../../common/error-methods');
 const mail = require('./../../common/mailer.js');
-const Employee = require('./Employee.route');
-const Admin = require('./Admin.route');
-const BankManager = require('./BankManager.route');
-const Customer = require('./Customer.route');
-
+const errortype = require('../../common/error-type');
+const SessionHandler = require('../../config/SessionHandler')
+const GeneralError = errortype.RedirectGeneralError;
 
 const jwt = require('jsonwebtoken');
 
 function init(router) {
+    router.route('/')
+      .get(loginPage);
     router.route('/login')
         .post(authentic); 
-    router.route('/signup')
-          .post(signup); 
+    router.route('/logout')
+        .post(logout);
+}
+
+function loginPage(req,res){
+  res.render('login',
+    {
+      error: req.query.error,
+    }
+  );
 }
 
 function authentic(req,res) {
@@ -30,21 +38,28 @@ function authentic(req,res) {
    console.log(authenticData)
    authenticService.authentic(authenticData).then((data) => {
    if(data) {
+
+       req.session.user = {};
+       req.session.user.email = data.email;
+       req.session.user.username = data.username;
+       req.session.user.acc_level = data.acc_level;
+       console.log(req.session.user)
         if (data.acc_level === 1){
-            Customer.home(req,res,data)
+            res.redirect(`/Customer/${req.session.user.username}`)
         }else if (data.acc_level === 2){
-            Employee.home(req,res,data)
+            res.redirect(`/Employee/${req.session.user.username}`)
         }else if (data.acc_level === 3){
+            res.redirect(`/BankManager/${req.session.user.username}`)
             //something
-        }else if (data.acc_level === 4){
+        }else if (data.acc_level === 0){
+            res.redirect(`/Admin/${req.session.user.username}`)
            //something
        }else{
-
+            GeneralError(req,res);
         }
     }
   }).catch((err) => {
-    mail.mail(err);
-    res.json(err);
+       res.redirect(`/?error=${err}`);
   });
 
 }
@@ -52,7 +67,7 @@ function authentic(req,res) {
 
 function signup(req,res) {
   var signUpData=req.body;
-  
+
   //Validating the input entity
    var json_format = iValidator.json_schema(schema.postSchema, signUpData, "signUpData");
    if (json_format.valid == false) {
@@ -72,6 +87,22 @@ function signup(req,res) {
    });
 
 }
+
+function logout(req, res){
+  req.session.destroy(error => {
+    if (error) {
+      res.send('Error logging out')
+    }
+  });
+
+  res.clearCookie(SESS_NAME);
+  res.redirect('/')
+}
+
+function editProfile(){
+
+}
+
 
 
 

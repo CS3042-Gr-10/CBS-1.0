@@ -1,3 +1,4 @@
+
 const db = require('../../config/database');
 const dbFunc = require('../../config/db-function');
 const bcrypt = require('bcryptjs');
@@ -76,6 +77,5 @@ function signup(user) {
 }
 
 module.exports = authenticModel;
-
 
 

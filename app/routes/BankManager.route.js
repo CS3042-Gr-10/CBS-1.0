@@ -28,5 +28,20 @@ function indexAction(req,res,data){
     //});
 }
 
+function listLoansforApprovalAction(req,res){
+    // a list of bank loans that that require approval
+}
+
+function approveLoanAction(req,res){
+    //approve a specific bank loan action.
+}
+
+function viewTotalTransactionReportAction(req,res){
+    //view the total branchwise transaction report for this month
+}
+
+function viewLateLoanInstallementReportAction(req,res){
+    //view the total branchwise late loan installment report
+}
+
 module.exports.init = init;
-module.exports.home = indexAction;
