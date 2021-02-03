@@ -2,7 +2,6 @@ CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `add_emp`(
 	IN username varchar(25),
     IN password varchar(255),
     IN email varchar(100),
-    IN acc_level int(8),
     IN first_name varchar(100),
 	IN last_name varchar(100), 
 	IN name_with_init varchar(100), 
@@ -18,7 +17,9 @@ CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `add_emp`(
 	IN post_id bit(3)
 )
 BEGIN
-
+ 
+	declare acc_level varchar(20);
+	
 	DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -30,6 +31,14 @@ BEGIN
 	END;
     
     START TRANSACTION;
+    
+    if post_id = 1
+		then 
+        set acc_level = "BANK-MANAGER";
+	else
+		set acc_level = "EMPLOYEE";
+	end if;
+    
     
     insert into User (user_type, username, password, email, acc_level)
     value ("E", username, password, email, acc_level);
