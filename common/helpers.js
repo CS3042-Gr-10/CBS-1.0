@@ -4,8 +4,8 @@ const errorsToList = (ObjList) => {
   console.log('#')
   console.log(ObjList);
   const list_messages = [];
-  ObjList.forEach((element , index , array)=>{
-    list_messages.push(`${element.keyword} ${element.message}`);
+  ObjList.forEach((element)=>{
+    list_messages.push(element.message);
   });
 
   console.log(list_messages);

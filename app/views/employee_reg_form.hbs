@@ -16,11 +16,9 @@
             <h4>Employee Registration Form</h4>
         </div>
         {{#if error}}
-            {{#each error}}
-                <div class="row alert alert-danger" role="alert">
-                    {{message}}
-                </div>
-            {{/each}}
+            <div class="row alert alert-danger" role="alert">
+                {{error}}
+            </div>
         {{/if}}
         <div class="card-body">
             <form action="/employee/register" method="POST">

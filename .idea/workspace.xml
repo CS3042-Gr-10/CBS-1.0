@@ -30,18 +30,17 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="correcting imports">
-      <change afterPath="$PROJECT_DIR$/app/schema/EmployeeRegistrationScheme.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/helpers.js" afterDir="false" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="edits to route">
+      <change afterPath="$PROJECT_DIR$/common/token_generator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/CustomerRegistrationSchema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/EmployeeRegistrationScheme.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/error-methods.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/error-methods.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/iValidator.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/iValidator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/helpers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +144,9 @@
       <workItem from="1611383427668" duration="1225000" />
       <workItem from="1611469514943" duration="2473000" />
       <workItem from="1611932821219" duration="674000" />
-      <workItem from="1612249245885" duration="23414000" />
+      <workItem from="1612249245885" duration="23851000" />
+      <workItem from="1612285903826" duration="7864000" />
+      <workItem from="1612317779588" duration="1215000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -259,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612259049490</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="edits to route">
+      <created>1612285094366</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1612285094366</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,6 +301,7 @@
     <MESSAGE value="something" />
     <MESSAGE value="merging" />
     <MESSAGE value="correcting imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="correcting imports" />
+    <MESSAGE value="edits to route" />
+    <option name="LAST_COMMIT_MESSAGE" value="edits to route" />
   </component>
 </project>

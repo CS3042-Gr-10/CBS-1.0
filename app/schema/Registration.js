@@ -16,15 +16,14 @@ const EmployeeRegistrationInfo = Joi.object().options({ abortEarly: false }).key
     .regex(/^[0-9]{9}[a-z]{1}$/)
     .message('"Contact Number" contains invalid characters'),
   contact:Joi.string().trim().required()
-    .length(7, 'utf8')
-    .message('"Contact Number" must be 7 digits')
-    .regex(/^\d+$/)
-    .message('"Contact Number" contains invalid characters'),
+    .length(8, 'utf8')
+    .message('"Contact Number" must be 7 digits'),
   postal_code: Joi.string().required().max(8).label("Postal Code"),
   perm_address: Joi.string().required().max(128).label("Address"),
-  username: Joi().string().required().max(15).label("Username"),
-  branch: Joi().string().required().max(15).label("Branch"),
+  username: Joi.string().required().max(15).label("Username"),
+  branch: Joi.string().required().max(15).label("Branch"),
   employee_level: Joi.string().valid('employee','manager').required().label("Employee Level"),
+  agree_check: Joi.string().valid('on').required()
 
 });
 
