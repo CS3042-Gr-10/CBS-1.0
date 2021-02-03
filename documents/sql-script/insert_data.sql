@@ -10,6 +10,8 @@ INSERT INTO User(user_type, username, password, acc_level) values ('E','emp-001'
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 ## Post
+INSERT INTO Post(post_id, post_name, salary) values (1, "Bannk Manager", 50000.00);
+INSERT INTO Post(post_id, post_name, salary) values (2, "Employee", 20000.00);
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 ## Employee
