@@ -52,7 +52,7 @@
                 <div class="form-group row">
                     <label for="zip_code" class="col-form-label ml-3">Zip Code</label>
                     <div class="col-lg-2 col-sm-2">
-                        <input type="text" id="postal_code" name="postal_code" class="form-control" required value="{{postal_code}}">
+                        <input type="number" id="postal_code" name="postal_code" class="form-control" required value="{{postal_code}}">
                     </div>
                     <label for="nic" class="col-form-label ml-3">NIC Number</label>
                     <div class="col-lg-2 col-sm-2">
@@ -83,8 +83,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="contact_code">(+248)</span>
                         </div>
-                        <input type="tel" id="contact" name="contact" class="form-control" pattern="[0-9]{3}-[0-9]{4}"
-                            placeholder="123-4567" required aria-describedby="contact_code" value="{{contact}}">
+                        <input type="tel" id="contact" name="contact" class="form-control"
+                               placeholder="0712345678" maxlength=10 required aria-describedby="contact_code" value="{{contact}}">
                     </div>
                     <label for="username" class="col-form-label ml-3">Username</label>
                     <div class="col-lg-2 col-sm-2">

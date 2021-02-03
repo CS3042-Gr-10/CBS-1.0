@@ -31,3 +31,9 @@ _follow up_
 
 # Connect to database over terminal
 $`mysql -u u05dacvdhduk0jzi -h bpi9zrldmffepsxk5zeg-mysql.services.clever-cloud.com bpi9zrldmffepsxk5zeg -P 3306 -p`
+
+# Direct commit to main repo
+$`git remote remove origin` \
+$`git remote --set-upstream upstream` \
+_in the push :_ \
+$`git push upstream developer`
