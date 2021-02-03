@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 
 const authenticModel = {
     authentic: authentic,
-    signup: signup
 };
 
 function authentic(authenticData) {
