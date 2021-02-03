@@ -2,14 +2,14 @@
 const db = require('../config/database');
 var dbFunc = require('../config/db-function');
 
-var EmpModel = {
-    getEmpDetails,
-    addEmployee
+var OrgModel = {
+    getOrgDetails,
+    addOrg
 }
 
-function getEmpDetails(id) {
+function getOrgDetails(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from Employee where emp_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT * from Organization where org_id = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -22,11 +22,11 @@ function getEmpDetails(id) {
     });
 }
 
-function addEmployee(acc) {
+function addOrg(acc) {
 
-    //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_emp.sql 
+    //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_org.sql 
     return new Promise((resolve, reject) => {
-        db.query(`CALL add_emp(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, acc, (error, rows, fields) => {
+        db.query(`CALL add_org(?,?,?,?,?,?)`, acc, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
@@ -40,4 +40,4 @@ function addEmployee(acc) {
     });
 }
 
-module.exports = EmpModel;
+module.exports = OrgModel;

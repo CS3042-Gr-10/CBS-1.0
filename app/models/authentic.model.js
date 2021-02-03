@@ -1,3 +1,4 @@
+
 const db = require('../../config/database');
 const dbFunc = require('../../config/db-function');
 const bcrypt = require('bcryptjs');
@@ -23,13 +24,12 @@ function authentic(authenticData) {
                         dbFunc.connectionRelease;
                         reject(error);
                     } else if (isMatch) {
-                        dbFunc.connectionRelease;
                         console.log(rows[0]);
+                        dbFunc.connectionRelease;
                         resolve(rows);
                     }
                     else {
-                        dbFunc.connectionRelease;
-                        reject({"success":false,"message":"Password doesn't match"});
+                        reject({"success":false,"message":"password doesn't match"});
                     }
                 });
 
@@ -77,6 +77,5 @@ function signup(user) {
 }
 
 module.exports = authenticModel;
-
 
 
