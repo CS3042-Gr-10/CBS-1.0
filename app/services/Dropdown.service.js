@@ -16,7 +16,7 @@ function getBranches() {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows);
             }
         });
     });

@@ -4,7 +4,8 @@ const DropdownService = require('../services/Dropdown.service');
 const { errorsToList } = require('../../common/helpers');
 const EmployeeModel = require('../models/Employee.model');
 const CustomerModel = require('../models/Customer.model')
-const { gen_random_string } = require('../../common/token_generator')
+const { gen_random_string } = require('../../common/token_generator');
+const  { ymd } = require('../../common/dateFormat');
 
 function init(router) {
     router.route('/employee/register')
@@ -53,16 +54,20 @@ async function registerEmployeePage(req,res){
     res.render('employee_reg_form',{
         error: req.query.error,
         user: req.session.user,
-        full_name:req.query.full_name,
+        first_name:req.query.first_name,
+        last_name:req.query.last_name,
         name_with_initials:req.query.name_with_initials,
         age:req.query.age,
         dob:req.query.dob,
-        perm_address:req.query.perm_address,
+        add_no:req.query.add_no,
+        add_street:req.query.add_street,
+        add_city:req.query.add_city,
         zip_code:req.query.zip_code,
         nic:req.query.nic,
         contact:req.query.contact,
         username:req.query.username,
         email:req.query.email,
+        branches:branches
         });
 }
 
@@ -80,33 +85,24 @@ async function registerEmployeeAction(req,res){
             post_id = 1;
         }
 
-        //console.log(gen_random_string());
-        //console.log(value.full_name.split(" ")[0]);
-       // console.log(value.full_name.split(" ").slice(1).join(''));
-        //console.log(value.perm_address.split(" ")[0]);
-        //console.log(value.perm_address.split(" ").slice(1,value.perm_address.split(" ").length-1).join(''));
-        //console.log(value.perm_address.split(" ")[value.perm_address.split(" ").length-1]);
-        //console.log(parseInt(value.contact.split("-").join('')));
-        //console.log(value.dob.toString().split(' ').slice(1,4).join(' '));
-        //console.log();
 
         const acc = {
             username:value.username,
             password:gen_random_string(),
             email:value.email,
-            first_name:value.full_name.split(" ")[0],
-            last_name:value.full_name.split(" ").slice(1).join(' '),
+            first_name:value.first_name,
+            last_name:value.last_name,
             name_with_init:value.name_with_initials,
-            dob:new Date(value.dob.toString().split(' ').slice(1,4).join(' ')),
+            dob:ymd(new Date(value.dob.toString().split(' ').slice(1,4).join(' '))),
             postal_code:parseInt(value.postal_code),
             contact_No:parseInt(value.contact.split("-").join('')),
             NIC:value.nic,
           //  branch_id:value.branch,
             branch_id:1,
             gender:value.gender,
-            house_no:value.perm_address.split(" ")[0],
-            street:value.perm_address.split(" ").slice(1,value.perm_address.split(" ").length-1).join(' '),
-            city:value.perm_address.split(" ")[value.perm_address.split(" ").length-1],
+            house_no:value.add_no,
+            street:value.add_street,
+            city:value.add_city,
             post_id:post_id,
         }
 
