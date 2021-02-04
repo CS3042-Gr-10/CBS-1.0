@@ -1,12 +1,9 @@
-const userService = require('../services/user.service');
-const user_schema = require('../schema/userValidationSchema.json');
-const customer_reg_schema = require('../schema/CustomerRegistrationSchema.json');
+const BankManagerService = require('../services/BankManager.service');
 const iValidator = require('../../common/iValidator');
 const errorCode = require('../../common/error-code');
 const errorMessage = require('../../common/error-methods');
-const mail = require('./../../common/mailer.js');
-const errortype = require('../../common/error-type');
-const GeneralError = errortype.RedirectGeneralError;
+const error_type = require('../../common/error-type');
+const GeneralError = error_type.RedirectGeneralError;
 
 function init(router) {
     router.route('/Employee')
@@ -14,6 +11,37 @@ function init(router) {
     //router.route('/Employee/:id/registerCustomer')
     //    .get(registerCustomerAction)
     //    .post(registerCustomer)
+}
+
+function indexAction(req,res,data){
+    //EmployeeService.
+    res.render('employee_dashboard',
+        {
+            "full_name": data.username
+        }
+    )
+    //userService.getUserById(userId).then((data) => {
+
+    //}).catch((err) => {
+    //    mail.mail(err);
+    //    res.send(err);
+    //});
+}
+
+function listLoansforApprovalAction(req,res){
+    // a list of bank loans that that require approval
+}
+
+function approveLoanAction(req,res){
+    //approve a specific bank loan action.
+}
+
+function viewTotalTransactionReportAction(req,res){
+    //view the total branchwise transaction report for this month
+}
+
+function viewLateLoanInstallementReportAction(req,res){
+    //view the total branchwise late loan installment report
 }
 
 module.exports.init = init;

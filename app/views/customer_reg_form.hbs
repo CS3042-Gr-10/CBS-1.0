@@ -18,9 +18,10 @@
         <div class="card-body">
             <form action="#" method="POST">
                 <div class="form-group row">
-                    <label for="full_name" class="col-form-label ml-3">Full Name</label>
-                    <div class="col-lg col-sm">
-                        <input type="text" id="full_name" name="full_name" class="form-control" required>
+                    <label for="name" class="col-form-label ml-3">Name</label>
+                    <div class="input-group col-lg col-sm">
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name" class="form-control" required>
+                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -39,9 +40,11 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="perm_address" class="col-form-label ml-3">Permanent Address</label>
-                    <div class="col-lg col-sm">
-                        <input type="text" id="perm_address" name="perm_address" class="form-control" required>
+                    <label for="add_no" class="col-form-label col-sm-3 col-md-3 col-lg-3">Address</label>
+                    <div class="col-lg col-sm input-group">
+                        <input type="text" id="add_no" name="add_no" placeholder="No." class="form-control col-2" required>
+                        <input type="text" id="add_street" name="add_street" placeholder="Street" class="form-control" required>
+                        <input type="text" id="add_city" name="add_city" placeholder="City" class="form-control col-4" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -78,8 +81,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="contact_code">(+248)</span>
                         </div>
-                        <input type="tel" id="contact" name="contact" class="form-control" pattern="[0-9]{3}-[0-9]{4}"
-                            placeholder="123-4567" required aria-describedby="contact_code">
+                        <input type="tel" id="contact" name="contact" class="form-control" 
+                            placeholder="1234567" maxlength="7" required aria-describedby="contact_code">
                     </div>
                     <label class="my-2 ml-3" for="acc_type">Preference</label>
                     <div class="col-lg-2 col-sm-2">
@@ -95,11 +98,35 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label for="init_amount" class="col-form-label ml-3">Initial Amount</label>
+                    <div class="input-group col-lg-3 col-sm-3 mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">SCR</span>
+                        </div>
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" min="1">
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row" id="savingsPlanDiv">
+                    <label for='savings_plan' class='col-form-label ml-3'>Savings Plan</label>
+                    <div class="col-lg-3 col-sm-3">
+                        <select class="custom-select" id="savings_plan" name="savings_plan" required>
+                            <option selected>Select Savings Plan...</option>
+                            <option value="children" id="children">Children - 12%, no minimum</option>
+                            <option value="teen" id="teen">Teen - 11%, 500 minimum</option>
+                            <option value="adult" id="adult">Adult (18+) - 10%, 1000 minimum </option>
+                            <option value="senior" id="senior">Senior (60+) - 13%, 1000 minimum</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group row" id="incomeDetailsDiv">
                     <label for='incomeDetails' class='col-form-label ml-3'>Income Details</label>
                     <div class="col-lg-3 col-sm-3">
-                        <input type='file' class='form-control-file my-1 ml-2' id='income_details' name='income_details'
-                            aria-describedby='incomeDetails' required>
+                        <input type='file' class='form-control-file my-1 ml-2' id='income_details' name='income_details' aria-describedby='incomeDetails' required>
                     </div>
                 </div>
 
@@ -134,6 +161,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../public/javascript/branch.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="../../public/javascript/reg_form.js"></script>
+    <script src="../../public/javascript/acc_type.js"></script>
 </body>

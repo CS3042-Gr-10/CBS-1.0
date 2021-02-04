@@ -1,10 +1,8 @@
-const userService = require('../services/user.service');
-const user_schema = require('../schema/userValidationSchema.json');
+const EmployeeService = require('../services/Employee.service');
 const customer_reg_schema = require('../schema/CustomerRegistrationSchema.json');
 const iValidator = require('../../common/iValidator');
 const errorCode = require('../../common/error-code');
 const errorMessage = require('../../common/error-methods');
-const mail = require('./../../common/mailer.js');
 const errortype = require('../../common/error-type');
 const GeneralError = errortype.RedirectGeneralError;
 
@@ -21,22 +19,19 @@ function init(router) {
 }
 
 function indexAction(req,res){
-    let userId = req.params;
+    const userID = req.session.username;
+    //EmployeeService.
+    res.render('employee_dashboard',
+        {
+            "full_name": userID
+        }
+    )
+    //userService.getUserById(userId).then((data) => {
 
-    const json_format = iValidator.json_schema(user_schema.getSchema, userId, "user");
-    if (json_format.valid == false) {
-        return res.status(422).send(json_format.errorMessage);
-    }
-
-    userService.getUserById(userId).then((data) => {
-        res.render(
-            'employee_dashboard',
-            data
-        )
-    }).catch((err) => {
-        mail.mail(err);
-        res.send(err);
-    });
+    //}).catch((err) => {
+    //    mail.mail(err);
+    //    res.send(err);
+    //});
 }
 
 function registerCustomerAction(req,res){
@@ -64,3 +59,4 @@ function registerCustomer(req,res){
 
 
 module.exports.init = init;
+module.exports.home = indexAction;

@@ -1,3 +1,4 @@
+
 const db = require('../../config/database');
 const dbFunc = require('../../config/db-function');
 const bcrypt = require('bcryptjs');
@@ -9,14 +10,22 @@ const authenticModel = {
 
 function authentic(authenticData) {
     return new Promise((resolve, reject) => {
-        db.query(`SELECT * FROM user WHERE username ='${authenticData.username}'`, (error, rows, fields) => {
+        //console.log(`SELECT * FROM User WHERE username ='${authenticData.login_username}'`);
+        db.query(`SELECT * FROM User WHERE username ='${authenticData.login_username}'`, (error, rows, fields) => {
             if (error) {
+                //console.log('error');
+                dbFunc.connectionRelease;
                 reject(error);
             } else {
-                bcrypt.compare(authenticData.password, rows[0].password, function (err, isMatch) {
+                //console.log('no error')
+                //console.log(rows[0].password);
+                bcrypt.compare(authenticData.login_pwd, rows[0].password, function (err, isMatch) {
                     if (err) {
+                        dbFunc.connectionRelease;
                         reject(error);
                     } else if (isMatch) {
+                        console.log(rows[0]);
+                        dbFunc.connectionRelease;
                         resolve(rows);
                     }
                     else {
@@ -68,6 +77,5 @@ function signup(user) {
 }
 
 module.exports = authenticModel;
-
 
 

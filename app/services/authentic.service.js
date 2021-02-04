@@ -8,6 +8,11 @@ const authenticService = {
 function authentic(authenticData) {
     return new Promise((resolve,reject) => {
         authenticModel.authentic(authenticData).then((data)=>{
+            if( data.length === 1){
+                resolve(data[0])
+            }else {
+                resolve(data)
+            }
             resolve(data);
         }).catch((err) => {
             reject(err);

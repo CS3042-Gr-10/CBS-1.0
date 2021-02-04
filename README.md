@@ -25,9 +25,15 @@ _follow up_
 _follow up_
 
 1. run following commands \
+
    `git fetch upstream`
    `git merge upstream/main main` **or** `git merge upstream/master master`
 
 # Connect to database over terminal
 $`mysql -u u05dacvdhduk0jzi -h bpi9zrldmffepsxk5zeg-mysql.services.clever-cloud.com bpi9zrldmffepsxk5zeg -P 3306 -p`
 
+# Direct commit to main repo
+$`git remote remove origin` \
+$`git remote --set-upstream upstream` \
+_in the push :_ \
+$`git push upstream developer`
