@@ -26,9 +26,11 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Banking Options</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item active" href="#">Dashboard</a>
-                            <a class="dropdown-item" href="#">Accounts</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                data-target="#accountDetailsModal">Accounts</a>
                             <a class="dropdown-item" href="#">Loans</a>
-                            <a class="dropdown-item" href="#">Deposits</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                data-target="#fdDetailsModal">Deposits</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown mr-4">
@@ -116,7 +118,8 @@
                 </form>
             </div>
             <div class="three_buttons">
-                <button type="button" href="#" class="btn btn-primary btn-lg btn-block">Place a Fixed Deposit</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                    data-target="#openFDModal">Place a Fixed Deposit</button>
                 <button type="button" href="#" class="btn btn-primary btn-lg btn-block mt-4">Obtain a Loan</button>
                 <button type="button" href="#" class="btn btn-outline-secondary btn-lg btn-block mt-4">Report an
                     Issue</button>
@@ -169,6 +172,82 @@
         </div>
     </div>
 
+    <div class="modal fade" id="accountDetailsModal" tabindex="-1" aria-labelledby="accountDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accountDetailsModalLabel">Account Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div id="acc_det_kvp" class="modal-body">
+                    <script id="acc_det_template" type="text/x-handlebars-template">
+                        {{#keyValuePairs}}
+                            <div class="wrapper_3">
+                                <div class="w3_d1 mt-1">
+                                    <h6>{{key}}</h6>
+                                </div>
+                                <div>
+                                    <h6>{{value}}</h6>
+                                </div>
+                            </div>
+                        {{/keyValuePairs}}
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="fdDetailsModal" tabindex="-1" aria-labelledby="fdDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fdDetailsModalLabel">Fixed Deposit Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div id="fd_kvp" class="modal-body">
+                    <script id="fd_template" type="text/x-handlebars-template">
+                        {{#keyValuePairs}}
+                            <div class="wrapper_3">
+                                <div class="w3_d1 mt-1">
+                                    <h6>{{key}}</h6>
+                                </div>
+                                <div>
+                                    <h6>{{value}}</h6>
+                                </div>
+                            </div>
+                        {{/keyValuePairs}}
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="openFDModal" tabindex="-1" aria-labelledby="openFDModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="openFDModalLabel">Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="fd_application_form.html" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group form-inline mt-1">
+                            <label for="username" class="mr-3 col-sm-3 col-form-label">Savings Acc.</label>
+                            <input type="number" id="savings_acc_no" class="form-control"
+                                placeholder="Enter Account Number" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <footer class="bottom">Seychells Bank (Pvt) Ltd. - Version 1.0.0 © 2020 | <a href="">Visit Us</a></footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -177,6 +256,9 @@
     <script>
         dycalendar.draw({ target: '#dycalendar-today-with-skin-shadow', type: 'month', monthformat: "full", highlighttoday: true, prevnextbutton: "show" });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.js"></script>
+    <script src="/javascript/acc_details_modal.js"></script>
+    <script src="/javascript/fd_details_modal.js"></script>
 </body>
 
 </html>

@@ -23,9 +23,12 @@
         <div class="card-body">
             <form action="/employee/register" method="POST">
                 <div class="form-group row">
-                    <label for="full_name" class="col-form-label ml-3">Full Name</label>
-                    <div class="col-lg col-sm">
-                        <input type="text" id="full_name" name="full_name" class="form-control" required value="{{full_name}}">
+                    <label for="name" class="col-form-label ml-3">Name</label>
+                    <div class="input-group col-lg col-sm">
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name"
+                            class="form-control" required>
+                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" class="form-control"
+                            required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -45,8 +48,11 @@
                 </div>
                 <div class="form-group row">
                     <label for="perm_address" class="col-form-label ml-3">Permanent Address</label>
-                    <div class="col-lg col-sm">
-                        <input type="text" id="perm_address" name="perm_address" class="form-control" required value="{{perm_address}}">
+                    <label for="add_no" class="col-form-label col-sm-3 col-md-3 col-lg-3">Address</label>
+                    <div class="col-lg col-sm input-group">
+                        <input type="text" id="add_no" name="add_no" placeholder="No." class="form-control col-2" required>
+                        <input type="text" id="add_street" name="add_street" placeholder="Street" class="form-control" required>
+                        <input type="text" id="add_city" name="add_city" placeholder="City" class="form-control col-4" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -83,8 +89,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="contact_code">(+248)</span>
                         </div>
-                        <input type="tel" id="contact" name="contact" class="form-control"
-                               placeholder="0712345678" maxlength=10 required aria-describedby="contact_code" value="{{contact}}">
+                        <input type="tel" id="contact" name="contact" class="form-control" 
+                            placeholder="0712345678" maxlength="10" required aria-describedby="contact_code" value="{{contact}}">
                     </div>
                     <label for="username" class="col-form-label ml-3">Username</label>
                     <div class="col-lg-2 col-sm-2">

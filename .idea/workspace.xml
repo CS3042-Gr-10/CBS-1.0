@@ -31,8 +31,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="adding an employee">
+      <change afterPath="$PROJECT_DIR$/app/views/existing_customer_reg_form.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/fd_application_form.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/new_org_new_acc.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/old_org_new_acc.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/javascript/acc_details_modal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/javascript/acc_type.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/javascript/fd_details_modal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/javascript/reg_form.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/authentic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/authentic.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_reg_form.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascript/branch.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascript/branch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/stylesheets/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/dashboard.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +151,8 @@
       <workItem from="1611932821219" duration="674000" />
       <workItem from="1612249245885" duration="23851000" />
       <workItem from="1612285903826" duration="7864000" />
-      <workItem from="1612317779588" duration="15495000" />
+      <workItem from="1612317779588" duration="16998000" />
+      <workItem from="1612367789492" duration="1845000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -273,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612354604336</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="adding an employee">
+      <created>1612355163879</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1612355163879</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

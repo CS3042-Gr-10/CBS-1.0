@@ -49,8 +49,8 @@
         </div>
         <div class="wrapper_2">
             <div class="three_buttons">
-                <a href="registration_form.html" type="button" class="btn btn-primary btn-lg btn-block">Create a
-                    Customer Account</a>
+                <a type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                    data-target="#existingCustomerModal">Create a Customer Account</a>
                 <a href="#" type="button" class="btn btn-primary btn-lg btn-block mt-4">Check Customer Account
                     Details</a>
             </div>
@@ -105,6 +105,53 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <input type="submit" class="btn btn-primary" value="Save Changes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="existingCustomerModal" tabindex="-1" aria-labelledby="existingCustomerModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h6>Are you an existing customer?</h6>
+                    <div class="row">
+                        <a type="button" class="btn btn-primary btn-sm ml-3" data-toggle="modal"
+                            data-target="#customerDetailsModal">Yes</a>
+                        <a type="button" class="btn btn-secondary btn-sm ml-2" href="./customer_reg_form.hbs">No</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="customerDetailsModal" tabindex="-1" aria-labelledby="customerDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customerDetailsModalLabel">Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="./existing_customer_reg_form.hbs" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group form-inline mt-1">
+                            <label for="username" class="mr-3 col-sm-3 col-form-label">Username</label>
+                            <input type="text" id="username" class="form-control" placeholder="Customer Username"
+                                required>
+                        </div>
+                        <div class="form-group form-inline mt-1">
+                            <label for="username" class="mr-3 col-sm-3 col-form-label">NIC No.</label>
+                            <input type="text" id="nic" name="nic" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Submit">
                     </div>
                 </form>
             </div>
