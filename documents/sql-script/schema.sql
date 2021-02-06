@@ -85,6 +85,7 @@ CREATE TABLE `Employee` (
   `post_id` BIT(3) not NULL,
   PRIMARY KEY (`user_id`),
   constraint fk_emp FOREIGN KEY (user_id) REFERENCES User (user_id),
+  FOREIGN KEY (branch_id) REFERENCES Branch (branch_id),
   FOREIGN KEY (post_id) REFERENCES Post(post_id)
 );
 
@@ -111,7 +112,7 @@ CREATE TABLE `Account` (
   `manager_id` INT(11),
   `user_id` INT(11) not NULL,
   `acc_type` varchar(20) not NULL,
-  `created date` Date not NULL,
+  `created_date` Date not NULL,
   PRIMARY KEY (`acc_id`),
   FOREIGN KEY (branch_id) REFERENCES Branch (branch_id),
   FOREIGN KEY (manager_id) REFERENCES Employee (user_id),
