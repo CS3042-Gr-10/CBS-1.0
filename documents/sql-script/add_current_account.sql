@@ -1,4 +1,4 @@
-CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `add_current_account`(
+CREATE PROCEDURE `add_current_account`(
 	IN branch_id int(5),
     IN manager_id int(11),
     IN acc_balance decimal(20,2),

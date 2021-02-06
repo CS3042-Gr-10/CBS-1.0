@@ -1,4 +1,4 @@
-CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `add_fd`(
+CREATE PROCEDURE `add_fd`(
 	IN cusotmer_id int(16),
 	IN acc_plan_id int(8), 
 	IN sv_acc_id int(32), 

@@ -1,4 +1,4 @@
-CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `add_org`(
+CREATE PROCEDURE `add_org`(
 	IN username varchar(25),
 	IN password varchar(255), 
 	IN acc_level int(8),
