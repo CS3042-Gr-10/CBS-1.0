@@ -33,7 +33,7 @@ BEGIN
     value ("A", username, password, email, acc_level);
     
     insert into AccountOwner (user_id, owner_type)
-    values (last_insert_id(), "C");
+    values (last_insert_id(), "U");
     
 	insert into Customer (user_id ,first_name, last_name, name_with_init, dob, created_date, NIC, gender, house_no, street, city, postal_code, contact_primary, contact_secondary)
 	values (last_insert_id(), first_name, last_name, name_with_init, dob, curdate(), NIC, gender, house_no, street, city, postal_code, contact_primary, contact_secondary);
