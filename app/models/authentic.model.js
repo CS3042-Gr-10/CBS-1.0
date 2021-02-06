@@ -9,8 +9,8 @@ const authenticModel = {
 
 function authentic(authenticData) {
     return new Promise((resolve, reject) => {
-        console.log(authenticData);
-        console.log(`SELECT * FROM User WHERE username ='${authenticData.username}'`);
+        //console.log(authenticData);
+        //console.log(`SELECT * FROM User WHERE username ='${authenticData.username}'`);
         db.query(`SELECT * FROM User WHERE username ='${authenticData.username}'`, (error, rows, fields) => {
             if (error) {
                 //console.log('error');
@@ -30,7 +30,7 @@ function authentic(authenticData) {
                     } else if (isMatch) {
                         console.log(rows[0]);
                         dbFunc.connectionRelease;
-                        resolve(rows);
+                        resolve(rows[0]);
                     }
                     else {
                         reject({"success":false,"message":"password doesn't match"});

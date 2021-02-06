@@ -18,6 +18,7 @@ function loginPage(req,res){
   res.render('login',
     {
       error: req.query.error,
+      success:req.query.success
     }
   );
 }
@@ -33,15 +34,21 @@ async function authentic (req, res) {
       if (data) {
 
         req.session.user = {};
+        req.session.user.user_id = data.user_id;
         req.session.user.email = data.email;
+        req.session.user.user_type = data.user_type;
         req.session.user.username = data.username;
         req.session.user.acc_level = data.acc_level;
-        console.log(req.session.user)
-        if (data.acc_level === 1) {
+        //console.log(req.session.user)
+        if(data.is_deleted == 1){
+          throw ("User Account is deleted");
+        }
+        if (data.acc_level === 'CUSTOMER') {
           res.redirect(`/Customer/${req.session.user.username}`)
-        } else if (data.acc_level === 2) {
+        } else if (data.acc_level === 'EMPLOYEE') {
+          console.log('choosen')
           res.redirect(`/Employee/${req.session.user.username}`)
-        } else if (data.acc_level === 3) {
+        } else if (data.acc_level === 'BANK-MANAGER') {
           res.redirect(`/BankManager/${req.session.user.username}`)
           //something
         } else{
@@ -50,7 +57,7 @@ async function authentic (req, res) {
         }
       }
     }).catch((err) => {
-      throw (err)
+      res.redirect(`/?error=${err}`);
     });
   } catch (e) {
     res.redirect(`/?error=${e}`);

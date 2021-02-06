@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <link rel="shortcut icon" type="png" href="../../public/image/head_logo.png">
+    <link rel="shortcut icon" type="png" href="/image/head_logo.png">
     <title>Seychelles Bank (Pvt) Ltd.</title>
-    <link rel="stylesheet" href="../../public/stylesheets/registration_form.css">
+    <link rel="stylesheet" href="/stylesheets/registration_form.css">
 </head>
 
 <body>
@@ -21,9 +21,9 @@
                     <div class="form-group row">
                         <label for="name" class="col-form-label ml-3">Full Name</label>
                         <div class="input-group col-lg col-sm">
-                            <input type="text" id="first_name" name="first_name" value={{first_name}}
+                            <input type="text" id="first_name" name="first_name" value="{{first_name}}"
                                 placeholder="First Name" class="form-control" required>
-                            <input type="text" id="last_name" name="last_name" value={{last_name}}
+                            <input type="text" id="last_name" name="last_name" value="{{last_name}}"
                                 placeholder="Last Name" class="form-control" required>
                         </div>
                     </div>
@@ -31,57 +31,64 @@
                         <label for="name_with_initials" class="col-form-label ml-3">Name with Initials</label>
                         <div class="col-lg-5 col-sm">
                             <input type="text" id="name_with_initials" name="name_with_initials" class="form-control"
-                                value={{name_with_initials}} required>
+                                value="{{name_with_initials}}" required>
                         </div>
                         <label for="age" class="col-form-label ml-3">Age</label>
                         <div class="col-lg-1 col-sm-1">
-                            <input type="number" id="age" name="age" class="form-control" value={{age}} required>
+                            <input type="number" id="age" name="age" class="form-control" value="{{age}}" required>
                         </div>
                         <label for="dob" class="col-form-label ml-3">Date of Birth</label>
                         <div class="col-lg-2 col-sm-2">
-                            <input id="dob" name="dob" class="form-control" required type="text" value={{dob}}
+                            <input id="dob" name="dob" class="form-control" required type="text" value="{{dob}}"
                                 onfocus="(this.type='date')">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="add_no" class="col-form-label col-sm-3 col-md-3 col-lg-3">Address</label>
                         <div class="col-lg col-sm input-group">
-                            <input type="text" id="add_no" name="add_no" value={{add_no}} placeholder="No."
+                            <input type="text" id="add_no" name="add_no" value="{{add_no}}" placeholder="No."
                                 class="form-control col-2" required>
-                            <input type="text" id="add_street" name="add_street" value={{add_street}}
+                            <input type="text" id="add_street" name="add_street" value="{{add_street}}"
                                 placeholder="Street" class="form-control" required>
-                            <input type="text" id="add_city" name="add_city" value={{add_city}} placeholder="City"
+                            <input type="text" id="add_city" name="add_city" value="{{add_city}}" placeholder="City"
                                 class="form-control col-4" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="zip_code" class="col-form-label ml-3">Zip Code</label>
                         <div class="col-lg-2 col-sm-2">
-                            <input type="text" id="zip_code" name="zip_code" class="form-control" value={{zip_code}}
+                            <input type="text" id="zip_code" name="zip_code" class="form-control" value="{{zip_code}}"
                                 required>
                         </div>
                         <label for="nic" class="col-form-label ml-3">NIC Number</label>
                         <div class="col-lg-2 col-sm-2">
-                            <input type="text" id="nic" name="nic" value={{nic}} class="form-control" required>
+                            <input type="text" id="nic" name="nic" value="{{nic}}" class="form-control" required>
                         </div>
-                        <div>
-                            <label for="inlineRadioOptions" class="col-form-label ml-3">Gender</label>
-                            <div class="form-check form-check-inline ml-4">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="male"
-                                    value="male" {{checked}}>
-                                <label class="form-check-label" for="male">Male</label>
+                        {{#if existing}}
+                            <label for="gender" class="col-form-label ml-3">Gender</label>
+                            <div class="col-lg-2 col-sm-2">
+                                <input type="text" id="gender" name="gender" class="form-control" required value="{{gender}}">
                             </div>
-                            <div class="form-check form-check-inline ml-3">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="female"
-                                    value="female" {{checked}}>
-                                <label class="form-check-label" for="female">Female</label>
+                        {{else}}
+                            <div>
+                                <label for="inlineRadioOptions" class="col-form-label ml-3">Gender</label>
+                                <div class="form-check form-check-inline ml-4">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender"
+                                           value="male">
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender"
+                                           value="female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender"
+                                           value="other">
+                                    <label class="form-check-label" for="other_gender">Others</label>
+                                </div>
                             </div>
-                            <div class="form-check form-check-inline ml-3">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="other_gender"
-                                    value="other_gender">
-                                <label class="form-check-label" for="other_gender">Others</label>
-                            </div>
-                        </div>
+                        {{/if}}
                     </div>
                 </fieldset>
 
@@ -172,6 +179,6 @@
     <footer class="bottom">Seychells Bank (Pvt) Ltd. - Version 1.0.0 © 2020 | <a href="">Visit Us</a></footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../public/javascript/branch.js"></script>
-    <script src="../../public/javascript/acc_type.js"></script>
+    <script src="/javascript/branch.js"></script>
+    <script src="/javascript/acc_type.js"></script>
 </body>

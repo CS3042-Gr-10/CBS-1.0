@@ -1,4 +1,4 @@
-
+const bcrypt = require('bcryptjs');
 
 const errorsToList = (ObjList) => {
   console.log('#')
@@ -12,8 +12,33 @@ const errorsToList = (ObjList) => {
 
   return list_messages;
 }
+
+
+const ObjectToList = (obj) => {
+  const list = [];
+  Object.keys(obj).forEach((key)=>{
+    list.push(obj[key]);
+  });
+
+  return list;
+}
+
+
+
+
+const hash_password = async (password) => {
+  console.log(password);
+  const saltRounds=10
+  let hashedPassword=await bcrypt.hash(password, saltRounds);
+  return hashedPassword
+}
+
+
 const helpers = {
-  errorsToList
+  errorsToList,
+  ObjectToList,
+  hash_password
+
 }
 
 module.exports = helpers;

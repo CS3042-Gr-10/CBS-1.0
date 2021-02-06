@@ -2,14 +2,32 @@
 const db = require('../../config/database');
 const dbFunc = require('../../config/db-function')
 
-var EmpModel = {
-    getEmpDetails,
+const EmpModel = {
+    getEmpDetailsByID,
+    getEmpDetailsByNIC,
     addEmployee
 }
 
-function getEmpDetails(id) {
+function getEmpDetailsByID(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from Employee where emp_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT * from Employee where user_id = ?',id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                //console.log(error);
+                reject(false);
+            } else {
+                //console.log(rows[0]);
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+                return (rows[0]);
+            }
+        });
+    });
+}
+
+function getEmpDetailsByNIC(nic) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from Employee where NIC = ?',nic, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -22,17 +40,16 @@ function getEmpDetails(id) {
     });
 }
 
+
 function addEmployee(acc) {
 
     //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_emp.sql 
     return new Promise((resolve, reject) => {
         db.query(`CALL add_emp(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, acc, (error, rows, fields) => {
-
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
             } else {
-
                 dbFunc.connectionRelease;
                 resolve(rows);
             }

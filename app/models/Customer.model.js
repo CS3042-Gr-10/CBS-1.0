@@ -16,10 +16,12 @@ function getCustomerDetails(id) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });
@@ -31,10 +33,12 @@ function getCustomerSavAccDetail(id) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });
@@ -46,10 +50,12 @@ function getCustomerFDDetail(id) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });
@@ -61,10 +67,12 @@ function getCustomerDetailsByNIC(nic) {
           if (!!error) {
               dbFunc.connectionRelease;
               reject(false);
+              return (false);
           } else {
 
               dbFunc.connectionRelease;
               resolve(rows[0]);
+              return (rows[0]);
           }
       });
   });
@@ -79,10 +87,12 @@ function addCustomer(acc) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows);
+                return (rows);
             }
         });
     });
