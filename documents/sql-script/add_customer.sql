@@ -1,4 +1,4 @@
-CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `add_customer`(
+CREATE PROCEDURE `add_customer`(
 	IN usr varchar(25),
     IN password varchar(255),
     IN email varchar(100),
@@ -14,7 +14,7 @@ CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `add_customer`(
 	IN postal_code int(8), 
 	IN contact_primary int(10),
 	IN contact_secondary int(10),
-    IN acc_level int(8)
+    IN acc_level varchar(20)
 )
 BEGIN
 	DECLARE errno INT;
@@ -33,7 +33,7 @@ BEGIN
     value ("A", username, password, email, acc_level);
     
     insert into AccountOwner (user_id, owner_type)
-    values (last_insert_id(), "C");
+    values (last_insert_id(), "U");
     
 	insert into Customer (user_id ,first_name, last_name, name_with_init, dob, created_date, NIC, gender, house_no, street, city, postal_code, contact_primary, contact_secondary)
 	values (last_insert_id(), first_name, last_name, name_with_init, dob, curdate(), NIC, gender, house_no, street, city, postal_code, contact_primary, contact_secondary);

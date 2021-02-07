@@ -1,4 +1,4 @@
-CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `transfer_mn`(
+CREATE PROCEDURE `transfer_mn`(
 	IN user_id int(11),
 	IN amount decimal(10,2),
     IN emp_id int(16),

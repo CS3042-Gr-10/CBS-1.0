@@ -1,4 +1,4 @@
-CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `withdraw_sv_acc`(
+CREATE PROCEDURE `withdraw_sv_acc`(
 	IN account_id int(32),
     IN withdrawl_type BIT(2),
     IN withd_id int(11),

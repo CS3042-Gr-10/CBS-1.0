@@ -9,11 +9,29 @@ const AccountModel = {
     transferMoney
 }
 
-function addAccount(acc) {
+function addSavingAccount(acc) {
 
-    //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_account.sql 
+    //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_saving_account.sql 
     return new Promise((resolve, reject) => {
-        db.query(`CALL add_account(?,?,?,?,?,?)`, acc, (error, rows, fields) => {
+        db.query(`CALL add_saving_account(?,?,?,?,?,?)`, acc, (error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function addCurrentAccount(acc) {
+
+    //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_current_account.sql 
+    return new Promise((resolve, reject) => {
+        db.query(`CALL add_current_account(?,?,?,?,?)`, acc, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;

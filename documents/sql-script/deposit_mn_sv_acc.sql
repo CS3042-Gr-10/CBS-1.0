@@ -1,4 +1,4 @@
-CREATE DEFINER=`u05dacvdhduk0jzi`@`%` PROCEDURE `deposit_mn_sv_scc`(
+CREATE PROCEDURE `deposit_mn_sv_scc`(
 	IN amount decimal(10,2),
     IN emp_id int(16),
     IN deposit_acc_id int(32),

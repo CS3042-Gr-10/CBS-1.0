@@ -7,7 +7,7 @@ INSERT INTO User(user_type, username, password, acc_level) values ('E','emp-001'
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 ## Branch
-
+INSERT INTO Branch (branch_id, branch_name, street, city, postal_code, grade, contact_No) values (1, 'kottawa', 'main road', 'Kottawa', 12432, 1, 0776549801);
 --------------------------------------------------------------------------------------------------------------------------------------------------
 ## Post
 INSERT INTO Post(post_id, post_name, salary) values (1, "Bannk Manager", 50000.00);
