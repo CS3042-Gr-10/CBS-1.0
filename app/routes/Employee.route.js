@@ -5,6 +5,7 @@ const { ObjectToList, hash_password } = require('../../common/helpers');
 const EmployeeModel = require('../models/Employee.model');
 const CustomerModel = require('../models/Customer.model');
 const UserModel = require('../models/User.model');
+const AccountModel = require('../models/Account.model');
 const { gen_random_string } = require('../../common/token_generator');
 const  { ymd } = require('../../common/dateFormat');
 
@@ -18,10 +19,8 @@ function init(router) {
         //.put(updateUser);
     router.route('/employee/:id/registerCustomer')
         .get(registerAccountAndCustomerPage)
-        .post(registerCustomerAndAccountLOL)
-    router.route('/employee/:id/openSavingAccount')
-      .get(openSavingsAccountPage)
-      .post(openSavingsAccount)
+        .post(registerCustomerAndAccount)
+
 
 }
 
@@ -94,7 +93,7 @@ async function registerEmployeeAction(req,res){
         userAlreadyExist = await UserModel.getUserUsername(value.username);
         if (userAlreadyExist) throw ("Already Registered by this username");
 
-        userAlreadyExist = await EmployeeModel.getEmpDetails(value.nic);
+        userAlreadyExist = await EmployeeModel.getEmpDetailsByNIC(value.nic);
         if (userAlreadyExist) throw ("Already Registered by this nic");
 
         //console.log(userAlreadyExist);
@@ -117,7 +116,7 @@ async function registerEmployeeAction(req,res){
             postal_code:parseInt(value.postal_code),
             contact_No:parseInt(value.contact.split("-").join('')),
             NIC:value.nic,
-            branch_id:1,
+            branch_id:value.branch_id,
             gender:value.gender,
             house_no:value.add_no,
             street:value.add_street,
@@ -172,7 +171,7 @@ async function  registerAccountAndCustomerPage(req, res){
     });
 }
 
-async function registerCustomerAndAccountLOL(req, res){
+async function registerCustomerAndAccount(req, res){
     try{
         const general = {
             first_name: req.body.first_name,
@@ -215,40 +214,87 @@ async function registerCustomerAndAccountLOL(req, res){
         let userAlreadyExist = await UserModel.getUserByEmail(value.email);
         if (userAlreadyExist) throw ("Already Registered by this email");
 
-        userAlreadyExist = await UserModel.getUserUsername(value.username);
-        if (userAlreadyExist) throw ("Already Registered by this username");
-
         userAlreadyExist = await EmployeeModel.getEmpDetailsByNIC(value.nic);
         if (userAlreadyExist) throw ("Already Registered by this nic");
 
+        const username = gen_random_string();
+        const password = gen_random_string();
+
         let acc = {
-            usr:gen_random_string(),
-            password:await hash_password(gen_random_string()),
+            usr: username,
+            password:await hash_password(password),
             email:value.email,
             first_name:value.first_name,
             last_name:value.last_name,
-            name_with_init:value.name_with_init,
+            name_with_init:value.name_with_initials,
             dob:ymd(new Date(value.dob.toString().split(' ').slice(1,4).join(' '))),
             NIC:value.nic,
             gender:value.gender,
             house_no:value.add_no,
             street:value.add_street,
-            city:value.city,
-            postal_code:value.postal_code,
-            contact_primary:value.contact,
-            contact_secondary:value.contact,
+            city:value.add_city,
+            postal_code:parseInt(value.postal_code),
+            contact_primary:parseInt(value.contact.split("-").join('')),
+            contact_secondary:parseInt(value.contact.split("-").join('')),
             acc_level:0,
         }
-        console.log(acc.username);
+        console.log(username);
+
 
         acc = ObjectToList(acc);
+        console.log(acc);
 
         CustomerModel.addCustomer(acc).then((data)=>{
-            res.redirect(`/employee/${req.params.id}?success=Successfully added Customer`);
+            return;
         }).catch((err)=>{
             console.log('error adding employee')
             throw (err);
         })
+
+        const user = await UserModel.getUserUsername(acc.usr);
+
+        if (value.acc_type === 'savings'){
+
+            console.log('Here');
+            console.log(user.user_id);
+            let savings = {
+              branch_id:parseInt(value.branch),
+              acc_balance:parseFloat(value.init_amount),
+              usr_id:user.user_id,
+              acc_type:"SAVINGS",
+              account_plan_id:parseInt(value.savings_plan)
+            }
+
+            console.log(savings);
+
+            savings = ObjectToList(savings);
+            AccountModel.addSavingAccount(savings).then(()=>{
+                console.log('Savings account added');
+                res.redirect(`/employee/${req.params.id}?success=Savings account made`)
+            }).catch((err)=>{
+                console.log(err);
+                throw (err);
+            })
+        }else {
+            console.log('Not Here');
+            let current ={
+                branch_id: parseInt(value.branch) ,
+                acc_balance: parseFloat(value.init_amount),
+                usr_id: user.user_id,
+                acc_type: "CURRENT"
+            }
+
+            console.log(current);
+            current = ObjectToList(current);
+
+            AccountModel.addCurrentAccount(current).then(()=>{
+                console.log('Savings account added');
+                res.redirect(`/employee/${req.params.id}?success=Current account made`)
+            }).catch((err)=>{
+                console.log(err);
+                throw (err);
+            })
+        }
 
     }catch (e) {
         res.redirect(`/employee/${req.params.id}/registerCustomer?error=${e}&first_name=${req.body.first_name}&last_name=${req.body.last_name}&name_with_initials=${req.body.name_with_initials}&age=${req.body.age}&dob=${req.body.dob}&add_no=${req.body.add_no}&add_street=${req.body.add_street}&add_city=${req.body.add_city}&postal_code=${req.body.postal_code}&nic=${req.body.nic}&contact=${req.body.contact}&username=${req.body.username}&email=${req.body.email}`);
@@ -305,79 +351,7 @@ async function existingCustomerAndAccountPage(req,res){
 
 }
 
-async function registerCustomerAction(req,res){
-    const postData = req.body;
-    try{
-    // console.log(postData);
-        const { value, error } = await CustomerRegistrationInfo.validate(req.body);
-        if (error) throw (error);
 
-        let acc_level ,post_id;
-        if(value.employee_level === 'employee'){
-            acc_level = "EMPLOYEE"
-            post_id = 0;
-        }else{
-            acc_level = "BANKMANAGER"
-            post_id = 1;
-        }
-
-        const acc = {
-            username:value.username,
-            password:gen_random_string(),
-            email:value.email,
-            acc_level:acc_level,
-            first_name:value.full_name.split(" ")[0],
-            last_name:value.full_name.split(" ").slice(1).join(''),
-            name_with_init:value.name_with_initials,
-            dob:value.dob,
-            postal_code:parseInt(value.postal_code),
-            contact_No:parseInt(value.contact.split("-").join('')),
-            NIC:value.nic,
-            //  branch_id:value.branch,
-            branch_id:1,
-            gender:value.gender,
-            house_no:value.perm_address.split(" ")[0],
-            street:value.perm_address.split(" ").slice(1,-1).join(''),
-            city:value.perm_address.split(" ")[-1],
-            post_id:post_id,
-        }
-
-        console.log(acc);
-
-
-
-        CustomerModel.addCustomer(acc).then(()=>{
-            console.log("add Customer")
-            res.redirect(`/employee/${req.param.id}?success=Successfully Added Account`);
-        }).catch((err)=>{
-            console.log('error adding customer')
-            throw (err);
-        });
-
-        }
-    catch (e) {
-        //console.log(errorsToList(e.details));
-        res.redirect(`/employee/register?error=${e}&full_name=${req.body.full_name}&name_with_initials=${req.body.name_with_initials}&age=${req.body.age}&dob=${req.body.dob}&perm_address=${req.body.perm_address}&zip_code=${req.body.postal_code}&nic=${req.body.nic}&contact=${req.body.contact}&username=${req.body.username}&email=${req.body.email}`);
-    }
-
-
-
-}
-
-async function openSavingsAccountPage(req,res){
-    const branches = await DropdownService.getBranches();
-    res.render('',{
-      branch_id:'',
-      acc_balance:'',
-      usr_id:'',
-      acc_type:'',
-      account_plan_id:'',
-    })
-}
-
-async function openSavingsAccount(req,res){
-
-}
 
 
 

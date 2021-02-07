@@ -74,8 +74,10 @@ app.use(express.static(path.join(appRoot, 'public')));
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.send(500).send('Something broke!');
 });
+
+const store = SessionHandler.sessionStore;
 
 app.use('/',router);
 

@@ -3,7 +3,8 @@ const db = require('../../config/database');
 const dbFunc = require('../../config/db-function')
 
 const AccountModel = {
-    addAccount,
+    addSavingAccount,
+    addCurrentAccount,
     depositMoneySvAcc,
     withdrawSvAcc,
     transferMoney

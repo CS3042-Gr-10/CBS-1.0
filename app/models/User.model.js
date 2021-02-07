@@ -41,7 +41,7 @@ function getUserByID(user_id) {
 }
 
 function getUserByEmail(email) {
-  console.log(email);
+  // console.log(email);
   return new Promise((resolve,reject) => {
     db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM User WHERE email = ?`,email,(error,rows,fields)=>{
       if(!!error) {

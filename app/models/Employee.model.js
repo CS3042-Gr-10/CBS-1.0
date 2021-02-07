@@ -14,7 +14,7 @@ function getEmpDetailsByID(id) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 //console.log(error);
-                reject(false);
+                reject(error);
             } else {
                 //console.log(rows[0]);
                 dbFunc.connectionRelease;
@@ -30,7 +30,7 @@ function getEmpDetailsByNIC(nic) {
         db.query('SELECT * from Employee where NIC = ?',nic, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
-                reject(false);
+                reject(error);
             } else {
 
                 dbFunc.connectionRelease;
