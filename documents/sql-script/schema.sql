@@ -55,7 +55,7 @@ CREATE TABLE `Customer` (
   `name_with_init` varchar(100) not NULL,
   `dob` date not NULL,
   `created_date` date not NULL,
-  `NIC` varchar(20),
+  `NIC` varchar(20) not NULL UNIQUE,
   `gender` varchar(25),
   `house_no` varchar(25) not NULL,
   `street` varchar(25) not NULL,
@@ -131,6 +131,7 @@ CREATE TABLE `SavingAccoutPlan` (
 
 CREATE TABLE `SavingAccount` (
   `acc_id` INT(32) not NULL,
+  `num_monthly_wt` int(3) not NULL Default 0,
   `acc_plan_id` int(4) not NULL,
   `acc_balance` Numeric(20,2),
   PRIMARY KEY (`acc_id`),
