@@ -4,6 +4,8 @@ var dbFunc = require('../../config/db-function');
 
 const CustomerModel = {
     getCustomerDetails,
+    getAllCustomerDetails,
+    getUserDetails,
     getCustomerSavAccDetail,
     getCustomerFDDetail,
     getCustomerDetailsByNIC,
