@@ -1,6 +1,6 @@
 
 const db = require('../../config/database');
-const dbFunc = require('../../config/db-function')
+var dbFunc = require('../../config/db-function');
 
 const CustomerModel = {
     getCustomerDetails,
