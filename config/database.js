@@ -7,7 +7,7 @@ module.exports = mysql.createPool({
     host: '34.101.117.36',
     database: 'cbs-1-db',
     port: 3306,
-    password: '',
+    password: 'NDUCI@cse3042',
 })
 
 
