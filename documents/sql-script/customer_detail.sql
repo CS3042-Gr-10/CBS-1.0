@@ -2,8 +2,9 @@ CREATE
     ALGORITHM = UNDEFINED 
     DEFINER = `dev`@`%` 
     SQL SECURITY DEFINER
-VIEW `customer_details` AS
+VIEW `customer_detail` AS
     SELECT 
+        `User`.`user_id` AS `user_id`,
         `Customer`.`first_name` AS `first_name`,
         `Customer`.`last_name` AS `last_name`,
         `Customer`.`dob` AS `dob`,
