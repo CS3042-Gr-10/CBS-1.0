@@ -1,5 +1,5 @@
 CREATE PROCEDURE `add_customer`(
-	IN usr varchar(25),
+	IN username varchar(25),
     IN password varchar(255),
     IN email varchar(100),
 	IN first_name varchar(100),

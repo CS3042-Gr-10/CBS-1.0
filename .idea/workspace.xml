@@ -30,16 +30,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="resolve and merge">
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="commit before merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Customer.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Customer.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Employee.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Employee.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/User.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/User.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/Dropdown.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/Dropdown.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/SessionHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/SessionHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +142,7 @@
       <workItem from="1612428910241" duration="3011000" />
       <workItem from="1612432721465" duration="1027000" />
       <workItem from="1612435538046" duration="23105000" />
-      <workItem from="1612608364934" duration="22860000" />
+      <workItem from="1612608364934" duration="23919000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -320,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612665472284</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="commit before merge">
+      <created>1612676571619</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1612676571619</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,6 +360,7 @@
     <MESSAGE value="some changes" />
     <MESSAGE value="adding Customer Account done" />
     <MESSAGE value="resolve and merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolve and merge" />
+    <MESSAGE value="commit before merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit before merge" />
   </component>
 </project>
