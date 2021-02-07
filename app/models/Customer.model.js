@@ -2,7 +2,7 @@
 const db = require('../../config/database');
 var dbFunc = require('../../config/db-function');
 
-var CustomerModel = {
+const CustomerModel = {
     getCustomerDetails,
     getCustomerSavAccDetail,
     getCustomerFDDetail,
@@ -16,10 +16,12 @@ function getCustomerDetails(id) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });
@@ -31,10 +33,12 @@ function getCustomerSavAccDetail(id) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });
@@ -46,10 +50,12 @@ function getCustomerFDDetail(id) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });
@@ -61,10 +67,12 @@ function getCustomerDetailsByNIC(nic) {
           if (!!error) {
               dbFunc.connectionRelease;
               reject(false);
+              return (false);
           } else {
 
               dbFunc.connectionRelease;
               resolve(rows[0]);
+              return (rows[0]);
           }
       });
   });
@@ -74,15 +82,17 @@ function addCustomer(acc) {
 
     //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_customer.sql 
     return new Promise((resolve, reject) => {
-        db.query(`CALL add_customer(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, acc, (error, rows, fields) => {
+        db.query(`CALL add_customer(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, acc, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows);
+                return (rows);
             }
         });
     });

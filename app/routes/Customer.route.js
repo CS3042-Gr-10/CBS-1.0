@@ -4,9 +4,11 @@ const errorCode = require('../../common/error-code');
 const errorMessage = require('../../common/error-methods');
 const errortype = require('../../common/error-type');
 const mail = require('./../../common/mailer.js');
-const ifLoggedIn = require('./../Middleware/ifLoggedIn')
-const ifCustomer = require('./../Middleware/ifCustomer')
+const ifLoggedIn = require('./../Middleware/ifLoggedIn');
+const Errors = require('./../../common/error');
+const ifCustomer = require('./../Middleware/ifCustomer');
 const CustomerService = require('../services/Customer.service');
+const UserService = require('../services/user.service');
 const GeneralError = errortype.RedirectGeneralError;
 
 function init(router) {
@@ -16,16 +18,32 @@ function init(router) {
         .get(GeneralError)
     router.route('/Customer/:id')
         .get(indexAction);
+    router.route('/Customer/:id/startFD')
+      .get(startFDPage)
+      .post(startFDAction)
 }
 
-function indexAction(req,res){
+async function indexAction(req,res){
     //EmployeeService.
     const userID = req.session.user.username;
-    res.render('employee_dashboard',
-        {
-            "full_name": userID
+    let userID_2 = req.params.id;
+    try{
+        const User = await UserService.getUserById(userID);
+        if (!User){
+            throw new Errors.BadRequest('An Error Occurred in the Database');
         }
-    )
+
+        res.render('customer_dashboard',
+          {
+              url_params: req.params,
+              User:User
+          }
+        )
+    }catch (e){
+        res.redirect(`/?error=${e}`);
+    }
+
+
     //userService.getUserById(userId).then((data) => {
 
     //}).catch((err) => {
@@ -34,8 +52,19 @@ function indexAction(req,res){
     //});
 }
 
-function startFDAction(req,res){
-    //starting an fd by customer
+function startFDPage(req,res){
+    //starting an fd by customer to page.
+    res.render('')
+
+}
+
+function startFDAction(req, res){
+    // to create FD
+    try{
+
+    }catch (e){
+
+    }
 }
 
 function transferAction(req,res){
@@ -52,6 +81,7 @@ function checkAccountAction(req,res){
 
 function listFDsAction(req,res){
     //list of the the fd and their details.
+
 }
 
 function listLoansAction(req,res){

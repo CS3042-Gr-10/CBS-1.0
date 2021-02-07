@@ -29,7 +29,7 @@
                                 data-target="#changePasswordModal">Change Password</a>
                         </div>
                     </li>
-                    <a class="btn btn-secondary my-2 my-sm-0" href="./login.hbs" role="button">LOG OUT</a>
+                    <a class="btn btn-secondary my-2 my-sm-0" href="/logout" role="button">LOG OUT</a>
                 </ul>
             </div>
         </nav>
@@ -37,9 +37,19 @@
     <main>
         <div class="wrapper_1">
             <div>
-                <h3>{{ full_name }}</h3>
+                <h3>{{ User.first_name }} {{User.last_name}}</h3>
                 <hr class="my-4">
             </div>
+            {{#if error}}
+                <div class="row alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+            {{/if}}
+            {{#if success}}
+                <div class="row alert alert-success" role="alert">
+                    {{success}}
+                </div>
+            {{/if}}
             <div class="calendar-parent">
                 <div class="calendar-container center">
                     <div id="dycalendar-today-with-skin-shadow"
@@ -122,7 +132,7 @@
                     <div class="row">
                         <a type="button" class="btn btn-primary btn-sm ml-3" data-toggle="modal"
                             data-target="#customerDetailsModal">Yes</a>
-                        <a type="button" class="btn btn-secondary btn-sm ml-2" href="./customer_reg_form.hbs">No</a>
+                        <a type="button" class="btn btn-secondary btn-sm ml-2" href="/employee/{{User.user_id}}/registerCustomer">No</a>
                     </div>
                 </div>
             </div>
@@ -138,19 +148,18 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="./existing_customer_reg_form.hbs" method="POST">
+                <form action="/employee/{{User.user_id}}/registerCustomer" method="POST">
                     <div class="modal-body">
                         <div class="form-group form-inline mt-1">
                             <label for="username" class="mr-3 col-sm-3 col-form-label">Username</label>
-                            <input type="text" id="username" class="form-control" placeholder="Customer Username"
-                                required>
+                            <input type="text" id="username" class="form-control" placeholder="Customer Username">
                         </div>
                         <div class="form-group form-inline mt-1">
                             <label for="username" class="mr-3 col-sm-3 col-form-label">NIC No.</label>
-                            <input type="text" id="nic" name="nic" class="form-control" required>
+                            <input type="text" id="nic" name="nic" class="form-control">
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" id="confirmbutton">
                         <input type="submit" class="btn btn-primary" value="Submit">
                     </div>
                 </form>

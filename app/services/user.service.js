@@ -1,12 +1,7 @@
-var userModel = require("../models/user.model.js");
+//onst userModel = require('../models/user.model.js')
 
-
-var userService = {
-    getAllUser: getAllUser,
-    getUserById:getUserById,
-    addUser: addUser,
-    updateUser:updateUser,
-    deleteUser:deleteUser
+const userService = {
+    getUserById: getUserById,
 }
 
 function addUser(userData) {
@@ -17,7 +12,11 @@ function addUser(userData) {
             reject(err);
         })
     })
-   
+
+}
+
+function editProfile(){
+
 }
 
 

@@ -1,26 +1,60 @@
-var db = require('../../config/database');
-var dbFunc = require('../../config/db-function');
+const db = require('../../config/database')
+const dbFunc = require('../../config/db-function')
 
-var userModel = {
-   getAllUser:getAllUser,
-   addUser:addUser,
-   updateUser:updateUser,
-   deleteUser:deleteUser,
-   getUserById:getUserById
+const userModel = {
+  getUserUsername: getUserByUsername,
+  getUserByEmail:getUserByEmail,
+  getUserByID:getUserByID,
+
 }
 
-function getAllUser() {
+function getUserByUsername(username) {
     return new Promise((resolve,reject) => {
-        db.query(`CALL get_user()`,(error,rows,fields)=>{
+        db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM User WHERE username = ?`,username,(error,rows,fields)=>{
             if(!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
+                return error;
             } else {
                 dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return rows[0];
             }
        });
     });
+}
+
+function getUserByID(user_id) {
+  return new Promise((resolve,reject) => {
+    db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM User WHERE user_id = ?`,user_id,(error,rows,fields)=>{
+      if(!error) {
+        dbFunc.connectionRelease;
+        reject(error);
+        return error;
+      } else {
+        dbFunc.connectionRelease;
+        resolve(rows[0]);
+        return rows[0];
+      }
+    });
+  });
+}
+
+function getUserByEmail(email) {
+  // console.log(email);
+  return new Promise((resolve,reject) => {
+    db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM User WHERE email = ?`,email,(error,rows,fields)=>{
+      if(!!error) {
+        dbFunc.connectionRelease;
+        reject(error);
+        return error;
+      } else {
+        dbFunc.connectionRelease;
+        resolve(rows[0]);
+        return rows[0];
+      }
+    });
+  });
 }
 
 function getUserDetailById(id) {
@@ -111,20 +145,6 @@ function updateUser(id,user) {
             }
        });    
     })
-}
-
-function deleteUser(id) {
-   return new Promise((resolve,reject) => {
-        db.query("DELETE FROM test WHERE id='"+id+"'",(error,rows,fields)=>{
-            if(!!error) {
-                dbFunc.connectionRelease;
-                reject(error);
-            } else {
-                dbFunc.connectionRelease;
-                resolve(rows);
-            }
-       });    
-    });
 }
 
 

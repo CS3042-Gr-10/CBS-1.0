@@ -8,6 +8,7 @@ const DropdownService = {
     getSavingAccPlans
 }
 
+
 function getBranches() {
     return new Promise((resolve, reject) => {
         db.query('SELECT branch_id, branch_name from Branch', (error, rows, fields) => {
@@ -17,7 +18,7 @@ function getBranches() {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows);
             }
         });
     });

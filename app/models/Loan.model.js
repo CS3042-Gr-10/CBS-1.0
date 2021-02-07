@@ -1,2 +1,2 @@
-const db = require('../config/database');
-var dbFunc = require('../config/db-function');
+const db = require('../../config/database');
+const dbFunc = require('../../config/db-function')

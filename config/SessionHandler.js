@@ -4,10 +4,9 @@ const MySQLDBStore = require('express-mysql-session')(session);
 
 const sessionStore = new MySQLDBStore(
   {
-    createDatabaseTable: false,
+    createDatabaseTable: true,
     clearExpired:false,
     endConnectionOnClose: false,
-    connectionLimit:1
   }, db);
 
 const session_object = session({
