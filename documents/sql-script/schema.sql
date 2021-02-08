@@ -14,7 +14,7 @@ CREATE TABLE `User` (
   `password` varchar(255) not NULL,
   `email` varchar(100) not NULL,
   `acc_level` varchar(20) not NULL,
-  `is_deleted` BIT(2) not NULL Default 0,
+  `is_deleted` INT(2) not NULL Default 0,
   PRIMARY KEY (`user_id`),
   Check (user_type in ('E','A')),
   Check (acc_level in ("CUSTOMER", "EMPLOYEE","BANK-MANAGER"))
@@ -37,12 +37,12 @@ CREATE TABLE `Branch` (
   `grade` int(3),
   `branch_manager` INT(11),
   `contact_No` int(10) unsigned,
-  `is_deleted` BIT(2) not NULL Default 0, 
+  `is_deleted` int(2) not NULL Default 0, 
   PRIMARY KEY (`branch_id`)
 );
 
 CREATE TABLE `Post` (
-  `post_id` BIT(3) not NULL,
+  `post_id` INT(2) not NULL,
   `post_name` varchar(25) not NULL,
   `salary` Numeric(8,2),
   PRIMARY KEY (`post_id`)
@@ -82,7 +82,7 @@ CREATE TABLE `Employee` (
   `house_no` varchar(25) not NULL,
   `street` varchar(25) not NULL,
   `city` varchar(25),
-  `post_id` BIT(3) not NULL,
+  `post_id` INT(2) not NULL,
   PRIMARY KEY (`user_id`),
   constraint fk_emp FOREIGN KEY (user_id) REFERENCES User (user_id),
   FOREIGN KEY (branch_id) REFERENCES Branch (branch_id),
@@ -162,7 +162,7 @@ CREATE TABLE `FixedDeposit` (
   `branch_id` int(5) not NULL,
   `opened_date` Date,
   `balance` Numeric(20,2),
-  `state` BIT(2),
+  `state` INT(2),
   PRIMARY KEY (`fd_id`),
   FOREIGN KEY (cusotmer_id) REFERENCES AccountOwner (user_id),
   FOREIGN KEY (acc_plan_id) REFERENCES  FDAccountPlan (fd_plan_id),
@@ -178,7 +178,7 @@ CREATE TABLE `Loan` (
   `loan_interrest_rate` Numeric(4,2),
   `aggreed_num_installements` int(4) not NULL,
   `finished_num_installements` int(4) not NULL,
-  `deleted` BIT(2),
+  `deleted` INT(2),
   PRIMARY KEY (`loan_id`),
   FOREIGN KEY (customer_id) REFERENCES AccountOwner (user_id),
   Check (loan_type in ("PERSONAL", "BUSINESS"))
@@ -257,12 +257,13 @@ CREATE TABLE `MoneyDeposit` (
 CREATE TABLE `Withdraw` (
   `trans_id` int(48) not NULL,
   `acc_id` int(32) not NULL,
-  `withdrawl_type` BIT(2) not NULL,
+  `withdraw_type` varchar(20) not NULL,
   `withdrawer_id` INT(11) not NULL,
   PRIMARY KEY (`trans_id`),
   FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
   FOREIGN KEY (acc_id) REFERENCES Account (acc_id),
-  FOREIGN KEY (withdrawer_id) REFERENCES AccountOwner (user_id)
+  FOREIGN KEY (withdrawer_id) REFERENCES AccountOwner (user_id),
+  Check (withdraw_type in ("MONEY", "ATM", "TRANSFER"))
 );
 
 CREATE TABLE `MoneyWithdraw` (
