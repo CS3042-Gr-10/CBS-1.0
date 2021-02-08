@@ -109,12 +109,12 @@ CREATE TABLE `Organization` (
 CREATE TABLE `Account` (
   `acc_id` INT(32) not NULL AUTO_INCREMENT,
   `branch_id` int(5) not NULL,
-  `user_id` INT(11) not NULL,
+  `user` INT(11) not NULL,
   `acc_type` varchar(20) not NULL,
   `created_date` Date not NULL,
   PRIMARY KEY (`acc_id`),
   FOREIGN KEY (branch_id) REFERENCES Branch (branch_id),
-  FOREIGN KEY (user_id) REFERENCES AccountOwner (user_id),
+  FOREIGN KEY (user) REFERENCES AccountOwner (user_id),
   Check (acc_type in ("SAVINGS", "CURRENT"))
 );
 
