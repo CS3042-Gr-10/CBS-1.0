@@ -30,23 +30,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="resolve and merge">
-      <change afterPath="$PROJECT_DIR$/documents/sql-devin/delete customer and accounts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Customer.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Customer.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/authentic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/authentic.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/Dropdown.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/Dropdown.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/authentic.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/authentic.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_reg_form.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/SessionHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/SessionHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
-    </list>
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Completed adding Customer Account and current account and a Savings account" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,7 +143,7 @@
       <workItem from="1612432721465" duration="1027000" />
       <workItem from="1612435538046" duration="23105000" />
       <workItem from="1612608364934" duration="40610000" />
-      <workItem from="1612839459395" duration="3526000" />
+      <workItem from="1612839459395" duration="3915000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -343,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612677543111</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Completed adding Customer Account and current account and a Savings account">
+      <created>1612843353051</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1612843353051</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,6 +376,7 @@
     <MESSAGE value="adding Customer Account done" />
     <MESSAGE value="commit before merge" />
     <MESSAGE value="resolve and merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolve and merge" />
+    <MESSAGE value="Completed adding Customer Account and current account and a Savings account" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed adding Customer Account and current account and a Savings account" />
   </component>
 </project>

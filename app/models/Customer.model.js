@@ -4,15 +4,51 @@ var dbFunc = require('../../config/db-function');
 
 const CustomerModel = {
     getCustomerDetails,
+    getAllCustomerDetails,
+    getUserDetails,
     getCustomerSavAccDetail,
     getCustomerFDDetail,
     getCustomerDetailsByNIC,
     addCustomer
 }
 
+function getAllCustomerDetails() {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from customer_detail',id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+                return (false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+                return (rows[0]);
+            }
+        });
+    });
+}
+
 function getCustomerDetails(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from Customer where user_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT * from customer_detail where user_id = ?',id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+                return (false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+                return (rows[0]);
+            }
+        });
+    });
+}
+
+function getUserDetails(id) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from User where user_id = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
