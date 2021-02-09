@@ -28,7 +28,7 @@ function authentic(authenticData) {
                         dbFunc.connectionRelease;
                         reject(error);
                     } else if (isMatch) {
-                        console.log(rows[0]);
+                        // console.log(rows[0]);
                         dbFunc.connectionRelease;
                         resolve(rows[0]);
                     }

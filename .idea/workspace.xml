@@ -30,9 +30,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="commit before merge">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Completed adding Customer Account and current account and a Savings account" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,6 +64,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
@@ -78,6 +77,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="standardjs.codestyle.accepted" value="true" />
+    <property name="ts.external.directory.path" value="C:\Users\ACER\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\203.7148.54\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -142,7 +142,8 @@
       <workItem from="1612428910241" duration="3011000" />
       <workItem from="1612432721465" duration="1027000" />
       <workItem from="1612435538046" duration="23105000" />
-      <workItem from="1612608364934" duration="23919000" />
+      <workItem from="1612608364934" duration="40610000" />
+      <workItem from="1612839459395" duration="3915000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -319,7 +320,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612676571619</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="resolve and merge">
+      <created>1612677543111</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1612677543111</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Completed adding Customer Account and current account and a Savings account">
+      <created>1612843353051</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1612843353051</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,8 +374,9 @@
     <MESSAGE value="merge and resolving conflicts" />
     <MESSAGE value="some changes" />
     <MESSAGE value="adding Customer Account done" />
-    <MESSAGE value="resolve and merge" />
     <MESSAGE value="commit before merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit before merge" />
+    <MESSAGE value="resolve and merge" />
+    <MESSAGE value="Completed adding Customer Account and current account and a Savings account" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed adding Customer Account and current account and a Savings account" />
   </component>
 </project>

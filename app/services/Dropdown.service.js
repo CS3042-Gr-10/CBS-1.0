@@ -1,6 +1,7 @@
 
 const db = require('../../config/database');
-var dbFunc = require('../../config/db-function');
+const dbFunc = require('../../config/db-function')
+
 
 const DropdownService = {
     getBranches,
@@ -15,10 +16,12 @@ function getBranches() {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
+
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows);
+
             }
         });
     });
@@ -33,7 +36,7 @@ function getPosts() {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows);
             }
         });
     });
@@ -41,14 +44,14 @@ function getPosts() {
 
 function getSavingAccPlans() {
     return new Promise((resolve, reject) => {
-        db.query('SELECT branchacc_plan_id, name from SavingAccoutPlan', (error, rows, fields) => {
+        db.query('SELECT acc_plan_id, name from SavingAccoutPlan', (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows);
             }
         });
     });

@@ -106,17 +106,19 @@
                     </div>
                     <label class="my-2 ml-3" for="branch">Branch</label>
                     <div class="col-lg-2 col-sm-2">
-                        <select class="custom-select" id="employee_level" name="employee_level" required>
-                            <option value="employee">Employee</option>
-                            <option value="manager">Bank Manager</option>
+                        <select class="custom-select" id="post" name="post" required>
+                            <option value="default">Select the Post...</option>
+                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                            {{#each posts}}
+                                <option value="{{this.post_id}}">{{this.post_name}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     <div class="col-lg-2 col-sm-2">
                         <select class="custom-select" id="branch" name="branch" required>
-                            <option value="default">Select the Branch...</option>
+                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
                             {{#each branches}}
                                 <option value="{{this.branch_id}}">{{this.branch_name}}</option>
-                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
                             {{/each}}
                         </select>
                     </div>

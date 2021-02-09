@@ -29,7 +29,7 @@ const EmployeeRegistrationInfo = Joi.object().options({ abortEarly: false }).key
   add_city: Joi.string().required().max(100).label("Address City"),
   username: Joi.string().required().max(15).label("Username"),
   branch: Joi.string().required().max(15).label("Branch"),
-  employee_level: Joi.string().valid('employee','manager').required().label("Employee Level"),
+  post: Joi.string().required().max(15).label("Employee Level"),
   agree_check: Joi.string().valid('on').required()
 
 });
@@ -67,7 +67,7 @@ const CustomerRegistrationGeneralInfo = Joi.object().options({ abortEarly: false
 });
 
 const CustomerRegistrationSavingsInfo = Joi.object().options({ abortEarly: false }).keys({
-  savings_plan:Joi.string().valid('children','teen','senior','adult').required(),
+  savings_plan:Joi.string().valid('1','2','3','4').required(),
 });
 
 const CustomerRegistrationCurrentInfo = Joi.object().options({ abortEarly: false }).keys({
