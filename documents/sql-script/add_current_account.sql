@@ -1,8 +1,7 @@
 CREATE PROCEDURE `add_current_account`(
 	IN branch_id int(5),
     IN acc_balance decimal(20,2),
-    IN usr_id int(11),
-    IN acc_type varchar(20)
+    IN usr_id int(11)
 )
 BEGIN
 	DECLARE errno INT;
@@ -17,10 +16,10 @@ BEGIN
 
     START TRANSACTION;
     
-	insert into Account (branch_id, user_id, acc_type, created_date)
-    values (branch_id, user_id, acc_type, curdate());
+	insert into Account (branch_id, user, acc_type, created_date)
+    values (branch_id, usr_id, "CURRENT", curdate());
     
-    insert into SavingAccount (acc_id,  balance)
+    insert into CurrentDeposit (acc_id,  remaining_balance)
     values (last_insert_id(),  acc_balance);
     
 	COMMIT WORK;
