@@ -32,21 +32,21 @@ async function authentic (req, res) {
     if (error) throw (error);
     authenticService.authentic(authenticData).then((data) => {
       if (data) {
-
+        // console.log(data)
         req.session.user = {};
         req.session.user.user_id = data.user_id;
         req.session.user.email = data.email;
         req.session.user.user_type = data.user_type;
         req.session.user.username = data.username;
         req.session.user.acc_level = data.acc_level;
-        //console.log(req.session.user)
+
         if(data.is_deleted == 1){
           throw ("User Account is deleted");
         }
         if (data.acc_level === 'CUSTOMER') {
           res.redirect(`/Customer/${req.session.user.username}`)
         } else if (data.acc_level === 'EMPLOYEE') {
-          console.log('choosen')
+          // console.log('choosen')
           res.redirect(`/Employee/${req.session.user.username}`)
         } else if (data.acc_level === 'BANK-MANAGER') {
           res.redirect(`/BankManager/${req.session.user.username}`)

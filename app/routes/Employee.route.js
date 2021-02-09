@@ -25,7 +25,7 @@ function init(router) {
 }
 
 async function indexAction(req,res){
-    console.log(req.session.user);
+    // console.log(req.session.user);
     const userID = req.session.user.user_id;
     try{
         let Emp = await EmployeeModel.getEmpDetailsByID(userID);
@@ -39,7 +39,7 @@ async function indexAction(req,res){
             ...req.session.user
         }
 
-        console.log(Emp);
+        // console.log(Emp);
         res.render('employee_dashboard',
           {
               url_params: req.params,
@@ -57,8 +57,8 @@ async function registerEmployeePage(req,res){
     const branches = await DropdownService.getBranches();
     const posts = await DropdownService.getPosts();
 
+    //console.log(posts);
     //console.log(branches);
-    //console.log(req.query.error);
 
     res.render('employee_reg_form',{
         error: req.query.error,
@@ -76,14 +76,15 @@ async function registerEmployeePage(req,res){
         contact:req.query.contact,
         username:req.query.username,
         email:req.query.email,
-        branches:branches
+        branches:branches,
+        posts:posts
         });
 }
 
 async function registerEmployeeAction(req,res){
     try{
         const postData = req.body;
-         //console.log(postData);
+        console.log(postData);
         const { value, error } = await EmployeeRegistrationInfo.validate(req.body);
         if (error) throw (error);
 
@@ -97,12 +98,6 @@ async function registerEmployeeAction(req,res){
         if (userAlreadyExist) throw ("Already Registered by this nic");
 
         //console.log(userAlreadyExist);
-        let post_id;
-        if(value.employee_level === 'employee'){
-            post_id = 2;
-        }else{
-            post_id = 1;
-        }
 
 
         let acc = {
@@ -116,12 +111,12 @@ async function registerEmployeeAction(req,res){
             postal_code:parseInt(value.postal_code),
             contact_No:parseInt(value.contact.split("-").join('')),
             NIC:value.nic,
-            branch_id:value.branch_id,
+            branch_id:parseInt(value.branch),
             gender:value.gender,
             house_no:value.add_no,
             street:value.add_street,
             city:value.add_city,
-            post_id:post_id,
+            post_id:parseInt(value.post),
         }
         console.log(acc.username);
         console.log(acc.password);
@@ -150,6 +145,7 @@ async function registerEmployeeAction(req,res){
 
 async function  registerAccountAndCustomerPage(req, res){
     const branches = await DropdownService.getBranches();
+    const savings_plan = await DropdownService.getSavingAccPlans();
 
     console.log(req.session.user);
     res.render('customer_reg_form', {
@@ -168,6 +164,7 @@ async function  registerAccountAndCustomerPage(req, res){
         contact:req.query.contact,
         email:req.query.email,
         branches:branches,
+        savings_plan:savings_plan,
     });
 }
 
@@ -201,14 +198,16 @@ async function registerCustomerAndAccount(req, res){
             const { obj, error } = await CustomerRegistrationSavingsInfo.validate({
                 savings_plan:req.body.savings_plan
             });
+            // console.log(obj);
+            // console.log(req.body.savings_plan);
             if (error) throw (error);
             value = {
                 ...value,
-                ...obj
+                savings_plan:req.body.savings_plan,
             }
         }
 
-        // console.log(value);
+        console.log(value);
 
 
         let userAlreadyExist = await UserModel.getUserByEmail(value.email);
@@ -236,39 +235,41 @@ async function registerCustomerAndAccount(req, res){
             postal_code:parseInt(value.postal_code),
             contact_primary:parseInt(value.contact.split("-").join('')),
             contact_secondary:parseInt(value.contact.split("-").join('')),
-            acc_level:0,
+            acc_level:"CUSTOMER",
         }
         console.log(username);
 
 
-        acc = ObjectToList(acc);
-        console.log(acc);
 
-        CustomerModel.addCustomer(acc).then((data)=>{
+        acc = ObjectToList(acc);
+        // console.log(acc);
+
+        await CustomerModel.addCustomer(acc).then((data)=>{
+            console.log("Customer Added")
             return;
         }).catch((err)=>{
             console.log('error adding employee')
             throw (err);
         })
 
-        const user = await UserModel.getUserUsername(acc.usr);
+        const user = await UserModel.getUserUsername(username);
+
 
         if (value.acc_type === 'savings'){
-
-            console.log('Here');
-            console.log(user.user_id);
+            console.log(value);
+            //console.log('Here');
+            //console.log(user.user_id);
             let savings = {
               branch_id:parseInt(value.branch),
               acc_balance:parseFloat(value.init_amount),
               usr_id:user.user_id,
-              acc_type:"SAVINGS",
               account_plan_id:parseInt(value.savings_plan)
             }
 
             console.log(savings);
 
             savings = ObjectToList(savings);
-            AccountModel.addSavingAccount(savings).then(()=>{
+            await AccountModel.addSavingAccount(savings).then(()=>{
                 console.log('Savings account added');
                 res.redirect(`/employee/${req.params.id}?success=Savings account made`)
             }).catch((err)=>{
@@ -281,14 +282,13 @@ async function registerCustomerAndAccount(req, res){
                 branch_id: parseInt(value.branch) ,
                 acc_balance: parseFloat(value.init_amount),
                 usr_id: user.user_id,
-                acc_type: "CURRENT"
             }
 
             console.log(current);
             current = ObjectToList(current);
 
-            AccountModel.addCurrentAccount(current).then(()=>{
-                console.log('Savings account added');
+            await AccountModel.addCurrentAccount(current).then(()=>{
+                console.log('Current account added');
                 res.redirect(`/employee/${req.params.id}?success=Current account made`)
             }).catch((err)=>{
                 console.log(err);

@@ -12,6 +12,7 @@ const sessionStore = new MySQLDBStore(
 const session_object = session({
   name:SESS_NAME,
   secret: SECRET,
+  store:sessionStore,
   resave: false,
   saveUninitialized: false,
   cookie: {

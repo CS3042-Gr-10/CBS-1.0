@@ -21,7 +21,7 @@
             </div>
         {{/if}}
         <div class="card-body">
-            <form action="/employee/19/registerCustomer" method="POST">
+            <form action="/employee/{{user.user_id}}/registerCustomer" method="POST">
                 <div class="form-group row">
                     <label for="name" class="col-form-label ml-3">Name</label>
                     <div class="input-group col-lg col-sm">
@@ -117,10 +117,9 @@
                     <div class="col-lg-3 col-sm-3">
                         <select class="custom-select" id="savings_plan" name="savings_plan" required>
                             <option selected>Select Savings Plan...</option>
-                            <option value="children" id="children">Children - 12%, no minimum</option>
-                            <option value="teen" id="teen">Teen - 11%, 500 minimum</option>
-                            <option value="adult" id="adult">Adult (18+) - 10%, 1000 minimum </option>
-                            <option value="senior" id="senior">Senior (60+) - 13%, 1000 minimum</option>
+                            {{#each savings_plan}}
+                                <option value="{{this.acc_plan_id}}">{{this.name}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
@@ -143,9 +142,9 @@
                     <div class="col-lg-2 col-sm-2">
                         <select class="custom-select" id="branch" name="branch" required>
                             <option value="default">Select the Branch...</option>
+                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
                             {{#each branches}}
                                 <option value="{{this.branch_id}}">{{this.branch_name}}</option>
-                                <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
                             {{/each}}
                         </select>
                     </div>
