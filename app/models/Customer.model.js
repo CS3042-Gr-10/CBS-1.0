@@ -12,7 +12,7 @@ const CustomerModel = {
 
 function getCustomerDetails(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from Customer where customer_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT * from Customer where user_id = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -29,7 +29,7 @@ function getCustomerDetails(id) {
 
 function getCustomerSavAccDetail(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT acc_id, branch_id, acc_type, created_date from Account where user_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT acc_id, branch_id, acc_type, created_date from Account where user = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -46,7 +46,7 @@ function getCustomerSavAccDetail(id) {
 
 function getCustomerFDDetail(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT acc_id, branch_id, acc_type, created_date from FixedDeposit where customer_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT sv_acc_id, branch_id, acc_plan_id, opened_date from FixedDeposit where cusotmer_id = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -87,12 +87,9 @@ function addCustomer(acc) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
-                return (false);
             } else {
-
                 dbFunc.connectionRelease;
                 resolve(rows);
-                return (rows);
             }
         });
     });

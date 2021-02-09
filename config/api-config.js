@@ -29,10 +29,7 @@ app.engine('hbs',hbs({
 
 app.set('view engine', "hbs");
 // var schedule = require('node-schedule');
- 
-// var j = schedule.scheduleJob('*/1 * * * *', function(){
-//   console.log('The answer to life, the universe, and everything!');
-// });
+
 
 dbfunc.connectionCheck.then((data) =>{
     console.log("DB has connected!!");
@@ -57,7 +54,6 @@ const router = express.Router();
 //app.use('/api',router);
 
 
-//const secureApi = express.Router();
 
 //set static folder
 app.use(express.urlencoded({
@@ -67,9 +63,6 @@ app.use(express.urlencoded({
 console.log(path.join(appRoot, 'public'));
 app.use(express.static(path.join(appRoot, 'public')));
 
-//body parser middleware
-
-//app.use('/secureApi',secureApi);
 
 
 app.use(function (err, req, res, next) {
@@ -77,7 +70,6 @@ app.use(function (err, req, res, next) {
   res.send(500).send('Something broke!');
 });
 
-const store = SessionHandler.sessionStore;
 
 app.use('/',router);
 

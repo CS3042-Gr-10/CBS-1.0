@@ -33,12 +33,24 @@ const hash_password = async (password) => {
   return hashedPassword
 }
 
+const bufferToInt = (list,columns)=>{
+  console.log(list);
+  columns.forEach((column)=>{
+      list.forEach((data)=>{
+        if(!Number.isInteger(data[column])){
+          data[column] = parseInt(data[column])
+        }
+      });
+    });
+  console.log(list);
+}
+
 
 const helpers = {
   errorsToList,
   ObjectToList,
-  hash_password
-
+  hash_password,
+  bufferToInt
 }
 
 module.exports = helpers;

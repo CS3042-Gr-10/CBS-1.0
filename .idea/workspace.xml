@@ -30,8 +30,22 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="commit before merge">
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="resolve and merge">
+      <change afterPath="$PROJECT_DIR$/documents/sql-devin/delete customer and accounts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Customer.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Customer.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/authentic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/authentic.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/Dropdown.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/Dropdown.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/authentic.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/authentic.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_reg_form.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/SessionHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/SessionHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/api-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +80,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
@@ -78,6 +93,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="standardjs.codestyle.accepted" value="true" />
+    <property name="ts.external.directory.path" value="C:\Users\ACER\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\203.7148.54\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -142,7 +158,8 @@
       <workItem from="1612428910241" duration="3011000" />
       <workItem from="1612432721465" duration="1027000" />
       <workItem from="1612435538046" duration="23105000" />
-      <workItem from="1612608364934" duration="23919000" />
+      <workItem from="1612608364934" duration="40610000" />
+      <workItem from="1612839459395" duration="3526000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -319,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612676571619</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="resolve and merge">
+      <created>1612677543111</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1612677543111</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,8 +383,8 @@
     <MESSAGE value="merge and resolving conflicts" />
     <MESSAGE value="some changes" />
     <MESSAGE value="adding Customer Account done" />
-    <MESSAGE value="resolve and merge" />
     <MESSAGE value="commit before merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit before merge" />
+    <MESSAGE value="resolve and merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolve and merge" />
   </component>
 </project>

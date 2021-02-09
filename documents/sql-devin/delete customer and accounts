@@ -1,0 +1,6 @@
+delete from SavingAccount;
+delete from CurrentDeposit;
+delete from Account;
+delete from Customer;
+delete from AccountOwner;
+delete from User WHERE user_type="A";
