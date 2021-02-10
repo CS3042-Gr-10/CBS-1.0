@@ -1,4 +1,5 @@
-const { EmployeeRegistrationInfo, CustomerRegistrationSavingsInfo, CustomerRegistrationGeneralInfo } = require('../schema/Registration');
+const { EmployeeRegistrationInfo, CustomerRegistrationSavingsInfo, CustomerRegistrationGeneralInfo, ExistingCustomerAccountInfo } = require('../schema/Registration');
+const { usernameInfo, nicInfo} = require('../schema/Authentication');
 const Errors = require('../../common/error');
 const DropdownService = require('../services/Dropdown.service');
 const { ObjectToList, hash_password } = require('../../common/helpers');
@@ -15,11 +16,14 @@ function init(router) {
         .post(registerEmployeeAction);
     router.route('/employee/:id')
         .get(indexAction);
-        //.delete(deleteUser)
-        //.put(updateUser);
     router.route('/employee/:id/registerCustomer')
         .get(registerAccountAndCustomerPage)
-        .post(registerCustomerAndAccount)
+        .post(registerCustomerAndAccount);
+    router.route('/employee/:id/registerExistingCustomer')
+        .get(existingCustomerAndAccountPage);
+    router.route("/employee/:id/addAccount/:user_id")
+        .post(addAccount)
+
 
 
 }
@@ -43,6 +47,8 @@ async function indexAction(req,res){
         res.render('employee_dashboard',
           {
               url_params: req.params,
+              error:req.query.error,
+              success:req.query.success,
               User:Emp
 
           }
@@ -256,7 +262,7 @@ async function registerCustomerAndAccount(req, res){
 
 
         if (value.acc_type === 'savings'){
-            console.log(value);
+            //console.log(value);
             //console.log('Here');
             //console.log(user.user_id);
             let savings = {
@@ -277,7 +283,7 @@ async function registerCustomerAndAccount(req, res){
                 throw (err);
             })
         }else {
-            console.log('Not Here');
+            //console.log('Not Here');
             let current ={
                 branch_id: parseInt(value.branch) ,
                 acc_balance: parseFloat(value.init_amount),
@@ -303,52 +309,141 @@ async function registerCustomerAndAccount(req, res){
 
 async function existingCustomerAndAccountPage(req,res){
     try{
+        //console.log(req.body);
+        //console.log(req.query);
         const branches = await DropdownService.getBranches();
+        const savings_plan = await DropdownService.getSavingAccPlans();
 
-        let Info;
-        if(req.body.username){
-            const userInfo = await UserModel.getUserUsername(req.body.username);
+        let Info,customerInfo,userInfo;
+        if(req.query.username){
+            const {username, error} = await usernameInfo.validate({username:req.query.username});
+            if (error) throw (error);
+            userInfo = await UserModel.getUserUsername(req.query.username);
             if(!userInfo) throw new Errors.BadRequest("NO such Customer");
-            const customerInfo = await CustomerModel.getCustomerDetails(userInfo.user_id);
+            customerInfo = await CustomerModel.getCustomerDetailsById(userInfo.user_id);
+
 
             Info = {
                 ...userInfo,
                 ...customerInfo
             };
-        }else {
-            if(req.body.nic){
-                Info =await CustomerModel.getCustomerDetails(req.body.nic);
-                if(!Info) throw new Errors.BadRequest("NO such Customer");
+
+        }else if(req.query.nic){
+
+            const {nic, error} = await nicInfo.validate({nic:req.query.nic});
+            if (error) throw (error);
+
+            customerInfo = await CustomerModel.getCustomerDetailsByNIC(req.query.nic);
+            if(!customerInfo) throw new Errors.BadRequest("NO such Customer");
+            userInfo = await UserModel.getUserByID(customerInfo.user_id);
+
+            Info = {
+                ...userInfo,
+                ...customerInfo
             }
         }
 
-        if(Info){
+        console.log(Info);
+
+        if(Info.user_id){
             res.render('existing_customer_reg_form', {
                 error: req.query.error,
                 user: req.session.user,
-                first_name:req.query.first_name,
-                last_name:req.query.last_name,
-                name_with_initials:req.query.name_with_initials,
-                age:req.query.age,
-                dob:req.query.dob,
-                add_no:req.query.add_no,
-                add_street:req.query.add_street,
-                add_city:req.query.add_city,
-                zip_code:req.query.zip_code,
-                nic:req.query.nic,
-                contact:req.query.contact,
-                username:req.query.username,
-                email:req.query.email,
+                user_id:Info.user_id,
+                first_name:Info.first_name,
+                last_name:Info.last_name,
+                name_with_initials:Info.name_with_init,
+                dob:Info.dob,
+                add_no:Info.house_no,
+                add_street:Info.street,
+                add_city:Info.city,
+                postal_code:Info.postal_code,
+                nic:Info.NIC,
+                contact:Info.contact_primary,
+                email:Info.email,
+                gender:Info.gender,
                 branches:branches,
-                existing:false
+                savings_plan:savings_plan
             });
         }else{
-
+            res.redirect(`/employee/${req.params.id}?error=Error In the entered Username or NIC`)
         }
     }catch (e) {
-        res.redirect(`/employee/${req.params.user_id}/registerCustomer?error=${e}&`)
+        console.log(e);
+        console.log(e.message);
+        res.redirect(`/employee/${req.params.id}?error=${e.message}`)
     }
 
+}
+
+async function addAccount(req,res){
+    try{
+        //console.log(req.body);
+        //console.log(req.params.user_id);
+        let {validated,error} = await ExistingCustomerAccountInfo.validate({
+            acc_type: req.body.acc_type,
+            init_amount: req.body.init_amount,
+            branch: req.body.branch,
+            agree_check: req.body.agree_check
+        });
+        if (error) throw (error);
+
+        if(req.body.acc_type === 'savings'){
+            let {validated,error} = await CustomerRegistrationSavingsInfo.validate({
+                savings_plan:req.body.savings_plan
+            });
+            if (error) throw (error);
+
+            let savings = {
+                branch_id:parseInt(req.body.branch),
+                acc_balance:parseFloat(req.body.init_amount),
+                usr_id:req.params.user_id,
+                account_plan_id:parseInt(req.body.savings_plan)
+            }
+
+            console.log(savings);
+
+            savings = ObjectToList(savings);
+            await AccountModel.addSavingAccount(savings).then(()=>{
+                console.log('Savings account added');
+                res.redirect(`/employee/${req.params.id}?success=Savings account made`)
+            }).catch((err)=>{
+                console.log(err);
+                throw (err);
+            })
+        }else if (req.body.acc_type === 'current'){
+            //let {validated,error} = await CustomerRegistrationCurrentInfo.validate({
+            //    savings_plan:req.body.savings_plan
+            //});
+            //if (error) throw (error);
+
+            let current ={
+                branch_id: parseInt(req.body.branch) ,
+                acc_balance: parseFloat(req.body.init_amount),
+                usr_id: req.params.user_id,
+            }
+
+            console.log(current);
+            current = ObjectToList(current);
+
+            await AccountModel.addCurrentAccount(current).then(()=>{
+                console.log('Current account added');
+                res.redirect(`/employee/${req.params.id}?success=Current account made`)
+            }).catch((err)=>{
+                console.log(err);
+                throw (err);
+            })
+
+        }else {
+            res.redirect(`/employee/${req.params.id}?error=Account type error`);
+        }
+
+        res.redirect(`/employee/${req.params.id}`);
+
+    }catch (e) {
+        console.log(e);
+        res.redirect(`/employee/${req.params.id}?error=${e}`);
+    }
 }
 
 

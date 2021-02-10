@@ -148,11 +148,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="/employee/{{User.user_id}}/registerCustomer" method="POST">
+                <form action="/employee/{{User.user_id}}/registerExistingCustomer" method="GET">
                     <div class="modal-body">
                         <div class="form-group form-inline mt-1">
                             <label for="username" class="mr-3 col-sm-3 col-form-label">Username</label>
-                            <input type="text" id="username" class="form-control" placeholder="Customer Username">
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Customer Username">
                         </div>
                         <div class="form-group form-inline mt-1">
                             <label for="username" class="mr-3 col-sm-3 col-form-label">NIC No.</label>

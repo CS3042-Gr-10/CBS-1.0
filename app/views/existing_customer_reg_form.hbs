@@ -15,27 +15,34 @@
         <div class="card-header">
             <h4>Customer Registration Form</h4>
         </div>
+        {{#if error}}
+            <div class="row alert alert-danger" role="alert">
+                {{error}}
+            </div>rs
+        {{/if}}
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="/employee/{{user.user_id}}/addAccount/{{user_id}}" method="POST">
                 <fieldset disabled="disabled">
+                    <div class="form-group">
+                        <label for="user_id" class="col-form-label ml-3">User ID in System</label>
+                        <div class="col-lg-2 col-sm-2">
+                            <input type="text" id="user_id" name="user_id" class="form-control" required value="{{user_id}}">
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="name" class="col-form-label ml-3">Full Name</label>
                         <div class="input-group col-lg col-sm">
                             <input type="text" id="first_name" name="first_name" value="{{first_name}}"
-                                placeholder="First Name" class="form-control" required>
+                                placeholder="First Name" class="form-control" required readonly>
                             <input type="text" id="last_name" name="last_name" value="{{last_name}}"
-                                placeholder="Last Name" class="form-control" required>
+                                placeholder="Last Name" class="form-control" required readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="name_with_initials" class="col-form-label ml-3">Name with Initials</label>
                         <div class="col-lg-5 col-sm">
                             <input type="text" id="name_with_initials" name="name_with_initials" class="form-control"
-                                value="{{name_with_initials}}" required>
-                        </div>
-                        <label for="age" class="col-form-label ml-3">Age</label>
-                        <div class="col-lg-1 col-sm-1">
-                            <input type="number" id="age" name="age" class="form-control" value="{{age}}" required>
+                                value="{{name_with_initials}}" required readonly>
                         </div>
                         <label for="dob" class="col-form-label ml-3">Date of Birth</label>
                         <div class="col-lg-2 col-sm-2">
@@ -47,48 +54,27 @@
                         <label for="add_no" class="col-form-label col-sm-3 col-md-3 col-lg-3">Address</label>
                         <div class="col-lg col-sm input-group">
                             <input type="text" id="add_no" name="add_no" value="{{add_no}}" placeholder="No."
-                                class="form-control col-2" required>
+                                class="form-control col-2" required readonly>
                             <input type="text" id="add_street" name="add_street" value="{{add_street}}"
-                                placeholder="Street" class="form-control" required>
+                                placeholder="Street" class="form-control" required readonly>
                             <input type="text" id="add_city" name="add_city" value="{{add_city}}" placeholder="City"
-                                class="form-control col-4" required>
+                                class="form-control col-4" required readonly>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="zip_code" class="col-form-label ml-3">Zip Code</label>
+                        <label for="postal_code" class="col-form-label ml-3">Postal Code</label>
                         <div class="col-lg-2 col-sm-2">
-                            <input type="text" id="zip_code" name="zip_code" class="form-control" value="{{zip_code}}"
-                                required>
+                            <input type="text" id="postal_code" name="postal_code" class="form-control" value="{{postal_code}}"
+                                required readonly>
                         </div>
                         <label for="nic" class="col-form-label ml-3">NIC Number</label>
                         <div class="col-lg-2 col-sm-2">
-                            <input type="text" id="nic" name="nic" value="{{nic}}" class="form-control" required>
+                            <input type="text" id="nic" name="nic" value="{{nic}}" class="form-control" required readonly>
                         </div>
-                        {{#if existing}}
-                            <label for="gender" class="col-form-label ml-3">Gender</label>
-                            <div class="col-lg-2 col-sm-2">
-                                <input type="text" id="gender" name="gender" class="form-control" required value="{{gender}}">
-                            </div>
-                        {{else}}
-                            <div>
-                                <label for="inlineRadioOptions" class="col-form-label ml-3">Gender</label>
-                                <div class="form-check form-check-inline ml-4">
-                                    <input class="form-check-input" type="radio" name="gender" id="gender"
-                                           value="male">
-                                    <label class="form-check-label" for="male">Male</label>
-                                </div>
-                                <div class="form-check form-check-inline ml-3">
-                                    <input class="form-check-input" type="radio" name="gender" id="gender"
-                                           value="female">
-                                    <label class="form-check-label" for="female">Female</label>
-                                </div>
-                                <div class="form-check form-check-inline ml-3">
-                                    <input class="form-check-input" type="radio" name="gender" id="gender"
-                                           value="other">
-                                    <label class="form-check-label" for="other_gender">Others</label>
-                                </div>
-                            </div>
-                        {{/if}}
+                        <label for="gender" class="col-form-label ml-3">Gender</label>
+                        <div class="col-lg-2 col-sm-2">
+                            <input type="text" id="gender" name="gender" class="form-control" required value="{{gender}}" readonly>
+                        </div>
                     </div>
                 </fieldset>
 
@@ -98,8 +84,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="contact_code">(+248)</span>
                         </div>
-                        <input type="tel" id="contact" name="contact" class="form-control" maxlength="7" required
-                            aria-describedby="contact_code" value={{contact}} readonly>
+                        <input type="tel" id="contact" class="form-control" maxlength="7" required
+                            aria-describedby="contact_code" value="{{contact}}" readonly>
                     </div>
                     <label class="my-2 ml-3" for="acc_type">Preference</label>
                     <div class="col-lg-2 col-sm-2">
@@ -109,11 +95,6 @@
                             <option value="current" id="acc_type_current">Current</option>
                         </select>
                     </div>
-                    <label for="username" class="col-form-label ml-3">Username</label>
-                    <div class="col-lg-2 col-sm-2">
-                        <input type="text" id="username" name="username" class="form-control" value={{username}}
-                            required readonly>
-                    </div>
                 </div>
 
                 <div class="form-group row">
@@ -122,7 +103,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">SCR</span>
                         </div>
-                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" min="1">
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" min="1" id="init_amount" name="init_amount">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
@@ -133,26 +114,23 @@
                     <label for='savings_plan' class='col-form-label ml-3'>Savings Plan</label>
                     <div class="col-lg-3 col-sm-3">
                         <select class="custom-select" id="savings_plan" name="savings_plan" required>
-                            <option selected>Select Savings Plan...</option>
-                            <option value="children" id="children">Children - 12%, no minimum</option>
-                            <option value="teen" id="teen">Teen - 11%, 500 minimum</option>
-                            <option value="adult" id="adult">Adult (18+) - 10%, 1000 minimum </option>
-                            <option value="senior" id="senior">Senior (60+) - 13%, 1000 minimum</option>
+                            {{#each savings_plan}}
+                                <option value="{{this.acc_plan_id}}">{{this.name}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
                 <div class="form-group row" id="incomeDetailsDiv">
                     <label for='incomeDetails' class='col-form-label ml-3'>Income Details</label>
                     <div class="col-lg-3 col-sm-3">
-                        <input type='file' class='form-control-file my-1 ml-2' id='income_details' name='income_details'
-                            aria-describedby='incomeDetails' required>
+                        <input type='file' class='form-control-file my-1 ml-2' id='income_details' name="income_details" aria-describedby='incomeDetails'>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="email" class="col-form-label ml-3">Email</label>
                     <div class="col-lg-7 col-sm-7">
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
                             value={{email}} required readonly>
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.</small>
@@ -162,6 +140,9 @@
                         <select class="custom-select" id="branch" name="branch" required>
                             <option value="default">Select the Branch...</option>
                             <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                            {{#each branches}}
+                                <option value="{{this.branch_id}}">{{this.branch_name}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
@@ -171,7 +152,7 @@
                         <label class="form-check-label" for="agree_check">Agree to Terms and Conditions</label>
                     </div>
                 </div>
-                <a href="./employee_dashboard.hbs" type="button" class="btn btn-secondary float-right">Close</a>
+                <a href="" type="button" class="btn btn-secondary float-right">Close</a>
                 <input type="submit" class="btn btn-primary" value="Save Changes">
             </form>
         </div>
@@ -179,6 +160,5 @@
     <footer class="bottom">Seychells Bank (Pvt) Ltd. - Version 1.0.0 © 2020 | <a href="">Visit Us</a></footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/javascript/branch.js"></script>
     <script src="/javascript/acc_type.js"></script>
 </body>
