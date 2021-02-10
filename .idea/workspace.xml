@@ -30,7 +30,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Completed adding Customer Account and current account and a Savings account" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="adding Account to existing customer functionality Fixes #39">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,6 +79,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="database.main" />
     <property name="standardjs.codestyle.accepted" value="true" />
     <property name="ts.external.directory.path" value="C:\Users\ACER\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\203.7148.54\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -143,7 +147,8 @@
       <workItem from="1612432721465" duration="1027000" />
       <workItem from="1612435538046" duration="23105000" />
       <workItem from="1612608364934" duration="40610000" />
-      <workItem from="1612839459395" duration="3915000" />
+      <workItem from="1612839459395" duration="21707000" />
+      <workItem from="1612922643338" duration="6627000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -334,7 +339,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612843353051</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="merged with upstream developer">
+      <created>1612843714583</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1612843714583</updated>
+    </task>
+    <task id="LOCAL-00029" summary="adding Account to existing customer functionality Fixes #39">
+      <created>1612931974019</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1612931974019</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +372,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Increasing BankManager functionality" />
     <MESSAGE value="Login page fully complete fixed#17" />
     <MESSAGE value="Login page fully complete-addition fixed#17" />
     <MESSAGE value="login fully completed with database calls with Employee.route.js home page completed as well, added common code required by all 4 actors" />
@@ -377,6 +395,12 @@
     <MESSAGE value="commit before merge" />
     <MESSAGE value="resolve and merge" />
     <MESSAGE value="Completed adding Customer Account and current account and a Savings account" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed adding Customer Account and current account and a Savings account" />
+    <MESSAGE value="merged with upstream developer" />
+    <MESSAGE value="adding Account to existing customer functionality Fixes #39" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding Account to existing customer functionality Fixes #39" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
