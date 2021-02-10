@@ -211,6 +211,7 @@ CREATE TABLE `Transaction` (
   `trans_type` varcahr(20) not NULL,
   `amount` Numeric(10,2) not NULL,
   `date` timestamp,
+  `is_deleted` int(1) NOT NULL Default 0,
   PRIMARY KEY (`trans_id`),
   Check (trans_type in ("TRANSFER", "WITHDRAW", "DEPOSIT", "LOAN"))
 );
