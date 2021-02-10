@@ -208,11 +208,11 @@ CREATE TABLE `OnlineLoan` (
 
 CREATE TABLE `Transaction` (
   `trans_id` int(64) not NULL AUTO_INCREMENT,
-  `trans_type` char(1) not NULL,
+  `trans_type` varcahr(20) not NULL,
   `amount` Numeric(10,2) not NULL,
   `date` timestamp,
   PRIMARY KEY (`trans_id`),
-  Check (trans_type in ("T", "W", "D", "L"))
+  Check (trans_type in ("TRANSFER", "WITHDRAW", "DEPOSIT", "LOAN"))
 );
 
 CREATE TABLE `Cheque` (
@@ -229,7 +229,7 @@ CREATE TABLE `Cheque` (
 CREATE TABLE `Deposit` (
   `trans_id` int(48) not NULL,
   `deposit_type` varchar(20) not NULL,
-  `acc_id` int(32) ,
+  `acc_id` int(32),
   PRIMARY KEY (`trans_id`),
   FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
   FOREIGN KEY (acc_id) REFERENCES SavingAccount (acc_id),
@@ -258,11 +258,9 @@ CREATE TABLE `Withdraw` (
   `trans_id` int(48) not NULL,
   `acc_id` int(32) not NULL,
   `withdraw_type` varchar(20) not NULL,
-  `withdrawer_id` INT(11) not NULL,
   PRIMARY KEY (`trans_id`),
   FOREIGN KEY (trans_id) REFERENCES Transaction (trans_id),
   FOREIGN KEY (acc_id) REFERENCES Account (acc_id),
-  FOREIGN KEY (withdrawer_id) REFERENCES AccountOwner (user_id),
   Check (withdraw_type in ("MONEY", "ATM", "TRANSFER"))
 );
 
