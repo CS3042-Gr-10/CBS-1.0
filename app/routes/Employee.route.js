@@ -406,7 +406,7 @@ async function addAccount(req,res){
             savings = ObjectToList(savings);
             await AccountModel.addSavingAccount(savings).then(()=>{
                 console.log('Savings account added');
-                res.redirect(`/employee/${req.params.id}?success=Savings account made`)
+                res.redirect(`/employee/${req.params.id}?success=Savings account added`)
             }).catch((err)=>{
                 console.log(err);
                 throw (err);
@@ -437,8 +437,6 @@ async function addAccount(req,res){
         }else {
             res.redirect(`/employee/${req.params.id}?error=Account type error`);
         }
-
-        res.redirect(`/employee/${req.params.id}`);
 
     }catch (e) {
         console.log(e);
