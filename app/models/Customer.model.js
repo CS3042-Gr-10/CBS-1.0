@@ -3,18 +3,18 @@ const db = require('../../config/database');
 var dbFunc = require('../../config/db-function');
 
 const CustomerModel = {
-    getCustomerDetails,
+    getCustomerDetailsById,
+    getCustomerDetailsByNIC,
     getAllCustomerDetails,
     getUserDetails,
     getCustomerSavAccDetail,
     getCustomerFDDetail,
-    getCustomerDetailsByNIC,
     addCustomer
 }
 
 function getAllCustomerDetails() {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from customer_detail',id, (error, rows, fields) => {
+        db.query('SELECT * from customer_detail natural join Customer',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -29,9 +29,9 @@ function getAllCustomerDetails() {
     });
 }
 
-function getCustomerDetails(id) {
+function getCustomerDetailsById(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from customer_detail where user_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT * from customer_detail natural join Customer  where user_id = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -99,7 +99,7 @@ function getCustomerFDDetail(id) {
 
 function getCustomerDetailsByNIC(nic) {
   return new Promise((resolve, reject) => {
-      db.query('SELECT * from Customer where NIC = ?',nic, (error, rows, fields) => {
+      db.query('SELECT * from customer_detail natural join Customer  where NIC = ?',nic, (error, rows, fields) => {
           if (!!error) {
               dbFunc.connectionRelease;
               reject(false);

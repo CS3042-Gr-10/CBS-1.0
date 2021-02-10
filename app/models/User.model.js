@@ -27,14 +27,14 @@ function getUserByUsername(username) {
 function getUserByID(user_id) {
   return new Promise((resolve,reject) => {
     db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM User WHERE user_id = ?`,user_id,(error,rows,fields)=>{
-      if(!error) {
+      if(!!error) {
         dbFunc.connectionRelease;
         reject(error);
-        return error;
+
       } else {
         dbFunc.connectionRelease;
         resolve(rows[0]);
-        return rows[0];
+
       }
     });
   });

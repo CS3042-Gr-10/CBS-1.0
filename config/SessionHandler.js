@@ -2,12 +2,25 @@ const db = require('./database');
 const session = require('express-session');
 const MySQLDBStore = require('express-mysql-session')(session);
 
+/*
+const sessionStore = new MySQLDBStore(
+  {
+    user: 'dev',
+    host: '34.101.117.36',
+    database: 'main_db',
+    port: 3306,
+    password: 'NDUCI@cse3042',
+    createDatabaseTable: true,
+    clearExpired:false,
+    endConnectionOnClose: false,
+  });
+*/
 const sessionStore = new MySQLDBStore(
   {
     createDatabaseTable: true,
     clearExpired:false,
     endConnectionOnClose: false,
-  }, db);
+  } ,db);
 
 const session_object = session({
   name:SESS_NAME,

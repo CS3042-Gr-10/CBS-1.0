@@ -74,5 +74,11 @@ const CustomerRegistrationCurrentInfo = Joi.object().options({ abortEarly: false
   income_details:Joi.allow(null),
 });
 
+const ExistingCustomerAccountInfo = Joi.object().options({abortEarly:false}).keys({
+  acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
+  init_amount:Joi.number().required().label("Initial Amount"),
+  branch: Joi.string().required().max(15).label("Branch"),
+  agree_check: Joi.string().valid('on').required()
+})
 
-module.exports = { CustomerRegistrationGeneralInfo,CustomerRegistrationCurrentInfo, CustomerRegistrationSavingsInfo , EmployeeRegistrationInfo };
+module.exports = { CustomerRegistrationGeneralInfo,CustomerRegistrationCurrentInfo, CustomerRegistrationSavingsInfo , EmployeeRegistrationInfo, ExistingCustomerAccountInfo };
