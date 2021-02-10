@@ -31,5 +31,6 @@ insert into SavingAccoutPlan (name, min_age, max_age, interest_rate, min_balance
 ("Teen", 12, 18, 11, 500, 0),
 ("Adult", 19, 59, 10, 1000, 5),
 ("Senior", 60, 250, 13, 1000, 5);
+insert into SavingAccoutPlan (name, min_age, max_age, interest_rate, min_balance_to_open, maximum_num_wt) values ("Organizational", 0, 250, 5, 10000, 100);
 
 ##--------------------------------------------------------------------------------------------------------------------------------------------------
