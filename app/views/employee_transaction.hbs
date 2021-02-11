@@ -29,26 +29,16 @@
         </nav>
     </header>
     
-<h1>You are Logged in as a Cashier Today</h1>
-
-<p>Enter an Account Number.</p>
-
-<input class="accNum" type="number" name="accNum"><br>
-
-<p>Enter the Amount.</p>
-
-<input class="amount" type="number" name="amount"><br>
-<button type="withdraw">Withdraw</button>
-<button type="deposit">Deposit</button><br>
-
-
-<button type="button" onclick="document.location='employee_dashboard.hbs'">Back</button>
-
-
-    
-
-
-
+    <h1>You are Logged in as a Cashier Today</h1>
+    <form action="#" method="post">
+        <p>Enter an Account Number.</p>
+        <input class="accNum" type="number" name="accNum" required><br>
+        <p>Enter the Amount.</p>
+        <input class="amount" type="number" name="amount" required><br>
+        <input type="submit" class="btn btn-primary" value="Withdraw">
+        <input type="submit" class="btn btn-primary" value="Deposit">
+    </form>
+    <button type="button" onclick="document.location='employee_dashboard.hbs'">Back</button>
 
     <footer class="bottom">Seychells Bank (Pvt) Ltd. - Version 1.0.0 © 2020 | <a href="">Visit Us</a></footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
