@@ -9,7 +9,7 @@ var OrgModel = {
 
 function getOrgDetails(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from Organization where org_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT * from organization where org_id = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);

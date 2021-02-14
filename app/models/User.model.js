@@ -10,7 +10,7 @@ const userModel = {
 
 function getUserByUsername(username) {
     return new Promise((resolve,reject) => {
-        db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM User WHERE username = ?`,username,(error,rows,fields)=>{
+        db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM user WHERE username = ?`,username,(error,rows,fields)=>{
             if(!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
@@ -26,7 +26,7 @@ function getUserByUsername(username) {
 
 function getUserByID(user_id) {
   return new Promise((resolve,reject) => {
-    db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM User WHERE user_id = ?`,user_id,(error,rows,fields)=>{
+    db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM user WHERE user_id = ?`,user_id,(error,rows,fields)=>{
       if(!!error) {
         dbFunc.connectionRelease;
         reject(error);
@@ -43,7 +43,7 @@ function getUserByID(user_id) {
 function getUserByEmail(email) {
   // console.log(email);
   return new Promise((resolve,reject) => {
-    db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM User WHERE email = ?`,email,(error,rows,fields)=>{
+    db.query(`SELECT user_id,user_type,username,email,acc_level,is_deleted FROM user WHERE email = ?`,email,(error,rows,fields)=>{
       if(!!error) {
         dbFunc.connectionRelease;
         reject(error);

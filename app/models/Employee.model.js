@@ -10,7 +10,7 @@ const EmpModel = {
 
 function getEmpDetailsByID(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from Employee where user_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT * from employee where user_id = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 //console.log(error);
@@ -27,7 +27,7 @@ function getEmpDetailsByID(id) {
 
 function getEmpDetailsByNIC(nic) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from Employee where NIC = ?',nic, (error, rows, fields) => {
+        db.query('SELECT * from employee where NIC = ?',nic, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(error);

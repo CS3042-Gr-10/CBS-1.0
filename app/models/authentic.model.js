@@ -11,7 +11,7 @@ function authentic(authenticData) {
     return new Promise((resolve, reject) => {
         //console.log(authenticData);
         //console.log(`SELECT * FROM User WHERE username ='${authenticData.username}'`);
-        db.query(`SELECT * FROM User WHERE username ='${authenticData.username}'`, (error, rows, fields) => {
+        db.query(`SELECT * FROM user WHERE username ='${authenticData.username}'`, (error, rows, fields) => {
             if (error) {
                 //console.log('error');
                 dbFunc.connectionRelease;

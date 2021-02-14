@@ -9,7 +9,7 @@ const TransactionModel = {
 function getAllDepositDetailByID(id) {
     //return columns : trans_id | trans_type | acc_id | deposit_type | amount | date
     return new Promise((resolve, reject) => {
-        db.query('select trans_id, trans_type, acc_id, deposit_type, amount, date from (select trans_id, deposit_type, acc_id from Deposit where acc_id in (select acc_id from Account where user = ?)) as P natural join (select * from Transaction where is_deleted = 0) as Q'
+        db.query('select trans_id, trans_type, acc_id, deposit_type, amount, date from (select trans_id, deposit_type, acc_id from deposit where acc_id in (select acc_id from account where user = ?)) as P natural join (select * from transaction where is_deleted = 0) as Q'
         ,id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
@@ -28,7 +28,7 @@ function getAllDepositDetailByID(id) {
 function getAllWithdrawDetailByID(id) {
     //return columns : trans_id | trans_type | acc_id | withdraw_type | amount | date 
     return new Promise((resolve, reject) => {
-        db.query('select trans_id, trans_type, acc_id, withdraw_type, amount, date from (select trans_id, withdraw_type, acc_id from Withdraw where acc_id in (select acc_id from Account where user = ?)) as P natural join (select * from Transaction where is_deleted = 0) as Q'
+        db.query('select trans_id, trans_type, acc_id, withdraw_type, amount, date from (select trans_id, withdraw_type, acc_id from withdraw where acc_id in (select acc_id from account where user = ?)) as P natural join (select * from transaction where is_deleted = 0) as Q'
         ,id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
