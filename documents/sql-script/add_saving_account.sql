@@ -2,8 +2,7 @@ CREATE PROCEDURE `add_saving_account`(
 	IN branch_id int(5),
     IN acc_balance decimal(20,2),
     IN usr_id int(11),
-    IN account_plan_id int(8),
-    OUT result int(1)
+    IN account_plan_id int(8)
 )
 # result : 0 <- success | 1 <- init_balace is low | 2 <- age range not valid.
 BEGIN
@@ -30,4 +29,5 @@ BEGIN
 		
 		COMMIT WORK;
 	end if;
+	select result;
 END
