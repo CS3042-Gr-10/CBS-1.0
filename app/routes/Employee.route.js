@@ -23,13 +23,15 @@ function init(router) {
         .get(existingCustomerAndAccountPage);
     router.route("/employee/:id/addAccount/:user_id")
         .post(addAccount)
-
-
+    router.route("/employee/:id/customerDetails")
+        .get(getCustomerDetails)
+    router.route("/employee/:id/customerTransaction")
+        .get(customerTransactionPage)
 
 }
 
 async function indexAction(req,res){
-    // console.log(req.session.user);
+    //console.log(req.session.user);
     const userID = req.session.user.user_id;
     try{
         let Emp = await EmployeeModel.getEmpDetailsByID(userID);
@@ -57,6 +59,12 @@ async function indexAction(req,res){
         res.redirect(`/?error=${e}`);
     }
 
+}
+
+async function customerTransactionPage(req,res){
+    res.render('employee_transaction',{
+
+    });
 }
 
 async function registerEmployeePage(req,res){
@@ -442,6 +450,10 @@ async function addAccount(req,res){
         console.log(e);
         res.redirect(`/employee/${req.params.id}?error=${e}`);
     }
+}
+
+async function getCustomerDetails(req,res){
+
 }
 
 

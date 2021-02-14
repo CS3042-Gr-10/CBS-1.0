@@ -30,9 +30,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="adding Account to existing customer functionality Fixes #39">
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="merge and resolve developer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Authentication.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +149,13 @@
       <workItem from="1612435538046" duration="23105000" />
       <workItem from="1612608364934" duration="40610000" />
       <workItem from="1612839459395" duration="21707000" />
-      <workItem from="1612922643338" duration="6627000" />
+      <workItem from="1612922643338" duration="10861000" />
+      <workItem from="1612978339004" duration="6000" />
+      <workItem from="1613013533050" duration="3002000" />
+      <workItem from="1613022288791" duration="728000" />
+      <workItem from="1613041358195" duration="666000" />
+      <workItem from="1613101531110" duration="4895000" />
+      <workItem from="1613294425499" duration="1780000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -353,7 +360,28 @@
       <option name="project" value="LOCAL" />
       <updated>1612931974019</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="adding Account to existing customer functionality tested Fixes #39">
+      <created>1612933154750</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1612933154750</updated>
+    </task>
+    <task id="LOCAL-00031" summary="midpoints">
+      <created>1613101915100</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1613101915100</updated>
+    </task>
+    <task id="LOCAL-00032" summary="merge and resolve developer">
+      <created>1613102331512</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1613102331512</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,9 +400,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Login page fully complete fixed#17" />
-    <MESSAGE value="Login page fully complete-addition fixed#17" />
-    <MESSAGE value="login fully completed with database calls with Employee.route.js home page completed as well, added common code required by all 4 actors" />
     <MESSAGE value="initial setup for session in the system." />
     <MESSAGE value="adding middleware to system" />
     <MESSAGE value="resolving conflict" />
@@ -397,7 +422,10 @@
     <MESSAGE value="Completed adding Customer Account and current account and a Savings account" />
     <MESSAGE value="merged with upstream developer" />
     <MESSAGE value="adding Account to existing customer functionality Fixes #39" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding Account to existing customer functionality Fixes #39" />
+    <MESSAGE value="adding Account to existing customer functionality tested Fixes #39" />
+    <MESSAGE value="midpoints" />
+    <MESSAGE value="merge and resolve developer" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge and resolve developer" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
