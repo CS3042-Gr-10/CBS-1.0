@@ -1,4 +1,4 @@
-CREATE PROCEDURE `add_emp`(
+CREATE DEFINER=`dev`@`%` PROCEDURE `add_emp`(
 	IN username varchar(25),
     IN password varchar(255),
     IN email varchar(100),
@@ -40,10 +40,10 @@ BEGIN
 	end if;
     
     
-    insert into User (user_type, username, password, email, acc_level)
+    insert into user (user_type, username, password, email, acc_level)
     value ("E", username, password, email, acc_level);
     
-    insert into Employee (user_id, first_name, last_name, name_with_init, dob, created_date, postal_code, contact_No, NIC, branch_id, gender, house_no, street, city, post_id)
+    insert into employee (user_id, first_name, last_name, name_with_init, dob, created_date, postal_code, contact_No, NIC, branch_id, gender, house_no, street, city, post_id)
     value (last_insert_id(), first_name, last_name, name_with_init, dob, curdate(), postal_code, contact_No, NIC, branch_id, gender, house_no, street, city, post_id);
     
     COMMIT WORK;

@@ -4,20 +4,20 @@ CREATE
     SQL SECURITY DEFINER
 VIEW `customer_detail` AS
     SELECT 
-        `User`.`user_id` AS `user_id`,
-        `Customer`.`first_name` AS `first_name`,
-        `Customer`.`last_name` AS `last_name`,
-        `Customer`.`dob` AS `dob`,
-        `Customer`.`NIC` AS `NIC`,
-        `Customer`.`gender` AS `gender`,
-        `Customer`.`house_no` AS `house_no`,
-        `Customer`.`street` AS `street`,
-        `Customer`.`city` AS `city`,
-        `Customer`.`postal_code` AS `postal_code`,
-        `Customer`.`contact_primary` AS `contact_primary`,
-        `Customer`.`contact_secondary` AS `contact_secondary`,
-        `User`.`username` AS `username`,
-        `User`.`email` AS `email`
+        `user`.`user_id` AS `user_id`,
+        `customer`.`first_name` AS `first_name`,
+        `customer`.`last_name` AS `last_name`,
+        `customer`.`dob` AS `dob`,
+        `customer`.`NIC` AS `NIC`,
+        `customer`.`gender` AS `gender`,
+        `customer`.`house_no` AS `house_no`,
+        `customer`.`street` AS `street`,
+        `customer`.`city` AS `city`,
+        `customer`.`postal_code` AS `postal_code`,
+        `customer`.`contact_primary` AS `contact_primary`,
+        `customer`.`contact_secondary` AS `contact_secondary`,
+        `user`.`username` AS `username`,
+        `user`.`email` AS `email`
     FROM
-        (`Customer`
-        JOIN `User` ON ((`Customer`.`user_id` = `User`.`user_id`)))
+        (`customer`
+        JOIN `user` ON ((`customer`.`user_id` = `user`.`user_id`)))

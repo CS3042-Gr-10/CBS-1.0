@@ -1,4 +1,4 @@
-CREATE PROCEDURE `add_org`(
+CREATE DEFINER=`dev`@`%` PROCEDURE `add_org`(
 	IN username varchar(25),
 	IN password varchar(255), 
 	IN acc_level int(8),
@@ -19,13 +19,13 @@ BEGIN
     
     START transaction;
     
-        insert into User (user_type, username, password, acc_level)
+        insert into user (user_type, username, password, acc_level)
         value ("A", username, password, acc_level);
         
-        insert into AccountOwner (owner_id, owner_type)
+        insert into account_owner (owner_id, owner_type)
         values (last_insert_id(), "O");
         
-        insert into Organization (name, contact_No, branch_id, created_date)
+        insert into organization (name, contact_No, branch_id, created_date)
         values (last_insert_id(), contact_no, branch_id, curdate());
         
     COMMIT WORK;

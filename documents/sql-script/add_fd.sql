@@ -1,4 +1,4 @@
-CREATE PROCEDURE `add_fd`(
+CREATE DEFINER=`dev`@`%` PROCEDURE `add_fd`(
 	IN cusotmer_id int(16),
 	IN acc_plan_id int(8), 
 	IN sv_acc_id int(32), 
@@ -20,7 +20,7 @@ BEGIN
     
     START TRANSACTION;
     
-		insert into FixedDeposit (customer_id, acc_plan_id, sv_acc_id, branch_id, opened_date, balance, state)
+		insert into fixed_deposit (customer_id, acc_plan_id, sv_acc_id, branch_id, opened_date, balance, state)
 		value (customer_id, acc_plan_id, sv_acc_id, branch_id, curdate(), balance, state);
 		
     COMMIT WORK;

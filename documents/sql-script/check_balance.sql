@@ -5,7 +5,7 @@ CREATE DEFINER=`dev`@`%` FUNCTION `check_balance`(
     DETERMINISTIC
 BEGIN
 	declare balance decimal(10,2);
-    select acc_balance into balance from savingaccount where acc_id = account_id;
+    select acc_balance into balance from saving_account where acc_id = account_id;
     
     set balance = balance - amount;
     if balance < 0 then
