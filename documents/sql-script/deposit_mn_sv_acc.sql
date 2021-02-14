@@ -1,4 +1,5 @@
-CREATE PROCEDURE `deposit_mn_sv_scc`(
+#result : 1<- successfull / 3<- entered a negative number
+CREATE DEFINER=`dev`@`%` PROCEDURE `deposit_mn_sv_scc`(
 	IN amount decimal(10,2),
     IN emp_id int(16),
     IN deposit_acc_id int(32),
@@ -28,14 +29,14 @@ BEGIN
 				leave leaveBlock;
 		end if;
     
-		update SavingAccount
+		update saving_account
 		set  acc_balance = acc_balance + amount
         where saving_acc_id = deposit_acc_id;
         
-        insert into Trasaction (trans_type, amount, emp_id, date)
+        insert into trasaction (trans_type, amount, emp_id, date)
         value ("D", amount, emp_id, curdate());
         
-        insert into Deposit (trans_id, deposit_type, deposit_acc_id)
+        insert into deposit (trans_id, deposit_type, deposit_acc_id)
         value (last_insert_id(), "M", deposit_acc_id);
 		
         set result = 1;
