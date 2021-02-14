@@ -25,11 +25,13 @@ const EmployeeRegistrationInfo = Joi.object().options({ abortEarly: false }).key
   postal_code: Joi.string().required().max(8).label("Postal Code")
     .regex(/^\d+$/)
     .message("Postal Code must only contain numbers"),
+  age:Joi.number().required(),
+  dob: Joi.date().required().label("Date of Birth"),
   add_no: Joi.string().required().max(10).label("Address No"),
   add_street: Joi.string().required().max(256).label("Address Street"),
   add_city: Joi.string().required().max(100).label("Address City"),
  // username: Joi.string().required().min(3).max(15).label("Username"),
-  username: Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(15).message("User name must have maximum 30 characters.").required().message("User name is required").label("Username"),
+  username: Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(15).message("User name must have maximum 30 characters.").required().label("Username"),
   branch: Joi.string().required().max(15).label("Branch"),
   post: Joi.string().required().max(15).label("Employee Level"),
   agree_check: Joi.string().valid('on').required()
@@ -43,7 +45,7 @@ const CustomerRegistrationGeneralInfo = Joi.object().options({ abortEarly: false
   name_with_initials:Joi.string().required().label("Name With Initials"),
   //email: Joi.string().email().max(50).required().label("Email"),
   email: Joi.string().regex(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).message('"Email address" consists of invalid characters.').email().max(50).required().label("Email"),
-  dob: Joi.date().required().regex(/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/).message('DOB should be in "yyyy/mm/dd" or "yyyy-mm-dd" or "yyyy.mm.dd" format' ).label("Date of Birth"),
+  dob: Joi.date().required().label("Date of Birth"),
   age:Joi.number().required(),
   gender: Joi.string().valid('male','female','other').required().label("Gender"),
   acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
