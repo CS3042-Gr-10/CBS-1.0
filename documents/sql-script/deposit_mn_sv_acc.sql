@@ -1,5 +1,5 @@
 #result : 1<- successfull / 3<- entered a negative number
-CREATE DEFINER=`dev`@`%` PROCEDURE `deposit_mn_sv_scc`(
+CREATE DEFINER=`dev`@`%` PROCEDURE `deposit_mn_sv_acc`(
 	IN amount decimal(10,2),
     IN emp_id int(16),
     IN deposit_acc_id int(32),
