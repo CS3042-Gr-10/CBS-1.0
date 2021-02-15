@@ -1,17 +1,15 @@
-CREATE PROCEDURE `withdraw_sv_acc`(
+#result : 1 <- successfull / 0 <- not enough account balance / 3 <- entered a negative number
+CREATE DEFINER=`dev`@`%` PROCEDURE `withdraw_mn_sv_acc`(
 	IN account_id int(32),
-    IN withdrawl_type BIT(2),
-    IN withd_id int(11),
     IN emp_id int(16),
-    IN amount decimal(10,2),
-    OUT result int(2)
+    IN amount decimal(10,2)
 )
 BEGIN
 
     #result : 1 <- successfull / 0 <- not enough account balance / 3 <- entered a negative number
 
 	declare balance numeric(10,2);
-    
+    declare result INT;
 	DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -31,21 +29,23 @@ BEGIN
                 leave leaveBlock;
         end if;
         
-        select acc_balance into balance from SavingAccount where saving_acc_id = account_id;
-        set balance = balance - amount;
+        set balance = check_balance(account_id, amount);
         
         if balance > 0
             then
         
-            update SavingAccount
+            update saving_account
             set acc_balance = acc_balance - amount 
-            where saving_acc_id = account_id;
+            where acc_id = account_id;
         
-            insert into Transaction (trans_type, amount, emp_id, date)
-            values ('W', amount, emp_id, curdate());
+            insert into transaction (trans_type, amount, date)
+            values ("WITHDRAW", amount, curdate());
         
-            insert into Withdrawl (trans_id, acc_id, withdrawl_type, withdrawer_id)
-            values (last_insert_id(), account_id, 00, withd_id);
+            insert into withdraw (trans_id, acc_id, withdraw_type)
+            values (last_insert_id(), account_id, "MONEY");
+            
+            insert into money_withdraw (trans_id, emp_id)
+            values (last_insert_id(), emp_id);
             set result = 1;
         
         else
