@@ -12,7 +12,7 @@ const DropdownService = {
 
 function getBranches() {
     return new Promise((resolve, reject) => {
-        db.query('SELECT branch_id, branch_name from Branch', (error, rows, fields) => {
+        db.query('SELECT branch_id, branch_name from branch', (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -29,7 +29,7 @@ function getBranches() {
 
 function getPosts() {
     return new Promise((resolve, reject) => {
-        db.query('SELECT post_id, post_name from Post', (error, rows, fields) => {
+        db.query('SELECT post_id, post_name from post', (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -44,7 +44,7 @@ function getPosts() {
 
 function getSavingAccPlans() {
     return new Promise((resolve, reject) => {
-        db.query('SELECT acc_plan_id, name from SavingAccoutPlan', (error, rows, fields) => {
+        db.query('SELECT acc_plan_id, name from saving_account_plan', (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
