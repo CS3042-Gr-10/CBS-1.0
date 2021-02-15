@@ -364,6 +364,7 @@ async function existingCustomerAndAccountPage(req,res){
     try{
         //console.log(req.body);
         //console.log(req.query);
+
         const branches = await DropdownService.getBranches();
         const savings_plan = await DropdownService.getSavingAccPlans();
 
