@@ -6,6 +6,7 @@ const DropdownService = require('../services/Dropdown.service');
 const { ObjectToList, hash_password } = require('../../common/helpers');
 const EmployeeModel = require('../models/Employee.model');
 const CustomerModel = require('../models/Customer.model');
+const sendMail = require('../../common/Emailer/send_mail');
 const UserModel = require('../models/User.model');
 const AccountModel = require('../models/Account.model');
 const { gen_random_string } = require('../../common/token_generator');
@@ -156,10 +157,10 @@ async function registerEmployeeAction(req,res){
 
         //console.log(userAlreadyExist);
 
-
+        const password = gen_random_string();
         let acc = {
             username:value.username,
-            password: await hash_password(gen_random_string()),
+            password: await hash_password(password),
             email:value.email,
             first_name:value.first_name,
             last_name:value.last_name,
@@ -178,6 +179,12 @@ async function registerEmployeeAction(req,res){
         console.log(acc.username);
         console.log(acc.password);
 
+        await sendUserDetailsMail({
+            email:acc.email,
+            username:acc.username,
+            password:password,
+        });
+
         acc = ObjectToList(acc);
 
         //console.log(acc);
@@ -194,10 +201,31 @@ async function registerEmployeeAction(req,res){
 
 
 
+
     }catch (e) {
         //console.log(errorsToList(e.details));
         res.redirect(`/employee/register?error=${e}&first_name=${req.body.first_name}&last_name=${req.body.last_name}&name_with_initials=${req.body.name_with_initials}&age=${req.body.age}&dob=${req.body.dob}&add_no=${req.body.add_no}&add_street=${req.body.add_street}&add_city=${req.body.add_city}&postal_code=${req.body.postal_code}&nic=${req.body.nic}&contact=${req.body.contact}&username=${req.body.username}&email=${req.body.email}`);
     }
+}
+
+async function  sendUserDetailsMail({
+    email, username, password
+}) {
+    console.log(process.env.INVITATION_EMAIL);
+    const emailComposition = {
+        from: process.env.INVITATION_EMAIL,
+        to: email,
+        subject: 'Seychelles Bank Registration',
+        template: 'invitation',
+        context: {
+            // registerURL: config.url.adminRegisterURL,
+            username:username,
+            password:password,
+        },
+    };
+
+    console.log('email Composition');
+    await sendMail(emailComposition);
 }
 
 async function  registerAccountAndCustomerPage(req, res){
@@ -296,7 +324,11 @@ async function registerCustomerAndAccount(req, res){
         }
         console.log(username);
 
-
+        await sendUserDetailsMail({
+            email:acc.email,
+            username:username,
+            password:password,
+        });
 
         acc = ObjectToList(acc);
         // console.log(acc);

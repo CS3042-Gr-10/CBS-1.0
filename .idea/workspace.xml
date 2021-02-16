@@ -31,8 +31,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="before merge">
+      <change afterPath="$PROJECT_DIR$/common/Emailer/send_mail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/Emailer/sendgrid.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/Emailer/templates/invitation.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +78,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/common/Emailer" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -86,6 +93,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\common\Emailer" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\common" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
     </key>
@@ -154,7 +162,7 @@
       <workItem from="1613022288791" duration="728000" />
       <workItem from="1613041358195" duration="666000" />
       <workItem from="1613101531110" duration="4895000" />
-      <workItem from="1613294425499" duration="13330000" />
+      <workItem from="1613294425499" duration="22200000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -394,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613321900281</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="before merge">
+      <created>1613365931631</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1613365931631</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
