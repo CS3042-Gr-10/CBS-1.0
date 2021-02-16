@@ -86,7 +86,7 @@ function transferMoney(slip) {
 
     //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/transfer_mn.sql 
     return new Promise((resolve, reject) => {
-        db.query(`CALL transfer_mn(?,?,?,?,?)`, slip, (error, rows, fields) => {
+        db.query(`CALL transfer_mn(?,?,?,?)`, slip, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;

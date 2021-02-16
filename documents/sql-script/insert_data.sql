@@ -34,3 +34,7 @@ insert into saving_accout_plan (name, min_age, max_age, interest_rate, min_balan
 ("Organizational", 0, 250, 5, 10000, 100);
 
 ##--------------------------------------------------------------------------------------------------------------------------------------------------
+## fd_account_plan
+insert into fd_account_plan (name, duration, interest_rate_per_mon) values
+("comercial", 48, 2.5),
+("personal", 36, 5.6);

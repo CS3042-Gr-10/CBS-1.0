@@ -1,3 +1,4 @@
+# result : 0 <- sucess | 2 <- age range error | 3 <- not enogh init balance
 CREATE DEFINER=`dev`@`%` PROCEDURE `add_saving_account`(
 	IN branch_id int(5),
     IN acc_balance decimal(20,2),

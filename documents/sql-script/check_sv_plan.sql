@@ -7,8 +7,8 @@ CREATE DEFINER=`dev`@`%` FUNCTION `check_sv_plan`(
 BEGIN
 	declare user_type char(1);
     declare age int(2);
-    declare min_age int(2);
-    declare max_age int(2);
+    declare min_ag int(2);
+    declare max_ag int(2);
     declare min_amount decimal(10,2);
     declare result int(1);
     
@@ -21,9 +21,9 @@ BEGIN
 			set result = 1;
 		end if;
     else 
-		select year(curdate()) - year(dob) into age from Customer where user_id = usr_id;
-        select min_age, max_age into min_age, max_age from saving_account_plan where acc_plan_id = plan_id; 
-        if min_age < age and max_age > age then
+		select year(curdate()) - year(dob) into age from customer where user_id = usr_id;
+        select min_age, max_age into min_ag, max_ag from saving_account_plan where acc_plan_id = plan_id; 
+        if min_ag <= age and max_ag >= age then
 			select min_balance_to_open into min_amount from saving_account_plan where acc_plan_id = plan_id; 
             if min_amount < amount then
 				set result = 0;

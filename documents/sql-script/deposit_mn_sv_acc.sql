@@ -1,14 +1,12 @@
-#result : 1<- successfull / 3<- entered a negative number
-CREATE DEFINER=`dev`@`%` PROCEDURE `deposit_mn_sv_scc`(
+CREATE DEFINER=`dev`@`%` PROCEDURE `deposit_mn_sv_acc`(
 	IN amount decimal(10,2),
     IN emp_id int(16),
-    IN deposit_acc_id int(32),
-    OUT result int(2)
+    IN deposit_acc_id int(32)
 )
 BEGIN
 
     #result : 1<- successfull / 3<- entered a negative number
-
+	declare result int(1);
 	DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -20,9 +18,9 @@ BEGIN
 	END;
     
     START TRANSACTION;
-    
+		
 		leaveBlock:begin
-    
+		
 		if amount <=0
 			then 
 				set result = 3;
@@ -31,13 +29,16 @@ BEGIN
     
 		update saving_account
 		set  acc_balance = acc_balance + amount
-        where saving_acc_id = deposit_acc_id;
+        where acc_id = deposit_acc_id;
         
-        insert into trasaction (trans_type, amount, emp_id, date)
-        value ("D", amount, emp_id, curdate());
+        insert into transaction (trans_type, amount, date)
+        value ("DEPOSIT", amount, curdate());
         
-        insert into deposit (trans_id, deposit_type, deposit_acc_id)
-        value (last_insert_id(), "M", deposit_acc_id);
+        insert into deposit (trans_id, deposit_type, acc_id)
+        value (last_insert_id(), "MONEY", deposit_acc_id);
+        
+        insert into money_deposit(trans_id, emp_id)
+        value (last_insert_id(), emp_id);
 		
         set result = 1;
         

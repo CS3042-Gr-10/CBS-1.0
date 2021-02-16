@@ -1,5 +1,3 @@
-
-
 CREATE TABLE `session`(
   `session_id` varchar(128) not NULL,
   `expires` int(11) unsigned not NULL,
@@ -156,7 +154,7 @@ CREATE TABLE `fd_account_plan` (
 
 CREATE TABLE `fixed_deposit` (
   `fd_id` INT(32) not NULL AUTO_INCREMENT,
-  `cusotmer_id` int(16) not NULL,
+  `customer_id` int(11) not NULL,
   `acc_plan_id` int(8) not NULL,
   `sv_acc_id` int(32) not NULL,
   `branch_id` int(5) not NULL,
