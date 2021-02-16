@@ -29,6 +29,8 @@ call transfer_mn(8, 100, 4, 2);
 
 call add_fd_acc(6, 2, 2, 1, 10000, 1);
 
+call add_std_loan(8,12000.0, 1.32, 100, 1);
+
 select trans_id, trans_type, acc_id, deposit_type, amount, date from (select trans_id, deposit_type, acc_id from Deposit where acc_id in (select acc_id from Account where user = 6)) as P natural join (select * from Transaction where is_deleted = 0) as Q;
 
 select trans_id, trans_type, acc_id, withdraw_type, amount, date from (select trans_id, withdraw_type, acc_id from Withdraw where acc_id in (select acc_id from Account where user = 6)) as P natural join (select * from Transaction where is_deleted = 0) as Q

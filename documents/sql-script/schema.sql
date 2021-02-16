@@ -171,7 +171,7 @@ CREATE TABLE `fixed_deposit` (
 CREATE TABLE `loan` (
   `loan_id` INT(32) not NULL AUTO_INCREMENT,
   `loan_type` varchar(20) not NULL,
-  `customer_id` int(16) not NULL,
+  `customer_id` int(11) not NULL,
   `loaned_amount` Numeric(20,2) not NULL,
   `loan_interrest_rate` Numeric(4,2),
   `aggreed_num_installements` int(4) not NULL,
@@ -179,7 +179,7 @@ CREATE TABLE `loan` (
   `deleted` INT(2),
   PRIMARY KEY (`loan_id`),
   FOREIGN KEY (customer_id) REFERENCES account_owner (user_id),
-  Check (loan_type in ("PERSONAL", "BUSINESS"))
+  Check (loan_type in ("STANDARD", "ONLINE"))
 );
 
 CREATE TABLE `standard_loan` (
