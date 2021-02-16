@@ -179,7 +179,7 @@ CREATE TABLE `loan` (
   `deleted` INT(2),
   PRIMARY KEY (`loan_id`),
   FOREIGN KEY (customer_id) REFERENCES account_owner (user_id),
-  Check (loan_type in ("PERSONAL", "BUSINESS"))
+  Check (loan_type in ("STANDARD", "ONLINE"))
 );
 
 CREATE TABLE `standard_loan` (
