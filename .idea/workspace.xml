@@ -30,16 +30,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="before merge">
-      <change afterPath="$PROJECT_DIR$/common/Emailer/send_mail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/Emailer/sendgrid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/Emailer/templates/invitation.hbs" afterDir="false" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Adding email sending functionality to customer creation and employee creation fixes #37">
+      <change afterPath="$PROJECT_DIR$/app/enums/savings_account_plan_age.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_acc_details.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_acc_details.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +160,7 @@
       <workItem from="1613022288791" duration="728000" />
       <workItem from="1613041358195" duration="666000" />
       <workItem from="1613101531110" duration="4895000" />
-      <workItem from="1613294425499" duration="22200000" />
+      <workItem from="1613294425499" duration="36771000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -409,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613365931631</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Adding email sending functionality to customer creation and employee creation fixes #37">
+      <created>1613456954744</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1613456954744</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,7 +433,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding middleware to system" />
     <MESSAGE value="resolving conflict" />
     <MESSAGE value="Customer.route.js session done" />
     <MESSAGE value="Added template functions to Customer.route.js" />
@@ -453,7 +457,8 @@
     <MESSAGE value="midpoints" />
     <MESSAGE value="merge and resolve developer" />
     <MESSAGE value="before merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="before merge" />
+    <MESSAGE value="Adding email sending functionality to customer creation and employee creation fixes #37" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding email sending functionality to customer creation and employee creation fixes #37" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

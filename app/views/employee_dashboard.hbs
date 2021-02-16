@@ -61,7 +61,8 @@
             <div class="three_buttons">
                 <a type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
                     data-target="#existingCustomerModal">Create a Customer Account</a>
-                <a href="/employee/{{User.user_id}}/customerDetails" type="button" class="btn btn-primary btn-lg btn-block mt-4">Check Customer Account
+                <a type="button" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal"
+                   data-target="#customerInfoModel">Check Customer Account
                     Details</a>
             </div>
             <div class="three_buttons">
@@ -69,11 +70,35 @@
             </div>
             <div class="three_buttons">
                 <a href="#" type="button" class="btn btn-primary btn-lg btn-block">Loan Request Form</a>
-                <a href="#" type="button" class="btn btn-primary btn-lg btn-block mt-4">Check Loan Details</a>
                 <button type="button" class="btn btn-outline-secondary btn-lg btn-block mt-4">Report an Issue</button>
             </div>
         </div>
     </main>
+
+    <div class="modal fade" id="customerInfoModel" tabindex="-1" aria-labelledby="customerInfoModelLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customerInfoModelLabel">Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="/employee/{{User.user_id}}/AccountDetails" method="GET">
+                    <div class="modal-body">
+                        <div class="form-group form-inline mt-1">
+                            <label for="username" class="mr-3 col-sm-3 col-form-label">Account Number</label>
+                            <input type="text" id="accNum" name="accNum" class="form-control"
+                                   placeholder="Customer Account Number">
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="confirm button">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

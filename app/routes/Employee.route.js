@@ -1,6 +1,6 @@
 const { EmployeeRegistrationInfo, CustomerRegistrationSavingsInfo, CustomerRegistrationGeneralInfo, ExistingCustomerAccountInfo } = require('../schema/Registration');
 const { usernameInfo, nicInfo} = require('../schema/Authentication');
-const { TransactionInfo } = require('../schema/Employee');
+const { TransactionInfo, accountNumberInfo } = require('../schema/Employee');
 const Errors = require('../../common/error');
 const DropdownService = require('../services/Dropdown.service');
 const { ObjectToList, hash_password } = require('../../common/helpers');
@@ -9,8 +9,11 @@ const CustomerModel = require('../models/Customer.model');
 const sendMail = require('../../common/Emailer/send_mail');
 const UserModel = require('../models/User.model');
 const AccountModel = require('../models/Account.model');
+const TransactionModel = require('../models/Transaction.model');
+const OrganizationModel = require('../models/Organization.model');
 const { gen_random_string } = require('../../common/token_generator');
 const  { ymd } = require('../../common/dateFormat');
+const { check_ageRange } = require('../enums/savings_account_plan_age');
 
 function init(router) {
     router.route('/employee/register')
@@ -25,7 +28,7 @@ function init(router) {
         .get(existingCustomerAndAccountPage);
     router.route("/employee/:id/addAccount/:user_id")
         .post(addAccount)
-    router.route("/employee/:id/customerDetails")
+    router.route("/employee/:id/AccountDetails")
         .get(getCustomerDetails)
     router.route("/employee/:id/customerTransaction")
         .get(customerTransactionPage)
@@ -62,6 +65,58 @@ async function indexAction(req,res){
         res.redirect(`/?error=${e}`);
     }
 
+}
+
+async function getCustomerDetails(req,res){
+    try{
+        const { value, error } = await accountNumberInfo.validate({accNum:req.query.accNum});
+        if (error) throw (error);
+
+        const user_id = await AccountModel.getAccountOwner(req.query.accNum);
+        if(!user_id) throw (Errors.NotFound("No such Account Exists"))
+
+        const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
+        const withdrawals = await TransactionModel.getAllWithdrawDetailByID(req.body.accNum);
+
+        const account = await AccountModel.getAccount(req.query.accNum);
+
+        const Customer = await CustomerModel.getCustomerDetailsById(user_id.user);
+        if(Customer){
+            console.log(user_id);
+            console.log(deposits);
+            console.log(withdrawals);
+            console.log(account);
+            console.log(Customer);
+            res.render('employee_acc_details', {
+                error: req.query.error,
+                user: req.session.user,
+                full_name:`${Customer.first_name} ${Customer.last_name}`,
+                acc_number:account.acc_id,
+                NIC_number:Customer.NIC,
+                open_date:account.created_date,
+                acc_type:account.acc_type,
+
+            });
+        } else{
+            const organization = await OrganizationModel.getOrgDetails(user_id.user)
+            if(organization){
+                res.render('employee_acc_details', {
+                    error: req.query.error,
+                    user: req.session.user,
+                    name:organization.name,
+                    contact_No:organization.contact_No
+                });
+            }else {
+                throw (Errors.NotFound("No such User Exists"))
+            }
+        }
+
+
+    }catch (e) {
+        console.log(e);
+        console.log(e.message);
+        res.redirect(`/employee/${req.params.id}?error=${e.message}`)
+    }
 }
 
 async function customerTransactionPage(req,res){
@@ -232,7 +287,6 @@ async function  registerAccountAndCustomerPage(req, res){
     const branches = await DropdownService.getBranches();
     const savings_plan = await DropdownService.getSavingAccPlans();
 
-    console.log(req.session.user);
     res.render('customer_reg_form', {
         error: req.query.error,
         user: req.session.user,
@@ -324,6 +378,10 @@ async function registerCustomerAndAccount(req, res){
         }
         console.log(username);
 
+        if(value.acc_type === 'savings' && !check_ageRange(parseFloat(value.age),value.savings_plan)){
+            throw new Errors.BadRequest("Age doesn't match with the savings account plan");
+        }
+
         await sendUserDetailsMail({
             email:acc.email,
             username:username,
@@ -332,6 +390,9 @@ async function registerCustomerAndAccount(req, res){
 
         acc = ObjectToList(acc);
         // console.log(acc);
+
+
+
 
         await CustomerModel.addCustomer(acc).then((data)=>{
             console.log("Customer Added")
@@ -360,9 +421,16 @@ async function registerCustomerAndAccount(req, res){
             savings = ObjectToList(savings);
             console.log(savings);
 
-            await AccountModel.addSavingAccount(savings).then(()=>{
-                console.log('Savings account added');
-                res.redirect(`/employee/${req.params.id}?success=Savings account made`)
+            await AccountModel.addSavingAccount(savings).then((data)=>{
+                console.log(data);
+                if(data === 0){
+                    console.log('Savings account added');
+                    res.redirect(`/employee/${req.params.id}?success=Savings account added`)
+                }else if(data === 2){
+                    throw new Errors.Unauthorized("Age range doesnt map with selected plan")
+                }else{
+                    throw new Errors.Unauthorized("Not enough balance")
+                }
             }).catch((err)=>{
                 console.log(err);
                 throw (err);
@@ -491,9 +559,17 @@ async function addAccount(req,res){
 
             savings = ObjectToList(savings);
             console.log(savings);
-            await AccountModel.addSavingAccount(savings).then(()=>{
-                console.log('Savings account added');
-                res.redirect(`/employee/${req.params.id}?success=Savings account added`)
+            await AccountModel.addSavingAccount(savings).then((data)=>{
+                console.log(data);
+                if(data === 0){
+                    console.log('Savings account added');
+                    res.redirect(`/employee/${req.params.id}?success=Savings account added`)
+                }else if(data === 2){
+                    throw Errors.Unauthorized("Age range doesnt map with selected plan")
+                }else{
+                    throw Errors.Unauthorized("Not enough balance")
+                }
+
             }).catch((err)=>{
                 console.log(err);
                 throw (err);
@@ -532,9 +608,7 @@ async function addAccount(req,res){
     }
 }
 
-async function getCustomerDetails(req,res){
 
-}
 
 
 

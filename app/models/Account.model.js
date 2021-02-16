@@ -7,6 +7,8 @@ const AccountModel = {
     addCurrentAccount,
     depositMoneySvAcc,
     withdrawSvAcc,
+    getAccountOwner,
+    getAccount,
     transferMoney
 }
 
@@ -63,6 +65,44 @@ function depositMoneySvAcc(deposit) {
         });
     });
 }
+
+function getAccountOwner(accNum) {
+
+    //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/deposit_mn_sv_acc.sql
+    return new Promise((resolve, reject) => {
+        db.query(`select user from account where acc_id=?`, accNum, (error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
+function getAccount(accNum) {
+
+    //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/deposit_mn_sv_acc.sql
+    return new Promise((resolve, reject) => {
+        db.query(`select * from account where acc_id=?`, accNum, (error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
+
 
 function withdrawSvAcc(deposit) {
 

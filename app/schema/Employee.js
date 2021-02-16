@@ -7,4 +7,8 @@ const TransactionInfo = Joi.object().options({ abortEarly: false }).keys({
   transaction_type: Joi.string().valid('deposit','withdraw').required()
 });
 
-module.exports = { TransactionInfo }
+const accountNumberInfo = Joi.object().options({abortEarly:false}).keys({
+  accNum: Joi.string().regex(/^[0-9]$/).message("Account Number must contain only numbers.").required().label("Account Number"),   //regex added
+});
+
+module.exports = { TransactionInfo,accountNumberInfo }
