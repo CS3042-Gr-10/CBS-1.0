@@ -9,7 +9,7 @@ CREATE DEFINER=`dev`@`%` PROCEDURE `add_emp`(
 	IN postal_code int(8), 
 	IN contact_No int(10), 
 	IN NIC varchar(20), 
-	IN branch_id int(5), 
+	IN branch_id_d int(5), 
 	IN gender varchar(25), 
 	IN house_no varchar(25), 
 	IN street varchar(25), 
@@ -32,8 +32,7 @@ BEGIN
     
     START TRANSACTION;
     
-    if post_id = 1
-		then 
+    if post_id = 1 then 
         set acc_level = "BANK-MANAGER";
 	else
 		set acc_level = "EMPLOYEE";
@@ -44,8 +43,14 @@ BEGIN
     value ("E", username, password, email, acc_level);
     
     insert into employee (user_id, first_name, last_name, name_with_init, dob, created_date, postal_code, contact_No, NIC, branch_id, gender, house_no, street, city, post_id)
-    value (last_insert_id(), first_name, last_name, name_with_init, dob, curdate(), postal_code, contact_No, NIC, branch_id, gender, house_no, street, city, post_id);
+    value (last_insert_id(), first_name, last_name, name_with_init, dob, curdate(), postal_code, contact_No, NIC, branch_id_d, gender, house_no, street, city, post_id);
     
+    if post_id = 1 then
+		update branch
+		set branch_manager = last_insert_id() 
+		where branch_id = branch_id_d;
+    end if;
+	
     COMMIT WORK;
 
 END

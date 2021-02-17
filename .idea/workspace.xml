@@ -30,20 +30,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="additions">
-      <change afterPath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/employee_organization_acc_details.hbs" afterDir="false" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="loan request from employee done.&#10;withdrawing and depositing done.">
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/check_num_wth.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Loan.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Loan.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Transaction.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Transaction.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_acc_details.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_customer_acc_details.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_new_loan.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_new_loan.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_transaction.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_transaction.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/new_org_new_acc.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/new_org_new_acc.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documents/sql-script/add_emp.sql" beforeDir="false" afterPath="$PROJECT_DIR$/documents/sql-script/add_emp.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documents/sql-script/withdraw_sv_acc.sql" beforeDir="false" afterPath="$PROJECT_DIR$/documents/sql-script/withdraw_mn_sv_acc.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +160,7 @@
       <workItem from="1613041358195" duration="666000" />
       <workItem from="1613101531110" duration="4895000" />
       <workItem from="1613294425499" duration="46818000" />
-      <workItem from="1613533672099" duration="8733000" />
+      <workItem from="1613533672099" duration="9863000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -429,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613501952312</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="loan request from employee done.&#10;withdrawing and depositing done.">
+      <created>1613547114821</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1613547114821</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +447,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Customer.route.js session done" />
     <MESSAGE value="Added template functions to Customer.route.js" />
     <MESSAGE value="Added template functions to BankManager.route.js" />
     <MESSAGE value="database connection error" />
@@ -473,7 +471,8 @@
     <MESSAGE value="before merge" />
     <MESSAGE value="Adding email sending functionality to customer creation and employee creation fixes #37" />
     <MESSAGE value="additions" />
-    <option name="LAST_COMMIT_MESSAGE" value="additions" />
+    <MESSAGE value="loan request from employee done.&#10;withdrawing and depositing done." />
+    <option name="LAST_COMMIT_MESSAGE" value="loan request from employee done.&#10;withdrawing and depositing done." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
