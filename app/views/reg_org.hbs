@@ -73,46 +73,6 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="my-2 col-sm-3 col-md-3 col-lg-2 col-lg-3" for="acc_type">Preference</label>
-                    <div class="col-lg-4 col-sm-4">
-                        <select class="custom-select" id="acc_type" name="acc_type" required>
-                            <option selected>Select Account Type...</option>
-                            <option value="savings" id="acc_type_savings">Savings</option>
-                            <option value="current" id="acc_type_current">Current</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row" id="savingsPlanDiv">
-                    <label for='savings_plan' class='col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3'>Savings Plan</label>
-                    <div class="col-lg-5 col-sm-5">
-                        <select class="custom-select" id="savings_plan" name="savings_plan" required>
-                            <option selected>Select Savings Plan...</option>
-                            <option value="children" id="children">Children - 12%, no minimum</option>
-                            <option value="teen" id="teen">Teen - 11%, 500 minimum</option>
-                            <option value="adult" id="adult">Adult (18+) - 10%, 1000 minimum </option>
-                            <option value="senior" id="senior">Senior (60+) - 13%, 1000 minimum</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row" id="incomeDetailsDiv">
-                    <label for='incomeDetails' class='col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3'>Income Details</label>
-                    <div class="col-lg-6 col-sm-6">
-                        <input type='file' class='form-control-file my-1' id='income_details' name='income_details' aria-describedby='incomeDetails' required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="init_amount" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Initial Amount</label>
-                    <div class="input-group col-lg-5 col-sm-5 mb-1">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">SCR</span>
-                        </div>
-                        <input type="number" name="init_amount" id="init_amount" class="form-control" aria-label="Amount (to the nearest dollar)" min="1">
-                        <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
-                        </div>
-                      </div>
-                </div>
-                <div class="form-group row">
                     <label class="my-2 col-sm-3 col-md-3 col-lg-2 col-lg-3" for="branch">Branch</label>
                     <div class="col-lg- col-sm-4">
                         <select class="custom-select" id="branch" name="branch" required>
@@ -141,6 +101,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/javascript/branch.js"></script>
-    <script src="/javascript/acc_type.js"></script>
 </body>
 </html>
