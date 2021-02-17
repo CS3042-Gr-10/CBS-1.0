@@ -8,6 +8,7 @@ const AccountModel = {
     depositMoneySvAcc,
     withdrawSvAcc,
     getAccountOwner,
+    getAccountType,
     getAccount,
     transferMoney
 }
@@ -71,6 +72,24 @@ function getAccountOwner(accNum) {
     //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/deposit_mn_sv_acc.sql
     return new Promise((resolve, reject) => {
         db.query(`select user from account where acc_id=?`, accNum, (error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
+function getAccountType(accNum) {
+
+    //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/deposit_mn_sv_acc.sql
+    return new Promise((resolve, reject) => {
+        db.query(`select owner_type from account_owner where user_id=?`, accNum, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
