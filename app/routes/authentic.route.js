@@ -32,7 +32,7 @@ async function authentic (req, res) {
     if (error) throw (error);
     authenticService.authentic(authenticData).then((data) => {
       if (data) {
-        // console.log(data)
+         console.log(data.acc_level)
         req.session.user = {};
         req.session.user.user_id = data.user_id;
         req.session.user.email = data.email;

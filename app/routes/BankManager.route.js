@@ -6,40 +6,51 @@ const error_type = require('../../common/error-type');
 const UserService = require('../services/user.service');
 const Errors = require('../../common/error');
 const GeneralError = error_type.RedirectGeneralError;
+const EmployeeModel = require('../models/Employee.model');
+const DropdownService = require('../services/Dropdown.service');
 
 function init(router) {
-    router.route('/Employee')
+    router.route('/BankManager')
         .get(GeneralError)
-    //router.route('/Employee/:id/registerCustomer')
-    //    .get(registerCustomerAction)
-    //    .post(registerCustomer)
-}
+    router.route('/BankManager/:id')
+        .get(indexAction)
+    router.route('/BankManager/ApproveLoan')
+      .get()
+  }
 
 async function indexAction(req,res){
     //EmployeeService.
-  const userID = req.session.user.username;
   try{
-    const User = await UserService.getUserById(userID);
-    if (!User){
+    const userID = req.session.user.user_id;
+    let Emp = await EmployeeModel.getEmpDetailsByID(userID);
+    const branches = await DropdownService.getBranches();
+    // console.log(Emp);
+    if (!Emp){
       throw new Errors.BadRequest('An Error Occurred in the Database');
     }
 
-    res.render('admin_dashboard',
+    Emp = {
+      ...Emp,
+      ...req.session.user
+    }
+
+    // console.log(Emp);
+    res.render('bm_dashboard',
       {
         url_params: req.params,
-        User:User
+        error:req.query.error,
+        success:req.query.success,
+        User:Emp,
+        branches:branches,
+
       }
     )
   }catch (e){
     res.redirect(`/?error=${e}`);
   }
-    //userService.getUserById(userId).then((data) => {
-
-    //}).catch((err) => {
-    //    mail.mail(err);
-    //    res.send(err);
-    //});
 }
+
+
 
 function listLoansforApprovalAction(req,res){
     // a list of bank loans that that require approval

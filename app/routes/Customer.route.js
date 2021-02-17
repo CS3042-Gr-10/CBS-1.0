@@ -1,21 +1,14 @@
-const schema = require('../schema/userValidationSchema.json')
-const iValidator = require('../../common/iValidator');
-const errorCode = require('../../common/error-code');
-const errorMessage = require('../../common/error-methods');
-const errortype = require('../../common/error-type');
-const mail = require('./../../common/mailer.js');
 const ifLoggedIn = require('./../Middleware/ifLoggedIn');
 const Errors = require('./../../common/error');
 const ifCustomer = require('./../Middleware/ifCustomer');
-const CustomerService = require('../services/Customer.service');
-const UserService = require('../services/user.service');
-const GeneralError = errortype.RedirectGeneralError;
+const CustomerModel = require('../models/Customer.model');
+const AccountModel = require('../models/Account.model');
+const OrganizationModel = require('../models/Organization.model');
+const UserModel = require('../services/user.service');
 
 function init(router) {
     router.use('/Customer', ifLoggedIn)
     router.use('/Customer', ifCustomer)
-    router.route('/Customer')
-        .get(GeneralError)
     router.route('/Customer/:id')
         .get(indexAction);
     router.route('/Customer/:id/startFD')
@@ -25,31 +18,40 @@ function init(router) {
 
 async function indexAction(req,res){
     //EmployeeService.
-    const userID = req.session.user.username;
-    let userID_2 = req.params.id;
     try{
-        const User = await UserService.getUserById(userID);
-        if (!User){
+        const userID = req.session.user.user_id;
+        const owner_type = await AccountModel.getAccountType(userID);
+        let Cus;
+
+        if (owner_type.owner_type = "U"){
+            Cus = await CustomerModel.getCustomerDetailsById(userID);
+        }else{
+            Cus = await OrganizationModel.getOrgDetails(userID);
+        }
+
+        // console.log(Emp);
+        if (!Cus){
             throw new Errors.BadRequest('An Error Occurred in the Database');
         }
 
+        Cus = {
+            ...Cus,
+            ...req.session.user
+        }
+
+        console.log(Cus);
         res.render('customer_dashboard',
           {
               url_params: req.params,
-              User:User
+              error:req.query.error,
+              success:req.query.success,
+              User:Cus
+
           }
         )
     }catch (e){
         res.redirect(`/?error=${e}`);
     }
-
-
-    //userService.getUserById(userId).then((data) => {
-
-    //}).catch((err) => {
-    //    mail.mail(err);
-    //    res.send(err);
-    //});
 }
 
 function startFDPage(req,res){
