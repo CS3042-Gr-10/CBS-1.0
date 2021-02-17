@@ -7,6 +7,8 @@ const AccountModel = {
     addCurrentAccount,
     depositMoneySvAcc,
     withdrawSvAcc,
+    getAccountOwner,
+    getAccount,
     transferMoney
 }
 
@@ -22,7 +24,7 @@ function addSavingAccount(acc) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
         });
     });
@@ -40,7 +42,7 @@ function addCurrentAccount(acc) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
         });
     });
@@ -58,17 +60,17 @@ function depositMoneySvAcc(deposit) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
         });
     });
 }
 
-function withdrawSvAcc(wth) {
+function getAccountOwner(accNum) {
 
-    //TODO: set "wth" attribute appropriate to the data passing -- checkout ../document/sql_scripts/withdraw_mn_sv_acc.sql 
+    //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/deposit_mn_sv_acc.sql
     return new Promise((resolve, reject) => {
-        db.query(`CALL withdraw_mn_sv_acc(?,?,?,?,?)`, wth, (error, rows, fields) => {
+        db.query(`select user from account where acc_id=?`, accNum, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
@@ -76,7 +78,45 @@ function withdrawSvAcc(wth) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
+function getAccount(accNum) {
+
+    //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/deposit_mn_sv_acc.sql
+    return new Promise((resolve, reject) => {
+        db.query(`select * from account where acc_id=?`, accNum, (error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
+
+
+function withdrawSvAcc(wth) {
+
+    //TODO: set "wth" attribute appropriate to the data passing -- checkout ../document/sql_scripts/withdraw_mn_sv_acc.sql
+    return new Promise((resolve, reject) => {
+        db.query(`CALL withdraw_sv_acc(?,?,?)`, wth, (error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
             }
         });
     });
@@ -94,7 +134,7 @@ function transferMoney(slip) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
         });
     });

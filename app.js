@@ -6,6 +6,7 @@ global.SECRET = "SeychellesBank"
 global.PORT = 9890;
 global.IN_PROD = false;
 global.SESS_NAME = 'Seychellesbank_sess';
+require('dotenv').config();
 
 const apis = require("./config/api-config");
 

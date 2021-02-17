@@ -10,7 +10,7 @@ function addStdLoan(loan) {
 
     //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_std_loan.sql 
     return new Promise((resolve, reject) => {
-        db.query(`CALL add_std_loan(?,?,?,?,?)`, acc, (error, rows, fields) => {
+        db.query(`CALL add_std_loan(?,?,?,?,?)`, loan, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
@@ -18,6 +18,7 @@ function addStdLoan(loan) {
             } else {
 
                 dbFunc.connectionRelease;
+                // console.log(rows);
                 resolve(rows);
             }
         });
