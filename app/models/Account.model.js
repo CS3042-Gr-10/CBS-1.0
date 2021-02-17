@@ -24,7 +24,7 @@ function addSavingAccount(acc) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
         });
     });
@@ -42,7 +42,7 @@ function addCurrentAccount(acc) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
         });
     });
@@ -60,7 +60,7 @@ function depositMoneySvAcc(deposit) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
         });
     });
@@ -108,7 +108,7 @@ function withdrawSvAcc(deposit) {
 
     //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/withdraw_sv_acc.sql 
     return new Promise((resolve, reject) => {
-        db.query(`CALL withdraw_sv_acc(?,?,?,?,?)`, deposit, (error, rows, fields) => {
+        db.query(`CALL withdraw_sv_acc(?,?,?)`, deposit, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
@@ -116,7 +116,7 @@ function withdrawSvAcc(deposit) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
         });
     });
@@ -134,7 +134,7 @@ function transferMoney(slip) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
         });
     });

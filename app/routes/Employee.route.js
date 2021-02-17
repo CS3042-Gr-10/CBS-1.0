@@ -1,6 +1,6 @@
 const { EmployeeRegistrationInfo, CustomerRegistrationSavingsInfo, CustomerRegistrationGeneralInfo, ExistingCustomerAccountInfo } = require('../schema/Registration');
 const { usernameInfo, nicInfo} = require('../schema/Authentication');
-const { TransactionInfo, accountNumberInfo } = require('../schema/Employee');
+const { TransactionInfo, accountNumberInfo, customerLoanInfo, organizationLoanInfo } = require('../schema/Employee');
 const Errors = require('../../common/error');
 const DropdownService = require('../services/Dropdown.service');
 const { ObjectToList, hash_password } = require('../../common/helpers');
@@ -11,6 +11,7 @@ const UserModel = require('../models/User.model');
 const AccountModel = require('../models/Account.model');
 const TransactionModel = require('../models/Transaction.model');
 const OrganizationModel = require('../models/Organization.model');
+const LoanModel = require('../models/Loan.model');
 const { gen_random_string } = require('../../common/token_generator');
 const  { ymd } = require('../../common/dateFormat');
 const { check_ageRange } = require('../enums/savings_account_plan_age');
@@ -33,6 +34,12 @@ function init(router) {
     router.route("/employee/:id/customerTransaction")
         .get(customerTransactionPage)
         .post(customerTransaction)
+    router.route("/employee/:id/customerLoan")
+        .get(customerLoanPage)
+        .post(customerLoan)
+    router.route("/employee/:id/organizationLoan")
+        .get(organizationLoanPage)
+        .post(organizationLoan)
 
 }
 
@@ -67,27 +74,126 @@ async function indexAction(req,res){
 
 }
 
-async function getCustomerDetails(req,res){
+async function customerLoanPage(req,res){
+    const branches = await DropdownService.getBranches();
+
+    res.render('employee_new_loan',{
+        error:req.query.error,
+        success:req.query.success,
+        user: req.session.user,
+        branches:branches,
+        nic:req.query.nic,
+        income:req.query.income,
+        amount:req.query.amount,
+        interest:req.query.interest,
+        time:req.query.time,
+    });
+}
+
+async function customerLoan(req,res){
     try{
-        const { value, error } = await accountNumberInfo.validate({accNum:req.query.accNum});
+        const { value, error } = await customerLoanInfo.validate(req.body);
         if (error) throw (error);
 
-        const user_id = await AccountModel.getAccountOwner(req.query.accNum);
-        if(!user_id) throw (Errors.NotFound("No such Account Exists"))
+        const customer = await CustomerModel.getCustomerDetailsByNIC(value.nic);
+        if (!customer) throw new Errors.NotFound("Customer not found");
 
-        const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
-        const withdrawals = await TransactionModel.getAllWithdrawDetailByID(req.body.accNum);
+        const installment = (parseFloat(value.amount)*parseFloat(value.interest))/parseInt(value.time)
+        // console.log(installment);
+        let Loan = {
+            customer_id_d: customer.user_id,
+            loaned_amount_d:parseFloat(value.amount),
+            inter_rate:parseFloat(value.interest),
+            aggreed_num_inst_d:installment,
+            branch_id_d:parseInt(value.branch),
+        }
 
-        const account = await AccountModel.getAccount(req.query.accNum);
+        Loan = ObjectToList(Loan);
 
-        const Customer = await CustomerModel.getCustomerDetailsById(user_id.user);
-        if(Customer){
-            console.log(user_id);
-            console.log(deposits);
-            console.log(withdrawals);
+        await LoanModel.addStdLoan(Loan).then((data)=>{
+           console.log(data)
+            res.redirect(`/employee/${req.params.id}?success=Loan Successfully added`);
+        }).catch((error)=>{
+            console.log(error);
+            throw new Errors.InternalServerError("Error while adding Loan")
+        });
+
+    }catch (err) {
+        console.log(err);
+        res.redirect(`/employee/${req.params.id}?error=${err.message}&nic=${req.body.nic}&income=${req.body.income}&amount=${req.body.amount}&interest=${req.body.interest}&time${req.body.time}`)
+    }
+}
+
+async function organizationLoanPage(req,res){
+    const branches = await DropdownService.getBranches();
+    const posts = await DropdownService.getPosts();
+
+    res.render('employee_new_loan_organization',{
+        error:req.query.error,
+        success:req.query.success,
+        user: req.session.user,
+        branches:branches,
+        org_id:req.query.org_id,
+        income:req.query.income,
+        amount:req.query.amount,
+        interest:req.query.interest,
+        time:req.query.time,
+    });
+}
+
+async function organizationLoan(req,res){
+    try{
+        const { value, error } = await organizationLoanInfo.validate(req.body);
+        if (error) throw (error);
+
+        const customer = await OrganizationModel.getOrgDetails(value.org_id);
+        if (!customer) throw new Errors.NotFound("Customer not found");
+
+        const installment = (parseFloat(value.amount)*parseFloat(value.interest))/parseInt(value.time)
+
+        let Loan = {
+            customer_id_d: customer.user_id,
+            loaned_amount_d:parseFloat(value.amount),
+            inter_rate:parseFloat(value.interest),
+            aggreed_num_inst_d:installment,
+            branch_id_d:parseInt(value.branch),
+        }
+
+        Loan = ObjectToList(Loan);
+
+        await LoanModel.addStdLoan(Loan).then((data)=>{
+            console.log(data)
+            res.redirect(`/employee/${req.params.id}?success=Loan Successfully added`);
+        }).catch((error)=>{
+            console.log(error);
+            throw new Errors.InternalServerError("Error while adding Loan")
+        });
+
+    }catch (err) {
+        console.log(err);
+        res.redirect(`/employee/${req.params.id}?error=${err.message}&org_id=${req.body.org_id}&income=${req.body.income}&amount=${req.body.amount}&interest=${req.body.interest}&time${req.body.time}`)
+    }
+}
+
+async function getCustomerDetails(req,res){
+    try{
+        const { value, error } = await accountNumberInfo.validate({
+            accNum:req.query.accNum,
+            customer_type:req.query.customer_type
+        });
+        if (error) throw (error);
+
+        if(value.customer_type === 'customer'){
+            const account = await AccountModel.getAccount(req.query.accNum);
+            if(!account) throw (Errors.NotFound("No such Account Exists"))
             console.log(account);
-            console.log(Customer);
-            res.render('employee_acc_details', {
+
+            const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
+            const withdrawals = await TransactionModel.getAllWithdrawDetailByID(req.query.accNum);
+
+            const Customer = await CustomerModel.getCustomerDetailsById(account.user);
+
+            console.log({
                 error: req.query.error,
                 user: req.session.user,
                 full_name:`${Customer.first_name} ${Customer.last_name}`,
@@ -95,22 +201,46 @@ async function getCustomerDetails(req,res){
                 NIC_number:Customer.NIC,
                 open_date:account.created_date,
                 acc_type:account.acc_type,
-
+                deposits:deposits,
+                withdrawals:withdrawals,
             });
-        } else{
-            const organization = await OrganizationModel.getOrgDetails(user_id.user)
-            if(organization){
-                res.render('employee_acc_details', {
-                    error: req.query.error,
-                    user: req.session.user,
-                    name:organization.name,
-                    contact_No:organization.contact_No
-                });
-            }else {
-                throw (Errors.NotFound("No such User Exists"))
-            }
-        }
 
+            res.render('employee_customer_acc_details', {
+                error: req.query.error,
+                user: req.session.user,
+                full_name:`${Customer.first_name} ${Customer.last_name}`,
+                acc_number:account.acc_id,
+                NIC_number:Customer.NIC,
+                open_date:account.created_date,
+                acc_type:account.acc_type,
+                deposits:deposits,
+                withdrawals:withdrawals,
+            });
+        }else {
+            const account = await AccountModel.getAccount(req.query.accNum);
+            if(!account) throw (Errors.NotFound("No such Account Exists"))
+
+            const organization = await OrganizationModel.getOrgDetails(account.user);
+            if (!organization) throw (Errors.NotFound("No such Account Exists"))
+
+
+            const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
+            const withdrawals = await TransactionModel.getAllWithdrawDetailByID(req.query.accNum);
+
+
+
+            res.render('employee_organization_acc_details', {
+                error: req.query.error,
+                user: req.session.user,
+                name: organization.name,
+                acc_number:account.acc_id,
+                contact_No: organization.contact_No,
+                open_date:account.created_date,
+                acc_type:account.acc_type,
+                deposits:deposits,
+                withdrawals:withdrawals,
+            });
+        }
 
     }catch (e) {
         console.log(e);
@@ -135,23 +265,50 @@ async function customerTransaction(req,res){
         if (value.transaction_type === "withdraw"){
             let withdraw = {
                account_id:parseInt(value.accNum),
-               withdrawl_type:"MONEY",
-               withd_id:1222312,
                emp_id:req.params.id,
                amount:parseFloat(value.amount),
             }
-            await AccountModel.withdrawSvAcc()
+
+            console.log(withdraw)
+            withdraw = ObjectToList(withdraw);
+            console.log(withdraw)
+            await AccountModel.withdrawSvAcc(withdraw).then((data)=>{
+                console.log(data);
+                if (data[0].result == 1){
+                    res.redirect(`/employee/${req.params.id}?success=Successfully Savings amount`)
+                }else if(data[0].result == 0){
+                    throw new Errors.BadRequest("Not enough account balance");
+                }else if(data[0].result == 3){
+                    throw new Errors.BadRequest("Entered a negative balance");
+                }else {
+                    throw new Errors.InternalServerError("Something went wrong")
+                }
+
+            }).catch((err)=>{
+                console.log(err);
+                throw (err);
+            });
+
         }else {
             let deposit = {
                 amount:parseFloat(value.amount),
                 emp_id:req.params.id,
                 deposit_acc_id:parseInt(value.accNum),
             }
-
+            console.log(deposit);
             deposit = ObjectToList(deposit);
+            console.log(deposit);
+
             await AccountModel.depositMoneySvAcc(deposit).then((data)=>{
                 console.log(data);
-                res.redirect(`employee/${req.params.id}?success=Successfully deposited amount`)
+                if (data[0].result == 1){
+                    res.redirect(`/employee/${req.params.id}?success=Successfully deposited amount`)
+                }else if(data.result[0] == 3){
+                    throw new Errors.BadRequest("Entered a negative balance");
+                }else {
+                    throw new Errors.InternalServerError("Something went wrong")
+                }
+
             }).catch((err)=>{
                 console.log(err);
                 throw (err);
@@ -423,10 +580,10 @@ async function registerCustomerAndAccount(req, res){
 
             await AccountModel.addSavingAccount(savings).then((data)=>{
                 console.log(data);
-                if(data === 0){
+                if(data.result === 0){
                     console.log('Savings account added');
                     res.redirect(`/employee/${req.params.id}?success=Savings account added`)
-                }else if(data === 2){
+                }else if(data.result === 2){
                     throw new Errors.Unauthorized("Age range doesnt map with selected plan")
                 }else{
                     throw new Errors.Unauthorized("Not enough balance")
@@ -561,10 +718,10 @@ async function addAccount(req,res){
             console.log(savings);
             await AccountModel.addSavingAccount(savings).then((data)=>{
                 console.log(data);
-                if(data === 0){
+                if(data.result === 0){
                     console.log('Savings account added');
                     res.redirect(`/employee/${req.params.id}?success=Savings account added`)
-                }else if(data === 2){
+                }else if(data.result === 2){
                     throw Errors.Unauthorized("Age range doesnt map with selected plan")
                 }else{
                     throw Errors.Unauthorized("Not enough balance")

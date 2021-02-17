@@ -15,7 +15,7 @@
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Employee Dashboard</a>
+            <a class="navbar-brand" href="/employee/{{user.user_id}}">Employee Dashboard</a>
             <img src="/image/shield_lock.svg" alt="" width="32" height="32" title="Bootstrap">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,11 @@
     </header>
     
     <h1>You are Logged in as a Cashier Today</h1>
+    {{#if error}}
+        <div class="row alert alert-danger" role="alert">
+            {{error}}
+        </div>
+    {{/if}}
     <form action="/employee/{{user.user_id}}/customerTransaction" method="post">
         <p>Enter an Account Number.</p>
         <input class="accNum" type="number" name="accNum" required><br>
