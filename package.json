@@ -7,30 +7,41 @@
     "ajv": "^6.12.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "crypto-random-string": "^3.3.0",
+    "eslint": "^7.19.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
+    "express-mysql-session": "^2.1.5",
     "express-session": "^1.17.1",
-    "express-sessions": "^1.0.6",
+    "express-sessions": "^1.0.1",
     "fs": "0.0.1-security",
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "node": "^15.3.0",
-    "nodemailer": "^6.4.16"
+    "nodemailer": "^6.4.18",
+    "nodemailer-handlebars": "^1.0.1",
+    "nodemailer-sendgrid": "^1.0.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7",
+    "standard": "^16.0.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "%nodemon app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DevinDeSilva/CBS-1.0.git"
+    "url": "git+https://github.com/CS3042-Gr-10/CBS-1.0.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DevinDeSilva/CBS-1.0/issues"
+    "url": "https://github.com/CS3042-Gr-10/CBS-1.0/issues"
   },
-  "homepage": "https://github.com/DevinDeSilva/CBS-1.0#readme"
+  "homepage": "https://github.com/CS3042-Gr-10/CBS-1.0#readme"
 }

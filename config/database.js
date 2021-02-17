@@ -3,11 +3,11 @@ const fs = require('fs');
 
 
 module.exports = mysql.createPool({
-    user: 'u05dacvdhduk0jzi',
-    host: 'bpi9zrldmffepsxk5zeg-mysql.services.clever-cloud.com',
-    database: 'bpi9zrldmffepsxk5zeg',
+    user: 'dev',
+    host: '34.101.117.36',
+    database: 'main_db',
     port: 3306,
-    password: 'GRWM2e4bac8RVsmQIfHo',
+    password: 'NDUCI@cse3042',
 })
 
 

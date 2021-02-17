@@ -23,7 +23,7 @@ module.exports = {
     messages = [],
     errorCode;
   errors.map((error, i) => {
-    var errorConcat = "";
+    let errorConcat = ''
     error.dataPath = error.dataPath.slice(1);
     console.log("error.dataPath initial",error.dataPath);
     if (!error.dataPath) {

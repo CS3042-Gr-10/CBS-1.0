@@ -35,6 +35,18 @@ main {
   background: #eee;
   padding: 3%;
 }
+.wrapper_3 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1.5%;
+}
+.wrapper_3 > div {
+  padding: 3%;
+}
+.w3_d1 {
+  text-align: center;
+  color: rgb(0, 119, 255);
+}
 footer {
   text-align: center;
   margin-bottom: 0.5%;
