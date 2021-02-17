@@ -50,6 +50,7 @@ BEGIN
 		set branch_manager = last_insert_id() 
 		where branch_id = branch_id_d;
     end if;
+	
     COMMIT WORK;
 
 END
