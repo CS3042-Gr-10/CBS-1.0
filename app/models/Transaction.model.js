@@ -14,12 +14,10 @@ function getAllDepositDetailByID(id) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
-                return (false);
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
-                return (rows[0]);
+                resolve(rows);
             }
         });
     });
@@ -33,12 +31,10 @@ function getAllWithdrawDetailByID(id) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
-                return (false);
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
-                return (rows[0]);
+                resolve(rows);
             }
         });
     });

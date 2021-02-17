@@ -30,10 +30,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="merge and resolve developer">
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="loan request from employee done.&#10;withdrawing and depositing done.">
+      <change afterPath="$PROJECT_DIR$/documents/sql-script/check_num_wth.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Authentication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documents/sql-script/add_emp.sql" beforeDir="false" afterPath="$PROJECT_DIR$/documents/sql-script/add_emp.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documents/sql-script/withdraw_sv_acc.sql" beforeDir="false" afterPath="$PROJECT_DIR$/documents/sql-script/withdraw_mn_sv_acc.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +74,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -87,6 +89,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\views" />
+      <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\common\Emailer" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\common" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
     </key>
@@ -155,7 +159,8 @@
       <workItem from="1613022288791" duration="728000" />
       <workItem from="1613041358195" duration="666000" />
       <workItem from="1613101531110" duration="4895000" />
-      <workItem from="1613294425499" duration="1780000" />
+      <workItem from="1613294425499" duration="46818000" />
+      <workItem from="1613533672099" duration="9863000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -381,7 +386,49 @@
       <option name="project" value="LOCAL" />
       <updated>1613102331512</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="merge and resolve developer">
+      <created>1613302330769</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1613302330769</updated>
+    </task>
+    <task id="LOCAL-00034" summary="before merge">
+      <created>1613321900281</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1613321900281</updated>
+    </task>
+    <task id="LOCAL-00035" summary="before merge">
+      <created>1613365931631</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1613365931631</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Adding email sending functionality to customer creation and employee creation fixes #37">
+      <created>1613456954744</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1613456954744</updated>
+    </task>
+    <task id="LOCAL-00037" summary="additions">
+      <created>1613501952312</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1613501952312</updated>
+    </task>
+    <task id="LOCAL-00038" summary="loan request from employee done.&#10;withdrawing and depositing done.">
+      <created>1613547114821</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1613547114821</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,10 +447,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial setup for session in the system." />
-    <MESSAGE value="adding middleware to system" />
-    <MESSAGE value="resolving conflict" />
-    <MESSAGE value="Customer.route.js session done" />
     <MESSAGE value="Added template functions to Customer.route.js" />
     <MESSAGE value="Added template functions to BankManager.route.js" />
     <MESSAGE value="database connection error" />
@@ -425,7 +468,22 @@
     <MESSAGE value="adding Account to existing customer functionality tested Fixes #39" />
     <MESSAGE value="midpoints" />
     <MESSAGE value="merge and resolve developer" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge and resolve developer" />
+    <MESSAGE value="before merge" />
+    <MESSAGE value="Adding email sending functionality to customer creation and employee creation fixes #37" />
+    <MESSAGE value="additions" />
+    <MESSAGE value="loan request from employee done.&#10;withdrawing and depositing done." />
+    <option name="LAST_COMMIT_MESSAGE" value="loan request from employee done.&#10;withdrawing and depositing done." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/schema/Employee.js</url>
+          <line>6</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
