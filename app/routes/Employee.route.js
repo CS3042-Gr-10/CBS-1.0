@@ -45,8 +45,8 @@ function init(router) {
 
 async function indexAction(req,res){
     //console.log(req.session.user);
-    const userID = req.session.user.user_id;
     try{
+        const userID = req.session.user.user_id;
         let Emp = await EmployeeModel.getEmpDetailsByID(userID);
         // console.log(Emp);
         if (!Emp){

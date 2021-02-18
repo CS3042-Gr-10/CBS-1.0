@@ -58,9 +58,12 @@
             </div>
         </div>
         <div class="wrapper_2">
-            <div class="three_buttons">
-                <a type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
-                    data-target="#existingCustomerModal">Create a Customer Account</a>
+            <div>
+                <a href="/employee/{{User.user_id}}/registerCustomer" type="button" class="btn btn-primary btn-lg btn-block">Register a Customer</a>
+                <a href="/employee/{{User.user_id}}/registerOrganization" type="button" class="btn btn-primary btn-lg btn-block">Register an Organization</a>
+                <a type="button" class="btn btn-primary btn-lg btn-block">Create an Individual Account</a>
+                <a type="button" class="btn btn-primary btn-lg btn-block">Create an Organization Account</a>
+                
                 <a type="button" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal"
                    data-target="#customerInfoModel">Check Customer Account
                     Details</a>
