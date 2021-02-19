@@ -173,13 +173,21 @@ CREATE TABLE `loan` (
   `loan_type` varchar(20) not NULL,
   `customer_id` int(11) not NULL,
   `loaned_amount` Numeric(20,2) not NULL,
-  `loan_interrest_rate` Numeric(4,2),
-  `aggreed_num_installements` int(4) not NULL,
+  `loan_plan_id` int(2) not NULL,
   `finished_num_installements` int(4) not NULL,
   `deleted` INT(2),
   PRIMARY KEY (`loan_id`),
   FOREIGN KEY (customer_id) REFERENCES account_owner (user_id),
+  FOREIGN KEY (loan_plan_id) REFERENCES loan_plan (loan_plan_id),
   Check (loan_type in ("STANDARD", "ONLINE"))
+);
+
+CREATE TABLE `loan_plan` (
+  `loan_plan_id` int(2) AUTO_INCREMENT,
+  `loan_plan_name` varchar(100) UNIQUE not NULL,
+  `interrest_rate` Numeric(4,2) not NULL,
+  `period` int(3) unsigned not NULL,
+  PRIMARY KEY (`loan_plan_id`)
 );
 
 CREATE TABLE `standard_loan` (
