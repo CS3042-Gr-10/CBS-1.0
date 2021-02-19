@@ -52,7 +52,7 @@ const IndividualCurrentInfo = Joi.object().options({abortEarly:false}).keys({
 })
 
 const OrganizationSavingsInfo = Joi.object().options({abortEarly:false}).keys({
-  org_username:Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(15).message("User name must have maximum 30 characters.").required().label("Username"),
+  org_id:Joi.string().required().label("Organization Number"),
   init_amount:Joi.number().required().label("Initial Amount"),
   acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
   savings_plan:Joi.string().valid('1','2','3','4','5','6','7','8').required(),
@@ -62,7 +62,7 @@ const OrganizationSavingsInfo = Joi.object().options({abortEarly:false}).keys({
 })
 
 const OrganizationCurrentInfo = Joi.object().options({abortEarly:false}).keys({
-  org_username:Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(15).message("User name must have maximum 30 characters.").required().label("Username"),
+  org_id:Joi.string().required().label("Organization Number"),
   init_amount:Joi.number().required().label("Initial Amount"),
   acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
   branch:Joi.string().required().max(15).label("Branch"),

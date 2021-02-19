@@ -42,7 +42,7 @@ const CustomerRegistrationGeneralInfo = Joi.object().options({ abortEarly: false
   age:Joi.number().required(),
   gender: Joi.string().valid('male','female','other').required().label("Gender"),
   nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
-  contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{9,10}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
+  contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{8,11}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
   postal_code: Joi.string().required().max(8).label("Postal Code")
     .regex(/^\d+$/)
     .message("Postal Code must only contain numbers"),
@@ -58,8 +58,8 @@ const OrganizationRegistrationGeneralInfo = Joi.object().options({ abortEarly: f
   org_name:Joi.string().required().label("First Name"),
   email: Joi.string().regex(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).message('"Email address" consists of invalid characters.').email().max(50).required().label("Email"),
   reg_date: Joi.date().required().label("Date of Birth"),
-  org_id: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"Organization Registration no" should have 9 digits with "V"/"X" or 12 digits only!'),
-  contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{9,10}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
+  org_id: Joi.string().required().label("Organization Number"),
+  contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{8,11}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
   postal_code: Joi.string().required().max(8).label("Postal Code")
       .regex(/^\d+$/)
       .message("Postal Code must only contain numbers"),

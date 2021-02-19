@@ -110,6 +110,12 @@ async function registerOrganization(req,res){
 
         console.log(value);
 
+        let userAlreadyExist = await UserModel.getUserByEmail(value.email);
+        if (userAlreadyExist) throw ("Already Registered by this email");
+
+        userAlreadyExist = await OrganizationModel.getOrgDetailsByRegNo(value.org_id);
+        if (userAlreadyExist) throw ("Already Registered by this Registration Number");
+
 
         const username = gen_random_string();
         const password = gen_random_string();
@@ -150,10 +156,10 @@ async function registerOrganization(req,res){
             console.log('error adding employee')
             throw (err);
         })
-        res.redirect(`/employee/${req.params.id}/addAccountOrganization?org_username=${username}`)
+        res.redirect(`/employee/${req.params.id}/addAccountOrganization?org_id=${value.org_id}`)
 
     }catch (e) {
-        res.redirect(`/employee/${req.params.id}/registerOrganization?error=${e}&org_name=${req.query.org_name}&org_id=${req.query.org_id}&reg_date=${req.query.reg_date}&add_no=${req.query.add_no}&add_street=${req.query.add_street}&add_city=${req.query.add_city}&postal_code=${req.query.postal_code}&contact=${req.query.contact}&email=${req.query.email}`);
+        res.redirect(`/employee/${req.params.id}/registerOrganization?error=${e}&org_name=${req.body.org_name}&org_id=${req.body.org_id}&reg_date=${req.body.reg_date}&add_no=${req.body.add_no}&add_street=${req.body.add_street}&add_city=${req.body.add_city}&postal_code=${req.body.postal_code}&contact=${req.body.contact}&email=${req.body.email}`);
     }
 }
 
@@ -246,6 +252,7 @@ async function addAccountOrganizationPage(req,res){
     res.render('create_org_acc',{
         error: req.query.error,
         user: req.session.user,
+        org_id:req.query.org_id,
         branches:branches,
         savings_plan:savings_plan,
     });
@@ -258,7 +265,9 @@ async function addAccountOrganization(req,res){
             const {value,error} = await OrganizationSavingsInfo.validate(req.body);
             if (error) throw (error);
 
-            const user = await OrganizationModel.getOrgDetailsByUsername(req.body.org_username);
+            const user = await OrganizationModel.getOrgDetailsByRegNo(req.body.org_id);
+            if(!user) throw new Errors.NotFound("No such Organization")
+
             console.log(user)
             let savings = {
                 branch_id:parseInt(req.body.branch),
@@ -288,7 +297,7 @@ async function addAccountOrganization(req,res){
             })
         }else {
             const {value,error} = await OrganizationCurrentInfo.validate({
-                org_username:req.body.org_username,
+                org_id:req.body.org_id,
                 acc_type:req.body.acc_type,
                 init_amount:req.body.init_amount,
                 branch:req.body.branch,
@@ -296,7 +305,9 @@ async function addAccountOrganization(req,res){
             });
             if (error) throw (error);
 
-            const user = await OrganizationModel.getOrgDetailsByUsername(req.body.org_username);
+            const user = await OrganizationModel.getOrgDetailsByRegNo(req.body.org_id);
+            if(!user) throw new Errors.NotFound("No such Organization")
+
             console.log(user)
 
             let current ={
@@ -318,7 +329,7 @@ async function addAccountOrganization(req,res){
         }
     }catch (e) {
         console.log(e);
-        res.redirect(`/employee/${req.params.id}/addAccountOrganization?error=${e}&org_username=${req.body.org_username}&init_amount=${req.body.init_amount}`);
+        res.redirect(`/employee/${req.params.id}/addAccountOrganization?error=${e}&org_id=${req.body.org_id}&init_amount=${req.body.init_amount}`);
     }
 }
 

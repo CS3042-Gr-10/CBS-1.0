@@ -30,8 +30,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="adding registration of oraganization adding accounts functionality">
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="additional fields for employee">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Organization.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Organization.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/create_org_acc.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/create_org_acc.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_org.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_org.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -445,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613736870501</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="additional fields for employee">
+      <created>1613737689418</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1613737689418</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +477,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="something" />
     <MESSAGE value="merging" />
     <MESSAGE value="correcting imports" />
     <MESSAGE value="edits to route" />
@@ -489,7 +501,8 @@
     <MESSAGE value="sample commit" />
     <MESSAGE value="adding shit" />
     <MESSAGE value="adding registration of oraganization adding accounts functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding registration of oraganization adding accounts functionality" />
+    <MESSAGE value="additional fields for employee" />
+    <option name="LAST_COMMIT_MESSAGE" value="additional fields for employee" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

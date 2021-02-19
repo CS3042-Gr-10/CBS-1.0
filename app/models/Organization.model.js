@@ -5,7 +5,8 @@ const dbFunc = require('../../config/db-function')
 const OrgModel = {
     getOrgDetails,
     addOrg,
-    getOrgDetailsByUsername
+    getOrgDetailsByUsername,
+    getOrgDetailsByRegNo,
 };
 
 function getOrgDetails(id) {
@@ -22,6 +23,23 @@ function getOrgDetails(id) {
         });
     });
 }
+
+function getOrgDetailsByRegNo(reg_num) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from organization where reg_number = ?',reg_num, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
+
 
 function getOrgDetailsByUsername(username) {
     return new Promise((resolve, reject) => {
