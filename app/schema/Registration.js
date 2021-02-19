@@ -56,6 +56,7 @@ const CustomerRegistrationGeneralInfo = Joi.object().options({ abortEarly: false
     .regex(/^[0-9]{9}[a-z]{1}$/)
     .message('"Contact Number" contains invalid characters'),*/
   //nic: Joi.string().required().label("NIC Number").regex((/^[0-9+]{9}[vV|xX]$/)|(/^[0-9+]{12}$/)).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
+
   nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
   /*contact:Joi.string().trim().required()
     .min(7)
