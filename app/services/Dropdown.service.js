@@ -6,7 +6,8 @@ const dbFunc = require('../../config/db-function')
 const DropdownService = {
     getBranches,
     getPosts,
-    getSavingAccPlans
+    getSavingAccPlans,
+    getLoanPlans
 }
 
 
@@ -45,6 +46,21 @@ function getPosts() {
 function getSavingAccPlans() {
     return new Promise((resolve, reject) => {
         db.query('SELECT acc_plan_id, name from saving_account_plan', (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function getLoanPlans() {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from loan_plan', (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
