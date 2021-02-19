@@ -3,7 +3,8 @@ const dbFunc = require('../../config/db-function')
 
 const LoanModel = {
     addStdLoan,
-    addOnlineLoan
+    addOnlineLoan,
+    addMonthlyPay
 }
 
 function addStdLoan(loan) {
@@ -30,6 +31,24 @@ function addOnlineLoan(loan) {
     //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_online_loan.sql 
     return new Promise((resolve, reject) => {
         db.query(`CALL add_online_loan(?,?,?,?,?)`, acc, (error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function addMonthlyPay(payment) {
+
+    //TODO: set "payment" attribute appropriate to the data passing -- checkout ../document/sql_scripts/loan_payment.sql 
+    return new Promise((resolve, reject) => {
+        db.query(`CALL loan_payment(?)`, payment, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
