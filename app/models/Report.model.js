@@ -1,61 +1,60 @@
-
 const db = require('../../config/database');
 const dbFunc = require('../../config/db-function')
 
-const OrgModel = {
-    getOrgDetails,
-    addOrg,
-    getOrgDetailsByUsername
-};
+ReportModel = {
+    getAllDeposits,
+    getAllWithdraws,
+    getAllTransfers
+}
 
-function getOrgDetails(id) {
+function getAllDeposits(dates) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from organization where user_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT * from transaction natural join deposit',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });
 }
 
-function getOrgDetailsByUsername(username) {
+function getAllWithdraws(dates) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT o.* from organization as o natural join user where username = ?',username, (error, rows, fields) => {
+        db.query('SELECT * from transaction natural join withdraw',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });
 }
 
-
-
-function addOrg(acc) {
-
-    //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_org.sql 
+function getAllTransfers(dates) {
     return new Promise((resolve, reject) => {
-        db.query(`CALL add_org(?,?,?,?,?,?,?,?,?,?,?)`, acc, (error, rows, fields) => {
-
+        db.query('SELECT * from transaction natural join transfer',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
-                reject(error);
+                reject(false);
+                return (false);
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });
 }
 
-module.exports = OrgModel;
