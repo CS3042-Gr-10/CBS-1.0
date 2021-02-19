@@ -121,6 +121,11 @@ async function registerOrganization(req,res){
             email:value.email,
             contact_no:parseInt(value.contact.split("-").join('')),
             branch:value.branch,
+            reg_no:value.org_id,
+            house_no:value.add_no,
+            street:value.add_street,
+            city:value.add_city,
+            postal_code:value.postal_code,
         }
         console.log(username);
 
