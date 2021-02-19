@@ -1,7 +1,6 @@
 CREATE DEFINER=`dev`@`%` PROCEDURE `add_org`(
 	IN username varchar(25),
 	IN password varchar(255), 
-	IN acc_level int(8),
     IN name varchar(25),
     IN contact_no int(10),
     IN branch_id int(5)
@@ -20,7 +19,7 @@ BEGIN
     START transaction;
     
         insert into user (user_type, username, password, acc_level)
-        value ("A", username, password, acc_level);
+        value ("A", username, password, "CUSTOMER");
         
         insert into account_owner (owner_id, owner_type)
         values (last_insert_id(), "O");

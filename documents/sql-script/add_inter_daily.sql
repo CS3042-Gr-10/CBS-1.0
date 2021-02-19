@@ -8,9 +8,9 @@ CREATE EVENT add_inter_daily
       BEGIN
 		DECLARE n INT DEFAULT 0;
 		DECLARE i INT DEFAULT 0;
-        declare sv_id int(32);
-        declare ins_rate decimal(4,2);
-        declare balance_i decimal(20,2);
+    declare sv_id int(32);
+    declare ins_rate decimal(4,2);
+    declare balance_i decimal(20,2);
         		
 		SELECT COUNT(*) FROM req_fds INTO n;
 		SET i=0;

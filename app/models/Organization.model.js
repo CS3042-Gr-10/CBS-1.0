@@ -44,7 +44,7 @@ function addOrg(acc) {
 
     //TODO: set "acc" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_org.sql 
     return new Promise((resolve, reject) => {
-        db.query(`CALL add_org(?,?,?,?,?,?)`, acc, (error, rows, fields) => {
+        db.query(`CALL add_org(?,?,?,?,?)`, acc, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
