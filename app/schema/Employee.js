@@ -33,4 +33,40 @@ const organizationLoanInfo = Joi.object().options({abortEarly:false}).keys({
   agree_check: Joi.string().valid('on').required(),
 });
 
-module.exports = { TransactionInfo,accountNumberInfo, customerLoanInfo, organizationLoanInfo}
+const IndividualSavingsInfo = Joi.object().options({abortEarly:false}).keys({
+  nic:Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
+  init_amount:Joi.number().required().label("Initial Amount"),
+  acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
+  savings_plan:Joi.string().valid('1','2','3','4','5','6','7','8').required(),
+  branch:Joi.string().required().max(15).label("Branch"),
+  agree_check:Joi.string().valid('on').required(),
+
+})
+
+const IndividualCurrentInfo = Joi.object().options({abortEarly:false}).keys({
+  nic:Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
+  init_amount:Joi.number().required().label("Initial Amount"),
+  acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
+  branch:Joi.string().required().max(15).label("Branch"),
+  agree_check:Joi.string().valid('on').required(),
+})
+
+const OrganizationSavingsInfo = Joi.object().options({abortEarly:false}).keys({
+  org_username:Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(15).message("User name must have maximum 30 characters.").required().label("Username"),
+  init_amount:Joi.number().required().label("Initial Amount"),
+  acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
+  savings_plan:Joi.string().valid('1','2','3','4','5','6','7','8').required(),
+  branch:Joi.string().required().max(15).label("Branch"),
+  agree_check:Joi.string().valid('on').required(),
+
+})
+
+const OrganizationCurrentInfo = Joi.object().options({abortEarly:false}).keys({
+  org_username:Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(15).message("User name must have maximum 30 characters.").required().label("Username"),
+  init_amount:Joi.number().required().label("Initial Amount"),
+  acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
+  branch:Joi.string().required().max(15).label("Branch"),
+  agree_check:Joi.string().valid('on').required(),
+})
+
+module.exports = { TransactionInfo,accountNumberInfo, customerLoanInfo, organizationLoanInfo, IndividualSavingsInfo ,IndividualCurrentInfo,OrganizationCurrentInfo,OrganizationSavingsInfo}

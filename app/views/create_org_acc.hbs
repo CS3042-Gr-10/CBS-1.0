@@ -35,12 +35,22 @@
         <div class="card-header">
             <h4>Create Account - Organization</h4>
         </div>
+        {{#if error}}
+            <div class="row alert alert-danger" role="alert">
+                {{error}}
+            </div>
+        {{/if}}
+        {{#if success}}
+            <div class="row alert alert-success" role="alert">
+                {{success}}
+            </div>
+        {{/if}}
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="/employee/{{user.user_id}}/addAccountOrganization" method="POST">
                 <div class="form-group row">
                     <label for="username" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Username</label>
                     <div class="col-lg-4 col-sm-4">
-                        <input type="text" id="username" name="username" class="form-control" required>
+                        <input type="text" id="org_username" name="org_username" class="form-control" required value="{{org_username}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -58,20 +68,11 @@
                         Plan</label>
                     <div class="col-lg-6 col-sm-6">
                         <select class="custom-select" id="savings_plan" name="savings_plan" required>
-                            <option selected>Select Savings Plan...</option>
-                            <option value="children" id="children">Children - 12%, no minimum</option>
-                            <option value="teen" id="teen">Teen - 11%, 500 minimum</option>
-                            <option value="adult" id="adult">Adult (18+) - 10%, 1000 minimum </option>
-                            <option value="senior" id="senior">Senior (60+) - 13%, 1000 minimum</option>
+                            <option value="default">Select Savings Plan...</option>
+                            {{#each savings_plan}}
+                                <option value="{{this.acc_plan_id}}">{{this.name}}</option>
+                            {{/each}}rs
                         </select>
-                    </div>
-                </div>
-                <div class="form-group row" id="incomeDetailsDiv">
-                    <label for='incomeDetails' class='col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3'>Income
-                        Details</label>
-                    <div class="col-lg-6 col-sm-6">
-                        <input type='file' class='form-control-file my-1' id='income_details' name='income_details'
-                            aria-describedby='incomeDetails' required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -82,7 +83,7 @@
                             <span class="input-group-text">SCR</span>
                         </div>
                         <input type="number" name="init_amount" id="init_amount" class="form-control"
-                            aria-label="Amount (to the nearest dollar)" min="1" required>
+                            aria-label="Amount (to the nearest dollar)" min="1" required name="init_amount" id="init_amount" value="{{init_amount}}">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
@@ -93,13 +94,10 @@
                     <div class="col-lg-5 col-sm-5">
                         <select class="custom-select" id="branch" name="branch" required>
                             <option value="default">Select the Branch...</option>
+                            {{#each branches}}
+                                <option value="{{this.branch_id}}">{{this.branch_name}}</option>
+                            {{/each}}
                         </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="reg_date" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Date</label>
-                    <div class="col-lg-5 col-sm-5">
-                        <input type="date" id="reg_date" name="reg_date" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">

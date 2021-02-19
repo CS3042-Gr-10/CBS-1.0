@@ -25,7 +25,7 @@ function addSavingAccount(acc) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows[0][0]);
             }
         });
     });
@@ -135,7 +135,7 @@ function withdrawSvAcc(wth) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows[0][0]);
             }
         });
     });

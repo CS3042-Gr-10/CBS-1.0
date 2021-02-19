@@ -2,14 +2,15 @@
 const db = require('../../config/database');
 const dbFunc = require('../../config/db-function')
 
-var OrgModel = {
+const OrgModel = {
     getOrgDetails,
-    addOrg
-}
+    addOrg,
+    getOrgDetailsByUsername
+};
 
 function getOrgDetails(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from organization where org_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT * from organization where user_id = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -21,6 +22,23 @@ function getOrgDetails(id) {
         });
     });
 }
+
+function getOrgDetailsByUsername(username) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT o.* from organization as o natural join user where username = ?',username, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
+
 
 function addOrg(acc) {
 

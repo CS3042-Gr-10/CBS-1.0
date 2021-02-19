@@ -30,17 +30,20 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="resolved and merged with developer">
-      <change afterPath="$PROJECT_DIR$/app/views/original_customer_dashboard.txt" afterDir="false" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="adding shit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Organization.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Organization.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/create_individual_acc.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/create_individual_acc.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/create_org_acc.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/create_org_acc.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_org.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_org.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -440,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613548179740</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="sample commit">
+      <created>1613726077511</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1613726077511</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,8 +469,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added template functions to BankManager.route.js" />
-    <MESSAGE value="database connection error" />
     <MESSAGE value="disabled database sessions" />
     <MESSAGE value="something" />
     <MESSAGE value="merging" />
@@ -484,7 +492,9 @@
     <MESSAGE value="additions" />
     <MESSAGE value="loan request from employee done.&#10;withdrawing and depositing done." />
     <MESSAGE value="resolved and merged with developer" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolved and merged with developer" />
+    <MESSAGE value="sample commit" />
+    <MESSAGE value="adding shit" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding shit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

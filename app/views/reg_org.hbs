@@ -31,23 +31,29 @@
         <div class="card-body">
             <form action="#" method="POST">
                 <div class="form-group row">
-                    <label for="org_name" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Organization Name</label>
+                    <label for="org_name" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Organization Username</label>
                     <div class="col-lg col-sm">
-                        <input type="text" id="org_name" name="org_name" class="form-control" required>
+                        <input type="text" id="org_name" name="org_name" class="form-control" required value="{{org_username}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="org_name" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Organization Registration No</label>
+                    <div class="col-lg col-sm">
+                        <input type="text" id="org_id" name="org_id" class="form-control" required value="{{org_id}}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="add_no" class="col-form-label col-sm-3 col-md-3 col-lg-3">Address</label>
                     <div class="col-lg col-sm input-group">
-                        <input type="text" id="add_no" name="add_no" placeholder="No." class="form-control col-2" required>
-                        <input type="text" id="add_street" name="add_street" placeholder="Street" class="form-control" required>
-                        <input type="text" id="add_city" name="add_city" placeholder="City" class="form-control col-4" required>
+                        <input type="text" id="add_no" name="add_no" placeholder="No." class="form-control col-2" required value="{{add_no}}">
+                        <input type="text" id="add_street" name="add_street" placeholder="Street" class="form-control" required value="{{add_street}}">
+                        <input type="text" id="add_city" name="add_city" placeholder="City" class="form-control col-4" required value="{{add_city}}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="zip_code" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Zip Code</label>
+                    <label for="postal_code" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Postal Code</label>
                     <div class="col-lg-3 col-sm-3">
-                        <input type="text" id="zip_code" name="zip_code" class="form-control" required>
+                        <input type="text" id="postal_code" name="postal_code" class="form-control" required value="{{postal_code}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -56,20 +62,15 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="contact_code">(+248)</span>
                         </div>
-                        <input type="tel" id="contact" name="contact" maxlength="7" class="form-control" required aria-describedby="contact_code">
+                        <input type="tel" id="contact" name="contact" class="form-control"
+                               placeholder="0712345678" maxlength="10" required aria-describedby="contact_code" value="{{contact}}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="email" class="col-form-label col-sm-3 col-md-3 col-lg-3">Email</label>
                     <div class="col-lg-7 col-md-7 col-sm-7">
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required value="{{email}}">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="username" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Username</label>
-                    <div class="col-lg-4 col-sm-4">
-                        <input type="text" id="username" name="username" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -77,13 +78,16 @@
                     <div class="col-lg- col-sm-4">
                         <select class="custom-select" id="branch" name="branch" required>
                             <option value="default">Select the Branch...</option>
+                            {{#each branches}}
+                                <option value="{{this.branch_id}}">{{this.branch_name}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="reg_date" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Date</label>
                     <div class="col-lg-4 col-sm-4">
-                        <input type="date" id="reg_date" name="reg_date" class="form-control" required>
+                        <input type="date" id="reg_date" name="reg_date" class="form-control" required value="{{reg_date}}">
                     </div>
                 </div>
                 <div class="form-group">
