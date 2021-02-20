@@ -30,12 +30,8 @@
     <main>
 
             <div class="container py-4">
-                <div>
-                    <h3>{{ user.first_name }} {{ user.last_name}}</h3>
-                    <hr class="my-4">
-                    <h5>Bank Manager of {{bm_branch}} branch</h5>
-                </div>
-                <h2 class="p-3 text-center">Loans that Require Approval</h2>
+
+                <h2 class="p-3 text-center">Loan Details</h2>
                 <hr>
                 <div class="container py-4">
                     <div class="text-center">
@@ -49,37 +45,37 @@
                                 {{success}}
                             </div>
                         {{/if}}
-                        {{#if loans}}
-                            {{#each loans}}
-                                <div class="card mb-2 shadow border-success rounded">
-                                    <a class="card-block stretched-link text-decoration-none" href="{{this.url}}"></a>
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            Loan ID : {{this.loan_id}}
-
-                                        </h5>
-                                        <div class="row text-secondary" style="letter-spacing:3;">
-                                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                                <p class="card-text"><i class="fas fa-envelope" style="margin-right: 6px;"></i>
-                                                    Customer ID : {{this.customer_id}}
-                                                </p>
-                                            </div>
-                                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                               <p> Loan Amount :- {{this.loaned_amount}} </p>
-                                            </div>
-                                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                                <p> Account type :- {{this.acc_type}} </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {{/each}}
-                        {{else}}
-                            <div class="alert alert-warning" role="alert">
-                                <h5>There are no loans</h5>
-                            </div>
-                        {{/if}}
+                        <pre>
+                            {{customer.first_name}}
+                            {{customer.last_name}}
+                            {{customer.NIC}}
+                            {{cus_user.email}}
+                            {{loan.loan_id}}
+                            {{loan.loaned_amount}}
+                            {{loan_plan.loan_plan_name}}
+                            {{loan_plan.interrest_rate}}
+                            {{loan_plan.period}}
+                            {{customer.gender}}
+                            {{customer.postal_code}}
+                            {{customer.contact_primary}}
+                            {{customer.house_no}}
+                            {{customer.street}}
+                            {{customer.city}}
+                        </pre>
                     </div>
+                    <form action="/BankManager/{{user.user_id}}/LoanDetails/{{loan.loan_id}}" method="POST">
+                        <div class="form-group row">
+                            <label for="acc_type" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Preference</label>
+                            <div class="col-lg-5 col-sm-5">
+                                <select class="custom-select" id="approval" name="approval" required>
+                                    <option selected>Approve or Reject</option>
+                                    <option value="accept">Approve</option>
+                                    <option value="reject">Reject</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Save Changes">
+                    </form>
 
                 </div>
             </div>

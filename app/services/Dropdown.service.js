@@ -7,7 +7,8 @@ const DropdownService = {
     getBranches,
     getPosts,
     getSavingAccPlans,
-    getLoanPlans
+    getLoanPlans,
+    getLoanPlanById,
 }
 
 
@@ -68,6 +69,21 @@ function getLoanPlans() {
 
                 dbFunc.connectionRelease;
                 resolve(rows);
+            }
+        });
+    });
+}
+
+function getLoanPlanById(plan_id) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from loan_plan where loan_plan_id =?',plan_id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
             }
         });
     });

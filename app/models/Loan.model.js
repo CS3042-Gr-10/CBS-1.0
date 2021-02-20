@@ -4,7 +4,9 @@ const dbFunc = require('../../config/db-function')
 const LoanModel = {
     addStdLoan,
     addOnlineLoan,
-    addMonthlyPay
+    addMonthlyPay,
+    getLoanForApproval,
+    getLoanDetails,
 }
 
 function addStdLoan(loan) {
@@ -61,5 +63,37 @@ function addMonthlyPay(payment) {
         });
     });
 }
+
+function getLoanForApproval(branch_id){
+    return new Promise((resolve, reject) => {
+        db.query(`SELECT * FROM loan NATURAL JOIN standard_loan WHERE state="PENDING" AND branch_id =? order by loan_id DESC limit 10  `, branch_id ,(error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function getLoanDetails(loan_id){
+    return new Promise((resolve, reject) => {
+        db.query(`SELECT * FROM loan NATURAL JOIN standard_loan WHERE loan_id=? `, loan_id ,(error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
+
 
 module.exports = LoanModel;
