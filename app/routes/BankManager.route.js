@@ -28,10 +28,25 @@ async function ApproveLoan(req,res){
         if(error) throw error;
 
         const loan = await  LoanModel.getLoanDetails(req.params.loan_id);
+        if(!loan) throw new Errors.InternalServerError("Something went wrong")
 
-
+        if(req.body.approval === "accept"){
+            await LoanModel.acceptStdLoan([req.params.loan_id,1]).then(()=>{
+                res.redirect(`/BankManager/${req.params.id}/ApproveLoan?success=Successfully accepted loan`)
+                }).catch((err)=>{
+                    console.log(err);
+                res.redirect(`/BankManager/${req.params.id}/ApproveLoan?error=${err}`)
+            });
+        }else {
+            await LoanModel.acceptStdLoan([req.params.loan_id,0]).then(()=>{
+                res.redirect(`/BankManager/${req.params.id}/ApproveLoan?success=Successfully Rejected loan`)
+            }).catch((err)=>{
+                console.log(err);
+                res.redirect(`/BankManager/${req.params.id}/ApproveLoan?error=${err}`)
+            });
+        }
     }catch (e) {
-
+        res.redirect(`/BankManager/${req.params.id}/ApproveLoan?error=${e}`)
     }
 }
 

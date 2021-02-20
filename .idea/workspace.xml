@@ -30,15 +30,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="removing errors in login and completing bank manager home">
-      <change afterPath="$PROJECT_DIR$/app/schema/BankManager.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/bm_loan_details_individual.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/bm_loan_details_organization.hbs" afterDir="false" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="resolved and merged with developer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Loan.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Loan.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/Dropdown.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/Dropdown.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bm_loan_approval.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_loan_approval.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -473,7 +468,21 @@
       <option name="project" value="LOCAL" />
       <updated>1613826296454</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="added loan details functionality">
+      <created>1613833866599</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1613833866599</updated>
+    </task>
+    <task id="LOCAL-00046" summary="resolved and merged with developer">
+      <created>1613834002010</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1613834002010</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,7 +501,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edits to route" />
     <MESSAGE value="changes to route" />
     <MESSAGE value="adding an employee" />
     <MESSAGE value="merge and resolving conflicts" />
@@ -510,14 +518,15 @@
     <MESSAGE value="Adding email sending functionality to customer creation and employee creation fixes #37" />
     <MESSAGE value="additions" />
     <MESSAGE value="loan request from employee done.&#10;withdrawing and depositing done." />
-    <MESSAGE value="resolved and merged with developer" />
     <MESSAGE value="sample commit" />
     <MESSAGE value="adding shit" />
     <MESSAGE value="adding registration of oraganization adding accounts functionality" />
     <MESSAGE value="additional fields for employee" />
     <MESSAGE value="registration of organization reformatted" />
     <MESSAGE value="removing errors in login and completing bank manager home" />
-    <option name="LAST_COMMIT_MESSAGE" value="removing errors in login and completing bank manager home" />
+    <MESSAGE value="added loan details functionality" />
+    <MESSAGE value="resolved and merged with developer" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolved and merged with developer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
