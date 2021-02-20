@@ -29,17 +29,21 @@
     <div class="card border-primary reg_card">
         <div class="card-header"><h4>Create Account - Individual</h4></div>
         <div class="card-body">
-            <form action="#" method="POST">
-                <div class="form-group row">
-                    <label for="username" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Username</label>
-                    <div class="col-lg-5 col-sm-5">
-                        <input type="text" name="username" id="username" class="form-control" required>
-                    </div>
+            {{#if error}}
+                <div class="row alert alert-danger" role="alert">
+                    {{error}}
                 </div>
+            {{/if}}
+            {{#if success}}
+                <div class="row alert alert-success" role="alert">
+                    {{success}}
+                </div>
+            {{/if}}
+            <form action="/employee/{{user.user_id}}/addAccountIndividual" method="POST">
                 <div class="form-group row">
-                    <label for="nic" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">NIC No.</label>
+                    <label for="username" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">NIC</label>
                     <div class="col-lg-5 col-sm-5">
-                        <input type="text" id="nic" name="nic" class="form-control" required>
+                        <input type="text" name="nic" id="nic" class="form-control" required value="{{nic}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -54,21 +58,12 @@
                 </div>
                 <div class="form-group row" id="savingsPlanDiv">
                     <label for='savings_plan' class='col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3'>Savings Plan</label>
-                    <div class="col-lg-6 col-sm-6">
-                        <select class="custom-select" id="savings_plan" name="savings_plan" required>
-                            <option selected>Select Savings Plan...</option>
-                            <option value="children" id="children">Children - 12%, no minimum</option>
-                            <option value="teen" id="teen">Teen - 11%, 500 minimum</option>
-                            <option value="adult" id="adult">Adult (18+) - 10%, 1000 minimum </option>
-                            <option value="senior" id="senior">Senior (60+) - 13%, 1000 minimum</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row" id="incomeDetailsDiv">
-                    <label for='incomeDetails' class='col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3'>Income Details</label>
-                    <div class="col-lg-6 col-sm-6">
-                        <input type='file' class='form-control-file my-1' id='income_details' name='income_details' aria-describedby='incomeDetails' required>
-                    </div>
+                    <select class="custom-select" id="savings_plan" name="savings_plan">
+                        <option selected>Select Savings Plan...</option>
+                        {{#each savings_plan}}
+                            <option value="{{this.acc_plan_id}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
                 </div>
                 <div class="form-group row">
                     <label for="init_amount" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Initial Amount</label>
@@ -76,7 +71,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">SCR</span>
                         </div>
-                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" min="1" required>
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" min="1" name="init_amount" id="init_amount" required value="{{init_amount}}">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
@@ -87,13 +82,10 @@
                     <div class="col-lg-5 col-sm-5">
                         <select class="custom-select" id="branch" name="branch" required>
                             <option value="default">Select the Branch...</option>
+                            {{#each branches}}
+                                <option value="{{this.branch_id}}">{{this.branch_name}}</option>
+                            {{/each}}
                         </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="reg_date" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Date</label>
-                    <div class="col-lg-5 col-sm-5">
-                        <input type="date" id="reg_date" name="reg_date" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">

@@ -10,6 +10,7 @@ function authentic(authenticData) {
         authenticModel.authentic(authenticData).then((data)=>{
             resolve(data);
         }).catch((err) => {
+            console.log(err)
             reject(err);
         })
     })
