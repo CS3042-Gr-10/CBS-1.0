@@ -127,7 +127,7 @@ function withdrawSvAcc(wth) {
 
     //TODO: set "wth" attribute appropriate to the data passing -- checkout ../document/sql_scripts/withdraw_mn_sv_acc.sql
     return new Promise((resolve, reject) => {
-        db.query(`CALL withdraw_sv_acc(?,?,?)`, wth, (error, rows, fields) => {
+        db.query(`CALL withdraw_mn_sv_acc(?,?,?)`, wth, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
@@ -135,7 +135,7 @@ function withdrawSvAcc(wth) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0][0]);
+                resolve(rows[0]);
             }
         });
     });

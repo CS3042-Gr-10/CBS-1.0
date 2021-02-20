@@ -445,6 +445,7 @@ async function registerCustomer(req, res){
 
 async function customerLoanPage(req,res){
     const branches = await DropdownService.getBranches();
+    const loan_plan = await DropdownService.getLoanPlans();
 
     res.render('employee_new_loan',{
         error:req.query.error,
@@ -454,8 +455,7 @@ async function customerLoanPage(req,res){
         nic:req.query.nic,
         income:req.query.income,
         amount:req.query.amount,
-        interest:req.query.interest,
-        time:req.query.time,
+        loan_plan:loan_plan,
     });
 }
 
@@ -472,8 +472,7 @@ async function customerLoan(req,res){
         let Loan = {
             customer_id_d: customer.user_id,
             loaned_amount_d:parseFloat(value.amount),
-            inter_rate:parseFloat(value.interest),
-            aggreed_num_inst_d:installment,
+            loan_plan_id_d:parseInt(value.loan_plan),
             branch_id_d:parseInt(value.branch),
         }
 
@@ -489,13 +488,13 @@ async function customerLoan(req,res){
 
     }catch (err) {
         console.log(err);
-        res.redirect(`/employee/${req.params.id}?error=${err.message}&nic=${req.body.nic}&income=${req.body.income}&amount=${req.body.amount}&interest=${req.body.interest}&time${req.body.time}`)
+        res.redirect(`/employee/${req.params.id}?error=${err.message}&nic=${req.body.nic}&income=${req.body.income}&amount=${req.body.amount}`)
     }
 }
 
 async function organizationLoanPage(req,res){
     const branches = await DropdownService.getBranches();
-    const posts = await DropdownService.getPosts();
+    const loan_plan = await DropdownService.getLoanPlans();
 
     res.render('employee_new_loan_organization',{
         error:req.query.error,
@@ -505,8 +504,7 @@ async function organizationLoanPage(req,res){
         org_id:req.query.org_id,
         income:req.query.income,
         amount:req.query.amount,
-        interest:req.query.interest,
-        time:req.query.time,
+        loan_plan:loan_plan,
     });
 }
 
@@ -515,7 +513,7 @@ async function organizationLoan(req,res){
         const { value, error } = await organizationLoanInfo.validate(req.body);
         if (error) throw (error);
 
-        const customer = await OrganizationModel.getOrgDetails(value.org_id);
+        const customer = await OrganizationModel.getOrgDetailsByRegNo(value.org_id);
         if (!customer) throw new Errors.NotFound("Customer not found");
 
         const installment = (parseFloat(value.amount)*parseFloat(value.interest))/parseInt(value.time)
@@ -523,8 +521,7 @@ async function organizationLoan(req,res){
         let Loan = {
             customer_id_d: customer.user_id,
             loaned_amount_d:parseFloat(value.amount),
-            inter_rate:parseFloat(value.interest),
-            aggreed_num_inst_d:installment,
+            loan_plan_id_d:parseInt(value.loan_plan),
             branch_id_d:parseInt(value.branch),
         }
 
@@ -540,7 +537,7 @@ async function organizationLoan(req,res){
 
     }catch (err) {
         console.log(err);
-        res.redirect(`/employee/${req.params.id}?error=${err.message}&org_id=${req.body.org_id}&income=${req.body.income}&amount=${req.body.amount}&interest=${req.body.interest}&time${req.body.time}`)
+        res.redirect(`/employee/${req.params.id}?error=${err.message}&org_id=${req.body.org_id}&income=${req.body.income}&amount=${req.body.amount}`)
     }
 }
 
@@ -644,7 +641,7 @@ async function customerTransaction(req,res){
             await AccountModel.withdrawSvAcc(withdraw).then((data)=>{
                 console.log(data);
                 if (data[0].result == 1){
-                    res.redirect(`/employee/${req.params.id}?success=Successfully Savings amount`)
+                    res.redirect(`/employee/${req.params.id}?success=Withdrawing ${value.amount} from ${value.accNum} Savings account was Successful`)
                 }else if(data[0].result == 0){
                     throw new Errors.BadRequest("Not enough account balance");
                 }else if(data[0].result == 3){
@@ -671,8 +668,8 @@ async function customerTransaction(req,res){
             await AccountModel.depositMoneySvAcc(deposit).then((data)=>{
                 console.log(data);
                 if (data[0].result == 1){
-                    res.redirect(`/employee/${req.params.id}?success=Successfully deposited amount`)
-                }else if(data.result[0] == 3){
+                    res.redirect(`/employee/${req.params.id}?success=Successfully deposited ${value.amount} to account ${value.accNum}`)
+                }else if(data[0].result == 3){
                     throw new Errors.BadRequest("Entered a negative balance");
                 }else {
                     throw new Errors.InternalServerError("Something went wrong")

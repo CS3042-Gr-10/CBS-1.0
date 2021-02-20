@@ -30,13 +30,23 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="additional fields for employee">
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="registration of organization reformatted">
+      <change afterPath="$PROJECT_DIR$/app/views/bm_loan_approval.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Organization.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Organization.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Loan.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Loan.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/User.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/User.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/branch.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Branch.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/schema/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/authentic.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/authentic.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/create_org_acc.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/create_org_acc.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_new_loan.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_new_loan.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/reg_org.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_org.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -458,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613737689418</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="registration of organization reformatted">
+      <created>1613739199343</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1613739199343</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +494,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merging" />
     <MESSAGE value="correcting imports" />
     <MESSAGE value="edits to route" />
     <MESSAGE value="changes to route" />
@@ -502,7 +518,8 @@
     <MESSAGE value="adding shit" />
     <MESSAGE value="adding registration of oraganization adding accounts functionality" />
     <MESSAGE value="additional fields for employee" />
-    <option name="LAST_COMMIT_MESSAGE" value="additional fields for employee" />
+    <MESSAGE value="registration of organization reformatted" />
+    <option name="LAST_COMMIT_MESSAGE" value="registration of organization reformatted" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

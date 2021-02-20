@@ -1,6 +1,8 @@
 const authenticService = require('../services/authentic.service');
 const {LogInInfo} = require('../schema/Authentication')
 const mail = require('./../../common/mailer.js');
+const UserModel = require('../models/User.model');
+const Errors = require('../../common/error');
 const SessionHandler = require('../../config/SessionHandler');
 
 
@@ -30,6 +32,10 @@ async function authentic (req, res) {
   try {
     const { value, error } = await LogInInfo.validate(req.body);
     if (error) throw (error);
+
+    const user = await UserModel.userExists(authenticData.username);
+    if(!user) throw new Errors.NotFound("Incorrect Username");
+
     authenticService.authentic(authenticData).then((data) => {
       if (data) {
          console.log(data.acc_level)
@@ -57,10 +63,10 @@ async function authentic (req, res) {
         }
       }
     }).catch((err) => {
-      res.redirect(`/?error=${err}`);
+        res.redirect(`/?error=${err.message}`);
     });
-  } catch (e) {
-    res.redirect(`/?error=${e}`);
+  } catch (err) {
+      res.redirect(`/?error=${err.message}`);
   }
 }
 

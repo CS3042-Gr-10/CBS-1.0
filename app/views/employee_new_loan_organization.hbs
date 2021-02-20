@@ -31,7 +31,7 @@
 <body>
 <div class="card border-primary reg_card">
     <div class="card-header">
-        <h4>Employee Registration Form</h4>
+        <h4>Organization Loan Form</h4>
     </div>
     {{#if error}}
         <div class="row alert alert-danger" role="alert">
@@ -40,10 +40,10 @@
     {{/if}}
     <form action="/employee/{{user.user_id}}/organizationLoan" method="POST">
         <div class="form-group row">
-            <label for="org_id" class="col-form-label ml-3">Organization Id</label>
+            <label for="org_id" class="col-form-label ml-3">Organization Reg Number</label>
             <div class="input-group col-lg col-sm">
-                <input type="text" id="org_username" name="org_username" placeholder="Organization username"
-                       class="form-control" required value="{{org_username}}">
+                <input type="text" id="org_id" name="org_id" placeholder="Organization Reg Number"
+                       class="form-control" required value="{{org_id}}">
             </div>
         </div>
         <div class="form-group row">
@@ -57,16 +57,16 @@
                 <input type="text" id="amount" name="amount" placeholder="amount"
                        class="form-control" required value="{{amount}}">
             </div>
-            <label for="time" class="col-form-label ml-3">Number of Months</label>
-            <div class="input-group col-lg col-sm">
-                <input type="text" id="time" name="time" placeholder="Number of Months"
-                       class="form-control" required value="{{time}}">
-            </div>
         </div>
         <div class="form-group row">
-            <label for="interest" class="col-form-label ml-3">Interest Rate %</label>
+            <label class="my-2 ml-3" for="loan_plan">Loan Plans</label>
             <div class="col-lg-2 col-sm-2">
-                <input type="text" id="interest" name="interest" class="form-control" required value="{{interest}}" maxlength = "15">
+                <select class="custom-select" id="loan_plan" name="loan_plan" required>
+                    <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                    {{#each loan_plan}}
+                        <option value="{{this.loan_plan_id}}">{{this.loan_plan_name}} plan at {{this.interrest_rate}} for {{this.period}} months</option>
+                    {{/each}}
+                </select>
             </div>
         </div>
         <div class="form-group row">
