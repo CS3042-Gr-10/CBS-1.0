@@ -17,9 +17,17 @@ function init(router) {
     router.route('/BankManager/:id/LoanDetails/:loan_id')
         .get(LoanDetailsPage)
         .post(ApproveLoan)
+    router.route('/BankManager/:id/TransactionReport')
+        .post(TransactionReport)
+    router.route('/BankManager/:id/LateLoanReport')
+        .post()
   }
 
 
+
+async function TransactionReport(req,res){
+
+}
 
 async function ApproveLoan(req,res){
     // a list of bank loans that that require approval
