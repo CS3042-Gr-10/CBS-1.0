@@ -9,6 +9,16 @@ const usernameInfo = Joi.object().options({abortEarly:false}).keys({
   username:Joi.string().required().label("Username")
 })
 
+const changeUsernameInfo = Joi.object().options({abortEarly:false}).keys({
+    currentUsername:Joi.string().required().label("Current Username"),
+    newUsername:Joi.string().required().label("New Username"),
+});
+
+const changePasswordInfo = Joi.object().options({abortEarly:false}).keys({
+    newPassword: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).message("Password should consist between 3-30 characters.").required().label("Password"),
+    confirmPassword: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).message("Password should consist between 3-30 characters.").valid(Joi.ref('newPassword')).label("Confirmation Password").required(),
+});
+
 const nicInfo = Joi.object().options({abortEarly:false}).keys({
  /* nic:Joi.string().required().label("NIC Number")
    // .min(10)
@@ -21,4 +31,4 @@ const nicInfo = Joi.object().options({abortEarly:false}).keys({
     .message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),  //for new and old nic 
 })
 
-module.exports = { LogInInfo, usernameInfo, nicInfo }
+module.exports = { LogInInfo, usernameInfo, nicInfo,changePasswordInfo, changeUsernameInfo }

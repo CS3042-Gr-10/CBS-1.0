@@ -58,6 +58,7 @@ async function indexAction(req,res){
             throw new Errors.BadRequest('An Error Occurred in the Database');
         }
 
+        console.log(req.session.user);
         Emp = {
             ...Emp,
             ...req.session.user

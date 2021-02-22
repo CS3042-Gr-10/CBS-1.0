@@ -30,14 +30,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="before merge">
-      <change afterPath="$PROJECT_DIR$/app/views/bm_late_loan_report.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/bm_transaction_report.hbs" afterDir="false" />
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Report Generation complete need to check front end work fixes #60 and #59 and #56">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Report.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Report.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/BankManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/BankManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/authentic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/authentic.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Authentication.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/authentic.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/authentic.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +165,7 @@
       <workItem from="1613101531110" duration="4895000" />
       <workItem from="1613294425499" duration="46818000" />
       <workItem from="1613533672099" duration="17067000" />
-      <workItem from="1613971821600" duration="8425000" />
+      <workItem from="1613971821600" duration="15889000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -501,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613938165772</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Report Generation complete need to check front end work fixes #60 and #59 and #56">
+      <created>1613980460784</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1613980460784</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +529,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding an employee" />
     <MESSAGE value="merge and resolving conflicts" />
     <MESSAGE value="some changes" />
     <MESSAGE value="adding Customer Account done" />
@@ -545,7 +553,8 @@
     <MESSAGE value="resolved and merged with developer" />
     <MESSAGE value="error corrections" />
     <MESSAGE value="before merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="before merge" />
+    <MESSAGE value="Report Generation complete need to check front end work fixes #60 and #59 and #56" />
+    <option name="LAST_COMMIT_MESSAGE" value="Report Generation complete need to check front end work fixes #60 and #59 and #56" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
