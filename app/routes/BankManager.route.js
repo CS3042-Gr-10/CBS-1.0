@@ -7,7 +7,10 @@ const OrganizationModel = require('../models/Organization.model');
 const UserModel = require('../models/User.model');
 const DropdownService = require('../services/Dropdown.service');
 const AccountModel = require('../models/Account.model');
-const { stdLoanApprovalInfo } = require('../schema/BankManager')
+const ReportModel = require('../models/Report.model');
+const { stdLoanApprovalInfo, TransactionReportInfo } = require('../schema/BankManager');
+const  { ymd } = require('../../common/dateFormat');
+const { ObjectToList } = require('../../common/helpers');
 
 function init(router) {
     router.route('/BankManager/:id')
@@ -20,13 +23,106 @@ function init(router) {
     router.route('/BankManager/:id/TransactionReport')
         .post(TransactionReport)
     router.route('/BankManager/:id/LateLoanReport')
-        .post()
+        .get(LateLoanReport)
   }
 
+async function LateLoanReport(req,res){
+    try {
+        const userID = req.session.user.user_id;
+        let Emp = await EmployeeModel.getEmpDetailsByID(userID);
+        // console.log(Emp);
+        const bm_branch = await BranchModel.branchDetailsOfManager(userID);
+        if (!Emp){
+            throw new Errors.BadRequest('An Error Occurred in the Database');
+        }
 
+        let dates = {
+            start_date: '1800-01-02',
+            end_date: ymd(new Date()),
+        }
+
+        // dates = ObjectToList(value);
+        dates = ObjectToList(dates);
+        console.log(dates)
+        const loan_payments = await ReportModel.getAllLoanPayments(dates);
+        console.log(loan_payments);
+        const unpaid = await ReportModel.getUnpaidLoan();
+
+        let combined=[];
+        for (let num=0;num<unpaid.length;num++){
+            let loan_plan = await DropdownService.getLoanPlanById(unpaid[num].loan_plan_id);
+            combined.push({
+                ...unpaid[num],
+                ...loan_plan,
+            });
+        }
+        console.log(combined);
+
+
+        res.render('bm_late_loan_report',{
+            bm_branch:bm_branch,
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            start_date:dates[0],
+            end_date:dates[1],
+            unpaid:combined,
+            loan_payments,
+        })
+
+    }catch (e) {
+        res.redirect(`/BankManager/${req.params.id}?error=${e}`)
+    }
+}
 
 async function TransactionReport(req,res){
+    try {
+        const userID = req.session.user.user_id;
+        let Emp = await EmployeeModel.getEmpDetailsByID(userID);
+        // console.log(Emp);
+        const bm_branch = await BranchModel.branchDetailsOfManager(userID);
+        if (!Emp){
+            throw new Errors.BadRequest('An Error Occurred in the Database');
+        }
 
+        const {value,error} = await TransactionReportInfo.validate(req.body);
+        if(error) throw error;
+
+        let dates = {
+            start_date: ymd(new Date(value.start_date.toString().split(' ').slice(1,4).join(' '))),
+            end_date: ymd(new Date(value.end_date.toString().split(' ').slice(1,4).join(' '))),
+        }
+
+        // dates = ObjectToList(value);
+        dates = ObjectToList(dates);
+        console.log(dates)
+        const deposits = await ReportModel.getAllDeposits(dates);
+        console.log(deposits);
+        const withdrawal = await ReportModel.getAllWithdraws(dates);
+        console.log(withdrawal);
+        const transfer = await ReportModel.getAllTransfers(dates);
+        console.log(transfer);
+        const loan_payments = await ReportModel.getAllLoanPayments(dates);
+        console.log(loan_payments);
+        console.log(value);
+
+
+        res.render('bm_transaction_report',{
+            bm_branch:bm_branch,
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            start_date:dates[0],
+            end_date:dates[1],
+            deposits,
+            withdrawal,
+            transfer,
+            loan_payments,
+        })
+
+    }catch (e) {
+        res.redirect(`/BankManager/${req.params.id}?error=${e}`)
+    }
 }
 
 async function ApproveLoan(req,res){

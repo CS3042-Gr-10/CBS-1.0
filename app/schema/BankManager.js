@@ -5,8 +5,8 @@ const stdLoanApprovalInfo = Joi.object().options({ abortEarly: false }).keys({
 });
 
 const TransactionReportInfo = Joi.object().options({abortEarly: false}).keys({
-    start_date:Joi.date().iso(),
-    end_date:Joi.date().iso().min(Joi.ref('start_date')).message("Start Date must be less than")
+    start_date:Joi.date().iso().label("Start Date").required(),
+    end_date:Joi.date().iso().min(Joi.ref('start_date')).message("Start Date must be earlier than End Date").label("End Date").required()
 });
 
 module.exports = { stdLoanApprovalInfo, TransactionReportInfo }
