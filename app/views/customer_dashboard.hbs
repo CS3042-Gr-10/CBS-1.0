@@ -133,7 +133,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="dashboard.html" method="POST">
+                <form action="/changePassword/{{User.user_id}}" method="POST">
                     <div class="modal-body">
                         <fieldset disabled="disabled">
                             <div class="form-group form-inline mt-1">
@@ -142,11 +142,6 @@
                                     }}>
                             </div>
                         </fieldset>
-                        <div class="form-group form-inline">
-                            <label for="currentPassword" class="col-sm-2 col-form-label">Current Password</label>
-                            <input type="password" id="currentPassword" name="currentPassword"
-                                class="form-control mx-sm-3" placeholder="Enter Current Password" required>
-                        </div>
                         <div class="form-group form-inline">
                             <label for="newPassword" class="col-sm-2 col-form-label">Password</label>
                             <input type="password" id="newPassword" name="newPassword" class="form-control mx-sm-3"
