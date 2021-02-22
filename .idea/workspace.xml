@@ -30,10 +30,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="resolved and merged with developer">
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="before merge">
+      <change afterPath="$PROJECT_DIR$/app/views/bm_late_loan_report.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/bm_transaction_report.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Loan.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Loan.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Report.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Report.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/BankManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/BankManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +163,7 @@
       <workItem from="1613101531110" duration="4895000" />
       <workItem from="1613294425499" duration="46818000" />
       <workItem from="1613533672099" duration="17067000" />
+      <workItem from="1613971821600" duration="8425000" />
     </task>
     <task id="LOCAL-00001" summary="Increasing BankManager functionality">
       <created>1608377195585</created>
@@ -482,7 +487,21 @@
       <option name="project" value="LOCAL" />
       <updated>1613834002010</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="error corrections">
+      <created>1613838083412</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1613838083412</updated>
+    </task>
+    <task id="LOCAL-00048" summary="before merge">
+      <created>1613938165772</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1613938165772</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,7 +520,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changes to route" />
     <MESSAGE value="adding an employee" />
     <MESSAGE value="merge and resolving conflicts" />
     <MESSAGE value="some changes" />
@@ -514,7 +532,6 @@
     <MESSAGE value="adding Account to existing customer functionality tested Fixes #39" />
     <MESSAGE value="midpoints" />
     <MESSAGE value="merge and resolve developer" />
-    <MESSAGE value="before merge" />
     <MESSAGE value="Adding email sending functionality to customer creation and employee creation fixes #37" />
     <MESSAGE value="additions" />
     <MESSAGE value="loan request from employee done.&#10;withdrawing and depositing done." />
@@ -526,7 +543,9 @@
     <MESSAGE value="removing errors in login and completing bank manager home" />
     <MESSAGE value="added loan details functionality" />
     <MESSAGE value="resolved and merged with developer" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolved and merged with developer" />
+    <MESSAGE value="error corrections" />
+    <MESSAGE value="before merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="before merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -16,12 +16,10 @@ function getAllDeposits(dates) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
-                return (false);
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
-                return (rows[0]);
+                resolve(rows);
             }
         });
     });
@@ -33,12 +31,9 @@ function getAllWithdraws(dates) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
-                return (false);
             } else {
-
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
-                return (rows[0]);
+                resolve(rows);
             }
         });
     });
@@ -50,12 +45,10 @@ function getAllTransfers(dates) {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
-                return (false);
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
-                return (rows[0]);
+                resolve(rows);
             }
         });
     });
@@ -63,16 +56,14 @@ function getAllTransfers(dates) {
 
 function getAllLoanPayments(dates) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from transaction where state = "LOAN" and date between ? and ?',dates, (error, rows, fields) => {
+        db.query('SELECT * from transaction natural join loan_payment where trans_type = "LOAN" and date between ? and ?',dates, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
-                return (false);
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
-                return (rows[0]);
+                resolve(rows);
             }
         });
     });
@@ -80,17 +71,17 @@ function getAllLoanPayments(dates) {
 
 function getUnpaidLoan() {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from loan_detail where state = "NOT-PAID"',dates, (error, rows, fields) => {
+        db.query('SELECT * from loan_detail where loan_state = "NOT-PAID"', (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
-                return (false);
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
-                return (rows[0]);
+                resolve(rows);
             }
         });
     });
 }
+
+module.exports = ReportModel;

@@ -54,24 +54,24 @@
         <div class="wrapper_2">
             <div>
                 <h4>Transaction Report</h4>
-                <form action="#" method="POST">
+                <form action="/BankManager/{{user.user_id}}/TransactionReport" method="POST">
                     <div class="form-row mt-3">
                         <div class="col">
-                            <input type="date" class="form-control" placeholder="Starting Date">
+                            <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Starting Date">
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" placeholder="Ending Date">
+                            <input type="date" class="form-control" id="end_date" name="end_date" placeholder="Ending Date">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3">Generate Report</button>
+                    <input type="submit" class="btn btn-primary" value="Generate Report">
                 </form>
             </div>
             <div>
                 <h4>Late Loan Installment Report</h4>
-                <form action="#" method="POST">
+                <form action="/BankManager/{{user.user_id}}/LateLoanReport" method="GET">
                     <div class="form-row mt-3">
                     </div>
-                    <button type="button" class="btn btn-primary mt-3">Generate Report</button>
+                    <input type="submit" class="btn btn-primary" value="Generate Report">
                 </form>
             </div>
             <div class="three_buttons">
