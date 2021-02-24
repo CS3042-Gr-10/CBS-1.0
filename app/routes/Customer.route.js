@@ -2,13 +2,19 @@ const ifLoggedIn = require('./../Middleware/ifLoggedIn');
 const Errors = require('./../../common/error');
 const ifCustomer = require('./../Middleware/ifCustomer');
 const CustomerModel = require('../models/Customer.model');
+const UserModel = require('../models/User.model');
 const AccountModel = require('../models/Account.model');
+const TransactionModel = require('../models/Transaction.model');
 const OrganizationModel = require('../models/Organization.model');
-const UserModel = require('../services/user.service');
+const LoanModel = require('../models/Loan.model');
+const UserServices = require('../services/user.service');
+const DropdownService = require('../services/Dropdown.service');
+const EmployeeModel = require('../models/Employee.model');
+
 
 function init(router) {
-    router.use('/Customer', ifLoggedIn)
-    router.use('/Customer', ifCustomer)
+    //router.use('/Customer', ifLoggedIn)
+    //router.use('/Customer', ifCustomer)
     router.route('/Customer/:id')
         .get(indexAction);
     router.route('/Customer/:id/startFD')
@@ -19,8 +25,9 @@ function init(router) {
 async function indexAction(req,res){
     //EmployeeService.
     try{
+        console.log(req.session.user)
         const userID = req.session.user.user_id;
-        const owner_type = await AccountModel.getAccountType(userID);
+        let owner_type = await AccountModel.getAccountType(userID);
         let Cus;
 
         if (owner_type.owner_type = "U"){
@@ -29,6 +36,13 @@ async function indexAction(req,res){
             Cus = await OrganizationModel.getOrgDetails(userID);
         }
 
+        if(owner_type.owner_type ==="U"){
+            owner_type = "Individual"
+        }else{
+            owner_type = "Organization"
+        }
+
+
         // console.log(Emp);
         if (!Cus){
             throw new Errors.BadRequest('An Error Occurred in the Database');
@@ -36,8 +50,14 @@ async function indexAction(req,res){
 
         Cus = {
             ...Cus,
-            ...req.session.user
+            ...req.session.user,
+            owner_type,
         }
+
+        const savings_acc = await DropdownService.getSavingsAccountsOfUser(userID);
+        if (savings_acc.length === 0) throw new Errors.Conflict("Visit your local bank and first make a Bank Account")
+        console.log(savings_acc)
+
 
         console.log(Cus);
         res.render('customer_dashboard',
@@ -45,8 +65,8 @@ async function indexAction(req,res){
               url_params: req.params,
               error:req.query.error,
               success:req.query.success,
-              User:Cus
-
+              User:Cus,
+              savings_acc
           }
         )
     }catch (e){
@@ -54,9 +74,17 @@ async function indexAction(req,res){
     }
 }
 
-function startFDPage(req,res){
+async function startFDPage(req,res){
     //starting an fd by customer to page.
-    res.render('')
+    console.log(req.query)
+    const fd_plan = await DropdownService.
+
+    res.render('fd_application_form',{
+        error:req.query.error,
+        success:req.query.success,
+        user:req.session.user,
+        saving_no:req.query.savings_no,
+    })
 
 }
 

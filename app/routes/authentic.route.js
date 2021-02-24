@@ -140,7 +140,7 @@ async function authentic (req, res) {
     const user = await UserModel.userExists(authenticData.username);
     if(!user) throw new Errors.NotFound("Incorrect Username");
 
-    authenticService.authentic(authenticData).then((data) => {
+    await authenticService.authentic(authenticData).then((data) => {
       if (data) {
          console.log(data.acc_level)
         req.session.user = {};
@@ -154,13 +154,13 @@ async function authentic (req, res) {
           throw ("User Account is deleted");
         }
         if (data.acc_level === 'CUSTOMER') {
-          res.redirect(`/Customer/${req.session.user.username}`)
+          res.redirect(`/Customer/${req.session.user.user_id}`)
         } else if (data.acc_level === 'EMPLOYEE') {
-          res.redirect(`/Employee/${req.session.user.username}`)
+          res.redirect(`/Employee/${req.session.user.user_id}`)
         } else if (data.acc_level === 'BANK-MANAGER') {
-          res.redirect(`/BankManager/${req.session.user.username}`)
+          res.redirect(`/BankManager/${req.session.user.user_id}`)
         } else{
-          res.redirect(`/Admin/${req.session.user.username}`)
+          res.redirect(`/Admin/${req.session.user.user_id}`)
         }
       }
     }).catch((err) => {

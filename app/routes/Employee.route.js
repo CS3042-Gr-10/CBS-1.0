@@ -413,9 +413,6 @@ async function registerCustomer(req, res){
         }
         console.log(username);
 
-        if(value.acc_type === 'savings' && !check_ageRange(parseFloat(value.age),value.savings_plan)){
-            throw new Errors.BadRequest("Age doesn't match with the savings account plan");
-        }
 
         await sendUserDetailsMail({
             email:acc.email,
