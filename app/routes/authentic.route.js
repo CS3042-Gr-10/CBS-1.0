@@ -1,17 +1,123 @@
 const authenticService = require('../services/authentic.service');
-const {LogInInfo} = require('../schema/Authentication')
+const {LogInInfo, changePasswordInfo, changeUsernameInfo} = require('../schema/Authentication')
 const mail = require('./../../common/mailer.js');
+const UserModel = require('../models/User.model');
+const Errors = require('../../common/error');
 const SessionHandler = require('../../config/SessionHandler');
-
+const { hash_password } = require('../../common/helpers');
 
 function init(router) {
     router.route('/')
       .get(loginPage);
     router.route('/login')
         .post(authentic); 
+    router.route('/changePassword/:user_id')
+        .post(changePassword)
+    router.route('/changeUsername/:user_id')
+        .post(changeUsername)
     router.route('/logout')
         .get(logout)
         .post(logout);
+}
+
+async function changeUsername(req,res){
+    try {
+        const {value,error} = await changeUsernameInfo.validate(req.body);
+        if (error) throw error;
+
+        if(!(req.session.user.username === value.currentUsername)){
+            throw new Errors.Conflict("Current username is wrong");
+        }
+
+        const AlreadyRegistered = await UserModel.getUserUsername(value.newUsername);
+        if(AlreadyRegistered) throw  new Errors.Conflict("User Already Exists");
+
+
+        console.log(value,req.params.user_id);
+
+        authenticService.changeUsername(value,req.params.user_id).then((data)=>{
+            req.session.user.username = value.newUsername;
+
+            if(req.session.user.acc_level == 'CUSTOMER'){
+                res.redirect(`/Customer/${req.params.user_id}?success=Username changed`)
+            } else if (req.session.user.acc_level == 'EMPLOYEE'){
+                res.redirect(`/Employee/${req.params.user_id}?success=Username changed`)
+            }else if (req.session.user.acc_level == 'BANK-MANAGER'){
+                res.redirect(`/BankManager/${req.params.user_id}?success=Username changed`)
+            }else {
+                res.redirect(`/Admin/${req.params.user_id}?success=Username changed`)
+            }
+        }).catch((e)=>{
+            if(req.session.user.acc_level == 'CUSTOMER'){
+                res.redirect(`/Customer/${req.params.user_id}?error=${e}`)
+            } else if (req.session.user.acc_level == 'EMPLOYEE'){
+                res.redirect(`/Employee/${req.params.user_id}?error=${e}`)
+            }else if (req.session.user.acc_level == 'BANK-MANAGER'){
+                res.redirect(`/BankManager/${req.params.user_id}?error=${e}`)
+            }else {
+                res.redirect(`/Admin/${req.params.user_id}?error=${e}`)
+            }
+        });
+
+
+    }catch (e) {
+        if(req.session.user.acc_level == 'CUSTOMER'){
+            res.redirect(`/Customer/${req.params.user_id}?error=${e}`)
+        } else if (req.session.user.acc_level == 'EMPLOYEE'){
+            res.redirect(`/Employee/${req.params.user_id}?error=${e}`)
+        }else if (req.session.user.acc_level == 'BANK-MANAGER'){
+            res.redirect(`/BankManager/${req.params.user_id}?error=${e}`)
+        }else {
+            res.redirect(`/Admin/${req.params.user_id}?error=${e}`)
+        }
+    }
+}
+
+async function changePassword(req,res){
+    try {
+        const {value,error} = await changePasswordInfo.validate(req.body);
+        if (error) throw error;
+
+        const data = {
+            ...value,
+            hashPassword:await hash_password(value.newPassword)
+        }
+
+        console.log(data,req.params.user_id)
+        authenticService.changePassword(data,req.params.user_id).then((data)=>{
+            if(req.session.user.acc_level == 'CUSTOMER'){
+                res.redirect(`/Customer/${req.params.user_id}?success=Password changed`)
+            } else if (req.session.user.acc_level == 'EMPLOYEE'){
+                res.redirect(`/Employee/${req.params.user_id}?success=Password changed`)
+            }else if (req.session.user.acc_level == 'BANK-MANAGER'){
+                res.redirect(`/BankManager/${req.params.user_id}?success=Password changed`)
+            }else {
+                res.redirect(`/Admin/${req.params.user_id}?success=Password changed`)
+            }
+        }).catch((e)=>{
+            if(req.session.user.acc_level == 'CUSTOMER'){
+                res.redirect(`/Customer/${req.params.user_id}?error=${e}`)
+            } else if (req.session.user.acc_level == 'EMPLOYEE'){
+                res.redirect(`/Employee/${req.params.user_id}?error=${e}`)
+            }else if (req.session.user.acc_level == 'BANK-MANAGER'){
+                res.redirect(`/BankManager/${req.params.user_id}?error=${e}`)
+            }else {
+                res.redirect(`/Admin/${req.params.user_id}?error=${e}`)
+            }
+        });
+
+
+    }catch (e) {
+        if(req.session.user.acc_level == 'CUSTOMER'){
+            res.redirect(`/Customer/${req.params.user_id}?error=${e}`)
+        } else if (req.session.user.acc_level == 'EMPLOYEE'){
+            res.redirect(`/Employee/${req.params.user_id}?error=${e}`)
+        }else if (req.session.user.acc_level == 'BANK-MANAGER'){
+            res.redirect(`/BankManager/${req.params.user_id}?error=${e}`)
+        }else {
+            res.redirect(`/Admin/${req.params.user_id}?error=${e}`)
+        }
+    }
 }
 
 function loginPage(req,res){
@@ -30,6 +136,10 @@ async function authentic (req, res) {
   try {
     const { value, error } = await LogInInfo.validate(req.body);
     if (error) throw (error);
+
+    const user = await UserModel.userExists(authenticData.username);
+    if(!user) throw new Errors.NotFound("Incorrect Username");
+
     authenticService.authentic(authenticData).then((data) => {
       if (data) {
          console.log(data.acc_level)
@@ -46,21 +156,18 @@ async function authentic (req, res) {
         if (data.acc_level === 'CUSTOMER') {
           res.redirect(`/Customer/${req.session.user.username}`)
         } else if (data.acc_level === 'EMPLOYEE') {
-          // console.log('choosen')
           res.redirect(`/Employee/${req.session.user.username}`)
         } else if (data.acc_level === 'BANK-MANAGER') {
           res.redirect(`/BankManager/${req.session.user.username}`)
-          //something
         } else{
           res.redirect(`/Admin/${req.session.user.username}`)
-          //something
         }
       }
     }).catch((err) => {
-      res.redirect(`/?error=${err}`);
+        res.redirect(`/?error=${err.message}`);
     });
-  } catch (e) {
-    res.redirect(`/?error=${e}`);
+  } catch (err) {
+      res.redirect(`/?error=${err.message}`);
   }
 }
 

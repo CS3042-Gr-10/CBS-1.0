@@ -30,9 +30,20 @@
     <main>
         <div class="wrapper_1">
             <div>
-                <h3>{{ User.first_name }} {{ User.last_name}}</h3>
+                <h3>{{ user.first_name }} {{ user.last_name}}</h3>
                 <hr class="my-4">
+                <h5>Bank Manager of {{bm_branch}} branch</h5>
             </div>
+            {{#if error}}
+                <div class="row alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+            {{/if}}
+            {{#if success}}
+                <div class="row alert alert-success" role="alert">
+                    {{success}}
+                </div>
+            {{/if}}
             <div class="calendar-parent">
                 <div class="calendar-container center">
                     <div id="dycalendar-today-with-skin-shadow"
@@ -43,42 +54,24 @@
         <div class="wrapper_2">
             <div>
                 <h4>Transaction Report</h4>
-                <form action="#" method="POST">
-                    <select id="inputState" class="form-control mt-3">
-                        <option selected>Select the Branch Name</option>
-                        {{#each branches}}
-                            <option value="{{this.branch_id}}">{{this.branch_name}}</option>
-                        {{/each}}
-                    </select>
+                <form action="/BankManager/{{user.user_id}}/TransactionReport" method="POST">
                     <div class="form-row mt-3">
                         <div class="col">
-                            <input type="date" class="form-control" placeholder="Starting Date">
+                            <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Starting Date">
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" placeholder="Ending Date">
+                            <input type="date" class="form-control" id="end_date" name="end_date" placeholder="Ending Date">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3">Generate Report</button>
+                    <input type="submit" class="btn btn-primary" value="Generate Report">
                 </form>
             </div>
             <div>
                 <h4>Late Loan Installment Report</h4>
-                <form action="#" method="POST">
-                    <select id="inputState" class="form-control mt-3">
-                        <option selected>Select the Branch Name</option>
-                        {{#each branches}}
-                            <option value="{{this.branch_id}}">{{this.branch_name}}</option>
-                        {{/each}}
-                    </select>
+                <form action="/BankManager/{{user.user_id}}/LateLoanReport" method="GET">
                     <div class="form-row mt-3">
-                        <div class="col">
-                            <input type="date" class="form-control" placeholder="Starting Date">
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" placeholder="Ending Date">
-                        </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3">Generate Report</button>
+                    <input type="submit" class="btn btn-primary" value="Generate Report">
                 </form>
             </div>
             <div class="three_buttons">
@@ -86,7 +79,7 @@
                     Employee Account</a>
                 <button type="button" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal"
                     data-target="#changePasswordModal">Change Password</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg btn-block mt-4">Report an Issue</button>
+                <a href="/BankManager/{{user.user_id}}/ApproveLoan" type="button" class="btn btn-primary btn-lg btn-block">Approve Loans</a>
             </div>
         </div>
     </main>
@@ -100,7 +93,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="dashboard.html" method="POST">
+                <form action="/changePassword/{{User.user_id}}" method="POST">
                     <div class="modal-body">
                         <fieldset disabled="disabled">
                             <div class="form-group form-inline mt-1">
@@ -109,11 +102,6 @@
                                     }}>
                             </div>
                         </fieldset>
-                        <div class="form-group form-inline">
-                            <label for="currentPassword" class="col-sm-2 col-form-label">Current Password</label>
-                            <input type="password" id="currentPassword" name="currentPassword"
-                                class="form-control mx-sm-3" placeholder="Enter Current Password" required>
-                        </div>
                         <div class="form-group form-inline">
                             <label for="newPassword" class="col-sm-2 col-form-label">Password</label>
                             <input type="password" id="newPassword" name="newPassword" class="form-control mx-sm-3"

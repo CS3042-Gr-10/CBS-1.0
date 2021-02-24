@@ -27,6 +27,8 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#" data-toggle="modal"
                                 data-target="#changePasswordModal">Change Password</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal"
+                               data-target="#changeUsernameModal">Change Username</a>
                         </div>
                     </li>
                     <a class="btn btn-secondary my-2 my-sm-0" href="/logout" role="button">LOG OUT</a>
@@ -61,8 +63,9 @@
             <div>
                 <a href="/employee/{{User.user_id}}/registerCustomer" type="button" class="btn btn-primary btn-lg btn-block">Register a Customer</a>
                 <a href="/employee/{{User.user_id}}/registerOrganization" type="button" class="btn btn-primary btn-lg btn-block">Register an Organization</a>
-                <a type="button" class="btn btn-primary btn-lg btn-block">Create an Individual Account</a>
-                <a type="button" class="btn btn-primary btn-lg btn-block">Create an Organization Account</a>
+                <a type="button" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal"
+                   data-target="#AccountInfoModel">Create Account
+                    Details</a>
                 
                 <a type="button" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal"
                    data-target="#customerInfoModel">Check Customer Account
@@ -78,6 +81,23 @@
             </div>
         </div>
     </main>
+
+
+
+    <div class="modal fade" id="AccountInfoModel" tabindex="-1" aria-labelledby="customerInfoModelLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="/employee/{{User.user_id}}/addAccountIndividual" type="button" class="btn btn-primary btn-lg btn-block">Individual</a>
+                    <a href="/employee/{{User.user_id}}/addAccountOrganization" type="button" class="btn btn-primary btn-lg btn-block">Organization</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <div class="modal fade" id="customerInfoModel" tabindex="-1" aria-labelledby="customerInfoModelLabel"
          aria-hidden="true">
@@ -111,6 +131,39 @@
         </div>
     </div>
 
+    <div class="modal fade" id="changeUsernameModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change Username</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="/changeUsername/{{User.user_id}}" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group form-inline">
+                            <label for="currentUsername" class="col-sm-2 col-form-label">Current Username</label>
+                            <input type="text" id="currentUsername" name="currentUsername" class="form-control mx-sm-3"
+                                   placeholder="Enter Current Username" required>
+                        </div>
+                        <div class="form-group form-inline">
+                            <label for="newUsername" class="col-sm-2 col-form-label">New Username</label>
+                            <input type="text" id="newUsername" name="newUsername" class="form-control mx-sm-3"
+                                   aria-describedby="UsernameHelpInline" placeholder="Enter New Username" required>
+                            <small id="UsernameHelpBlock" class="text-muted">Your username must be 8-20 characters long,
+                                contain letters and numbers, and must not contain spaces or emoji.</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save Changes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -120,20 +173,15 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="dashboard.html" method="POST">
+                <form action="/changePassword/{{User.user_id}}" method="POST">
                     <div class="modal-body">
                         <fieldset disabled="disabled">
                             <div class="form-group form-inline mt-1">
                                 <label for="disabledTextInput" class="mr-3 col-sm-2 col-form-label">Username</label>
-                                <input type="text" id="disabledTextInput" class="form-control" placeholder={{ username
+                                <input type="text" id="disabledTextInput" class="form-control" placeholder={{ User.username
                                     }}>
                             </div>
                         </fieldset>
-                        <div class="form-group form-inline">
-                            <label for="currentPassword" class="col-sm-2 col-form-label">Current Password</label>
-                            <input type="password" id="currentPassword" name="currentPassword"
-                                class="form-control mx-sm-3" placeholder="Enter Current Password" required>
-                        </div>
                         <div class="form-group form-inline">
                             <label for="newPassword" class="col-sm-2 col-form-label">Password</label>
                             <input type="password" id="newPassword" name="newPassword" class="form-control mx-sm-3"
