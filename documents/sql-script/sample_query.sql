@@ -17,6 +17,8 @@ call add_emp('Devindesilva',
 
 call add_customer('DevinDe', '551233240c', 'devindesilva123@gmail.com', 'Devin', 'De Silva', 'Devin De Silva','2001-01-30',  '982930130v', 'male', '124/2', 'Salgas Mawatha', 'Kottawa', 10320, 0713452365, 0775673546, "CUSTOMER");
 
+call add_org();
+
 call add_saving_account(1, 600.0, 6, 2);
 
 call add_current_account(1, 12100.0, 17);
