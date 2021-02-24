@@ -153,7 +153,7 @@ function transferMoney(slip) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows[0][0]);
             }
         });
     });

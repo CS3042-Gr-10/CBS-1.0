@@ -10,8 +10,9 @@ const LoanModel = require('../models/Loan.model');
 const UserServices = require('../services/user.service');
 const DropdownService = require('../services/Dropdown.service');
 const EmployeeModel = require('../models/Employee.model');
-const {startFDInfo} = require('../schema/Customer');
+const {startFDInfo, transferInfo} = require('../schema/Customer');
 const FixedDeposits = require('../models/FixedDeposit.model');
+const { ObjectToList, hash_password } = require('../../common/helpers');
 
 
 function init(router) {
@@ -22,6 +23,8 @@ function init(router) {
     router.route('/Customer/:id/startFD')
       .get(startFDPage)
       .post(startFDAction)
+    router.route('/Customer/:id/transfer')
+      .post(transfer)
 }
 
 async function indexAction(req,res){
@@ -111,20 +114,59 @@ async function startFDAction(req, res) {
             balance:parseFloat(value.amount),
         }
 
+        fd = ObjectToList(fd);
+        console.log(fd);
 
-        await FixedDeposits.addCFixedDeposit()
+        await FixedDeposits.addCFixedDeposit(fd).then((data)=>{
+            console.log(data)
+            res.redirect(`/Customer/${req.params.id}?success=added Fixed Deposits`)
+        }).catch((err)=>{
+            throw err;
+        })
 
 
-
-        res.redirect(`/Customer/${req.params.id}`)
     } catch (e) {
         console.log(e)
         res.redirect(`/Customer/${req.params.id}?error=${e}`)
     }
 }
 
-function transferAction(req,res){
+async function transfer(req,res){
     //transfering funds between accounts
+    try {
+        const {value, error} = await transferInfo.validate(req.body);
+        if (error) throw error;
+        const receiver = await AccountModel.getAccount(value.receiving_acc_no)
+        if(!receiver) throw new Errors.NotFound("No Such account to transfer");
+        console.log(value);
+
+        let transfer = {
+            user_id_d:req.session.user.user_id,
+            amount_d:value.amount,
+            from_acc_d:value.saving_no,
+            to_acc_d:value.receiving_acc_no,
+        }
+
+        transfer = ObjectToList(transfer);
+
+        await AccountModel.transferMoney(transfer).then((data)=>{
+            console.log(data);
+            if(data.result === 1){
+                console.log(`transfer from ${transfer.from_acc_d} to ${transfer.to_acc_d} Successful`);
+                res.redirect(`/Customer/${req.params.id}?success=Transfer from ${transfer.from_acc_d} to ${transfer.to_acc_d} Successful`)
+            }else if(data.result === 0){
+                throw new Errors.Unauthorized("Not enough balance")
+            }else{
+                throw new Errors.Unauthorized("Entered Negative amount")
+            }
+        }).catch((error)=>{
+            throw error;
+        })
+
+    }catch (e) {
+        console.log(e)
+        res.redirect(`/Customer/${req.params.id}?error=${e}`)
+    }
 }
 
 function checkProfileAction(req,res){

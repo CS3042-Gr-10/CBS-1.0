@@ -8,4 +8,11 @@ const startFDInfo = Joi.object().options({ abortEarly: false }).keys({
     agree_check: Joi.string().valid('on').required(),
 });
 
-module.exports = {startFDInfo}
+
+const transferInfo = Joi.object().options({ abortEarly: false }).keys({
+    saving_no:Joi.string().required(),
+    receiving_acc_no:Joi.string().required(),
+    amount:Joi.number().required().label("Initial Amount"),
+});
+
+module.exports = {startFDInfo, transferInfo}

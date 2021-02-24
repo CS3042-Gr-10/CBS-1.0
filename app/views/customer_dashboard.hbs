@@ -78,15 +78,23 @@
         <div class="wrapper_2">
             <div>
                 <h4>Transfer to</h4>
-                <form action="#" method="POST">
+                <form action="/Customer/{{User.user_id}}/transfer" method="POST">
                     <input type="text" class="form-control mt-3" id="receiving_acc_no" name="receiving_acc_no"
                         placeholder="Rceiver's Account Number">
+                    <label class="my-2 ml-3" for="branch">Savings Account</label>
+                    <select class="custom-select" id="savings_no" name="savings_no" required>
+                        <option value="default">Select the Savings Account...</option>
+                        <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                        {{#each savings_acc}}
+                            <option value="{{this.acc_id}}">Account - {{this.acc_id}}</option>
+                        {{/each}}
+                    </select>
                     <div class="input-group mt-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">SCR</span>
                         </div>
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
-                            id="transfer_amount" name="transfer_amount" placeholder="Enter the Amount">
+                            id="amount" name="amount" placeholder="Enter the Amount">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
