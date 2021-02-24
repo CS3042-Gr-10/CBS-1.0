@@ -14,29 +14,27 @@
 <div class="card-header">
     <h4>Fixed Deposit Application Form</h4>
 </div>
-<form action="" method="POST">
-    <fieldset disabled="disabled">
-        <div class="form-group row">
-            <label for="related_savings_acc" class="col-form-label ml-3">Related Savings Acc.</label>
-            <div class="col-lg-3 col-sm">
-                <input type="text" id="saving_no" name="saving_no" class="form-control"
-                       value={{saving_no}} required readonly>
-            </div>
+<form action="/Customer/{{user.user_id}}/startFD" method="POST">
+    <div class="form-group row">
+        <label for="related_savings_acc" class="col-form-label ml-3">Related Savings Acc.</label>
+        <div class="col-lg-3 col-sm">
+            <input type="text" id="saving_no" name="saving_no" class="form-control"
+                   value={{saving_no}} required readonly>
         </div>
-    </fieldset>
-    <label class="my-2 ml-3" for="acc_type">FD Plan</label>
+    </div>
+    <label class="my-2 ml-3" for="acc_type">FD Plan</label>fd_plan
                 <div class="col-lg-2 col-sm-2">
                     <select class="custom-select" id="fd_plan" name="fd_plan" required>
                         <option selected>Select FD Plan...</option>
-                        <option value="plan_1">6 months, 13%</option>
-                        <option value="plan_2">1 year, 14%</option>
-                        <option value="plan_3">3 years, 15%</option>
+                        {{#each fd_plan}}
+                            <option value="{{this.fd_plan_id}}">{{this.name}} For {{this.duration}} at {{this.interest_rate_per_mon}}</option>
+                        {{/each}}
                     </select>
                 </div>
                 <label for="username" class="col-form-label ml-3">Username</label>
                 <div class="col-lg-2 col-sm-2">
-                    <input type="text" id="username" name="username" class="form-control" value={{username}}
-                           required readonly>
+                    <input type="text" id="username" name="username" class="form-control"
+                           required>
                 </div>
                 <div class="form-group row">
                     <label for="amount" class="col-form-label ml-3">Amount</label>

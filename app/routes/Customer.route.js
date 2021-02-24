@@ -10,6 +10,8 @@ const LoanModel = require('../models/Loan.model');
 const UserServices = require('../services/user.service');
 const DropdownService = require('../services/Dropdown.service');
 const EmployeeModel = require('../models/Employee.model');
+const {startFDInfo} = require('../schema/Customer');
+const FixedDeposits = require('../models/FixedDeposit.model');
 
 
 function init(router) {
@@ -77,23 +79,47 @@ async function indexAction(req,res){
 async function startFDPage(req,res){
     //starting an fd by customer to page.
     console.log(req.query)
-    const fd_plan = await DropdownService.
+    const fd_plan = await DropdownService.getFDPlans();
 
     res.render('fd_application_form',{
         error:req.query.error,
         success:req.query.success,
         user:req.session.user,
         saving_no:req.query.savings_no,
+        fd_plan
     })
 
 }
 
-function startFDAction(req, res){
+async function startFDAction(req, res) {
     // to create FD
-    try{
+    try {
+        const {value, error} = await startFDInfo.validate(req.body);
+        if (error) throw error;
+        console.log(value);
+        if(!(value.username === req.session.user.username)){
+            throw new Errors.Unauthorized("Wrong username")
+        }
+        const account = await AccountModel.getAccount(value.saving_no)
+        console.log(account);
 
-    }catch (e){
+        let fd = {
+            cusotmer_id:parseInt(req.session.user.user_id),
+            acc_plan_id:parseInt(value.fd_plan),
+            sv_acc_id:parseInt(value.saving_no),
+            branch_id:parseInt(account.branch_id),
+            balance:parseFloat(value.amount),
+        }
 
+
+        await FixedDeposits.addCFixedDeposit()
+
+
+
+        res.redirect(`/Customer/${req.params.id}`)
+    } catch (e) {
+        console.log(e)
+        res.redirect(`/Customer/${req.params.id}?error=${e}`)
     }
 }
 
