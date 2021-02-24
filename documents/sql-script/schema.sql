@@ -165,12 +165,13 @@ CREATE TABLE `fixed_deposit` (
   `branch_id` int(5) not NULL,
   `opened_date` Date,
   `balance` Numeric(20,2),
-  `state` INT(2),
+  `state` varchar(25),
   PRIMARY KEY (`fd_id`),
   FOREIGN KEY (cusotmer_id) REFERENCES account_owner (user_id),
   FOREIGN KEY (acc_plan_id) REFERENCES  fd_account_plan (fd_plan_id),
   FOREIGN KEY (sv_acc_id) REFERENCES saving_account (acc_id),
-  FOREIGN KEY (branch_id) REFERENCES branch (branch_id)
+  FOREIGN KEY (branch_id) REFERENCES branch (branch_id),
+  check (state in ("ACTIVE", "EXPIRED", "DELETED"))
 );
 
 CREATE TABLE `loan` (
