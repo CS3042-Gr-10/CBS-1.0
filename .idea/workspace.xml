@@ -30,9 +30,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Adding functionality to change password and username fixes #48">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="69aaff1e-6c39-421d-95e4-7f5c13be16e7" name="Default Changelist" comment="Adding functionality to change password and username fixes #48" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -158,6 +156,7 @@
       <workItem from="1613294425499" duration="46818000" />
       <workItem from="1613533672099" duration="17067000" />
       <workItem from="1613971821600" duration="17384000" />
+      <workItem from="1614356448000" duration="1206000" />
     </task>
     <task id="LOCAL-00002" summary="Login page fully complete fixed#17">
       <created>1608986795259</created>
