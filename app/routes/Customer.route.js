@@ -134,6 +134,7 @@ async function startFDAction(req, res) {
 async function transfer(req,res){
     //transfering funds between accounts
     try {
+        console.log('here');
         const {value, error} = await transferInfo.validate(req.body);
         if (error) throw error;
         const receiver = await AccountModel.getAccount(value.receiving_acc_no)

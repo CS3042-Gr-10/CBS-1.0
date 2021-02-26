@@ -79,16 +79,21 @@
             <div>
                 <h4>Transfer to</h4>
                 <form action="/Customer/{{User.user_id}}/transfer" method="POST">
-                    <input type="text" class="form-control mt-3" id="receiving_acc_no" name="receiving_acc_no"
-                        placeholder="Rceiver's Account Number">
-                    <label class="my-2 ml-3" for="branch">Savings Account</label>
-                    <select class="custom-select" id="savings_no" name="savings_no" required>
-                        <option value="default">Select the Savings Account...</option>
-                        <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
-                        {{#each savings_acc}}
-                            <option value="{{this.acc_id}}">Account - {{this.acc_id}}</option>
-                        {{/each}}
-                    </select>
+                    <div class="form-group row">
+                        <label class="my-2 ml-3" for="receiving_acc_no">Receiver's Account Number</label>
+                        <input type="text" class="form-control mt-3" id="receiving_acc_no" name="receiving_acc_no"
+                            placeholder="Receiver's Account Number">
+                    </div>
+                    <div class="form-group row">
+                        <label class="my-2 ml-3" for="savings_no">Savings Account</label>
+                        <select class="custom-select" id="savings_no_transfer" name="savings_no" required>
+                            <option value="default">Select the Savings Account...</option>
+                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                            {{#each savings_acc}}
+                                <option value="{{this.acc_id}}">Account - {{this.acc_id}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
                     <div class="input-group mt-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">SCR</span>

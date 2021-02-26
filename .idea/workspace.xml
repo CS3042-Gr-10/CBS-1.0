@@ -33,11 +33,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="Customer FD mid way done #49">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="transfer funds done #50">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Customer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/loginValidationSchema.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -184,14 +183,9 @@
       <workItem from="1613294425499" duration="46818000" />
       <workItem from="1613533672099" duration="17067000" />
       <workItem from="1613971821600" duration="17384000" />
-      <workItem from="1614148523217" duration="14703000" />
-    </task>
-    <task id="LOCAL-00004" summary="login fully completed with database calls with Employee.route.js home page completed as well, added common code required by all 4 actors">
-      <created>1609232045736</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1609232045736</updated>
+      <workItem from="1614148523217" duration="16171000" />
+      <workItem from="1614206405490" duration="705000" />
+      <workItem from="1614358675051" duration="578000" />
     </task>
     <task id="LOCAL-00005" summary="initial setup for session in the system.">
       <created>1609700404031</created>
@@ -529,7 +523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614160995077</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="transfer funds done #50">
+      <created>1614163355669</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1614163355669</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -548,8 +549,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding Customer Account done" />
-    <MESSAGE value="commit before merge" />
     <MESSAGE value="resolve and merge" />
     <MESSAGE value="Completed adding Customer Account and current account and a Savings account" />
     <MESSAGE value="merged with upstream developer" />
@@ -573,7 +572,9 @@
     <MESSAGE value="Report Generation complete need to check front end work fixes #60 and #59 and #56" />
     <MESSAGE value="Adding functionality to change password and username fixes #48" />
     <MESSAGE value="Customer FD mid way done #49" />
-    <option name="LAST_COMMIT_MESSAGE" value="Customer FD mid way done #49" />
+    <MESSAGE value="Customer FD mid way done #50" />
+    <MESSAGE value="transfer funds done #50" />
+    <option name="LAST_COMMIT_MESSAGE" value="transfer funds done #50" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
