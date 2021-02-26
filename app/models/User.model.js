@@ -34,6 +34,7 @@ function userExists(username){
                 return error;
             } else {
                 dbFunc.connectionRelease;
+                console.log(rows)
                 if(rows[0] && rows[0].user_id){
                     resolve(true);
                 }
