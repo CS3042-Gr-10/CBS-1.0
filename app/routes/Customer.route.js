@@ -21,10 +21,12 @@ function init(router) {
     router.route('/Customer/:id')
         .get(indexAction);
     router.route('/Customer/:id/startFD')
-      .get(startFDPage)
-      .post(startFDAction)
+        .get(startFDPage)
+        .post(startFDAction)
     router.route('/Customer/:id/transfer')
-      .post(transfer)
+        .post(transfer)
+    router.route('/Customer/:id/checkProfile')
+        .get(checkProfilePage)
 }
 
 async function indexAction(req,res){
@@ -33,9 +35,10 @@ async function indexAction(req,res){
         console.log(req.session.user)
         const userID = req.session.user.user_id;
         let owner_type = await AccountModel.getAccountType(userID);
+        //console.log(owner_type)
         let Cus;
 
-        if (owner_type.owner_type = "U"){
+        if (owner_type.owner_type === "U"){
             Cus = await CustomerModel.getCustomerDetailsById(userID);
         }else{
             Cus = await OrganizationModel.getOrgDetails(userID);
@@ -170,8 +173,36 @@ async function transfer(req,res){
     }
 }
 
-function checkProfileAction(req,res){
-    //check personal details with list of accounts
+async function checkProfilePage(req,res){
+    const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+    const accounts = await  AccountModel.getCustomerAccDetail(req.session.user.user_id);
+
+    if (owner_type.owner_type = "U"){
+        const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
+
+        console.log(accounts);
+        console.log(customer);
+        console.log(req.session.user);
+        res.render('customer_individual_profile_check',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            accounts:accounts,
+            customer:customer,
+        });
+    }else {
+        const organization =  await OrganizationModel.getOrgDetails(req.session.user.user_id);
+        console.log(accounts);
+        console.log(organization);
+        console.log(req.session.user);
+        res.render('customer_organization_profile_check',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            accounts:accounts,
+            org:organization,
+        });
+    }
 }
 
 function checkAccountAction(req,res){
