@@ -6,7 +6,10 @@ ReportModel = {
     getAllWithdraws,
     getAllTransfers,
     getAllLoanPayments,
-    getUnpaidLoan
+    getUnpaidLoan,
+    getWithdrawByAccId,
+    getDepositByAccId,
+    getTransferByAccId
 }
 
 function getAllDeposits(dates) {
