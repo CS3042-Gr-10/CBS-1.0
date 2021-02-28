@@ -33,12 +33,21 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="middle ground">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="completing #51 fixing #52">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Branch.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Branch.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Report.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Report.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Authentication.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Customer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/branch.service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_account_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_account_check.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/customer_organization_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_organization_profile_check.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,14 +205,7 @@
       <workItem from="1614358675051" duration="578000" />
       <workItem from="1614426132254" duration="154000" />
       <workItem from="1614426306393" duration="815000" />
-      <workItem from="1614490034942" duration="298000" />
-    </task>
-    <task id="LOCAL-00005" summary="initial setup for session in the system.">
-      <created>1609700404031</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1609700404031</updated>
+      <workItem from="1614490034942" duration="13619000" />
     </task>
     <task id="LOCAL-00006" summary="adding middleware to system">
       <created>1609823176818</created>
@@ -541,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614163355669</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="completing #51 fixing #52">
+      <created>1614490478267</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1614490478268</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -560,7 +569,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Completed adding Customer Account and current account and a Savings account" />
     <MESSAGE value="merged with upstream developer" />
     <MESSAGE value="adding Account to existing customer functionality Fixes #39" />
     <MESSAGE value="adding Account to existing customer functionality tested Fixes #39" />
@@ -585,7 +593,8 @@
     <MESSAGE value="Customer FD mid way done #50" />
     <MESSAGE value="transfer funds done #50" />
     <MESSAGE value="middle ground" />
-    <option name="LAST_COMMIT_MESSAGE" value="middle ground" />
+    <MESSAGE value="completing #51 fixing #52" />
+    <option name="LAST_COMMIT_MESSAGE" value="completing #51 fixing #52" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

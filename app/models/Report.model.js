@@ -89,10 +89,10 @@ function getUnpaidLoan() {
 
 function getWithdrawByAccId(id,limit) {
     return new Promise((resolve, reject) => {
-        db.query('select * from withdraw natural join transaction where acc_id = ? limit ?', (id, limit),(error, rows, fields) => {
+        db.query('select * from withdraw natural join main_db.transaction where acc_id = ? limit ?', [id, limit],(error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
-                reject(false);
+                reject(error);
             } else {
 
                 dbFunc.connectionRelease;
@@ -104,10 +104,10 @@ function getWithdrawByAccId(id,limit) {
 
 function getDepositByAccId(id,limit) {
     return new Promise((resolve, reject) => {
-        db.query('select * from deposit natural join transaction where acc_id = ? limit ?', (id, limit),(error, rows, fields) => {
+        db.query('select * from deposit natural join main_db.transaction where acc_id = ? limit ?', [id, limit],(error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
-                reject(false);
+                reject(error);
             } else {
 
                 dbFunc.connectionRelease;
@@ -119,10 +119,10 @@ function getDepositByAccId(id,limit) {
 
 function getTransferByAccId(id,limit) {
     return new Promise((resolve, reject) => {
-        db.query('select * from transfer natural join transaction where acc_id = ? limit ?', (id, limit),(error, rows, fields) => {
+        db.query('select * from transfer natural join main_db.transaction where from_acc_id = ? limit ?', [id, limit],(error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
-                reject(false);
+                reject(error);
             } else {
 
                 dbFunc.connectionRelease;

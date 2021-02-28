@@ -54,7 +54,12 @@
     <main>
         <div class="wrapper_1">
             <div>
-                <h3>{{ User.first_name }} {{User.last_name}}</h3>
+                {{#if User.first_name }}
+                    <h3>{{ User.first_name }} {{User.last_name}}</h3>
+                {{else}}
+                    <h3>{{ User.name }}</h3>
+                {{/if}}
+
                 <h5>{{ User.user_id }}<span class="badge badge-primary ml-4">{{ User.owner_type}}</span></h5>
                 <hr class="my-4">
                 {{#if error}}
@@ -104,7 +109,7 @@
                             <span class="input-group-text">.00</span>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3">Transfer</button>
+                    <input type="submit" class="btn btn-primary mt-3" value="Transfer">
                 </form>
             </div>
             <div>

@@ -8,7 +8,7 @@ const TransactionInfo = Joi.object().options({ abortEarly: false }).keys({
 });
 
 const accountNumberInfo = Joi.object().options({abortEarly:false}).keys({
-  accNum: Joi.string().regex(/^[0-9]$/).message("Account Number must contain only numbers.").required().label("Account Number"),   //regex added
+  accNum: Joi.string().regex(/^[0-9]{1,10}$/).message("Account Number must contain only numbers.").required().label("Account Number"),   //regex added
   customer_type:Joi.string().valid("customer","organization").label("Customer Type")
 });
 

@@ -42,52 +42,79 @@
 {{/if}}
 
 <h3>Account Details.</h3>
-<p>{{ full_name }}</p>
-<p>{{ acc_number }}</p>
-<p>{{ NIC_number }}</p>
-<p>{{ open_date }}</p>
-<p>{{ acc_type }}</p>
+<p>{{ account.acc_id }}</p>
+<p>{{ branch.branch_name }}</p>
+<p>{{ account.acc_type }}</p>
+<p>{{ account.created_date }}</p>
 
-<h3>Recent Withdrawals.</h3>
+    <pre>
+                            {{#if deposits}}
+                                <h3>Deposits</h3>
+                                <table style="width:100%">
+                                    <tr>
+                                        <th>Transaction Id</th>
+                                        <th>Account ID</th>
+                                        <th>Deposit Type</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    {{#each deposits}}
+                                        <tr>
+                                            <td>{{this.trans_id}}</td>
+                                            <td>{{this.acc_id}}</td>
+                                            <td>{{this.deposit_type}}</td>
+                                            <td>{{this.amount}}</td>
+                                            <td>{{this.date}}</td>
+                                        </tr>
+                                    {{/each}}
+                                </table>
+                            {{/if}}
+        {{#if withdrawals}}
+            <h3>Withdrawals</h3>
+                                <table style="width:100%">
+                                    <tr>
+                                        <th>Transaction Id</th>
+                                        <th>Account ID</th>
+                                        <th>Withdraw Type</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    {{#each withdrawals}}
+                                        <tr>
+                                            <td>{{this.trans_id}}</td>
+                                            <td>{{this.acc_id}}</td>
+                                            <td>{{this.withdraw_type}}</td>
+                                            <td>{{this.amount}}</td>
+                                            <td>{{this.date}}</td>
+                                        </tr>
+                                    {{/each}}
+                                </table>
 
-{{!-- colour of the amount => red=withdraw(money out), blue=deposit(money in) --}}
-    <table style="width:100%">
-        <tr>
-            <th>Transaction Id</th>
-            <th>Withdraw Type</th>
-            <th>Amount</th>
-            <th>Date</th>
-        </tr>
-        {{#each withdrawals}}
-            <tr>
-                <td>{{this.trans_id}}</td>
-                <td>{{this.withdraw_type}}</td>
-                <td>{{this.amount}}</td>
-                <td>{{this.date}}</td>
-            </tr>
-        {{/each}}
-    </table>
+        {{/if}}
+        {{#if transfers}}
+            <h3>Transfers</h3>
+                                <table style="width:100%">
+                                    <tr>
+                                        <th>Transaction Id</th>
+                                        <th>From Account ID</th>
+                                        <th>To Account ID</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    {{#each transfers}}
+                                        <tr>
+                                            <td>{{this.trans_id}}</td>
+                                            <td>{{this.from_acc_id}}</td>
+                                            <td>{{this.to_acc_id}}</td>
+                                            <td>{{this.amount}}</td>
+                                            <td>{{this.date}}</td>
+                                        </tr>
+                                    {{/each}}
+                                </table>
+        {{/if}}
+    </pre>
 
-<h3>Recent Deposits.</h3>
-    <table style="width:100%">
-        <tr>
-            <th>Transaction Id</th>
-            <th>Deposit Type</th>
-            <th>Amount</th>
-            <th>Date</th>
-        </tr>
-        {{#each deposits}}
-            <tr>
-                <td>{{this.trans_id}}</td>
-                <td>{{this.deposit_type}}</td>
-                <td>{{this.amount}}</td>
-                <td>{{this.date}}</td>
-            </tr>
-        {{/each}}
-    </table>
-
-    <a href="/employee/{{User.user_id}}/customerTransaction" type="button" class="btn btn-primary btn-lg btn-block">Make a transaction</a>
-    <a href="/employee/{{User.user_id}}" type="button" class="btn btn-primary btn-lg btn-block">Back</a>
+    <a href="/Customer/{{user.user_id}}" type="button" class="btn btn-primary btn-lg btn-block">Back</a>
 
 
     

@@ -549,7 +549,7 @@ async function getCustomerDetails(req,res){
 
         if(value.customer_type === 'customer'){
             const account = await AccountModel.getAccount(req.query.accNum);
-            if(!account) throw (Errors.NotFound("No such Account Exists"))
+            if(!account) throw ( new Errors.NotFound("No such Account Exists"))
             console.log(account);
 
             const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);

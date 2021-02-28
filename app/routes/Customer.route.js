@@ -6,7 +6,9 @@ const UserModel = require('../models/User.model');
 const AccountModel = require('../models/Account.model');
 const TransactionModel = require('../models/Transaction.model');
 const OrganizationModel = require('../models/Organization.model');
+const ReportModel = require('../models/Report.model');
 const LoanModel = require('../models/Loan.model');
+const BranchModel = require('../models/Branch.model');
 const UserServices = require('../services/user.service');
 const DropdownService = require('../services/Dropdown.service');
 const EmployeeModel = require('../models/Employee.model');
@@ -142,14 +144,18 @@ async function transfer(req,res){
         console.log('here');
         const {value, error} = await transferInfo.validate(req.body);
         if (error) throw error;
+        if(value.receiving_acc_no === value.savings_no){
+            throw new Errors.Forbidden("Can't transfer to the same account")
+        }
         const receiver = await AccountModel.getAccount(value.receiving_acc_no)
         if(!receiver) throw new Errors.NotFound("No Such account to transfer");
+        if(receiver.acc_type === "CURRENT") throw  new Errors.Forbidden("Can't transfer to Current account");
         console.log(value);
 
         let transfer = {
             user_id_d:req.session.user.user_id,
             amount_d:value.amount,
-            from_acc_d:value.saving_no,
+            from_acc_d:value.savings_no,
             to_acc_d:value.receiving_acc_no,
         }
 
@@ -158,8 +164,8 @@ async function transfer(req,res){
         await AccountModel.transferMoney(transfer).then((data)=>{
             console.log(data);
             if(data.result === 1){
-                console.log(`transfer from ${transfer.from_acc_d} to ${transfer.to_acc_d} Successful`);
-                res.redirect(`/Customer/${req.params.id}?success=Transfer from ${transfer.from_acc_d} to ${transfer.to_acc_d} Successful`)
+                console.log(`transfer from ${transfer[2]} to ${transfer[3]} Successful`);
+                res.redirect(`/Customer/${req.params.id}?success=Transfer from ${transfer[2]} to ${transfer[3]} Successful`)
             }else if(data.result === 0){
                 throw new Errors.Unauthorized("Not enough balance")
             }else{
@@ -183,7 +189,7 @@ async function checkProfilePage(req,res){
         value.url = `/Customer/${req.session.user.user_id}/account/${value.acc_id}`;
     });
 
-    if (owner_type.owner_type = "U"){
+    if (owner_type.owner_type === "U"){
         const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
 
         console.log(accounts);
@@ -197,6 +203,7 @@ async function checkProfilePage(req,res){
             customer:customer,
         });
     }else {
+        // console.log(req.session.user);
         const organization =  await OrganizationModel.getOrgDetails(req.session.user.user_id);
         console.log(accounts);
         console.log(organization);
@@ -211,9 +218,35 @@ async function checkProfilePage(req,res){
     }
 }
 
-async function checkAccount(req,res){
+async function checkAccount(req,res) {
     //check details of a single account (savings account , checking account)
-    const account = await AccountModel.getAccount(req.params.acc_id);
+    try{
+        const account = await AccountModel.getAccount(req.params.acc_id);
+        console.log(account);
+        const branch = await BranchModel.branchDetails(account.branch_id)
+        console.log(branch)
+        const deposits = await ReportModel.getDepositByAccId(req.params.acc_id,10);
+        console.log(deposits);
+        const withdrawals = await ReportModel.getWithdrawByAccId(req.params.acc_id,10);
+        console.log(withdrawals);
+        const transfers = await ReportModel.getTransferByAccId(req.params.acc_id,10);
+        console.log(transfers);
+
+        res.render('customer_account_check',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            account,
+            deposits,
+            withdrawals,
+            transfers,
+            branch,
+        })
+    }catch (e) {
+        console.log(e)
+        res.redirect(`/Customer/${req.session.user.user_id}?error=${e}`)
+    }
+
 
 
 }
@@ -231,9 +264,7 @@ function applySelfLoanAction(req,res){
     //check if eligible for a loan and then allow loan registration
 }
 
-function payLoanInstallment(req,res){
-    //no clueeeeeeeee
-}
+
 
 
 module.exports.init = init;

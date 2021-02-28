@@ -10,7 +10,7 @@ const startFDInfo = Joi.object().options({ abortEarly: false }).keys({
 
 
 const transferInfo = Joi.object().options({ abortEarly: false }).keys({
-    saving_no:Joi.string().required(),
+    savings_no:Joi.string().required(),
     receiving_acc_no:Joi.string().required(),
     amount:Joi.number().required().label("Initial Amount"),
 });
