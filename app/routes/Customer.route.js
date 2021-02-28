@@ -27,6 +27,8 @@ function init(router) {
         .post(transfer)
     router.route('/Customer/:id/checkProfile')
         .get(checkProfilePage)
+    router.route('/Customer/:id/account/:acc_id')
+        .get(checkAccount)
 }
 
 async function indexAction(req,res){
@@ -177,6 +179,10 @@ async function checkProfilePage(req,res){
     const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
     const accounts = await  AccountModel.getCustomerAccDetail(req.session.user.user_id);
 
+    accounts.forEach(value =>{
+        value.url = `/Customer/${req.session.user.user_id}/account/${value.acc_id}`;
+    });
+
     if (owner_type.owner_type = "U"){
         const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
 
@@ -205,8 +211,11 @@ async function checkProfilePage(req,res){
     }
 }
 
-function checkAccountAction(req,res){
+async function checkAccount(req,res){
     //check details of a single account (savings account , checking account)
+    const account = await AccountModel.getAccount(req.params.acc_id);
+
+
 }
 
 function listFDsAction(req,res){

@@ -34,14 +34,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="middle ground">
-      <change afterPath="$PROJECT_DIR$/app/views/customer_account_check.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/customer_organization_profile_check.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Customer.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Customer.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_organization_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_organization_profile_check.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +81,13 @@
       </set>
     </option>
   </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
   <component name="ProjectId" id="1lYmBkvr3SzMANN7em73eZ1kLAo" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -99,7 +103,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Software Engineering/Project/agri-app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -192,6 +196,7 @@
       <workItem from="1614358675051" duration="578000" />
       <workItem from="1614426132254" duration="154000" />
       <workItem from="1614426306393" duration="815000" />
+      <workItem from="1614490034942" duration="298000" />
     </task>
     <task id="LOCAL-00005" summary="initial setup for session in the system.">
       <created>1609700404031</created>

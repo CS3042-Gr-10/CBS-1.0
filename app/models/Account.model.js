@@ -172,8 +172,8 @@ function getCustomerAccDetail(id) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
-                return (rows[0]);
+                resolve(rows);
+                return (rows);
             }
         });
     });
