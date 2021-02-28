@@ -84,4 +84,49 @@ function getUnpaidLoan() {
     });
 }
 
+function getWithdrawByAccId(id,limit) {
+    return new Promise((resolve, reject) => {
+        db.query('select * from withdraw natural join transaction where acc_id = ? limit ?', (id, limit),(error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function getDepositByAccId(id,limit) {
+    return new Promise((resolve, reject) => {
+        db.query('select * from deposit natural join transaction where acc_id = ? limit ?', (id, limit),(error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function getTransferByAccId(id,limit) {
+    return new Promise((resolve, reject) => {
+        db.query('select * from transfer natural join transaction where acc_id = ? limit ?', (id, limit),(error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
 module.exports = ReportModel;
