@@ -10,7 +10,10 @@ const AccountModel = {
     getAccountOwner,
     getAccountType,
     getAccount,
-    transferMoney
+    transferMoney,
+    getSavingAccount,
+    getCurrentAccount,
+    getCustomerAccDetail,
 }
 
 function addSavingAccount(acc) {
@@ -153,7 +156,58 @@ function transferMoney(slip) {
             } else {
 
                 dbFunc.connectionRelease;
+                resolve(rows[0][0]);
+            }
+        });
+    });
+}
+
+function getCustomerAccDetail(id) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT acc_id, branch_id, acc_type, created_date from account where user = ?',id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+                return (false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+                return (rows);
+            }
+        });
+    });
+}
+
+function getSavingAccount(acc_id){
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from saving_account natural join saving_account_plan where acc_id=?',acc_id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+                return (false);
+            } else {
+
+                dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
+            }
+        });
+    });
+}
+
+function getCurrentAccount(acc_id){
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from current_deposit where acc_id=?',acc_id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+                return (false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+                return (rows[0]);
             }
         });
     });

@@ -413,9 +413,6 @@ async function registerCustomer(req, res){
         }
         console.log(username);
 
-        if(value.acc_type === 'savings' && !check_ageRange(parseFloat(value.age),value.savings_plan)){
-            throw new Errors.BadRequest("Age doesn't match with the savings account plan");
-        }
 
         await sendUserDetailsMail({
             email:acc.email,
@@ -552,7 +549,7 @@ async function getCustomerDetails(req,res){
 
         if(value.customer_type === 'customer'){
             const account = await AccountModel.getAccount(req.query.accNum);
-            if(!account) throw (Errors.NotFound("No such Account Exists"))
+            if(!account) throw ( new Errors.NotFound("No such Account Exists"))
             console.log(account);
 
             const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
