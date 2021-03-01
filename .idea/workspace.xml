@@ -33,21 +33,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="completing #51 fixing #52">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="complete #52">
+      <change afterPath="$PROJECT_DIR$/app/views/admin_dashboard.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Branch.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Branch.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Report.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Report.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Authentication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Customer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/branch.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_account_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_account_check.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_organization_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_organization_profile_check.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_dashboard.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +100,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Software Engineering/Project/agri-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -127,6 +115,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Academic_PC\Sem 4\DBMS\Project\CBS-1.0\app\views" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\views" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\common\Emailer" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\common" />
@@ -205,14 +194,8 @@
       <workItem from="1614358675051" duration="578000" />
       <workItem from="1614426132254" duration="154000" />
       <workItem from="1614426306393" duration="815000" />
-      <workItem from="1614490034942" duration="13619000" />
-    </task>
-    <task id="LOCAL-00006" summary="adding middleware to system">
-      <created>1609823176818</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1609823176818</updated>
+      <workItem from="1614490034942" duration="15790000" />
+      <workItem from="1614573834568" duration="3468000" />
     </task>
     <task id="LOCAL-00007" summary="resolving conflict">
       <created>1609823453106</created>
@@ -550,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614490478268</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="complete #52">
+      <created>1614542314816</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1614542314816</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,7 +559,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merged with upstream developer" />
     <MESSAGE value="adding Account to existing customer functionality Fixes #39" />
     <MESSAGE value="adding Account to existing customer functionality tested Fixes #39" />
     <MESSAGE value="midpoints" />
@@ -594,7 +583,8 @@
     <MESSAGE value="transfer funds done #50" />
     <MESSAGE value="middle ground" />
     <MESSAGE value="completing #51 fixing #52" />
-    <option name="LAST_COMMIT_MESSAGE" value="completing #51 fixing #52" />
+    <MESSAGE value="complete #52" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete #52" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
