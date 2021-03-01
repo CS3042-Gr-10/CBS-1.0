@@ -112,6 +112,7 @@ function getLoansByUserID(id){
 }
 
 function getLoansDetailsByID(id){
+    //TODO: set "id" attribute appropriate to the data passing -- checkout ../document/sql_scripts/get_loan_details.sql
     return new Promise((resolve, reject) => {
         db.query(`call get_loan_details(?)`, id ,(error, rows, fields) => {
 
