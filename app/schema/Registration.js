@@ -9,7 +9,7 @@ const EmployeeRegistrationInfo = Joi.object().options({ abortEarly: false }).key
   email: Joi.string().regex(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).message('"Email address" consists of invalid characters.').email().max(50).required().label("Email"),
   gender: Joi.string().valid('male','female','other').required().label("Gender"),
   //farmer special
-  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),  //for new and old nic
+  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[v|x]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "v"/"x"(simple characters) or 12 digits only!'),  //for new and old nic
   contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{8,11}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
     //.min(7)
     //.message('"Contact Number" must be at least 7 digits')
@@ -41,7 +41,7 @@ const CustomerRegistrationGeneralInfo = Joi.object().options({ abortEarly: false
   dob: Joi.date().required().label("Date of Birth"),
   age:Joi.number().required(),
   gender: Joi.string().valid('male','female','other').required().label("Gender"),
-  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
+  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[v|x]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "v"/"x"(simple characters) or 12 digits only!'),
   contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{8,11}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
   postal_code: Joi.string().required().max(8).label("Postal Code")
     .regex(/^\d+$/)

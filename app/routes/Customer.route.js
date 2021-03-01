@@ -36,14 +36,83 @@ function init(router) {
         .get(listFDsAction)
     router.route('/Customer/:id/fds/:fd_id')
         .get(checkAFD)
-    router.route('/Customer/:id/loan')
-        .get(listFDsAction)
-    router.route('/Customer/:id/loan/:loan_id')
-        .get(listFDsAction)
+    router.route('/Customer/:id/loans')
+        .get(listLoans)
+    router.route('/Customer/:id/loans/:loan_id')
+        .get(checkALoan)
     router.route('/Customer/:id/addLoan')
         .get(onlineLoanPage)
         .post(onlineLoan)
 }
+
+async function checkALoan(req,res){
+    console.log(req.params.loan_id);
+    const Loan = await  LoanModel.getLoansDetailsByID(req.params.loan_id);
+    console.log(Loan);
+    let status_message;
+
+    if(Loan.loan_type == "ONLINE"){
+        if (Loan.state === 'NOT-PAID'){
+            status_message = "The Loan is yet to be payed this month"
+        } else if (Loan.state == "COMPLETE"){
+            status_message = "The Loan iS paid off"
+        }else {
+            status_message = "The Loan is payed for this month"
+        }
+
+    }else{
+        if (Loan.state === 'NOT-PAID'){
+            status_message = "The Loan is yet to be payed this month"
+        } else if (Loan.state == "COMPLETE"){
+            status_message = "The Loan iS paid off"
+        }else if (Loan.state == "PENDING"){
+            status_message = "The Loan is yet to be Approved by the Bank Manger"
+        }else if (Loan.state == "REJECTED"){
+            status_message = "The Loan is Rejected by the Bank Manger"
+        }else {
+            status_message = "The Loan is payed for this month"
+        }
+    }
+
+    res.render('customer_single_loan_check',{
+        error:req.query.error,
+        success:req.query.success,
+        user:req.session.user,
+        Loan,
+        status_message,
+    })
+}
+
+async function listLoans(req,res){
+    const Loans = await LoanModel.getLoansByUserID(req.session.user.user_id);
+
+    console.log(Loans);
+
+    Loans.forEach((value) => {
+        value.url = `/Customer/${req.session.user.user_id}/loans/${value.loan_id}`
+    });
+
+
+
+    const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+    let name;
+    if (owner_type.owner_type === "U") {
+        const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
+        name = `${customer.first_name} ${customer.last_name}`;
+    }else {
+        const organization =  await OrganizationModel.getOrgDetails(req.session.user.user_id);
+        name = organization.name;
+    }
+
+    res.render('customer_check_loans',{
+        error:req.query.error,
+        success:req.query.success,
+        user:req.session.user,
+        name,
+        Loans,
+    });
+}
+
 
 async function onlineLoan(req,res){
     try{
@@ -98,7 +167,7 @@ async function onlineLoan(req,res){
             const FDdetails = await FixedDeposits.getFDDetailsByID(value.fd_acc);
             console.log(FDdetails);
 
-            const check = checkOnlineFDAmount(parseFloat(value),FDdetails.balance);
+            const check = checkOnlineFDAmount(parseFloat(value.amount),FDdetails.balance);
 
             console.log(check)
             if (! check.possibility){
@@ -115,6 +184,7 @@ async function onlineLoan(req,res){
             onlineLoan = ObjectToList(onlineLoan)
 
             await LoanModel.addOnlineLoan(onlineLoan).then((data)=>{
+                console.log(data)
                 if(data.result === 0){
                     throw new Errors.Conflict("Internal Server Error");
                 }else if(data.result === 1){
@@ -124,6 +194,7 @@ async function onlineLoan(req,res){
                 }else if(data.result === 3){
                     throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`);
                 }else{
+                    console.log(data);
                     throw new Errors.InternalServerError(`Error in DataBase`);
                 }
             }).catch((e)=>{

@@ -6,7 +6,6 @@ const LoanModel = {
     addOnlineLoan,
     addMonthlyPay,
     acceptStdLoan,
-    addMonthlyPay,
     getLoanForApproval,
     getLoansByUserID,
     getLoansDetailsByID,
@@ -106,7 +105,7 @@ function getLoansByUserID(id){
                 reject(error);
             } else {
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows);
             }
         });
     });
@@ -137,7 +136,7 @@ function getLoansDetailsByID(id){
                 reject(error);
             } else {
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows[0][0]);
             }
         });
     });
