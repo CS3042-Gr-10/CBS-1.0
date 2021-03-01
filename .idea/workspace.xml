@@ -33,10 +33,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="complete #52">
-      <change afterPath="$PROJECT_DIR$/app/views/customer_check_fds.hbs" afterDir="false" />
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="adding something.">
+      <change afterPath="$PROJECT_DIR$/app/views/customer_single_fd_check.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/FixedDeposit.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/FixedDeposit.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_check_fds.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_check_fds.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,14 +199,7 @@
       <workItem from="1614426132254" duration="154000" />
       <workItem from="1614426306393" duration="815000" />
       <workItem from="1614490034942" duration="15790000" />
-      <workItem from="1614573834568" duration="8003000" />
-    </task>
-    <task id="LOCAL-00008" summary="Customer.route.js session done">
-      <created>1609825722517</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1609825722517</updated>
+      <workItem from="1614573834568" duration="11839000" />
     </task>
     <task id="LOCAL-00009" summary="Added template functions to Customer.route.js">
       <created>1609829621007</created>
@@ -542,7 +537,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614578326434</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="adding something.">
+      <created>1614583388550</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1614583388550</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,7 +563,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding Account to existing customer functionality Fixes #39" />
     <MESSAGE value="adding Account to existing customer functionality tested Fixes #39" />
     <MESSAGE value="midpoints" />
     <MESSAGE value="merge and resolve developer" />
@@ -586,7 +587,8 @@
     <MESSAGE value="middle ground" />
     <MESSAGE value="completing #51 fixing #52" />
     <MESSAGE value="complete #52" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete #52" />
+    <MESSAGE value="adding something." />
+    <option name="LAST_COMMIT_MESSAGE" value="adding something." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

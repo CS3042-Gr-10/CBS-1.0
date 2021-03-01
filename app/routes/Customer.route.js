@@ -35,7 +35,7 @@ function init(router) {
     router.route('/Customer/:id/fds')
         .get(listFDsAction)
     router.route('/Customer/:id/fds/:fd_id')
-        .get(listFDsAction)
+        .get(checkAFD)
     router.route('/Customer/:id/loan')
         .get(listFDsAction)
     router.route('/Customer/:id/loan/:loan_id')
@@ -43,6 +43,20 @@ function init(router) {
     router.route('/Customer/:id/addLoan')
         .get(listFDsAction)
         .post(listFDsAction)
+}
+
+async function checkAFD(req,res){
+    const FD = await  FixedDeposits.getFDDetailsByID(req.params.fd_id);
+    const branch = await BranchModel.branchDetails(FD.branch_id);
+    console.log(FD);
+    console.log(branch);
+    res.render('customer_single_fd_check',{
+        error:req.query.error,
+        success:req.query.success,
+        user:req.session.user,
+        FD,
+        branch,
+    })
 }
 
 async function indexAction(req,res){
@@ -133,8 +147,9 @@ async function startFDAction(req, res) {
             balance:parseFloat(value.amount),
         }
 
-        fd = ObjectToList(fd);
         console.log(fd);
+        fd = ObjectToList(fd);
+
 
         await FixedDeposits.addCFixedDeposit(fd).then((data)=>{
             console.log(data)
@@ -270,6 +285,12 @@ async function listFDsAction(req,res){
 
     console.log(FDs);
 
+    FDs.forEach((value) => {
+       value.url = `/Customer/${req.session.user.user_id}/fds/${value.fd_id}`
+    });
+
+
+
     const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
     let name;
     if (owner_type.owner_type === "U") {
@@ -288,14 +309,6 @@ async function listFDsAction(req,res){
         FDs,
     });
 
-}
-
-function listLoansAction(req,res){
-    //listing the current loans the person has
-}
-
-function applySelfLoanAction(req,res){
-    //check if eligible for a loan and then allow loan registration
 }
 
 

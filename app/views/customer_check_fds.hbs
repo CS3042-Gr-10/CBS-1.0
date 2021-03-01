@@ -51,16 +51,22 @@
                     <a class="card-block stretched-link text-decoration-none" href="{{this.url}}"></a>
                     <div class="card-body">
                         <h5 class="card-title">
-                            {{this.acc_id}}
+                            {{this.fd_id}}
                         </h5>
 
 
                         <div class="row text-secondary" style="letter-spacing: 3;">
                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                <p class="card-text"><i class="fas fa-id-card" style="margin-right: 6px;"></i> {{this.acc_type}} </p>
+                                <p class="card-text"><i class="fa-calendar-day" style="margin-right: 6px;"></i> {{this.opened_date}} </p>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                <p class="card-text"><i class="fa-calendar-day" style="margin-right: 6px;"></i> {{this.created_date}} </p>
+                                <p class="card-text"><i class="fas fa-id-card" style="margin-right: 6px;"></i> {{this.sv_acc_id}} </p>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <p class="card-text"><i class="fas" style="margin-right: 6px;"></i> {{this.balance}} </p>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <p class="card-text"><i class="fas" style="margin-right: 6px;"></i> {{this.state}} </p>
                             </div>
 
                         </div>
