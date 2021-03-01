@@ -8,11 +8,11 @@ const LoanModel = {
     acceptStdLoan,
     addMonthlyPay,
     getLoanForApproval,
-    getLoanDetails,
+    getLoansByUserID,
+    getLoansDetailsByID
 }
 
 function addStdLoan(loan) {
-
     //TODO: set "loan" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_std_loan.sql 
     return new Promise((resolve, reject) => {
         db.query(`CALL add_std_loan(?,?,?,?)`, loan, (error, rows, fields) => {
@@ -31,7 +31,6 @@ function addStdLoan(loan) {
 }
 
 function addOnlineLoan(loan) {
-
     //TODO: set "loan" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_online_loan.sql 
     return new Promise((resolve, reject) => {
         db.query(`CALL add_online_loan(?,?,?,?)`, acc, (error, rows, fields) => {
@@ -49,7 +48,6 @@ function addOnlineLoan(loan) {
 }
 
 function addMonthlyPay(payment) {
-
     //TODO: set "payment" attribute appropriate to the data passing -- checkout ../document/sql_scripts/loan_payment.sql 
     return new Promise((resolve, reject) => {
         db.query(`CALL loan_payment(?)`, payment, (error, rows, fields) => {
@@ -67,7 +65,6 @@ function addMonthlyPay(payment) {
 }
 
 function acceptStdLoan(loan) {
-
     //TODO: set "loan" attribute appropriate to the data passing -- checkout ../document/sql_scripts/update_loan_st.sql
     return new Promise((resolve, reject) => {
         db.query(`CALL accept_loan_st(?,?)`, loan, (error, rows, fields) => {
@@ -99,9 +96,9 @@ function getLoanForApproval(branch_id){
     });
 }
 
-function getLoanDetails(loan_id){
+function getLoansByUserID(id){
     return new Promise((resolve, reject) => {
-        db.query(`SELECT * FROM loan NATURAL JOIN standard_loan WHERE loan_id=? `, loan_id ,(error, rows, fields) => {
+        db.query(`SELECT * FROM loan WHERE customer_id=? `, id ,(error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
@@ -114,6 +111,21 @@ function getLoanDetails(loan_id){
     });
 }
 
+function getLoansDetailsByID(id){
+    //TODO: set "id" attribute appropriate to the data passing -- checkout ../document/sql_scripts/get_loan_details.sql
+    return new Promise((resolve, reject) => {
+        db.query(`call get_loan_details(?)`, id ,(error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
 
 
 module.exports = LoanModel;
