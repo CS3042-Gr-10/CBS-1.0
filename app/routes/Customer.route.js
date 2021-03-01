@@ -8,6 +8,7 @@ const TransactionModel = require('../models/Transaction.model');
 const OrganizationModel = require('../models/Organization.model');
 const ReportModel = require('../models/Report.model');
 const LoanModel = require('../models/Loan.model');
+const FixedDepositModel = require('../models/FixedDeposit.model');
 const BranchModel = require('../models/Branch.model');
 const UserServices = require('../services/user.service');
 const DropdownService = require('../services/Dropdown.service');
@@ -31,6 +32,17 @@ function init(router) {
         .get(checkProfilePage)
     router.route('/Customer/:id/account/:acc_id')
         .get(checkAccount)
+    router.route('/Customer/:id/fds')
+        .get(listFDsAction)
+    router.route('/Customer/:id/fds/:fd_id')
+        .get(listFDsAction)
+    router.route('/Customer/:id/loan')
+        .get(listFDsAction)
+    router.route('/Customer/:id/loan/:loan_id')
+        .get(listFDsAction)
+    router.route('/Customer/:id/addLoan')
+        .get(listFDsAction)
+        .post(listFDsAction)
 }
 
 async function indexAction(req,res){
@@ -251,8 +263,30 @@ async function checkAccount(req,res) {
 
 }
 
-function listFDsAction(req,res){
+async function listFDsAction(req,res){
     //list of the the fd and their details.
+
+    const FDs = await FixedDeposits.getFDByUserID(req.session.user.user_id);
+
+    console.log(FDs);
+
+    const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+    let name;
+    if (owner_type.owner_type === "U") {
+        const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
+        name = `${customer.first_name} ${customer.last_name}`;
+    }else {
+        const organization =  await OrganizationModel.getOrgDetails(req.session.user.user_id);
+        name = organization.name;
+    }
+
+    res.render('customer_check_fds',{
+        error:req.query.error,
+        success:req.query.success,
+        user:req.session.user,
+        name,
+        FDs,
+    });
 
 }
 
