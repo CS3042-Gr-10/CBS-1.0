@@ -13,9 +13,9 @@ const BranchModel = require('../models/Branch.model');
 const UserServices = require('../services/user.service');
 const DropdownService = require('../services/Dropdown.service');
 const EmployeeModel = require('../models/Employee.model');
-const {startFDInfo, transferInfo} = require('../schema/Customer');
+const {startFDInfo, transferInfo, onlineLoanOrganizationInfo,onlineLoanIndividualInfo} = require('../schema/Customer');
 const FixedDeposits = require('../models/FixedDeposit.model');
-const { ObjectToList, hash_password } = require('../../common/helpers');
+const { ObjectToList, checkOnlineFDAmount } = require('../../common/helpers');
 
 
 function init(router) {
@@ -35,14 +35,223 @@ function init(router) {
     router.route('/Customer/:id/fds')
         .get(listFDsAction)
     router.route('/Customer/:id/fds/:fd_id')
-        .get(listFDsAction)
-    router.route('/Customer/:id/loan')
-        .get(listFDsAction)
-    router.route('/Customer/:id/loan/:loan_id')
-        .get(listFDsAction)
+        .get(checkAFD)
+    router.route('/Customer/:id/loans')
+        .get(listLoans)
+    router.route('/Customer/:id/loans/:loan_id')
+        .get(checkALoan)
     router.route('/Customer/:id/addLoan')
-        .get(listFDsAction)
-        .post(listFDsAction)
+        .get(onlineLoanPage)
+        .post(onlineLoan)
+}
+
+async function checkALoan(req,res){
+    console.log(req.params.loan_id);
+    const Loan = await  LoanModel.getLoansDetailsByID(req.params.loan_id);
+    console.log(Loan);
+    let status_message;
+
+    if(Loan.loan_type == "ONLINE"){
+        if (Loan.state === 'NOT-PAID'){
+            status_message = "The Loan is yet to be payed this month"
+        } else if (Loan.state == "COMPLETE"){
+            status_message = "The Loan iS paid off"
+        }else {
+            status_message = "The Loan is payed for this month"
+        }
+
+    }else{
+        if (Loan.state === 'NOT-PAID'){
+            status_message = "The Loan is yet to be payed this month"
+        } else if (Loan.state == "COMPLETE"){
+            status_message = "The Loan iS paid off"
+        }else if (Loan.state == "PENDING"){
+            status_message = "The Loan is yet to be Approved by the Bank Manger"
+        }else if (Loan.state == "REJECTED"){
+            status_message = "The Loan is Rejected by the Bank Manger"
+        }else {
+            status_message = "The Loan is payed for this month"
+        }
+    }
+
+    res.render('customer_single_loan_check',{
+        error:req.query.error,
+        success:req.query.success,
+        user:req.session.user,
+        Loan,
+        status_message,
+    })
+}
+
+async function listLoans(req,res){
+    const Loans = await LoanModel.getLoansByUserID(req.session.user.user_id);
+
+    console.log(Loans);
+
+    Loans.forEach((value) => {
+        value.url = `/Customer/${req.session.user.user_id}/loans/${value.loan_id}`
+    });
+
+
+
+    const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+    let name;
+    if (owner_type.owner_type === "U") {
+        const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
+        name = `${customer.first_name} ${customer.last_name}`;
+    }else {
+        const organization =  await OrganizationModel.getOrgDetails(req.session.user.user_id);
+        name = organization.name;
+    }
+
+    res.render('customer_check_loans',{
+        error:req.query.error,
+        success:req.query.success,
+        user:req.session.user,
+        name,
+        Loans,
+    });
+}
+
+
+async function onlineLoan(req,res){
+    try{
+        console.log(req.body);
+        const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+        if (owner_type.owner_type === "U"){
+            const {value,error} = await onlineLoanIndividualInfo.validate(req.body);
+            if(error) throw error;
+
+            const FDdetails = await FixedDeposits.getFDDetailsByID(value.fd_acc);
+            console.log(FDdetails);
+
+            const check = checkOnlineFDAmount(parseFloat(value.amount),FDdetails.balance);
+
+            console.log(check)
+            if (! check.possibility){
+                throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`)
+            }
+
+            let onlineLoan = {
+                customer_id_d:req.session.user.user_id,
+                loaned_amount_d:parseFloat(value.amount),
+                loan_plan_id_d:parseInt(value.loan_plan),
+                fd_acc_d:parseInt(value.fd_acc),
+            }
+
+            onlineLoan = ObjectToList(onlineLoan)
+
+            await LoanModel.addOnlineLoan(onlineLoan).then((data)=>{
+                console.log(data)
+                if(data.result === 0){
+                    throw new Errors.Conflict("Internal Server Error");
+                }else if(data.result === 1){
+                    res.redirect(`/Customer/${req.session.user.user_id}?success=Successfully acquired Loan`)
+                }else if(data.result === 2){
+                    throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`);
+                }else if(data.result === 3){
+                    throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`);
+                }else{
+                    console.log(data);
+                    throw new Errors.InternalServerError(`Error in DataBase`);
+                }
+            }).catch((e)=>{
+                console.log(e);
+                res.redirect(`/Customer/${req.session.user.user_id}?error=${e}`)
+            })
+
+        }else{
+            const {value,error} = await onlineLoanOrganizationInfo.validate(req.body);
+            if(error) throw error;
+
+            const FDdetails = await FixedDeposits.getFDDetailsByID(value.fd_acc);
+            console.log(FDdetails);
+
+            const check = checkOnlineFDAmount(parseFloat(value.amount),FDdetails.balance);
+
+            console.log(check)
+            if (! check.possibility){
+                throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`)
+            }
+
+            let onlineLoan = {
+                customer_id_d:req.session.user.user_id,
+                loaned_amount_d:parseFloat(value.amount),
+                loan_plan_id_d:parseInt(value.loan_plan),
+                fd_acc_d:parseInt(value.fd_acc),
+            }
+
+            onlineLoan = ObjectToList(onlineLoan)
+
+            await LoanModel.addOnlineLoan(onlineLoan).then((data)=>{
+                console.log(data)
+                if(data.result === 0){
+                    throw new Errors.Conflict("Internal Server Error");
+                }else if(data.result === 1){
+                    res.redirect(`/Customer/${req.session.user.user_id}?success=Successfully acquired Loan`)
+                }else if(data.result === 2){
+                    throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`);
+                }else if(data.result === 3){
+                    throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`);
+                }else{
+                    console.log(data);
+                    throw new Errors.InternalServerError(`Error in DataBase`);
+                }
+            }).catch((e)=>{
+                console.log(e);
+                res.redirect(`/Customer/${req.session.user.user_id}?error=${e}`)
+            })
+        }
+    }catch(e) {
+        console.log(e);
+        res.redirect(`/Customer/${req.session.user.user_id}?error=${e}`)
+    }
+}
+
+async function onlineLoanPage(req,res){
+    const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+    const loan_plan = await DropdownService.getLoanPlans();
+    const FDs = await FixedDeposits.getFDByUserID(req.session.user.user_id);
+    console.log(FDs);
+
+    if (owner_type.owner_type === "U"){
+        const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
+        res.render('customer_individual_new_loan',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            nic:customer.NIC,
+            amount:req.query.amount,
+            loan_plan:loan_plan,
+            FDs,
+        });
+    }else {
+        const organization = await OrganizationModel.getOrgDetails(req.session.user.user_id);
+        res.render('customer_new_loan_organization',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            org_id:organization.reg_number,
+            amount:req.query.amount,
+            loan_plan:loan_plan,
+            FDs,
+        });
+    }
+}
+
+
+async function checkAFD(req,res){
+    const FD = await  FixedDeposits.getFDDetailsByID(req.params.fd_id);
+    const branch = await BranchModel.branchDetails(FD.branch_id);
+    console.log(FD);
+    console.log(branch);
+    res.render('customer_single_fd_check',{
+        error:req.query.error,
+        success:req.query.success,
+        user:req.session.user,
+        FD,
+        branch,
+    })
 }
 
 async function indexAction(req,res){
@@ -133,8 +342,9 @@ async function startFDAction(req, res) {
             balance:parseFloat(value.amount),
         }
 
-        fd = ObjectToList(fd);
         console.log(fd);
+        fd = ObjectToList(fd);
+
 
         await FixedDeposits.addCFixedDeposit(fd).then((data)=>{
             console.log(data)
@@ -270,6 +480,12 @@ async function listFDsAction(req,res){
 
     console.log(FDs);
 
+    FDs.forEach((value) => {
+       value.url = `/Customer/${req.session.user.user_id}/fds/${value.fd_id}`
+    });
+
+
+
     const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
     let name;
     if (owner_type.owner_type === "U") {
@@ -288,14 +504,6 @@ async function listFDsAction(req,res){
         FDs,
     });
 
-}
-
-function listLoansAction(req,res){
-    //listing the current loans the person has
-}
-
-function applySelfLoanAction(req,res){
-    //check if eligible for a loan and then allow loan registration
 }
 
 

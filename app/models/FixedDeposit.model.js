@@ -35,7 +35,7 @@ function getFDByUserID(id){
                 reject(error);
             } else {
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows);
             }
         });
     });
@@ -51,7 +51,7 @@ function getFDDetailsByID(id){
                 reject(error);
             } else {
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows[0][0]);
             }
         });
     });
