@@ -33,7 +33,7 @@ function addStdLoan(loan) {
 function addOnlineLoan(loan) {
     //TODO: set "loan" attribute appropriate to the data passing -- checkout ../document/sql_scripts/add_online_loan.sql 
     return new Promise((resolve, reject) => {
-        db.query(`CALL add_online_loan(?,?,?,?)`, acc, (error, rows, fields) => {
+        db.query(`CALL add_online_loan(?,?,?,?)`,loan, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
@@ -41,7 +41,7 @@ function addOnlineLoan(loan) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0][0]);
             }
         });
     });

@@ -13,9 +13,9 @@ const BranchModel = require('../models/Branch.model');
 const UserServices = require('../services/user.service');
 const DropdownService = require('../services/Dropdown.service');
 const EmployeeModel = require('../models/Employee.model');
-const {startFDInfo, transferInfo} = require('../schema/Customer');
+const {startFDInfo, transferInfo, onlineLoanOrganizationInfo,onlineLoanIndividualInfo} = require('../schema/Customer');
 const FixedDeposits = require('../models/FixedDeposit.model');
-const { ObjectToList, hash_password } = require('../../common/helpers');
+const { ObjectToList, checkOnlineFDAmount } = require('../../common/helpers');
 
 
 function init(router) {
@@ -41,9 +41,133 @@ function init(router) {
     router.route('/Customer/:id/loan/:loan_id')
         .get(listFDsAction)
     router.route('/Customer/:id/addLoan')
-        .get(listFDsAction)
-        .post(listFDsAction)
+        .get(onlineLoanPage)
+        .post(onlineLoan)
 }
+
+async function onlineLoan(req,res){
+    try{
+        console.log(req.body);
+        const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+        if (owner_type.owner_type === "U"){
+            const {value,error} = await onlineLoanIndividualInfo.validate(req.body);
+            if(error) throw error;
+
+            const FDdetails = await FixedDeposits.getFDDetailsByID(value.fd_acc);
+            console.log(FDdetails);
+
+            const check = checkOnlineFDAmount(parseFloat(value.amount),FDdetails.balance);
+
+            console.log(check)
+            if (! check.possibility){
+                throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`)
+            }
+
+            let onlineLoan = {
+                customer_id_d:req.session.user.user_id,
+                loaned_amount_d:parseFloat(value.amount),
+                loan_plan_id_d:parseInt(value.loan_plan),
+                fd_acc_d:parseInt(value.fd_acc),
+            }
+
+            onlineLoan = ObjectToList(onlineLoan)
+
+            await LoanModel.addOnlineLoan(onlineLoan).then((data)=>{
+                console.log(data)
+                if(data.result === 0){
+                    throw new Errors.Conflict("Internal Server Error");
+                }else if(data.result === 1){
+                    res.redirect(`/Customer/${req.session.user.user_id}?success=Successfully acquired Loan`)
+                }else if(data.result === 2){
+                    throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`);
+                }else if(data.result === 3){
+                    throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`);
+                }else{
+                    console.log(data);
+                    throw new Errors.InternalServerError(`Error in DataBase`);
+                }
+            }).catch((e)=>{
+                console.log(e);
+                res.redirect(`/Customer/${req.session.user.user_id}?error=${e}`)
+            })
+
+        }else{
+            const {value,error} = await onlineLoanOrganizationInfo.validate(req.body);
+            if(error) throw error;
+
+            const FDdetails = await FixedDeposits.getFDDetailsByID(value.fd_acc);
+            console.log(FDdetails);
+
+            const check = checkOnlineFDAmount(parseFloat(value),FDdetails.balance);
+
+            console.log(check)
+            if (! check.possibility){
+                throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`)
+            }
+
+            let onlineLoan = {
+                customer_id_d:req.session.user.user_id,
+                loaned_amount_d:parseFloat(value.amount),
+                loan_plan_id_d:parseInt(value.loan_plan),
+                fd_acc_d:parseInt(value.fd_acc),
+            }
+
+            onlineLoan = ObjectToList(onlineLoan)
+
+            await LoanModel.addOnlineLoan(onlineLoan).then((data)=>{
+                if(data.result === 0){
+                    throw new Errors.Conflict("Internal Server Error");
+                }else if(data.result === 1){
+                    res.redirect(`/Customer/${req.session.user.user_id}?success=Successfully acquired Loan`)
+                }else if(data.result === 2){
+                    throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`);
+                }else if(data.result === 3){
+                    throw new Errors.Forbidden(`The amount is too larger than the allowed amount of ${check.max}`);
+                }else{
+                    throw new Errors.InternalServerError(`Error in DataBase`);
+                }
+            }).catch((e)=>{
+                console.log(e);
+                res.redirect(`/Customer/${req.session.user.user_id}?error=${e}`)
+            })
+        }
+    }catch(e) {
+        console.log(e);
+        res.redirect(`/Customer/${req.session.user.user_id}?error=${e}`)
+    }
+}
+
+async function onlineLoanPage(req,res){
+    const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+    const loan_plan = await DropdownService.getLoanPlans();
+    const FDs = await FixedDeposits.getFDByUserID(req.session.user.user_id);
+    console.log(FDs);
+
+    if (owner_type.owner_type === "U"){
+        const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
+        res.render('customer_individual_new_loan',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            nic:customer.NIC,
+            amount:req.query.amount,
+            loan_plan:loan_plan,
+            FDs,
+        });
+    }else {
+        const organization = await OrganizationModel.getOrgDetails(req.session.user.user_id);
+        res.render('customer_new_loan_organization',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            org_id:organization.reg_number,
+            amount:req.query.amount,
+            loan_plan:loan_plan,
+            FDs,
+        });
+    }
+}
+
 
 async function checkAFD(req,res){
     const FD = await  FixedDeposits.getFDDetailsByID(req.params.fd_id);

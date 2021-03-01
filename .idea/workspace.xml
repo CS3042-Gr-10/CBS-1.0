@@ -33,13 +33,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="adding something.">
-      <change afterPath="$PROJECT_DIR$/app/views/customer_single_fd_check.hbs" afterDir="false" />
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="Check FD is done">
+      <change afterPath="$PROJECT_DIR$/app/views/customer_individual_new_loan.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/customer_new_loan_organization.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/FixedDeposit.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/FixedDeposit.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Loan.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Loan.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_check_fds.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_check_fds.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Customer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/helpers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,14 +201,7 @@
       <workItem from="1614426132254" duration="154000" />
       <workItem from="1614426306393" duration="815000" />
       <workItem from="1614490034942" duration="15790000" />
-      <workItem from="1614573834568" duration="11839000" />
-    </task>
-    <task id="LOCAL-00009" summary="Added template functions to Customer.route.js">
-      <created>1609829621007</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1609829621007</updated>
+      <workItem from="1614573834568" duration="18011000" />
     </task>
     <task id="LOCAL-00010" summary="Added template functions to BankManager.route.js">
       <created>1609829951730</created>
@@ -544,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614583388550</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Check FD is done">
+      <created>1614587196612</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1614587196612</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,7 +565,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding Account to existing customer functionality tested Fixes #39" />
     <MESSAGE value="midpoints" />
     <MESSAGE value="merge and resolve developer" />
     <MESSAGE value="Adding email sending functionality to customer creation and employee creation fixes #37" />
@@ -588,7 +589,8 @@
     <MESSAGE value="completing #51 fixing #52" />
     <MESSAGE value="complete #52" />
     <MESSAGE value="adding something." />
-    <option name="LAST_COMMIT_MESSAGE" value="adding something." />
+    <MESSAGE value="Check FD is done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Check FD is done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
