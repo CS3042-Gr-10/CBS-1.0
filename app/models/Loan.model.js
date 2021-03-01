@@ -9,7 +9,8 @@ const LoanModel = {
     addMonthlyPay,
     getLoanForApproval,
     getLoansByUserID,
-    getLoansDetailsByID
+    getLoansDetailsByID,
+    getLoansByFD
 }
 
 function addStdLoan(loan) {
@@ -99,6 +100,21 @@ function getLoanForApproval(branch_id){
 function getLoansByUserID(id){
     return new Promise((resolve, reject) => {
         db.query(`SELECT * FROM loan WHERE customer_id=? `, id ,(error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
+function getLoansByFD(id){
+    return new Promise((resolve, reject) => {
+        db.query(`SELECT count(loan_id) FROM online_loan WHERE fd_acc_id=? `, id ,(error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;

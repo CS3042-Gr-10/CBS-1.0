@@ -21,7 +21,7 @@ BEGIN
     if result = 1 then
 		START TRANSACTION;
 		
-		insert into fixed_deposit (customer_id, acc_plan_id, sv_acc_id, branch_id, opened_date, balance)
+		insert into fixed_deposit (customer_id, acc_plan_id, sv_acc_id, branch_id, opened_date, balance, state)
 		values (customer_id_d, acc_plan_id_d, sv_acc_id_d, branch_id_d, curdate(), balance_d, "ACTIVE");
 
 		COMMIT WORK;
