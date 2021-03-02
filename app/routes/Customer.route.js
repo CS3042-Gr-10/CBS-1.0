@@ -18,11 +18,31 @@ const FixedDeposits = require('../models/FixedDeposit.model');
 const { ObjectToList, checkOnlineFDAmount } = require('../../common/helpers');
 
 
+/*const { EmployeeRegistrationInfo, CustomerRegistrationSavingsInfo, CustomerRegistrationGeneralInfo, ExistingCustomerAccountInfo } = require('../schema/Registration');
+const { usernameInfo, nicInfo} = require('../schema/Authentication');
+const { TransactionInfo, accountNumberInfo, customerLoanInfo, organizationLoanInfo } = require('../schema/Employee');
+//const Errors = require('../../common/error');
+//const DropdownService = require('../services/Dropdown.service');
+//const { ObjectToList, hash_password } = require('../../common/helpers');
+//const EmployeeModel = require('../models/Employee.model');
+//const CustomerModel = require('../models/Customer.model');
+const sendMail = require('../../common/Emailer/send_mail');
+//const UserModel = require('../models/User.model');
+//const AccountModel = require('../models/Account.model');
+//const TransactionModel = require('../models/Transaction.model');
+//const OrganizationModel = require('../models/Organization.model');
+//const LoanModel = require('../models/Loan.model');
+const { gen_random_string } = require('../../common/token_generator');
+const  { ymd } = require('../../common/dateFormat');
+const { check_ageRange } = require('../enums/savings_account_plan_age');*/
+
 function init(router) {
     router.use('/Customer', ifLoggedIn)
     router.use('/Customer', ifCustomer)
     router.route('/Customer/:id')
         .get(indexAction);
+    //router.route("/Customer/:id/customerDetails")
+       // .get(checkCustomerDetails)
     router.route('/Customer/:id/startFD')
         .get(startFDPage)
         .post(startFDAction)
@@ -253,7 +273,6 @@ async function checkAFD(req,res){
         branch,
     })
 }
-
 async function indexAction(req,res){
     //EmployeeService.
     try{
@@ -507,6 +526,93 @@ async function listFDsAction(req,res){
 }
 
 
+async function checkProfilePage(req,res){
+    const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+    const accounts = await  AccountModel.getCustomerAccDetail(req.session.user.user_id);
 
+    accounts.forEach(value =>{
+        value.url = `/Customer/${req.session.user.user_id}/account/${value.acc_id}`;
+    });
+
+    if (owner_type.owner_type === "U"){
+        const Customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
+
+        console.log(accounts);
+        console.log(Customer);
+        console.log({
+            error: req.session.user.error,
+            user: req.session.user,
+            full_name:`${Customer.first_name} ${Customer.last_name}`,
+            NIC_number:Customer.NIC,
+            gender:Customer.gender,
+            address:`${Customer.house_no} , ${Customer.street} , ${Customer.city}`,
+            postal_code:Customer.postal_code,
+            contact_No1:Customer.contact_primary,
+            contact_No2:Customer.contact_secondary,
+            email:Customer.email,
+            dob:Customer.dob,
+            open_date:accounts.created_date,
+
+           // deposits:deposits,
+           // withdrawals:withdrawals,
+
+
+        });
+        console.log(req.session.user);
+        res.render('customer_individual_profile_check',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            accounts:accounts,
+           // customer:customer,
+           full_name:`${Customer.first_name} ${Customer.last_name}`,
+
+            NIC_number:Customer.NIC,
+            gender:Customer.gender,
+            address:`${Customer.house_no} , ${Customer.street} , ${Customer.city}`,
+            postal_code:Customer.postal_code,
+            contact_No1:Customer.contact_primary,
+            contact_No2:Customer.contact_secondary,
+            email:Customer.email,
+            dob:Customer.dob,
+            open_date:accounts.created_date,
+
+        });
+    }else {
+        // console.log(req.session.user);
+        const organization =  await OrganizationModel.getOrgDetails(req.session.user.user_id);
+        console.log(accounts);
+        console.log(organization);
+        console.log({
+            error: req.session.user.error,
+            user: req.session.user,
+            reg_No:organization.reg_number,
+            address:`${organization.house_no} , ${organization.street} , ${organization.city}`,
+            postal_code:organization.postal_code,
+            contact_No:organization.contact_No,
+            email:organization.email,
+            open_date:organization.created_date,
+
+           // deposits:deposits,
+           // withdrawals:withdrawals,
+
+
+        });
+        console.log(req.session.user);
+        res.render('customer_organization_profile_check',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            reg_No:organization.reg_number,
+            address:`${organization.house_no} , ${organization.street} , ${organization.city}`,
+            postal_code:organization.postal_code,
+            contact_No:organization.contact_No,
+            email:organization.email,
+            open_date:organization.created_date,
+            accounts:accounts,
+            //org:organization,
+        });
+    }
+}
 
 module.exports.init = init;

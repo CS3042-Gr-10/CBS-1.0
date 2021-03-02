@@ -9,6 +9,7 @@ VIEW `loan_detail` AS
         `loan`.`customer_id` AS `customer_id`,
         `loan`.`loaned_amount` AS `loaned_amount`,
         `loan`.`loan_plan_id` AS `loan_plan_id`,
+        GET_BRANCH(`loan`.`loan_id`) AS `branch`,
         GET_INST_AMOUNT(`loan`.`loaned_amount`,
                 `loan`.`loan_plan_id`) AS `installment_per_month`,
         GET_NPAY_TODO(`loan`.`loan_id`) AS `delay_installements`,
