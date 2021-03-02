@@ -9,16 +9,11 @@ const SessionHandler = require('../../config/SessionHandler');
 const { hash_password } = require('../../common/helpers');
 
 function init(router) {
-    router.route('/')
-      .get(ifNotLoggedIn,loginPage);
-    router.route('/login')
-        .post(ifNotLoggedIn,authentic);
-    router.route('/changePassword/:user_id')
-        .post(ifLoggedIn,changePassword)
-    router.route('/changeUsername/:user_id')
-        .post(ifLoggedIn,changeUsername)
-    router.route('/logout')
-        .get(ifLoggedIn,logout)
+    router.get('/',ifNotLoggedIn,loginPage);
+    router.post('/login',ifNotLoggedIn,authentic);
+    router.post('/changePassword/:user_id',ifLoggedIn,changePassword)
+    router.post('/changeUsername/:user_id',ifLoggedIn,changeUsername)
+    router.get('/logout',ifLoggedIn,logout)
 }
 
 async function changeUsername(req,res){

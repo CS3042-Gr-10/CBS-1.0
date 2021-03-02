@@ -37,32 +37,18 @@ const  { ymd } = require('../../common/dateFormat');
 const { check_ageRange } = require('../enums/savings_account_plan_age');*/
 
 function init(router) {
-    router.use('/Customer', ifLoggedIn)
-    router.use('/Customer', ifCustomer)
-    router.route('/Customer/:id')
-        .get(indexAction);
-    //router.route("/Customer/:id/customerDetails")
-       // .get(checkCustomerDetails)
-    router.route('/Customer/:id/startFD')
-        .get(startFDPage)
-        .post(startFDAction)
-    router.route('/Customer/:id/transfer')
-        .post(transfer)
-    router.route('/Customer/:id/checkProfile')
-        .get(checkProfilePage)
-    router.route('/Customer/:id/account/:acc_id')
-        .get(checkAccount)
-    router.route('/Customer/:id/fds')
-        .get(listFDsAction)
-    router.route('/Customer/:id/fds/:fd_id')
-        .get(checkAFD)
-    router.route('/Customer/:id/loans')
-        .get(listLoans)
-    router.route('/Customer/:id/loans/:loan_id')
-        .get(checkALoan)
-    router.route('/Customer/:id/addLoan')
-        .get(onlineLoanPage)
-        .post(onlineLoan)
+    router.get('/Customer/:id',ifLoggedIn,ifCustomer,indexAction);
+    router.get('/Customer/:id/startFD',ifLoggedIn,ifCustomer,startFDPage)
+    router.post('/Customer/:id/startFD',ifLoggedIn,ifCustomer,startFDAction)
+    router.post('/Customer/:id/transfer',ifLoggedIn,ifCustomer,transfer)
+    router.get('/Customer/:id/checkProfile',ifLoggedIn,ifCustomer,checkProfilePage)
+    router.get('/Customer/:id/account/:acc_id',ifLoggedIn,ifCustomer,checkAccount)
+    router.get('/Customer/:id/fds',ifLoggedIn,ifCustomer,listFDsAction)
+    router.get('/Customer/:id/fds/:fd_id',ifLoggedIn,ifCustomer,checkAFD)
+    router.get('/Customer/:id/loans',ifLoggedIn,ifCustomer,listLoans)
+    router.get('/Customer/:id/loans/:loan_id',ifLoggedIn,ifCustomer,checkALoan)
+    router.get('/Customer/:id/addLoan',ifLoggedIn,ifCustomer,onlineLoanPage)
+    router.post('/Customer/:id/addLoan',ifLoggedIn,ifCustomer,onlineLoan)
 }
 
 async function checkALoan(req,res){
@@ -322,6 +308,7 @@ async function indexAction(req,res){
           }
         )
     }catch (e){
+        console.log(e)
         res.redirect(`/?error=${e}`);
     }
 }
@@ -525,7 +512,7 @@ async function listFDsAction(req,res){
 
 }
 
-
+/*
 async function checkProfilePage(req,res){
     const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
     const accounts = await  AccountModel.getCustomerAccDetail(req.session.user.user_id);
@@ -613,6 +600,6 @@ async function checkProfilePage(req,res){
             //org:organization,
         });
     }
-}
+}*/
 
 module.exports.init = init;

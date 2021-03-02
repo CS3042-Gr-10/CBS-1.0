@@ -20,38 +20,26 @@ const ifLoggedIn = require('../Middleware/ifLoggedIn');
 const ifEmployee = require('../Middleware/ifEmployee');
 
 function init(router) {
-    router.route('/Employee/register')
-        .get(ifEmployeeCreatable,registerEmployeePage)
-        .post(ifEmployeeCreatable,registerEmployeeAction);
-    router.route('/Employee/:id')
-        .get(ifLoggedIn,ifEmployee,indexAction);
-    router.route('/Employee/:id/registerCustomer')
-        .get(ifLoggedIn,ifEmployee,registerCustomerPage)
-        .post(ifLoggedIn,ifEmployee,registerCustomer);
-    router.route('/Employee/:id/registerOrganization')
-      .get(ifLoggedIn,ifEmployee,registerOrganizationPage)
-      .post(ifLoggedIn,ifEmployee,registerOrganization);
-    router.route("/Employee/:id/addAccountIndividual")
-        .get(ifLoggedIn,ifEmployee,addAccountIndividualPage)
-        .post(ifLoggedIn,ifEmployee,addAccountIndividual)
-    router.route("/Employee/:id/addAccountOrganization")
-        .get(ifLoggedIn,ifEmployee,addAccountOrganizationPage)
-        .post(ifLoggedIn,ifEmployee,addAccountOrganization)
-    router.route("/Employee/:id/AccountDetails")
-        .get(ifLoggedIn,ifEmployee,getCustomerDetails)
-    router.route("/Employee/:id/customerTransaction")
-        .get(ifLoggedIn,ifEmployee,customerTransactionPage)
-        .post(ifLoggedIn,ifEmployee,customerTransaction)
-    router.route("/Employee/:id/customerLoan")
-        .get(ifLoggedIn,ifEmployee,customerLoanPage)
-        .post(ifLoggedIn,ifEmployee,customerLoan)
-    router.route("/Employee/:id/organizationLoan")
-        .get(ifLoggedIn,ifEmployee,organizationLoanPage)
-        .post(ifLoggedIn,ifEmployee,organizationLoan)
-    router.route("/Employee/:id/payLoan")
-        .get(ifLoggedIn,ifEmployee,payLoanPage)
-        .post(ifLoggedIn,ifEmployee,payLoan)
-
+    router.get('/Employee/register',ifEmployeeCreatable,registerEmployeePage)
+    router.post('/Employee/register',ifEmployeeCreatable,registerEmployeeAction);
+    router.get('/Employee/:id',ifLoggedIn,ifEmployee,indexAction);
+    router.get('/Employee/:id/registerCustomer',ifLoggedIn,ifEmployee,registerCustomerPage)
+    router.post('/Employee/:id/registerCustomer',ifLoggedIn,ifEmployee,registerCustomer);
+    router.get('/Employee/:id/registerOrganization',ifLoggedIn,ifEmployee,registerOrganizationPage)
+    router.post('/Employee/:id/registerOrganization',ifLoggedIn,ifEmployee,registerOrganization);
+    router.get("/Employee/:id/addAccountIndividual",ifLoggedIn,ifEmployee,addAccountIndividualPage)
+    router.post("/Employee/:id/addAccountIndividual",ifLoggedIn,ifEmployee,addAccountIndividual)
+    router.get("/Employee/:id/addAccountOrganization",ifLoggedIn,ifEmployee,addAccountOrganizationPage)
+    router.post("/Employee/:id/addAccountOrganization",ifLoggedIn,ifEmployee,addAccountOrganization)
+    router.get("/Employee/:id/AccountDetails",ifLoggedIn,ifEmployee,getCustomerDetails)
+    router.get("/Employee/:id/customerTransaction",ifLoggedIn,ifEmployee,customerTransactionPage)
+    router.post("/Employee/:id/customerTransaction",ifLoggedIn,ifEmployee,customerTransaction)
+    router.get("/Employee/:id/customerLoan",ifLoggedIn,ifEmployee,customerLoanPage)
+    router.post("/Employee/:id/customerLoan",ifLoggedIn,ifEmployee,customerLoan)
+    router.get("/Employee/:id/organizationLoan",ifLoggedIn,ifEmployee,organizationLoanPage)
+    router.post("/Employee/:id/organizationLoan",ifLoggedIn,ifEmployee,organizationLoan)
+    router.get("/Employee/:id/payLoan",ifLoggedIn,ifEmployee,payLoanPage)
+    router.post("/Employee/:id/payLoan",ifLoggedIn,ifEmployee,payLoan)
 }
 
 async function payLoan(req,res){

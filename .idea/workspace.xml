@@ -33,15 +33,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="pay for loan complete">
-      <change afterPath="$PROJECT_DIR$/app/Middleware/ifEmployeeCreatable.js" afterDir="false" />
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="merge and resolved">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Middleware/ifBankManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifBankManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifCustomer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Middleware/ifEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifEmployee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Middleware/ifNotLoggedIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifNotLoggedIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Admin.route.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
@@ -209,21 +203,8 @@
       <workItem from="1614600257534" duration="804000" />
       <workItem from="1614601314545" duration="54000" />
       <workItem from="1614603010964" duration="6275000" />
-      <workItem from="1614616477773" duration="18113000" />
-    </task>
-    <task id="LOCAL-00013" summary="something">
-      <created>1611469699297</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1611469699297</updated>
-    </task>
-    <task id="LOCAL-00014" summary="something">
-      <created>1611471569646</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1611471569646</updated>
+      <workItem from="1614616477773" duration="20772000" />
+      <workItem from="1614680248168" duration="5477000" />
     </task>
     <task id="LOCAL-00015" summary="merging">
       <created>1612253506927</created>
@@ -554,7 +535,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614657739210</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Access Levels complted">
+      <created>1614674068969</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1614674068969</updated>
+    </task>
+    <task id="LOCAL-00063" summary="merge and resolved">
+      <created>1614674428009</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1614674428009</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -573,8 +568,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="additions" />
-    <MESSAGE value="loan request from employee done.&#10;withdrawing and depositing done." />
     <MESSAGE value="sample commit" />
     <MESSAGE value="adding shit" />
     <MESSAGE value="adding registration of oraganization adding accounts functionality" />
@@ -598,7 +591,9 @@
     <MESSAGE value="Apply self loan of customer #54 done" />
     <MESSAGE value="Apply self loan" />
     <MESSAGE value="pay for loan complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="pay for loan complete" />
+    <MESSAGE value="Access Levels complted" />
+    <MESSAGE value="merge and resolved" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge and resolved" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
