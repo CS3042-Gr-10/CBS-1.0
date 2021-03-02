@@ -74,6 +74,8 @@
             <div class="three_buttons">
                 <a href="/employee/{{User.user_id}}/customerTransaction" type="button" class="btn btn-primary btn-lg btn-block">Deposit Money / Withdraw Money</a>
                 <a href="/employee/{{User.user_id}}/registerOrganization" type="button" class="btn btn-primary btn-lg btn-block">Register Organization</a>
+                <a type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                   data-target="#payLoanModel">Pay Loan Installment</a>
             </div>
             <div class="three_buttons">
                 <a href="/employee/{{User.user_id}}/customerLoan" type="button" class="btn btn-primary btn-lg btn-block">Customer Loan Request Form</a>
@@ -92,6 +94,32 @@
                     <a href="/employee/{{User.user_id}}/addAccountIndividual" type="button" class="btn btn-primary btn-lg btn-block">Individual</a>
                     <a href="/employee/{{User.user_id}}/addAccountOrganization" type="button" class="btn btn-primary btn-lg btn-block">Organization</a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="payLoanModel" tabindex="-1" aria-labelledby="payLoanModelLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customerInfoModelLabel">Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="/employee/{{User.user_id}}/payLoan" method="GET">
+                    <div class="modal-body">
+                        <div class="form-group form-inline mt-1">
+                            <label for="loan_id" class="mr-3 col-sm-3 col-form-label">Loan ID</label>
+                            <input type="text" id="loan_id" name="loan_id" class="form-control"
+                                   placeholder="Enter Loan ID">
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="confirm button">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </form>
             </div>
         </div>
     </div>

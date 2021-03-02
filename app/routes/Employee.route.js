@@ -1,6 +1,6 @@
 const { EmployeeRegistrationInfo, CustomerRegistrationGeneralInfo,OrganizationRegistrationGeneralInfo } = require('../schema/Registration');
 const { usernameInfo, nicInfo} = require('../schema/Authentication');
-const { TransactionInfo, accountNumberInfo, customerLoanInfo, organizationLoanInfo,IndividualCurrentInfo,IndividualSavingsInfo,OrganizationSavingsInfo,OrganizationCurrentInfo } = require('../schema/Employee');
+const { TransactionInfo, accountNumberInfo, customerLoanInfo,payLoanTnfo, organizationLoanInfo,IndividualCurrentInfo,IndividualSavingsInfo,OrganizationSavingsInfo,OrganizationCurrentInfo } = require('../schema/Employee');
 const Errors = require('../../common/error');
 const DropdownService = require('../services/Dropdown.service');
 const { ObjectToList, hash_password } = require('../../common/helpers');
@@ -45,7 +45,54 @@ function init(router) {
     router.route("/employee/:id/organizationLoan")
         .get(organizationLoanPage)
         .post(organizationLoan)
+    router.route("/employee/:id/payLoan")
+        .get(payLoanPage)
+        .post(payLoan)
 
+}
+
+async function payLoan(req,res){
+    try{
+        console.log(req.body)
+        let { value, error } = await payLoanTnfo.validate(req.body);
+        if (error) throw (error);
+
+        await LoanModel.addMonthlyPay(req.body.loan_id).then(
+            res.redirect(`/Employee/${req.session.user.user_id}?success=Monthly payment to loan ${req.body.loan_id} Successfully`)
+        ).catch((e)=>{
+            console.log(e);
+            res.redirect(`/Employee/${req.session.user.user_id}?error=${e}`)
+        });
+    }catch (e) {
+        console.log(e);
+        res.redirect(`/Employee/${req.session.user.user_id}?error=${e}`)
+    }
+}
+
+async function payLoanPage(req,res){
+    try{
+        let { value, error } = await payLoanTnfo.validate(req.query);
+        if (error) throw (error);
+
+        const loan = await new LoanModel.getLoansDetailsByID(req.query.loan_id);
+        if (!loan) throw new Errors.NotFound("No such Loan");
+        console.log(loan);
+
+        const monthly_amount = ((loan.interrest_rate+1)*loan.loaned_amount)/loan.period
+        console.log(monthly_amount);
+
+        res.render('employee_loan_pay',{
+            error: req.query.error,
+            success:req.query.success,
+            user: req.session.user,
+            Loan:loan,
+            monthly_amount,
+        });
+
+    }catch (e) {
+        console.log(e);
+        res.redirect(`/Employee/${req.session.user.user_id}?error=${e}`)
+    }
 }
 
 async function indexAction(req,res){

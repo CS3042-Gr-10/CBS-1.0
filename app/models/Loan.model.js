@@ -50,7 +50,7 @@ function addOnlineLoan(loan) {
 function addMonthlyPay(payment) {
     //TODO: set "payment" attribute appropriate to the data passing -- checkout ../document/sql_scripts/loan_payment.sql 
     return new Promise((resolve, reject) => {
-        db.query(`CALL loan_payment(?)`, payment, (error, rows, fields) => {
+        db.query(`CALL add_loan_payment(?)`, payment, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
