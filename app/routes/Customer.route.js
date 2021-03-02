@@ -19,8 +19,8 @@ const { ObjectToList, checkOnlineFDAmount } = require('../../common/helpers');
 
 
 function init(router) {
-    //router.use('/Customer', ifLoggedIn)
-    //router.use('/Customer', ifCustomer)
+    router.use('/Customer', ifLoggedIn)
+    router.use('/Customer', ifCustomer)
     router.route('/Customer/:id')
         .get(indexAction);
     router.route('/Customer/:id/startFD')

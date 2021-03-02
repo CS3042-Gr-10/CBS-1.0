@@ -1,9 +1,9 @@
 const ifLoggedIn = (req, res, next) => {
+    console.log(req.session.user);
     if (req.session.user) {
-        console.log(`ifLogged pass ${req.session.user}`)
+        console.log("is logged")
         next();
     } else {
-        console.log(`ifLogged fail ${req.session.user}`)
         res.redirect('/');
     }
 };

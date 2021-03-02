@@ -5,6 +5,9 @@ const BranchModel = require('../models/Branch.model');
 const CustomerModel = require('../models/Customer.model');
 const OrganizationModel = require('../models/Organization.model');
 const UserModel = require('../models/User.model');
+const ifNotLoggedIn = require('../Middleware/ifNotLoggedIn');
+const ifLoggedIn = require('../Middleware/ifLoggedIn');
+const ifBankManager = require('../Middleware/ifBankManager')
 const DropdownService = require('../services/Dropdown.service');
 const AccountModel = require('../models/Account.model');
 const ReportModel = require('../models/Report.model');
@@ -13,6 +16,8 @@ const  { ymd } = require('../../common/dateFormat');
 const { ObjectToList } = require('../../common/helpers');
 
 function init(router) {
+    router.use('/BankManager', ifLoggedIn)
+    router.use('/BankManager', ifBankManager)
     router.route('/BankManager/:id')
         .get(indexAction)
     router.route('/BankManager/:id/ApproveLoan')

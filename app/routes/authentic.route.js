@@ -3,21 +3,22 @@ const {LogInInfo, changePasswordInfo, changeUsernameInfo} = require('../schema/A
 const mail = require('./../../common/mailer.js');
 const UserModel = require('../models/User.model');
 const Errors = require('../../common/error');
+const ifNotLoggedIn = require('../Middleware/ifNotLoggedIn');
+const ifLoggedIn = require('../Middleware/ifLoggedIn');
 const SessionHandler = require('../../config/SessionHandler');
 const { hash_password } = require('../../common/helpers');
 
 function init(router) {
     router.route('/')
-      .get(loginPage);
+      .get(ifNotLoggedIn,loginPage);
     router.route('/login')
-        .post(authentic); 
+        .post(ifNotLoggedIn,authentic);
     router.route('/changePassword/:user_id')
-        .post(changePassword)
+        .post(ifLoggedIn,changePassword)
     router.route('/changeUsername/:user_id')
-        .post(changeUsername)
+        .post(ifLoggedIn,changeUsername)
     router.route('/logout')
-        .get(logout)
-        .post(logout);
+        .get(ifLoggedIn,logout)
 }
 
 async function changeUsername(req,res){
@@ -142,7 +143,7 @@ async function authentic (req, res) {
 
     await authenticService.authentic(authenticData).then((data) => {
       if (data) {
-         console.log(data.acc_level)
+          console.log(data.acc_level)
         req.session.user = {};
         req.session.user.user_id = data.user_id;
         req.session.user.email = data.email;
@@ -196,14 +197,16 @@ function signup(req,res) {
 }
 
 function logout(req, res){
-  req.session.destroy(error => {
-    if (error) {
-      res.send('Error logging out')
+  try{
+      if (req.session.user){
+          req.session.user = undefined;
+      }
+      res.redirect('/')
+  }catch(e)
+    {
+        console.log(e)
+        res.redirect(`/?error=${e}`)
     }
-  });
-
-  res.clearCookie(SESS_NAME);
-  res.redirect('/')
 }
 
 
