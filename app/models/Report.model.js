@@ -8,7 +8,9 @@ ReportModel = {
     getAllWithdrawByBranchId,
     getAllTransfers,
     getAllLoanPayments,
+    getAllLoanPaymentByBranchId,
     getUnpaidLoan,
+    getUnpaidLoanByBranchId,
     getWithdrawByAccId,
     getDepositByAccId,
     getTransferByAccId
@@ -101,9 +103,24 @@ function getAllTransferByBranchId(id, limit) {
     });
 }
 
-function getAllLoanPayments(st_date, end_date, branch) {
+function getAllLoanPayments(dates) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from transaction natural join loan_payment where  trans_type = "LOAN" and date between ? and ?',[], (error, rows, fields) => {
+        db.query('SELECT * from transaction natural join loan_payment where  trans_type = "LOAN" and date between ? and ?',dates, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function getAllLoanPaymentByBranchId(id, limit) {
+    return new Promise((resolve, reject) => {
+        db.query('select * from detailed_loan_payment where branch = ? order by date limit ?',[id, limit], (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -119,6 +136,21 @@ function getAllLoanPayments(st_date, end_date, branch) {
 function getUnpaidLoan() {
     return new Promise((resolve, reject) => {
         db.query('SELECT * from loan_detail where loan_state = "NOT-PAID"', (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function getUnpaidLoanByBranchId(id) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from loan_detail where loan_state = "NOT-PAID" and branch=?', id,(error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
