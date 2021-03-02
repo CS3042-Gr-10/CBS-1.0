@@ -48,26 +48,27 @@ body>
 <div class="text-center">
     <div class="row">
         <div class="col-sm-6 col-xs-12">
-            <p><i class="fas fa-envelope" style="margin-right: 6px;"></i> {{user.email}} </p>
+            <p><i class="fas fa-envelope" style="margin-right: 6px;"></i> Email: {{user.email}} </p>
         </div>
         <div class="col-sm-6 col-xs-12">
-            <p><i class="fas fa-phone" style="margin-right: 6px;"></i> {{org.contact}} </p>
+            <p><i class="fas fa-phone" style="margin-right: 6px;"></i> Contact: {{contact_No}} </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-12">
+            <p><i class="fas fa-id-card" style="margin-right: 6px;"></i>Registed Number: {{ reg_No }}</p>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <p><i class="fas fa-map-marked-alt" style="margin-right: 6px;"></i>Postal Code: {{ postal_code }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6 col-xs-12">
-            <p><i class="fas fa-id-card" style="margin-right: 6px;"></i>{{ org.reg_number }}</p>
+            <p><i class="fas fa-calendar-day" style="margin-right: 6px;"></i>Created : {{ open_date }} </p>
         </div>
         <div class="col-sm-6 col-xs-12">
-            <p><i class="fas fa-map-marked-alt" style="margin-right: 6px;"></i>{{ org.postal_code }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6 col-xs-12">
-            <p><i class="fas fa-calendar-day" style="margin-right: 6px;"></i>DOB : {{ org.created_date }} </p>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-            <p><i class="fas fa-map-marked-alt" style="margin-right: 8px;"></i>{{ org.house_No }} {{org.street}} {{org.city}} </p>
+            <p><i class="fas fa-map-marked-alt" style="margin-right: 8px;"></i>Address: {{ address }}  </p>
         </div>
     </div>
 
@@ -99,7 +100,7 @@ body>
 
 
 
-<a href="/employee/{{user.user_id}}" type="button" class="btn btn-primary btn-lg btn-block">Back</a>
+<a href="/customer/{{user.user_id}}" type="button" class="btn btn-primary btn-lg btn-block">Back</a>
 
 
 
