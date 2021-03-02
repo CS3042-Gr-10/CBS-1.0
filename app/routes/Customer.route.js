@@ -37,32 +37,18 @@ const  { ymd } = require('../../common/dateFormat');
 const { check_ageRange } = require('../enums/savings_account_plan_age');*/
 
 function init(router) {
-   //router.use('/Customer', ifLoggedIn)
-  // router.use('/Customer', ifCustomer)
-   router.route('/Customer/:id')
-        .get(indexAction);
-    //router.route("/Customer/:id/customerDetails")
-       // .get(checkCustomerDetails)
-    router.route('/Customer/:id/startFD')
-        .get(startFDPage)
-        .post(startFDAction)
-    router.route('/Customer/:id/transfer')
-        .post(transfer)
-    router.route('/Customer/:id/checkProfile')
-        .get(checkProfilePage)
-    router.route('/Customer/:id/account/:acc_id')
-        .get(checkAccount)
-    router.route('/Customer/:id/fds')
-        .get(listFDsAction)
-    router.route('/Customer/:id/fds/:fd_id')
-        .get(checkAFD)
-    router.route('/Customer/:id/loans')
-        .get(listLoans)
-    router.route('/Customer/:id/loans/:loan_id')
-        .get(checkALoan)
-    router.route('/Customer/:id/addLoan')
-        .get(onlineLoanPage)
-        .post(onlineLoan)
+    router.get('/Customer/:id',ifLoggedIn,ifCustomer,indexAction);
+    router.get('/Customer/:id/startFD',ifLoggedIn,ifCustomer,startFDPage)
+    router.post('/Customer/:id/startFD',ifLoggedIn,ifCustomer,startFDAction)
+    router.post('/Customer/:id/transfer',ifLoggedIn,ifCustomer,transfer)
+    router.get('/Customer/:id/checkProfile',ifLoggedIn,ifCustomer,checkProfilePage)
+    router.get('/Customer/:id/account/:acc_id',ifLoggedIn,ifCustomer,checkAccount)
+    router.get('/Customer/:id/fds',ifLoggedIn,ifCustomer,listFDsAction)
+    router.get('/Customer/:id/fds/:fd_id',ifLoggedIn,ifCustomer,checkAFD)
+    router.get('/Customer/:id/loans',ifLoggedIn,ifCustomer,listLoans)
+    router.get('/Customer/:id/loans/:loan_id',ifLoggedIn,ifCustomer,checkALoan)
+    router.get('/Customer/:id/addLoan',ifLoggedIn,ifCustomer,onlineLoanPage)
+    router.post('/Customer/:id/addLoan',ifLoggedIn,ifCustomer,onlineLoan)
 }
 
 async function checkALoan(req,res){
@@ -279,7 +265,7 @@ async function indexAction(req,res){
         console.log(req.session.user)
         const userID = req.session.user.user_id;
         let owner_type = await AccountModel.getAccountType(userID);
-        console.log(owner_type);
+        //console.log(owner_type)
         let Cus;
 
         if (owner_type.owner_type === "U"){
@@ -322,6 +308,7 @@ async function indexAction(req,res){
           }
         )
     }catch (e){
+        console.log(e)
         res.redirect(`/?error=${e}`);
     }
 }
@@ -422,6 +409,42 @@ async function transfer(req,res){
     }
 }
 
+async function checkProfilePage(req,res){
+    const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+    const accounts = await  AccountModel.getCustomerAccDetail(req.session.user.user_id);
+
+    accounts.forEach(value =>{
+        value.url = `/Customer/${req.session.user.user_id}/account/${value.acc_id}`;
+    });
+
+    if (owner_type.owner_type === "U"){
+        const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
+
+        console.log(accounts);
+        console.log(customer);
+        console.log(req.session.user);
+        res.render('customer_individual_profile_check',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            accounts:accounts,
+            customer:customer,
+        });
+    }else {
+        // console.log(req.session.user);
+        const organization =  await OrganizationModel.getOrgDetails(req.session.user.user_id);
+        console.log(accounts);
+        console.log(organization);
+        console.log(req.session.user);
+        res.render('customer_organization_profile_check',{
+            error:req.query.error,
+            success:req.query.success,
+            user:req.session.user,
+            accounts:accounts,
+            org:organization,
+        });
+    }
+}
 
 async function checkAccount(req,res) {
     //check details of a single account (savings account , checking account)
@@ -489,7 +512,7 @@ async function listFDsAction(req,res){
 
 }
 
-
+/*
 async function checkProfilePage(req,res){
     const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
     const accounts = await  AccountModel.getCustomerAccDetail(req.session.user.user_id);
@@ -516,10 +539,10 @@ async function checkProfilePage(req,res){
             email:Customer.email,
             dob:Customer.dob,
             open_date:accounts.created_date,
-            
+
            // deposits:deposits,
            // withdrawals:withdrawals,
-          
+
 
         });
         console.log(req.session.user);
@@ -530,7 +553,7 @@ async function checkProfilePage(req,res){
             accounts:accounts,
            // customer:customer,
            full_name:`${Customer.first_name} ${Customer.last_name}`,
-            
+
             NIC_number:Customer.NIC,
             gender:Customer.gender,
             address:`${Customer.house_no} , ${Customer.street} , ${Customer.city}`,
@@ -540,7 +563,7 @@ async function checkProfilePage(req,res){
             email:Customer.email,
             dob:Customer.dob,
             open_date:accounts.created_date,
-            
+
         });
     }else {
         // console.log(req.session.user);
@@ -556,10 +579,10 @@ async function checkProfilePage(req,res){
             contact_No:organization.contact_No,
             email:organization.email,
             open_date:organization.created_date,
-            
+
            // deposits:deposits,
            // withdrawals:withdrawals,
-          
+
 
         });
         console.log(req.session.user);
@@ -577,6 +600,6 @@ async function checkProfilePage(req,res){
             //org:organization,
         });
     }
-}
+}*/
 
 module.exports.init = init;

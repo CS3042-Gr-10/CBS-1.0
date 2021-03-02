@@ -5,6 +5,9 @@ const BranchModel = require('../models/Branch.model');
 const CustomerModel = require('../models/Customer.model');
 const OrganizationModel = require('../models/Organization.model');
 const UserModel = require('../models/User.model');
+const ifNotLoggedIn = require('../Middleware/ifNotLoggedIn');
+const ifLoggedIn = require('../Middleware/ifLoggedIn');
+const ifBankManager = require('../Middleware/ifBankManager')
 const DropdownService = require('../services/Dropdown.service');
 const AccountModel = require('../models/Account.model');
 const ReportModel = require('../models/Report.model');
@@ -13,17 +16,12 @@ const  { ymd } = require('../../common/dateFormat');
 const { ObjectToList } = require('../../common/helpers');
 
 function init(router) {
-    router.route('/BankManager/:id')
-        .get(indexAction)
-    router.route('/BankManager/:id/ApproveLoan')
-        .get(ApproveLoanPage)
-    router.route('/BankManager/:id/LoanDetails/:loan_id')
-        .get(LoanDetailsPage)
-        .post(ApproveLoan)
-    router.route('/BankManager/:id/TransactionReport')
-        .post(TransactionReport)
-    router.route('/BankManager/:id/LateLoanReport')
-        .get(LateLoanReport)
+    router.get('/BankManager/:id',ifLoggedIn,ifBankManager,indexAction)
+    router.get('/BankManager/:id/ApproveLoan',ifLoggedIn,ifBankManager,ApproveLoanPage)
+    router.get('/BankManager/:id/LoanDetails/:loan_id',ifLoggedIn,ifBankManager,LoanDetailsPage)
+    router.post('/BankManager/:id/LoanDetails/:loan_id',ifLoggedIn,ifBankManager,ApproveLoan)
+    router.post('/BankManager/:id/TransactionReport',ifLoggedIn,ifBankManager,TransactionReport)
+    router.get('/BankManager/:id/LateLoanReport',ifLoggedIn,ifBankManager,LateLoanReport)
   }
 
 async function LateLoanReport(req,res){

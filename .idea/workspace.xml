@@ -33,17 +33,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="Apply self loan of customer #54 done">
-      <change afterPath="$PROJECT_DIR$/app/views/customer_check_loans.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/customer_single_loan_check.hbs" afterDir="false" />
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="routing improvement">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Loan.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Loan.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Middleware/ifNotLoggedIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifNotLoggedIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,42 +200,9 @@
       <workItem from="1614573834568" duration="21078000" />
       <workItem from="1614600257534" duration="804000" />
       <workItem from="1614601314545" duration="54000" />
-      <workItem from="1614603010964" duration="5869000" />
-    </task>
-    <task id="LOCAL-00011" summary="database connection error">
-      <created>1610015654614</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1610015654614</updated>
-    </task>
-    <task id="LOCAL-00012" summary="disabled database sessions">
-      <created>1610027670564</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1610027670564</updated>
-    </task>
-    <task id="LOCAL-00013" summary="something">
-      <created>1611469699297</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1611469699297</updated>
-    </task>
-    <task id="LOCAL-00014" summary="something">
-      <created>1611471569646</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1611471569646</updated>
-    </task>
-    <task id="LOCAL-00015" summary="merging">
-      <created>1612253506927</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1612253506927</updated>
+      <workItem from="1614603010964" duration="6275000" />
+      <workItem from="1614616477773" duration="20772000" />
+      <workItem from="1614680248168" duration="8528000" />
     </task>
     <task id="LOCAL-00016" summary="correcting imports">
       <created>1612259049490</created>
@@ -551,7 +512,42 @@
       <option name="project" value="LOCAL" />
       <updated>1614593548480</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Apply self loan">
+      <created>1614612326562</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1614612326562</updated>
+    </task>
+    <task id="LOCAL-00061" summary="pay for loan complete">
+      <created>1614657739210</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1614657739210</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Access Levels complted">
+      <created>1614674068969</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1614674068969</updated>
+    </task>
+    <task id="LOCAL-00063" summary="merge and resolved">
+      <created>1614674428009</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1614674428009</updated>
+    </task>
+    <task id="LOCAL-00064" summary="routing improvement">
+      <created>1614693456367</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1614693456367</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,11 +566,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merge and resolve developer" />
-    <MESSAGE value="Adding email sending functionality to customer creation and employee creation fixes #37" />
-    <MESSAGE value="additions" />
-    <MESSAGE value="loan request from employee done.&#10;withdrawing and depositing done." />
-    <MESSAGE value="sample commit" />
     <MESSAGE value="adding shit" />
     <MESSAGE value="adding registration of oraganization adding accounts functionality" />
     <MESSAGE value="additional fields for employee" />
@@ -595,7 +586,12 @@
     <MESSAGE value="adding something." />
     <MESSAGE value="Check FD is done" />
     <MESSAGE value="Apply self loan of customer #54 done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Apply self loan of customer #54 done" />
+    <MESSAGE value="Apply self loan" />
+    <MESSAGE value="pay for loan complete" />
+    <MESSAGE value="Access Levels complted" />
+    <MESSAGE value="merge and resolved" />
+    <MESSAGE value="routing improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="routing improvement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
