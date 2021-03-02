@@ -13,7 +13,8 @@ const accountNumberInfo = Joi.object().options({abortEarly:false}).keys({
 });
 
 const customerLoanInfo = Joi.object().options({abortEarly:false}).keys({
-  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
+  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[v|x]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "v"/"x"(simple characters) or 12 digits only!'),
+  //nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "v"/"x"(simple characters) or 12 digits only!'),
   income: Joi.string().label("Income").regex(/^[0-9]{1,12}[.]?[0-9]{0,4}$/).message("Income must contain only numbers and must be less than 4 decimal places."),
   amount: Joi.string().label("Amount").regex(/^[0-9]{1,12}[.]?[0-9]{0,4}$/).message("Amount must contain only numbers and must be less than 4 decimal places."),
   loan_plan: Joi.string().required().max(15).label("Loan Plan"),
@@ -32,7 +33,7 @@ const organizationLoanInfo = Joi.object().options({abortEarly:false}).keys({
 });
 
 const IndividualSavingsInfo = Joi.object().options({abortEarly:false}).keys({
-  nic:Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
+  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[v|x]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "v"/"x"(simple characters) or 12 digits only!'),
   init_amount:Joi.number().required().label("Initial Amount"),
   acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
   savings_plan:Joi.string().valid('1','2','3','4','5','6','7','8').required(),
@@ -42,7 +43,7 @@ const IndividualSavingsInfo = Joi.object().options({abortEarly:false}).keys({
 })
 
 const IndividualCurrentInfo = Joi.object().options({abortEarly:false}).keys({
-  nic:Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
+  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[v|x]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "v"/"x"(simple characters) or 12 digits only!'),
   init_amount:Joi.number().required().label("Initial Amount"),
   acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
   branch:Joi.string().required().max(15).label("Branch"),

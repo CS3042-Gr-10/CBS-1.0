@@ -30,7 +30,7 @@
     </header>
 
     <div class="container py-4">
-        <h3 class="p-3 text-center">User Details</h3>
+        <h3 class="p-3 text-center"></h3>
         <hr>
         {{#if error}}
             <div class="alert alert-danger text-center" role="alert">
@@ -43,32 +43,28 @@
             </div>
         {{/if}}
 
-        <h4 class="text-center">{{ name }}</h4>
+        <h3 class="text-center">{{ name }}</h3>
         <div class="text-center">
-            <h3>Fixed Deposits.</h3>
-            {{#each FDs}}
+            <h4>Loans</h4>
+            {{#each Loans}}
                 <div class="card mb-2 shadow border-success rounded">
                     <a class="card-block stretched-link text-decoration-none" href="{{this.url}}"></a>
                     <div class="card-body">
                         <h5 class="card-title">
-                            {{this.fd_id}}
+                            {{this.loan_id}}
                         </h5>
 
 
                         <div class="row text-secondary" style="letter-spacing: 3;">
                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                <p class="card-text"><i class="fa-calendar-day" style="margin-right: 6px;"></i> {{this.opened_date}} </p>
+                                <p class="card-text"><i class="fa-calendar-day" style="margin-right: 6px;"></i> {{this.loan_type}} </p>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                <p class="card-text"><i class="fas fa-id-card" style="margin-right: 6px;"></i> {{this.sv_acc_id}} </p>
+                                <p class="card-text"><i class="fas fa-id-card" style="margin-right: 6px;"></i> {{this.loaned_amount}} </p>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                <p class="card-text"><i class="fas" style="margin-right: 6px;"></i> {{this.balance}} </p>
+                                <p class="card-text"><i class="fas" style="margin-right: 6px;"></i> {{this.finished_num_installements}} </p>
                             </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <p class="card-text"><i class="fas" style="margin-right: 6px;"></i> {{this.state}} </p>
-                            </div>
-
                         </div>
                     </div>
 

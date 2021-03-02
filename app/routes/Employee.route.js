@@ -486,7 +486,7 @@ async function customerLoan(req,res){
 
     }catch (err) {
         console.log(err);
-        res.redirect(`/employee/${req.params.id}?error=${err.message}&nic=${req.body.nic}&income=${req.body.income}&amount=${req.body.amount}`)
+        res.redirect(`/employee/${req.params.id}/customerLoan?error=${err.message}&nic=${req.body.nic}&income=${req.body.income}&amount=${req.body.amount}`)
     }
 }
 

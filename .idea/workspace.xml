@@ -33,10 +33,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="complete #52">
-      <change afterPath="$PROJECT_DIR$/app/views/customer_check_fds.hbs" afterDir="false" />
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="Apply self loan of customer #54 done">
+      <change afterPath="$PROJECT_DIR$/app/views/customer_check_loans.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/customer_single_loan_check.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Loan.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Loan.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Registration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,28 +203,10 @@
       <workItem from="1614426132254" duration="154000" />
       <workItem from="1614426306393" duration="815000" />
       <workItem from="1614490034942" duration="15790000" />
-      <workItem from="1614573834568" duration="8003000" />
-    </task>
-    <task id="LOCAL-00008" summary="Customer.route.js session done">
-      <created>1609825722517</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1609825722517</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Added template functions to Customer.route.js">
-      <created>1609829621007</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1609829621007</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added template functions to BankManager.route.js">
-      <created>1609829951730</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1609829951730</updated>
+      <workItem from="1614573834568" duration="21078000" />
+      <workItem from="1614600257534" duration="804000" />
+      <workItem from="1614601314545" duration="54000" />
+      <workItem from="1614603010964" duration="5869000" />
     </task>
     <task id="LOCAL-00011" summary="database connection error">
       <created>1610015654614</created>
@@ -542,7 +530,28 @@
       <option name="project" value="LOCAL" />
       <updated>1614578326434</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="adding something.">
+      <created>1614583388550</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1614583388550</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Check FD is done">
+      <created>1614587196612</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1614587196612</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Apply self loan of customer #54 done">
+      <created>1614593548479</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1614593548480</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,9 +570,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding Account to existing customer functionality Fixes #39" />
-    <MESSAGE value="adding Account to existing customer functionality tested Fixes #39" />
-    <MESSAGE value="midpoints" />
     <MESSAGE value="merge and resolve developer" />
     <MESSAGE value="Adding email sending functionality to customer creation and employee creation fixes #37" />
     <MESSAGE value="additions" />
@@ -586,7 +592,10 @@
     <MESSAGE value="middle ground" />
     <MESSAGE value="completing #51 fixing #52" />
     <MESSAGE value="complete #52" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete #52" />
+    <MESSAGE value="adding something." />
+    <MESSAGE value="Check FD is done" />
+    <MESSAGE value="Apply self loan of customer #54 done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Apply self loan of customer #54 done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
