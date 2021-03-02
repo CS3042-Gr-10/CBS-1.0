@@ -53,14 +53,24 @@
     <main>
         <div class="wrapper_1">
             <div>
-                <h3>{{ User.first_name }} {{User.last_name}}</h3>
-                <h5>{{ User.user_id }}<span class="badge badge-primary ml-4">{{ acc_type}}</span></h5>
+                {{#if User.first_name }}
+                    <h3>{{ User.first_name }} {{User.last_name}}</h3>
+                {{else}}
+                    <h3>{{ User.name }}</h3>
+                {{/if}}
+
+                <h5>{{ User.user_id }}<span class="badge badge-primary ml-4">{{ User.owner_type}}</span></h5>
                 <hr class="my-4">
-                <h6 class="balance">Balance</h6>
-                <h6>SCR<span class="balance_amount ml-2">{{ acc_balance }}</span><span
-                        class="badge badge-success ml-3">ACTIVE</span></h6>
-                <h6 class="balance mt-3">Remaining Withdrawals for the Month - <span>{{ remaining_withdrawals }}</span>
-                </h6>
+                {{#if error}}
+                    <div class="row alert alert-danger" role="alert">
+                        {{error}}
+                    </div>
+                {{/if}}
+                {{#if success}}
+                    <div class="row alert alert-success" role="alert">
+                        {{success}}
+                    </div>
+                {{/if}}
             </div>
             <div class="calendar-parent">
                 <div class="calendar-container center">
@@ -72,20 +82,33 @@
         <div class="wrapper_2">
             <div>
                 <h4>Transfer to</h4>
-                <form action="#" method="POST">
-                    <input type="text" class="form-control mt-3" id="receiving_acc_no" name="receiving_acc_no"
-                        placeholder="Rceiver's Account Number">
+                <form action="/Customer/{{User.user_id}}/transfer" method="POST">
+                    <div class="form-group row">
+                        <label class="my-2 ml-3" for="receiving_acc_no">Receiver's Account Number</label>
+                        <input type="text" class="form-control mt-3" id="receiving_acc_no" name="receiving_acc_no"
+                            placeholder="Receiver's Account Number">
+                    </div>
+                    <div class="form-group row">
+                        <label class="my-2 ml-3" for="savings_no">Savings Account</label>
+                        <select class="custom-select" id="savings_no_transfer" name="savings_no" required>
+                            <option value="default">Select the Savings Account...</option>
+                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                            {{#each savings_acc}}
+                                <option value="{{this.acc_id}}">Account - {{this.acc_id}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
                     <div class="input-group mt-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">SCR</span>
                         </div>
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
-                            id="transfer_amount" name="transfer_amount" placeholder="Enter the Amount">
+                            id="amount" name="amount" placeholder="Enter the Amount">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3">Transfer</button>
+                    <input type="submit" class="btn btn-primary mt-3" value="Transfer">
                 </form>
             </div>
             <div>
@@ -118,9 +141,10 @@
             <div class="three_buttons">
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
                     data-target="#openFDModal">Place a Fixed Deposit</button>
-                <button type="button" href="#" class="btn btn-primary btn-lg btn-block mt-4">Obtain a Loan</button>
-                <button type="button" href="#" class="btn btn-outline-secondary btn-lg btn-block mt-4">Report an
-                    Issue</button>
+                <a type="button" href="/Customer/{{User.user_id}}/addLoan" class="btn btn-primary btn-lg btn-block mt-4">Obtain a Loan</a>
+                <a href="/Customer/{{User.user_id}}/fds" type="button" class="btn btn-primary btn-lg btn-block">My Fixed Deposits</a>
+                <a href="/Customer/{{User.user_id}}/loans" type="button" class="btn btn-primary btn-lg btn-block">My Loans</a>
+                <a href="/Customer/{{User.user_id}}/checkProfile" type="button" class="btn btn-primary btn-lg btn-block">Check Profile</a>
             </div>
         </div>
     </main>
@@ -157,7 +181,7 @@
     </div>
 
     <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -170,21 +194,21 @@
                         <fieldset disabled="disabled">
                             <div class="form-group form-inline mt-1">
                                 <label for="disabledTextInput" class="mr-3 col-sm-2 col-form-label">Username</label>
-                                <input type="text" id="disabledTextInput" class="form-control" placeholder={{ username
-                                    }}>
+                                <input type="text" id="disabledTextInput" class="form-control" placeholder={{ User.username
+                                }}>
                             </div>
                         </fieldset>
                         <div class="form-group form-inline">
                             <label for="newPassword" class="col-sm-2 col-form-label">Password</label>
                             <input type="password" id="newPassword" name="newPassword" class="form-control mx-sm-3"
-                                aria-describedby="passwordHelpInline" placeholder="Enter New Password" required>
+                                   aria-describedby="passwordHelpInline" placeholder="Enter New Password" required>
                             <small id="passwordHelpBlock" class="text-muted">Your password must be 8-20 characters long,
                                 contain letters and numbers, and must not contain spaces or emoji.</small>
                         </div>
                         <div class="form-group form-inline">
                             <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
                             <input type="password" id="confirmPassword" name="confirmPassword"
-                                class="form-control mx-sm-3" placeholder="Re-Enter New Password" required>
+                                   class="form-control mx-sm-3" placeholder="Re-Enter New Password" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -257,13 +281,16 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="fd_application_form.html" method="POST">
+                <form action="/Customer/{{User.user_id}}/startFD" method="GET">
                     <div class="modal-body">
-                        <div class="form-group form-inline mt-1">
-                            <label for="username" class="mr-3 col-sm-3 col-form-label">Savings Acc.</label>
-                            <input type="number" id="savings_acc_no" class="form-control"
-                                placeholder="Enter Account Number" required>
-                        </div>
+                        <label class="my-2 ml-3" for="branch">Savings Account</label>
+                        <select class="custom-select" id="savings_no" name="savings_no" required>
+                            <option value="default">Select the Savings Account...</option>
+                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                            {{#each savings_acc}}
+                                <option value="{{this.acc_id}}">Account - {{this.acc_id}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary" value="Submit">

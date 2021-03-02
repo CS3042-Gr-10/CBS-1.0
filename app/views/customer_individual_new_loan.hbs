@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="png" href="/image/head_logo.png">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/dycalendar.min.css">
+    <title>Seychelles Bank (Pvt) Ltd.</title>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/employee/{{user.user_id}}">Employee Dashboard</a>
+        <img src="./Images/shield_lock.svg" alt="" width="32" height="32" title="Bootstrap">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <a class="btn btn-secondary my-2 my-sm-0" href="login.html" role="button">LOG OUT</a>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<body>
+<div class="card border-primary reg_card">
+    <div class="card-header">
+        <h4>Employee Registration Form</h4>
+    </div>
+    {{#if error}}
+        <div class="row alert alert-danger" role="alert">
+            {{error}}
+        </div>
+    {{/if}}
+    <form action="/Customer/{{user.user_id}}/addLoan" method="POST">
+        <div class="form-group row">
+            <label for="amount" class="col-form-label ml-3">Loan Amount</label>
+            <div class="input-group col-lg col-sm">
+                <input type="text" id="amount" name="amount" placeholder="amount"
+                       class="form-control" required value="{{amount}}">
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="my-2 ml-3" for="loan_plan">Loan Plans</label>
+            <div class="col-lg-2 col-sm-2">
+                <select class="custom-select" id="loan_plan" name="loan_plan" required>
+                    <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                    {{#each loan_plan}}
+                        <option value="{{this.loan_plan_id}}">{{this.loan_plan_name}} plan at {{this.interrest_rate}} for {{this.period}} months</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="my-2 ml-3" for="fd_acc">Fixed Deposit</label>
+            <div class="col-lg-2 col-sm-2">
+                <select class="custom-select" id="fd_acc" name="fd_acc" required>
+                    <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                    {{#each FDs}}
+                        <option value="{{this.fd_id}}">{{this.fd_id}} [Balance:- Rs.{{this.balance}} and State:- {{this.state}}]</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="my-2 ml-3" for="purpose">Purpose</label>
+            <div class="col-lg-2 col-sm-2">
+                <select class="custom-select" id="purpose" name="purpose" required>
+                    <option value="default">Select the purpose...</option>
+                    <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                    <option value="Business Loan">Business Loan</option>
+                    <option value="Vehicle Loan">Vehicle Loan</option>
+                    <option value="House Loan">House Loan</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="agree_check" name="agree_check" required>
+                <label class="form-check-label" for="agree_check">Agree to Terms and Conditions</label>
+            </div>
+        </div>
+        <a href="admin_dashboard.html" type="button" class="btn btn-secondary float-right">Close</a>
+        <input type="submit" class="btn btn-primary" value="Save Changes">
+    </form>
+    </div>
+</div>
+
+<footer class="bottom">Seychells Bank (Pvt) Ltd. - Version 1.0.0 © 2020 | <a href="">Visit Us</a></footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/javascript/dycalendar-jquery.min.js"></script>
+<script>
+    dycalendar.draw({ target: '#dycalendar-today-with-skin-shadow', type: 'month', monthformat: "full", highlighttoday: true, prevnextbutton: "show" });
+</script>
+</body>
+

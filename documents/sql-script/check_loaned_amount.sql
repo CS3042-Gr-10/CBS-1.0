@@ -11,7 +11,7 @@ BEGIN
     
     set fd_max = fd_max*0.6;
     if amount < fd_max then
-		if amount < 500000 then
+		if amount > 500000 then
 			set result = 2;
 		else
 			set result = 1;

@@ -35,7 +35,7 @@ BEGIN
 			insert into online_loan (loan_id, created_date, fd_acc_id, state)
 			values (last_insert_id(), curdate(), fd_acc_d, "NOT-PAID");
             
-            select sv_acc_id into sv_acc from fixed_account where fd_id = fd_id_d;
+            select sv_acc_id into sv_acc from fixed_deposit where fd_id = fd_acc_d;
             
             update saving_account
             set acc_balance = acc_balance + loaned_amount_d

@@ -2,7 +2,7 @@ const Joi = require('joi')
 
 const LogInInfo = Joi.object().options({ abortEarly: false }).keys({
   password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).message("Password should consist between 3-30 characters.").required().label("Password"),   //regex added
-  username: Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(15).message("User name must have maximum 30 characters.").required().label("Username"),
+  username: Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(30).message("User name must have maximum 30 characters.").required().label("Username"),
 });     //added alphanum , maxlen and minlen
 
 const usernameInfo = Joi.object().options({abortEarly:false}).keys({
@@ -10,8 +10,8 @@ const usernameInfo = Joi.object().options({abortEarly:false}).keys({
 })
 
 const changeUsernameInfo = Joi.object().options({abortEarly:false}).keys({
-    currentUsername:Joi.string().required().label("Current Username"),
-    newUsername:Joi.string().required().label("New Username"),
+    currentUsername:Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(30).message("User name must have maximum 30 characters.").required().label("Current Username"),
+    newUsername:Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(30).message("User name must have maximum 30 characters.").required().label("New Username"),
 });
 
 const changePasswordInfo = Joi.object().options({abortEarly:false}).keys({

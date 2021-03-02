@@ -157,7 +157,7 @@ async function ApproveLoan(req,res){
 
 async function LoanDetailsPage(req,res){
     try{
-        const loan = await  LoanModel.getLoanDetails(req.params.loan_id);
+        const loan = await  LoanModel.getLoansDetailsByID(req.params.loan_id);
         console.log(loan);
         const loan_plan = await DropdownService.getLoanPlanById(loan.loan_plan_id);
         console.log(loan_plan);
