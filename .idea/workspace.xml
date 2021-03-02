@@ -35,9 +35,8 @@
   <component name="ChangeListManager">
     <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="routing improvement">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifLoggedIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Middleware/ifNotLoggedIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ifNotLoggedIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/authentic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/authentic.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Report.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Report.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,14 +201,7 @@
       <workItem from="1614601314545" duration="54000" />
       <workItem from="1614603010964" duration="6275000" />
       <workItem from="1614616477773" duration="20772000" />
-      <workItem from="1614680248168" duration="8528000" />
-    </task>
-    <task id="LOCAL-00016" summary="correcting imports">
-      <created>1612259049490</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1612259049490</updated>
+      <workItem from="1614680248168" duration="11845000" />
     </task>
     <task id="LOCAL-00017" summary="edits to route">
       <created>1612285094366</created>
@@ -547,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614693456367</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="routing improvement">
+      <created>1614696556040</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1614696556040</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
