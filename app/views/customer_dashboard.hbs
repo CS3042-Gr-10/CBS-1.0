@@ -37,10 +37,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" data-toggle="modal" data-target="#changeUsernameModal">Change Username</a>
                             <a class="dropdown-item" href="#" data-toggle="modal"
                                 data-target="#changePasswordModal">Change Password</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal"
-                               data-target="#changeUsernameModal">Change Username</a>
                         </div>
                     </li>
                     <li class="nav-item mr-4">
@@ -162,16 +161,14 @@
                 <form action="/changeUsername/{{User.user_id}}" method="POST">
                     <div class="modal-body">
                         <div class="form-group form-inline">
-                            <label for="currentUsername" class="col-sm-2 col-form-label">Current Username</label>
+                            <label for="currentUsername" class="col-sm-4 col-form-label" style="font-size: 15px;">Current Username</label>
                             <input type="text" id="currentUsername" name="currentUsername" class="form-control mx-sm-3"
                                    placeholder="Enter Current Username" required>
                         </div>
                         <div class="form-group form-inline">
-                            <label for="newUsername" class="col-sm-2 col-form-label">New Username</label>
+                            <label for="newUsername" class="col-sm-4 col-form-label">New Username</label>
                             <input type="text" id="newUsername" name="newUsername" class="form-control mx-sm-3"
                                    aria-describedby="UsernameHelpInline" placeholder="Enter New Username" required>
-                            <small id="UsernameHelpBlock" class="text-muted">Your username must be 8-20 characters long,
-                                contain letters and numbers, and must not contain spaces or emoji.</small>
                         </div>
                     </div>
                     <div class="modal-footer">
