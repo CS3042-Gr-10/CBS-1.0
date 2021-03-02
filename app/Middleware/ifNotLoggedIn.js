@@ -8,11 +8,11 @@ const ifNotLoggedIn = (req, res, next) => {
         console.log("isnotlogged")
         next();
     } else if (req.session.user.acc_level === "BANK-MANAGER") { // if admin
-        res.redirect(`/BankManager/${req.session.user.user_id}?error=You are already logged in`);
+        res.redirect(`/BankManager/${req.session.user.user_id}`);
     } else if (req.session.user.acc_level === "EMPLOYEE") { // if ins
-        res.redirect(`/Employee/${req.session.user.user_id}?error=You are already logged in`);
+        res.redirect(`/Employee/${req.session.user.user_id}`);
     } else if (req.session.user.acc_level === "CUSTOMER") { // if student
-        res.redirect(`/Customer/${req.session.user.user_id}?error=You are already logged in`);
+        res.redirect(`/Customer/${req.session.user.user_id}`);
     }
 };
 
