@@ -3,7 +3,9 @@ const dbFunc = require('../../config/db-function')
 
 ReportModel = {
     getAllDeposits,
+    getAllDepositByBranchId,
     getAllWithdraws,
+    getAllWithdrawByBranchId,
     getAllTransfers,
     getAllLoanPayments,
     getUnpaidLoan,
@@ -28,9 +30,37 @@ function getAllDeposits(dates) {
     });
 }
 
+function getAllDepositByBranchId(id, limit) {
+    return new Promise((resolve, reject) => {
+        db.query('select * from(select * from deposit where acc_id in (select acc_id from account where branch_id = ?)) P natural join transaction order by date limit=?;',[id, limit], (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
 function getAllWithdraws(dates) {
     return new Promise((resolve, reject) => {
         db.query('SELECT * from transaction natural join withdraw where date between ? and ?',dates, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function getAllWithdrawByBranchId(id, limit) {
+    return new Promise((resolve, reject) => {
+        db.query('select * from(select * from withdraw where acc_id in (select acc_id from account where branch_id = ?)) P natural join transaction order by date limit=?;',[id, limit], (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -57,9 +87,23 @@ function getAllTransfers(dates) {
     });
 }
 
-function getAllLoanPayments(dates) {
+function getAllTransferByBranchId(id, limit) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from transaction natural join loan_payment where trans_type = "LOAN" and date between ? and ?',dates, (error, rows, fields) => {
+        db.query('select * from(select * from transfer where from_acc_id in (select acc_id from account where branch_id = ?)) P natural join transaction order by date limit=?;',[id, limit], (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
+}
+
+function getAllLoanPayments(st_date, end_date, branch) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from transaction natural join loan_payment where  trans_type = "LOAN" and date between ? and ?',[], (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);

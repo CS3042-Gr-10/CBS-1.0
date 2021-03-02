@@ -6,7 +6,6 @@ const LoanModel = {
     addOnlineLoan,
     addMonthlyPay,
     acceptStdLoan,
-    addMonthlyPay,
     getLoanForApproval,
     getLoansByUserID,
     getLoansDetailsByID,

@@ -39,6 +39,8 @@ call get_loan_details(7);
 
 call get_fd_details(2);
 
+select get_inst_amount(10000.0, 2);
+
 select trans_id, trans_type, acc_id, deposit_type, amount, date from (select trans_id, deposit_type, acc_id from Deposit where acc_id in (select acc_id from Account where user = 6)) as P natural join (select * from Transaction where is_deleted = 0) as Q;
 
 select trans_id, trans_type, acc_id, withdraw_type, amount, date from (select trans_id, withdraw_type, acc_id from Withdraw where acc_id in (select acc_id from Account where user = 6)) as P natural join (select * from Transaction where is_deleted = 0) as Q
