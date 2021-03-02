@@ -37,6 +37,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" data-toggle="modal" data-target="#changeUsernameModal">Change Username</a>
                             <a class="dropdown-item" href="#" data-toggle="modal"
                                 data-target="#changePasswordModal">Change Password</a>
                         </div>
@@ -123,6 +124,37 @@
             </div>
         </div>
     </main>
+
+    <div class="modal fade" id="changeUsernameModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change Username</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="/changeUsername/{{User.user_id}}" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group form-inline">
+                            <label for="currentUsername" class="col-sm-4 col-form-label" style="font-size: 15px;">Current Username</label>
+                            <input type="text" id="currentUsername" name="currentUsername" class="form-control mx-sm-3"
+                                   placeholder="Enter Current Username" required>
+                        </div>
+                        <div class="form-group form-inline">
+                            <label for="newUsername" class="col-sm-4 col-form-label">New Username</label>
+                            <input type="text" id="newUsername" name="newUsername" class="form-control mx-sm-3"
+                                   aria-describedby="UsernameHelpInline" placeholder="Enter New Username" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save Changes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
