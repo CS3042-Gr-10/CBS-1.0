@@ -33,7 +33,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="small edits" />
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="small edits">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_customer_acc_details.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_customer_acc_details.hbs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -200,6 +203,7 @@
       <workItem from="1614680248168" duration="22181000" />
       <workItem from="1614747087134" duration="466000" />
       <workItem from="1614750483291" duration="11507000" />
+      <workItem from="1614772689079" duration="404000" />
     </task>
     <task id="LOCAL-00028" summary="merged with upstream developer">
       <created>1612843714583</created>
