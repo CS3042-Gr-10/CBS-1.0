@@ -69,8 +69,22 @@ async function payLoanPage(req,res){
         if (!loan) throw new Errors.NotFound("No such Loan");
         console.log(loan);
 
-        const monthly_amount = ((loan.interrest_rate+1)*loan.loaned_amount)/loan.period
+        let monthly_amount = ((loan.interrest_rate+1)*loan.loaned_amount)/loan.period ;
+        monthly_amount = monthly_amount.toFixed(2);
         console.log(monthly_amount);
+
+        let show;
+        let completed;
+        if(loan.state === 'NOT-PAID'){
+            show = true;
+            completed = false;
+        }else if (loan.state === 'PAID'){
+            show = false;
+            completed = 'Already paid for this month'
+        }else {
+            show = false
+            completed = "Loan Payment Completed"
+        }
 
         res.render('employee_loan_pay',{
             error: req.query.error,
@@ -78,6 +92,8 @@ async function payLoanPage(req,res){
             user: req.session.user,
             Loan:loan,
             monthly_amount,
+            show,
+            completed,
         });
 
     }catch (e) {
@@ -620,10 +636,10 @@ async function getCustomerDetails(req,res){
             });
         }else {
             const account = await AccountModel.getAccount(req.query.accNum);
-            if(!account) throw (Errors.NotFound("No such Account Exists"))
+            if(!account) throw new Errors.NotFound("No such Account Exists")
 
             const organization = await OrganizationModel.getOrgDetails(account.user);
-            if (!organization) throw (Errors.NotFound("No such Account Exists"))
+            if (!organization) throw new Errors.NotFound("No such Account Exists")
 
 
             const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
