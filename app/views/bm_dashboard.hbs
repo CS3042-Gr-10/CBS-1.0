@@ -51,7 +51,7 @@
                 <hr class="my-4">
                 <h4 style="font-style: italic;">Personal Details</h4>
                 <h6>Name : {{ user.last_name}}</h6>
-                <h6>Branch :  {{bm_branch}}</h6>
+                <h6>Branch :  {{bm_branch.branch_name}}</h6>
             </div>
             <div class="calendar-parent">
                 <div class="calendar-container center">
@@ -65,6 +65,7 @@
                 <h4>Transaction Report</h4>
                 <form action="/BankManager/{{user.user_id}}/TransactionReport" method="POST">
                     <div class="mt-3">
+                        <input type="hidden" class="form-control" id="branch" name="branch" value="{{bm_branch.branch_id}}">
                         <div class="form-group form-inline">
                             <label for="start_date" class="col-sm-4 col-form-label">Starting Date</label>
                             <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Starting Date">
@@ -79,7 +80,8 @@
             </div>
             <div>
                 <h4>Late Loan Installments' Report</h4>
-                <form action="/BankManager/{{user.user_id}}/LateLoanReport" method="GET">
+                <form action="/BankManager/{{user.user_id}}/LateLoanReport" method="POST">
+                    <input type="hidden" class="form-control" id="branch" name="branch" value="{{bm_branch.branch_id}}">
                     <input type="submit" class="btn btn-block btn-primary mt-4" value="Generate Report">
                 </form>
             </div>
@@ -100,7 +102,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="/changeUsername/{{User.user_id}}" method="POST">
+                <form action="/changeUsername/{{user.user_id}}/" method="POST">
                     <div class="modal-body">
                         <div class="form-group form-inline">
                             <label for="currentUsername" class="col-sm-4 col-form-label" style="font-size: 15px;">Current Username</label>
@@ -131,7 +133,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="/changePassword/{{User.user_id}}" method="POST">
+                <form action="/changePassword/{{user.user_id}}" method="POST">
                     <div class="modal-body">
                         <fieldset disabled="disabled">
                             <div class="form-group form-inline mt-1">

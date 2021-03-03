@@ -21,7 +21,7 @@ function init(router) {
     router.get('/BankManager/:id/LoanDetails/:loan_id',ifLoggedIn,ifBankManager,LoanDetailsPage)
     router.post('/BankManager/:id/LoanDetails/:loan_id',ifLoggedIn,ifBankManager,ApproveLoan)
     router.post('/BankManager/:id/TransactionReport',ifLoggedIn,ifBankManager,TransactionReport)
-    router.get('/BankManager/:id/LateLoanReport',ifLoggedIn,ifBankManager,LateLoanReport)
+    router.post('/BankManager/:id/LateLoanReport',ifLoggedIn,ifBankManager,LateLoanReport)
   }
 
 async function LateLoanReport(req,res){
@@ -42,9 +42,9 @@ async function LateLoanReport(req,res){
         // dates = ObjectToList(value);
         dates = ObjectToList(dates);
         console.log(dates)
-        const loan_payments = await ReportModel.getAllLoanPayments(dates);
+        const loan_payments = await ReportModel.getAllLoanPaymentByBranchId(req.body.branch,dates[0],dates[1],20);
         console.log(loan_payments);
-        const unpaid = await ReportModel.getUnpaidLoan();
+        const unpaid = await ReportModel.getUnpaidLoanByBranchId(req.body.branch);
 
         let combined=[];
         for (let num=0;num<unpaid.length;num++){
@@ -87,6 +87,7 @@ async function TransactionReport(req,res){
         if(error) throw error;
 
         let dates = {
+            branch:parseInt(value.branch),
             start_date: ymd(new Date(value.start_date.toString().split(' ').slice(1,4).join(' '))),
             end_date: ymd(new Date(value.end_date.toString().split(' ').slice(1,4).join(' '))),
         }
@@ -94,15 +95,15 @@ async function TransactionReport(req,res){
         // dates = ObjectToList(value);
         dates = ObjectToList(dates);
         console.log(dates)
-        const deposits = await ReportModel.getAllDeposits(dates);
-        console.log(deposits);
-        const withdrawal = await ReportModel.getAllWithdraws(dates);
-        console.log(withdrawal);
-        const transfer = await ReportModel.getAllTransfers(dates);
-        console.log(transfer);
-        const loan_payments = await ReportModel.getAllLoanPayments(dates);
+        const deposits = await ReportModel.getAllDepositByBranchId(dates[0],dates[1],dates[2],20);
+        // console.log(deposits);
+        const withdrawal = await ReportModel.getAllWithdrawByBranchId(dates[0],dates[1],dates[2],20);
+        //console.log(withdrawal);
+        const transfer = await ReportModel.getAllTransferByBranchId(dates[0],dates[1],dates[2],20);
+        //console.log(transfer);
+        const loan_payments = await ReportModel.getAllLoanPaymentByBranchId(dates[0],dates[1],dates[2],20);
         console.log(loan_payments);
-        console.log(value);
+        //console.log(value);
 
 
         res.render('bm_transaction_report',{
@@ -110,8 +111,8 @@ async function TransactionReport(req,res){
             error:req.query.error,
             success:req.query.success,
             user:req.session.user,
-            start_date:dates[0],
-            end_date:dates[1],
+            start_date:dates[1],
+            end_date:dates[2],
             deposits,
             withdrawal,
             transfer,
@@ -201,6 +202,9 @@ async function indexAction(req,res){
     let Emp = await EmployeeModel.getEmpDetailsByID(userID);
     // console.log(Emp);
     const bm_branch = await BranchModel.branchDetailsOfManager(userID);
+    const branches = await DropdownService.getBranches();
+    console.log(bm_branch);
+
     if (!Emp){
       throw new Errors.BadRequest('An Error Occurred in the Database');
     }
@@ -210,17 +214,31 @@ async function indexAction(req,res){
       ...req.session.user
     }
 
-    // console.log(Emp);
-    res.render('bm_dashboard',
-      {
-        url_params: req.params,
-        error:req.query.error,
-        success:req.query.success,
-        user:Emp,
-        bm_branch:bm_branch.branch_name,
+    if(bm_branch.grade === 2){
+        res.render('admin_dashboard',
+            {
+                url_params: req.params,
+                error:req.query.error,
+                success:req.query.success,
+                user:Emp,
+                bm_branch,
+                branches,
+            });
+    }else {
+        res.render('bm_dashboard',
+            {
+                url_params: req.params,
+                error:req.query.error,
+                success:req.query.success,
+                user:Emp,
+                bm_branch,
+            });
+    }
 
-      }
-    )
+
+    // console.log(Emp);
+
+
   }catch (e){
       console.log(e)
     res.redirect(`/?error=${e}`);
