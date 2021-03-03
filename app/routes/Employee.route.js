@@ -1,6 +1,6 @@
 const { EmployeeRegistrationInfo, CustomerRegistrationGeneralInfo,OrganizationRegistrationGeneralInfo } = require('../schema/Registration');
 const { usernameInfo, nicInfo} = require('../schema/Authentication');
-const { TransactionInfo, accountNumberInfo, customerLoanInfo, organizationLoanInfo,IndividualCurrentInfo,IndividualSavingsInfo,OrganizationSavingsInfo,OrganizationCurrentInfo } = require('../schema/Employee');
+const { TransactionInfo, accountNumberInfo, customerLoanInfo,payLoanTnfo, organizationLoanInfo,IndividualCurrentInfo,IndividualSavingsInfo,OrganizationSavingsInfo,OrganizationCurrentInfo } = require('../schema/Employee');
 const Errors = require('../../common/error');
 const DropdownService = require('../services/Dropdown.service');
 const { ObjectToList, hash_password } = require('../../common/helpers');
@@ -15,37 +15,91 @@ const LoanModel = require('../models/Loan.model');
 const { gen_random_string } = require('../../common/token_generator');
 const  { ymd } = require('../../common/dateFormat');
 const { check_ageRange } = require('../enums/savings_account_plan_age');
+const ifEmployeeCreatable = require('../Middleware/ifEmployeeCreatable');
+const ifLoggedIn = require('../Middleware/ifLoggedIn');
+const ifEmployee = require('../Middleware/ifEmployee');
 
 function init(router) {
-    router.route('/employee/register')
-        .get(registerEmployeePage)
-        .post(registerEmployeeAction);
-    router.route('/employee/:id')
-        .get(indexAction);
-    router.route('/employee/:id/registerCustomer')
-        .get(registerCustomerPage)
-        .post(registerCustomer);
-    router.route('/employee/:id/registerOrganization')
-      .get(registerOrganizationPage)
-      .post(registerOrganization);
-    router.route("/employee/:id/addAccountIndividual")
-        .get(addAccountIndividualPage)
-        .post(addAccountIndividual)
-    router.route("/employee/:id/addAccountOrganization")
-        .get(addAccountOrganizationPage)
-        .post(addAccountOrganization)
-    router.route("/employee/:id/AccountDetails")
-        .get(getCustomerDetails)
-    router.route("/employee/:id/customerTransaction")
-        .get(customerTransactionPage)
-        .post(customerTransaction)
-    router.route("/employee/:id/customerLoan")
-        .get(customerLoanPage)
-        .post(customerLoan)
-    router.route("/employee/:id/organizationLoan")
-        .get(organizationLoanPage)
-        .post(organizationLoan)
+    router.get('/Employee/register',ifEmployeeCreatable,registerEmployeePage)
+    router.post('/Employee/register',ifEmployeeCreatable,registerEmployeeAction);
+    router.get('/Employee/:id',ifLoggedIn,ifEmployee,indexAction);
+    router.get('/Employee/:id/registerCustomer',ifLoggedIn,ifEmployee,registerCustomerPage)
+    router.post('/Employee/:id/registerCustomer',ifLoggedIn,ifEmployee,registerCustomer);
+    router.get('/Employee/:id/registerOrganization',ifLoggedIn,ifEmployee,registerOrganizationPage)
+    router.post('/Employee/:id/registerOrganization',ifLoggedIn,ifEmployee,registerOrganization);
+    router.get("/Employee/:id/addAccountIndividual",ifLoggedIn,ifEmployee,addAccountIndividualPage)
+    router.post("/Employee/:id/addAccountIndividual",ifLoggedIn,ifEmployee,addAccountIndividual)
+    router.get("/Employee/:id/addAccountOrganization",ifLoggedIn,ifEmployee,addAccountOrganizationPage)
+    router.post("/Employee/:id/addAccountOrganization",ifLoggedIn,ifEmployee,addAccountOrganization)
+    router.get("/Employee/:id/AccountDetails",ifLoggedIn,ifEmployee,getCustomerDetails)
+    router.get("/Employee/:id/customerTransaction",ifLoggedIn,ifEmployee,customerTransactionPage)
+    router.post("/Employee/:id/customerTransaction",ifLoggedIn,ifEmployee,customerTransaction)
+    router.get("/Employee/:id/customerLoan",ifLoggedIn,ifEmployee,customerLoanPage)
+    router.post("/Employee/:id/customerLoan",ifLoggedIn,ifEmployee,customerLoan)
+    router.get("/Employee/:id/organizationLoan",ifLoggedIn,ifEmployee,organizationLoanPage)
+    router.post("/Employee/:id/organizationLoan",ifLoggedIn,ifEmployee,organizationLoan)
+    router.get("/Employee/:id/payLoan",ifLoggedIn,ifEmployee,payLoanPage)
+    router.post("/Employee/:id/payLoan",ifLoggedIn,ifEmployee,payLoan)
+}
 
+async function payLoan(req,res){
+    try{
+        console.log(req.body)
+        let { value, error } = await payLoanTnfo.validate(req.body);
+        if (error) throw (error);
+
+        await LoanModel.addMonthlyPay(req.body.loan_id).then(
+            res.redirect(`/Employee/${req.session.user.user_id}?success=Monthly payment to loan ${req.body.loan_id} Successfully`)
+        ).catch((e)=>{
+            console.log(e);
+            res.redirect(`/Employee/${req.session.user.user_id}?error=${e}`)
+        });
+    }catch (e) {
+        console.log(e);
+        res.redirect(`/Employee/${req.session.user.user_id}?error=${e}`)
+    }
+}
+
+async function payLoanPage(req,res){
+    try{
+        let { value, error } = await payLoanTnfo.validate(req.query);
+        if (error) throw (error);
+
+        const loan = await new LoanModel.getLoansDetailsByID(req.query.loan_id);
+        if (!loan) throw new Errors.NotFound("No such Loan");
+        console.log(loan);
+
+        let monthly_amount = ((loan.interrest_rate+1)*loan.loaned_amount)/loan.period ;
+        monthly_amount = monthly_amount.toFixed(2);
+        console.log(monthly_amount);
+
+        let show;
+        let completed;
+        if(loan.state === 'NOT-PAID'){
+            show = true;
+            completed = false;
+        }else if (loan.state === 'PAID'){
+            show = false;
+            completed = 'Already paid for this month'
+        }else {
+            show = false
+            completed = "Loan Payment Completed"
+        }
+
+        res.render('employee_loan_pay',{
+            error: req.query.error,
+            success:req.query.success,
+            user: req.session.user,
+            Loan:loan,
+            monthly_amount,
+            show,
+            completed,
+        });
+
+    }catch (e) {
+        console.log(e);
+        res.redirect(`/Employee/${req.session.user.user_id}?error=${e}`)
+    }
 }
 
 async function indexAction(req,res){
@@ -557,17 +611,6 @@ async function getCustomerDetails(req,res){
 
             const Customer = await CustomerModel.getCustomerDetailsById(account.user);
 
-            console.log({
-                error: req.query.error,
-                user: req.session.user,
-                full_name:`${Customer.first_name} ${Customer.last_name}`,
-                acc_number:account.acc_id,
-                NIC_number:Customer.NIC,
-                open_date:account.created_date,
-                acc_type:account.acc_type,
-                deposits:deposits,
-                withdrawals:withdrawals,
-            });
 
             res.render('employee_customer_acc_details', {
                 error: req.query.error,
@@ -582,10 +625,10 @@ async function getCustomerDetails(req,res){
             });
         }else {
             const account = await AccountModel.getAccount(req.query.accNum);
-            if(!account) throw (Errors.NotFound("No such Account Exists"))
+            if(!account) throw new Errors.NotFound("No such Account Exists")
 
             const organization = await OrganizationModel.getOrgDetails(account.user);
-            if (!organization) throw (Errors.NotFound("No such Account Exists"))
+            if (!organization) throw new Errors.NotFound("No such Account Exists")
 
 
             const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);

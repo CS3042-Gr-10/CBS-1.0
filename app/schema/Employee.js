@@ -66,6 +66,10 @@ const OrganizationCurrentInfo = Joi.object().options({abortEarly:false}).keys({
   acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
   branch:Joi.string().required().max(15).label("Branch"),
   agree_check:Joi.string().valid('on').required(),
+});
+
+const payLoanTnfo = Joi.object().options({abortEarly:false}).keys({
+  loan_id:Joi.string().regex(/^[0-9]{1,12}$/).label("Loan Id")
 })
 
-module.exports = { TransactionInfo,accountNumberInfo, customerLoanInfo, organizationLoanInfo, IndividualSavingsInfo ,IndividualCurrentInfo,OrganizationCurrentInfo,OrganizationSavingsInfo}
+module.exports = { TransactionInfo,accountNumberInfo, customerLoanInfo, organizationLoanInfo, IndividualSavingsInfo ,IndividualCurrentInfo,OrganizationCurrentInfo,OrganizationSavingsInfo, payLoanTnfo}

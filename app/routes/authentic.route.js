@@ -3,21 +3,17 @@ const {LogInInfo, changePasswordInfo, changeUsernameInfo} = require('../schema/A
 const mail = require('./../../common/mailer.js');
 const UserModel = require('../models/User.model');
 const Errors = require('../../common/error');
+const ifNotLoggedIn = require('../Middleware/ifNotLoggedIn');
+const ifLoggedIn = require('../Middleware/ifLoggedIn');
 const SessionHandler = require('../../config/SessionHandler');
 const { hash_password } = require('../../common/helpers');
 
 function init(router) {
-    router.route('/')
-      .get(loginPage);
-    router.route('/login')
-        .post(authentic); 
-    router.route('/changePassword/:user_id')
-        .post(changePassword)
-    router.route('/changeUsername/:user_id')
-        .post(changeUsername)
-    router.route('/logout')
-        .get(logout)
-        .post(logout);
+    router.get('/',ifNotLoggedIn,loginPage);
+    router.post('/login',ifNotLoggedIn,authentic);
+    router.post('/changePassword/:user_id',ifLoggedIn,changePassword)
+    router.post('/changeUsername/:user_id',ifLoggedIn,changeUsername)
+    router.get('/logout',ifLoggedIn,logout)
 }
 
 async function changeUsername(req,res){
@@ -140,32 +136,30 @@ async function authentic (req, res) {
     const user = await UserModel.userExists(authenticData.username);
     if(!user) throw new Errors.NotFound("Incorrect Username");
 
-    await authenticService.authentic(authenticData).then((data) => {
-      if (data) {
-         console.log(data.acc_level)
-        req.session.user = {};
-        req.session.user.user_id = data.user_id;
-        req.session.user.email = data.email;
-        req.session.user.user_type = data.user_type;
-        req.session.user.username = data.username;
-        req.session.user.acc_level = data.acc_level;
+    const data = await authenticService.authentic(authenticData);
 
-        if(data.is_deleted == 1){
-          throw ("User Account is deleted");
-        }
-        if (data.acc_level === 'CUSTOMER') {
-          res.redirect(`/Customer/${req.session.user.user_id}`)
-        } else if (data.acc_level === 'EMPLOYEE') {
-          res.redirect(`/Employee/${req.session.user.user_id}`)
-        } else if (data.acc_level === 'BANK-MANAGER') {
-          res.redirect(`/BankManager/${req.session.user.user_id}`)
-        } else{
-          res.redirect(`/Admin/${req.session.user.user_id}`)
-        }
+      console.log(data)
+      req.session.user = {};
+      req.session.user.user_id = data.user_id;
+      req.session.user.email = data.email;
+      req.session.user.user_type = data.user_type;
+      req.session.user.username = data.username;
+      req.session.user.acc_level = data.acc_level;
+
+      await new Promise(r => setTimeout(r, 500));
+      if(data.is_deleted == 1){
+          throw new Errors.Forbidden("User Account is deleted");
       }
-    }).catch((err) => {
-        res.redirect(`/?error=${err.message}`);
-    });
+      if (data.acc_level === 'CUSTOMER') {
+          res.redirect(`/Customer/${req.session.user.user_id}`)
+      } else if (data.acc_level === 'EMPLOYEE') {
+          res.redirect(`/Employee/${req.session.user.user_id}`)
+      } else if (data.acc_level === 'BANK-MANAGER') {
+          res.redirect(`/BankManager/${req.session.user.user_id}`)
+      } else{
+          res.redirect(`/Admin/${req.session.user.user_id}`)
+      }
+
   } catch (err) {
       res.redirect(`/?error=${err.message}`);
   }
@@ -196,14 +190,16 @@ function signup(req,res) {
 }
 
 function logout(req, res){
-  req.session.destroy(error => {
-    if (error) {
-      res.send('Error logging out')
+  try{
+      if (req.session.user){
+          req.session.user = undefined;
+      }
+      res.redirect('/')
+  }catch(e)
+    {
+        console.log(e)
+        res.redirect(`/?error=${e}`)
     }
-  });
-
-  res.clearCookie(SESS_NAME);
-  res.redirect('/')
 }
 
 

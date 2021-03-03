@@ -26,9 +26,9 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#" data-toggle="modal"
-                                data-target="#changePasswordModal">Change Password</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal"
                                data-target="#changeUsernameModal">Change Username</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                data-target="#changePasswordModal">Change Password</a>
                         </div>
                     </li>
                     <a class="btn btn-secondary my-2 my-sm-0" href="/logout" role="button">LOG OUT</a>
@@ -36,22 +36,24 @@
             </div>
         </nav>
     </header>
+    {{#if error}}
+        <div class="row alert alert-danger m-3" role="alert">
+            {{error}}
+        </div>
+    {{/if}}
+    {{#if success}}
+        <div class="row alert alert-success m-3" role="alert">
+            {{success}}
+        </div>
+    {{/if}}
     <main>
         <div class="wrapper_1">
-            <div>
-                <h3>{{ User.first_name }} {{User.last_name}}</h3>
+            <div style="padding: 5%;">
+                <h3 class="text-primary">Welcome to Seychelles Bank (Pvt) Ltd. !</h3>
                 <hr class="my-4">
+                <h5><span style="font-weight: bold;">Name</span> : {{ User.first_name }} {{User.last_name}}</h5>
+                <h5><span style="font-weight: bold;">Employee ID</span> : {{ User.user_id }}</h5>
             </div>
-            {{#if error}}
-            <div class="row alert alert-danger" role="alert">
-                {{error}}
-            </div>
-            {{/if}}
-            {{#if success}}
-            <div class="row alert alert-success" role="alert">
-                {{success}}
-            </div>
-            {{/if}}
             <div class="calendar-parent">
                 <div class="calendar-container center">
                     <div id="dycalendar-today-with-skin-shadow"
@@ -62,65 +64,49 @@
         <div class="wrapper_2">
             <div>
                 <a href="/employee/{{User.user_id}}/registerCustomer" type="button" class="btn btn-primary btn-lg btn-block">Register a Customer</a>
-                <a href="/employee/{{User.user_id}}/registerOrganization" type="button" class="btn btn-primary btn-lg btn-block">Register an Organization</a>
-                <a type="button" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal"
-                   data-target="#AccountInfoModel">Create Account
-                    Details</a>
-                
-                <a type="button" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal"
-                   data-target="#customerInfoModel">Check Customer Profile
-                    Details</a>
+                <a href="/employee/{{User.user_id}}/registerOrganization" type="button" class="btn btn-primary btn-lg btn-block my-3">Register an Organization</a>
+                <a type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                   data-target="#customerInfoModel">Check Customer Profile Details</a>
             </div>
-            <div class="three_buttons">
-                <a href="/employee/{{User.user_id}}/customerTransaction" type="button" class="btn btn-primary btn-lg btn-block">Deposit Money / Withdraw Money</a>
-                <a href="/employee/{{User.user_id}}/registerOrganization" type="button" class="btn btn-primary btn-lg btn-block">Register Organization</a>
+            <div>
+                <a href="/employee/{{User.user_id}}/addAccountIndividual" type="button" class="btn btn-primary btn-lg btn-block">Create an Individual Account</a>
+                <a href="/employee/{{User.user_id}}/addAccountOrganization" type="button" class="btn btn-primary btn-lg btn-block my-3">Create an Oraganizational Account</a>
+                <a href="/employee/{{User.user_id}}/customerTransaction" type="button" class="btn btn-primary btn-lg btn-block">Deposit / Withdraw Money</a>
             </div>
-            <div class="three_buttons">
+            <div>
                 <a href="/employee/{{User.user_id}}/customerLoan" type="button" class="btn btn-primary btn-lg btn-block">Customer Loan Request Form</a>
-                <a href="/employee/{{User.user_id}}/organizationLoan" type="button" class="btn btn-primary btn-lg btn-block">Organization Loan Request Form</a>
+                <a href="/employee/{{User.user_id}}/organizationLoan" type="button" class="btn btn-primary btn-lg btn-block my-3">Organization Loan Request Form</a>
+                <a type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                   data-target="#payLoanModel">Pay Loan Installment</a>
             </div>
         </div>
     </main>
-
-
-
-    <div class="modal fade" id="AccountInfoModel" tabindex="-1" aria-labelledby="customerInfoModelLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a href="/employee/{{User.user_id}}/addAccountIndividual" type="button" class="btn btn-primary btn-lg btn-block">Individual</a>
-                    <a href="/employee/{{User.user_id}}/addAccountOrganization" type="button" class="btn btn-primary btn-lg btn-block">Organization</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
 
     <div class="modal fade" id="customerInfoModel" tabindex="-1" aria-labelledby="customerInfoModelLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="customerInfoModelLabel">Details</h5>
+                    <h5 class="modal-title" id="customerInfoModelLabel">Enter Customer Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <form action="/employee/{{User.user_id}}/AccountDetails" method="GET">
                     <div class="modal-body">
-                        <div class="form-group form-inline mt-1">
-                            <label for="username" class="mr-3 col-sm-3 col-form-label">Account Number</label>
-                            <input type="text" id="accNum" name="accNum" class="form-control"
-                                   placeholder="Customer Account Number">
+                        <div class="form-group row">
+                            <label for="username" class="col-form-label col-4">Account ID</label>
+                            <div>
+                                <input type="text" id="accNum" name="accNum" class="form-control">
+                            </div>
                         </div>
-                        <label class="my-2 ml-3" for="customer_type">Customer Type</label>
-                        <div class="form-group form-inline mt-1">
-                            <select class="custom-select" id="customer_type" name="customer_type" required>
-                                <option value="customer">Individual</option>
-                                <option value="organization">Organization</option>
-                            </select>
+                        <div class="form-group row">
+                            <label class="col-form-label col-4" for="customer_type">Customer Type</label>
+                            <div>
+                                <select class="custom-select" id="customer_type" name="customer_type" required>
+                                    <option value="customer">Individual</option>
+                                    <option value="organization">Organization</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer" id="confirm button">
@@ -130,6 +116,39 @@
             </div>
         </div>
     </div>
+
+
+
+
+    <div class="modal fade" id="payLoanModel" tabindex="-1" aria-labelledby="payLoanModelLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customerInfoModelLabel">Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="/employee/{{User.user_id}}/payLoan" method="GET">
+                    <div class="modal-body">
+                        <div class="form-group form-inline mt-1">
+                            <label for="loan_id" class="mr-3 col-sm-3 col-form-label">Loan ID</label>
+                            <input type="text" id="loan_id" name="loan_id" class="form-control"
+                                   placeholder="Enter Loan ID">
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="confirm button">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
 
     <div class="modal fade" id="changeUsernameModal" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">

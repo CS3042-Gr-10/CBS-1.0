@@ -1,18 +1,18 @@
-const Employee = require('./Employee.route');
-const Admin = require('./Admin.route');
-const BankManager = require('./BankManager.route');
-const Customer = require('./Customer.route');
-
 
 const ifNotLoggedIn = (req, res, next) => {
+    // console.log(req.url);
+    //console.log('here');
+    //console.log(req.session);
+
     if (!req.session.user) {
+        //console.log("isnotlogged")
         next();
-    } else if (req.session.user.acc_level === 0) { // if admin
-        res.redirect('/admin');
-    } else if (req.session.user.acc_level === 1) { // if ins
-        Customer.home(req,res);
-    } else if (req.session.user.acc_level === 2) { // if student
-        Employee.home(req,res);
+    } else if (req.session.user.acc_level === "BANK-MANAGER") { // if admin
+        res.redirect(`/BankManager/${req.session.user.user_id}`);
+    } else if (req.session.user.acc_level === "EMPLOYEE") { // if ins
+        res.redirect(`/Employee/${req.session.user.user_id}`);
+    } else if (req.session.user.acc_level === "CUSTOMER") { // if student
+        res.redirect(`/Customer/${req.session.user.user_id}`);
     }
 };
 
