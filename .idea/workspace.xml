@@ -33,14 +33,20 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="profiles updated">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="report generation error correction">
+      <change afterPath="$PROJECT_DIR$/public/stylesheets/customer_dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Report.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Report.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/BankManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/BankManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin_dashboard.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_account_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_account_check.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_check_fds.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_check_fds.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_check_loans.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_check_loans.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_individual_new_loan.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_individual_new_loan.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_single_fd_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_single_fd_check.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_single_loan_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_single_loan_check.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/fd_application_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/fd_application_form.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_customer.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_customer.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,13 +212,8 @@
       <workItem from="1614603010964" duration="6275000" />
       <workItem from="1614616477773" duration="20772000" />
       <workItem from="1614680248168" duration="22181000" />
-    </task>
-    <task id="LOCAL-00018" summary="changes to route">
-      <created>1612328725592</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1612328725592</updated>
+      <workItem from="1614747087134" duration="466000" />
+      <workItem from="1614750483291" duration="1419000" />
     </task>
     <task id="LOCAL-00019" summary="adding an employee">
       <created>1612354604336</created>
@@ -550,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614701338055</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="report generation error correction">
+      <created>1614747169041</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1614747169042</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,7 +577,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding registration of oraganization adding accounts functionality" />
     <MESSAGE value="additional fields for employee" />
     <MESSAGE value="registration of organization reformatted" />
     <MESSAGE value="removing errors in login and completing bank manager home" />
@@ -594,7 +601,8 @@
     <MESSAGE value="merge and resolved" />
     <MESSAGE value="routing improvement" />
     <MESSAGE value="profiles updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="profiles updated" />
+    <MESSAGE value="report generation error correction" />
+    <option name="LAST_COMMIT_MESSAGE" value="report generation error correction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

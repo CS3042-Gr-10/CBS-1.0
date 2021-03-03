@@ -48,7 +48,6 @@
                 </div>
                 <div class="form-group row">
                     <label for="perm_address" class="col-form-label ml-3">Permanent Address</label>
-                    <label for="add_no" class="col-form-label col-sm-3 col-md-3 col-lg-3">Address</label>
                     <div class="col-lg col-sm input-group">
                         <input type="text" id="add_no" name="add_no" placeholder="No." class="form-control col-2" required value="{{add_no}}">
                         <input type="text" id="add_street" name="add_street" placeholder="Street" class="form-control" required value="{{add_street}}">
@@ -104,19 +103,19 @@
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.</small>
                     </div>
-                    <label class="my-2 ml-3" for="branch">Branch</label>
+                    <label class="my-2 ml-3" for="post">Position</label>
                     <div class="col-lg-2 col-sm-2">
                         <select class="custom-select" id="post" name="post" required>
-                            <option value="default">Select the Post...</option>
-                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                            <option value="default">Select the Postition...</option>
                             {{#each posts}}
                                 <option value="{{this.post_id}}">{{this.post_name}}</option>
                             {{/each}}
                         </select>
                     </div>
+                    <label class="my-2 ml-3" for="branch">Branch</label>
                     <div class="col-lg-2 col-sm-2">
                         <select class="custom-select" id="branch" name="branch" required>
-                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                            <option value="default">Select the Branch...</option>
                             {{#each branches}}
                                 <option value="{{this.branch_id}}">{{this.branch_name}}</option>
                             {{/each}}
@@ -125,11 +124,11 @@
                 </div>
                 <div class="form-group">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="agree_check" name="agree_check" required>
+                      <input class="form-check-input" type="checkbox" id="agree_check" name="agree_check" required>
                         <label class="form-check-label" for="agree_check">Agree to Terms and Conditions</label>
                     </div>
                 </div>
-                <a href="admin_dashboard.html" type="button" class="btn btn-secondary float-right">Close</a>
+                <a href="/" type="button" class="btn btn-secondary float-right">Close</a>
                 <input type="submit" class="btn btn-primary" value="Save Changes">
                 </div>
             </form>
