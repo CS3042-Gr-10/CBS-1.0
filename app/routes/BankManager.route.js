@@ -130,7 +130,7 @@ async function ApproveLoan(req,res){
         const { value, error } = await stdLoanApprovalInfo.validate(req.body);
         if(error) throw error;
 
-        const loan = await  LoanModel.getLoanDetails(req.params.loan_id);
+        const loan = await  LoanModel.getLoansDetailsByID(req.params.loan_id);
         if(!loan) throw new Errors.InternalServerError("Something went wrong")
 
         if(req.body.approval === "accept"){

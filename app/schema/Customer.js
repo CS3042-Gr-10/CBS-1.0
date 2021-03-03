@@ -1,7 +1,7 @@
 const Joi = require('joi')
 
 const startFDInfo = Joi.object().options({ abortEarly: false }).keys({
-    saving_no:Joi.string().required(),
+    saving_no:Joi.string().regex(/^[0-9]{1,10}$/).message("Account Number must contain only numbers.").required().label("Account Number"),
     fd_plan:Joi.string().valid('1','2','3','4','5').required(),
     username:Joi.string().alphanum().min(3).message("User name must have minimum 3 characters.").max(15).message("User name must have maximum 30 characters.").required().label("Username"),
     amount:Joi.number().required().label("Initial Amount"),
@@ -10,8 +10,8 @@ const startFDInfo = Joi.object().options({ abortEarly: false }).keys({
 
 
 const transferInfo = Joi.object().options({ abortEarly: false }).keys({
-    savings_no:Joi.string().required(),
-    receiving_acc_no:Joi.string().required(),
+    savings_no:Joi.string().regex(/^[0-9]{1,10}$/).message("Account Number must contain only numbers.").required().label("Account Number"),
+    receiving_acc_no:Joi.string().regex(/^[0-9]{1,10}$/).message("Account Number must contain only numbers.").required().label("Account Number"),
     amount:Joi.number().required().label("Initial Amount"),
 });
 
@@ -29,7 +29,7 @@ const onlineLoanOrganizationInfo = Joi.object().options({abortEarly:false}).keys
     amount: Joi.string().label("Amount").regex(/^[0-9]{1,12}[.]?[0-9]{0,4}$/).message("Amount must contain only numbers and must be less than 4 decimal places."),
     loan_plan: Joi.string().required().max(15).label("Loan Plan"),
     agree_check: Joi.string().valid('on').required(),
-    fd_acc:Joi.string().required(),
+    fd_acc:Joi.string().regex(/^[0-9]{1,10}$/).message("Account Number must contain only numbers.").required().label("Account Number"),
 });
 
 module.exports = {startFDInfo, transferInfo, onlineLoanIndividualInfo, onlineLoanOrganizationInfo}

@@ -33,7 +33,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="resolve and merge" />
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="resolve and merge">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Customer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bm_transaction_report.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_transaction_report.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_org.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_org.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/Emailer/templates/invitation.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/common/Emailer/templates/invitation.hbs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,6 +128,7 @@
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Academic_PC\Sem 4\DBMS\Project\CBS-1.0\public\image" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
     </key>
   </component>

