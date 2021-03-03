@@ -83,7 +83,7 @@ function acceptStdLoan(loan) {
 
 function getLoanForApproval(branch_id){
     return new Promise((resolve, reject) => {
-        db.query(`SELECT * FROM loan NATURAL JOIN standard_loan WHERE state="PENDING" AND branch_id =? order by loan_id DESC limit 10  `, branch_id ,(error, rows, fields) => {
+        db.query(`SELECT * FROM standard_loan NATURAL JOIN loan WHERE state="PENDING" AND branch_id =? order by loan_id DESC limit 10  `, branch_id ,(error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;

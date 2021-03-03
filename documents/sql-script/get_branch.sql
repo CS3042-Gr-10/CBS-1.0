@@ -10,7 +10,7 @@ BEGIN
     if ln_type = "STANDARD"  then
 		select branch_id into br_id from standard_loan where loan_id = id;
 	else
-		select brnach_id into br_id from fixed_deposit where  fd_id = (select fd_acc_id from online_loan where loan_id = id);
+		select branch_id into br_id from fixed_deposit where  fd_id = (select fd_acc_id from online_loan where loan_id = id);
 	end if;
         
 	RETURN br_id;
