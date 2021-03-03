@@ -33,15 +33,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="resolve and merge">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="final commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema/Customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Customer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bm_transaction_report.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_transaction_report.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/reg_org.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_org.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/Emailer/templates/invitation.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/common/Emailer/templates/invitation.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,13 +204,6 @@
       <workItem from="1614747087134" duration="466000" />
       <workItem from="1614750483291" duration="11507000" />
       <workItem from="1614772689079" duration="11409000" />
-    </task>
-    <task id="LOCAL-00031" summary="midpoints">
-      <created>1613101915100</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1613101915100</updated>
     </task>
     <task id="LOCAL-00032" summary="merge and resolve developer">
       <created>1613102331512</created>
@@ -555,7 +541,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614799339478</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="final commit">
+      <created>1614805867457</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1614805867457</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,7 +567,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Customer FD mid way done #50" />
     <MESSAGE value="transfer funds done #50" />
     <MESSAGE value="middle ground" />
     <MESSAGE value="completing #51 fixing #52" />
@@ -599,7 +591,8 @@
     <MESSAGE value="small edits" />
     <MESSAGE value="errors" />
     <MESSAGE value="resolve and merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolve and merge" />
+    <MESSAGE value="final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
