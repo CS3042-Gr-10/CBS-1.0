@@ -1,9 +1,11 @@
 const ifEmployee = (req, res, next) => {
     if (req.session.user) {
-        if (req.session.user.acc_level === 2) { // if student
+        if (req.session.user.acc_level === "EMPLOYEE") { // if student
+            //console.log("is emp")
             next();
         }
     } else {
+        //console.log("is_notemp")
         res.redirect('/');
     }
 };

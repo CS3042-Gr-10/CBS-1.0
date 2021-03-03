@@ -9,12 +9,29 @@ const CustomerModel = {
     getUserDetails,
     getCustomerSavAccDetail,
     getCustomerFDDetail,
+    getAllAccountsOfCustomer,
     addCustomer
+}
+
+
+function getAllAccountsOfCustomer(user_id) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from account where user',user_id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
 }
 
 function getAllCustomerDetails() {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * from customer_detail',id, (error, rows, fields) => {
+        db.query('SELECT * from customer_detail', (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -82,7 +99,7 @@ function getCustomerSavAccDetail(id) {
 
 function getCustomerFDDetail(id) {
     return new Promise((resolve, reject) => {
-        db.query('SELECT sv_acc_id, branch_id, acc_plan_id, opened_date from fixed_deposit where cusotmer_id = ?',id, (error, rows, fields) => {
+        db.query('SELECT sv_acc_id, branch_id, acc_plan_id, opened_date from fixed_deposit where customer_id = ?',id, (error, rows, fields) => {
             if (!!error) {
                 dbFunc.connectionRelease;
                 reject(false);
@@ -130,5 +147,8 @@ function addCustomer(acc) {
         });
     });
 }
+
+
+
 
 module.exports = CustomerModel;

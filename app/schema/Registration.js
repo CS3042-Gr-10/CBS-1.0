@@ -9,15 +9,8 @@ const EmployeeRegistrationInfo = Joi.object().options({ abortEarly: false }).key
   email: Joi.string().regex(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).message('"Email address" consists of invalid characters.').email().max(50).required().label("Email"),
   gender: Joi.string().valid('male','female','other').required().label("Gender"),
   //farmer special
-  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),  //for new and old nic 
-   // .min(10) 
-   // .message('"NIC Number" should be more than 10 characters')
-   // .regex(/^[0-9]{9}[a-z]{1}$/)
-   // .message('"Contact Number" contains invalid characters'),
-  
-   //.regex(/^([0-9+]{9}[vV|xX])|([0-9+]{12})$/) 
-    
-  contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{9,10}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
+  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[v|x]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "v"/"x"(simple characters) or 12 digits only!'),  //for new and old nic
+  contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{8,11}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
     //.min(7)
     //.message('"Contact Number" must be at least 7 digits')
    // .max(12)
@@ -48,21 +41,8 @@ const CustomerRegistrationGeneralInfo = Joi.object().options({ abortEarly: false
   dob: Joi.date().required().label("Date of Birth"),
   age:Joi.number().required(),
   gender: Joi.string().valid('male','female','other').required().label("Gender"),
-  acc_type:Joi.string().valid('savings','current').required().label("Account Type"),
-  //farmer special
- /* nic: Joi.string().required().label("NIC Number")
-    .min(10)
-    .message('"NIC Number" should be more than 10 characters')
-    .regex(/^[0-9]{9}[a-z]{1}$/)
-    .message('"Contact Number" contains invalid characters'),*/
-  //nic: Joi.string().required().label("NIC Number").regex((/^[0-9+]{9}[vV|xX]$/)|(/^[0-9+]{12}$/)).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
-  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[vV|xX]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "V"/"X" or 12 digits only!'),
-  /*contact:Joi.string().trim().required()
-    .min(7)
-    .message('"Contact Number" must be at least 7 digits')
-    .max(12)
-    .message('"Contact Number" must be maximum 12 digits'),*/
-  contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{9,10}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
+  nic: Joi.string().required().label("NIC Number").regex(/^[0-9+]{9}[v|x]|[0-9+]{12}$/).message('"NIC" should have 9 digits with "v"/"x"(simple characters) or 12 digits only!'),
+  contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{8,11}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
   postal_code: Joi.string().required().max(8).label("Postal Code")
     .regex(/^\d+$/)
     .message("Postal Code must only contain numbers"),
@@ -71,7 +51,23 @@ const CustomerRegistrationGeneralInfo = Joi.object().options({ abortEarly: false
   add_city: Joi.string().required().max(100).label("Address City"),
   branch: Joi.string().required().max(15).label("Branch"),
   agree_check: Joi.string().valid('on').required(),
-  init_amount:Joi.number().required().label("Initial Amount"),
+});
+
+const OrganizationRegistrationGeneralInfo = Joi.object().options({ abortEarly: false }).keys({
+  //commmon user details
+  org_name:Joi.string().required().label("First Name"),
+  email: Joi.string().regex(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).message('"Email address" consists of invalid characters.').email().max(50).required().label("Email"),
+  reg_date: Joi.date().required().label("Date of Birth"),
+  org_id: Joi.string().required().label("Organization Number"),
+  contact:Joi.string().trim().required().regex(/^(?:7|0|(?:\+94))[0-9]{8,11}$/).message('number should start with "0","7" or "+94" minimum length must be 9 and mamimum length must be 12'),        //can start with 0,7,+94 can have min 9 max 12
+  postal_code: Joi.string().required().max(8).label("Postal Code")
+      .regex(/^\d+$/)
+      .message("Postal Code must only contain numbers"),
+  add_no: Joi.string().required().max(10).label("Address No"),
+  add_street: Joi.string().required().max(256).label("Address Street"),
+  add_city: Joi.string().required().max(100).label("Address City"),
+  branch: Joi.string().required().max(15).label("Branch"),
+  agree_check: Joi.string().valid('on').required(),
 });
 
 const CustomerRegistrationSavingsInfo = Joi.object().options({ abortEarly: false }).keys({
@@ -89,4 +85,4 @@ const ExistingCustomerAccountInfo = Joi.object().options({abortEarly:false}).key
   agree_check: Joi.string().valid('on').required()
 })
 
-module.exports = { CustomerRegistrationGeneralInfo,CustomerRegistrationCurrentInfo, CustomerRegistrationSavingsInfo , EmployeeRegistrationInfo, ExistingCustomerAccountInfo };
+module.exports = { CustomerRegistrationGeneralInfo,CustomerRegistrationCurrentInfo, CustomerRegistrationSavingsInfo , EmployeeRegistrationInfo, ExistingCustomerAccountInfo ,OrganizationRegistrationGeneralInfo};
