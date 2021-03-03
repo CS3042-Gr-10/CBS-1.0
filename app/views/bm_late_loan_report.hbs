@@ -21,7 +21,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <a class="btn btn-secondary my-2 my-sm-0" href="login.html" role="button">LOG OUT</a>
+                    <a class="btn btn-secondary my-2 my-sm-0" href="/logout" role="button">LOG OUT</a>
                 </ul>
             </div>
         </nav>
@@ -73,12 +73,14 @@
                                             <td>{{this.interrest_rate}}</td>
                                             <td>{{this.period}}</td>
                                             <td>{{this.installment_per_month}}</td>
-                                            <td>{{this.delay_installments}}</td>
-                                            <td>{{this.finished_num_installments}}</td>
+                                            <td>{{this.delay_installements}}</td>
+                                            <td>{{this.finished_num_installements}}</td>
                                             <td>{{this.loaned_amount}}</td>
                                         </tr>
                                     {{/each}}
                                 </table>
+                            {{else}}
+                                <h5>No unpaid Loans</h5>
                             {{/if}}
                             {{#if loan_payments}}
                                 <h3>Loan Payment</h3>
@@ -98,6 +100,8 @@
                                         </tr>
                                     {{/each}}
                                 </table>
+                            {{else}}
+                                <h5>No Loan Payments</h5>
                             {{/if}}
                             </pre>
                         </div>

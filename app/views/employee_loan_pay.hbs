@@ -23,7 +23,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <a class="btn btn-secondary my-2 my-sm-0" href="login.html" role="button">LOG OUT</a>
+                    <a class="btn btn-secondary my-2 my-sm-0" href="/logout" role="button">LOG OUT</a>
                 </ul>
             </div>
         </nav>
@@ -41,6 +41,8 @@
         </div>
     {{/if}}
 
+
+
     <h3>Loan Details.</h3>
     <p>Loan ID:- {{ Loan.loan_id }}</p>
     <p>Customer ID:- {{ Loan.customer_id }}</p>
@@ -56,10 +58,15 @@
     {{/if}}
     {{ status_message }}
 
-    <h5>Monthly Loan Amount To be payed:- {{ monthly_amount }}</h5>
+    {{#if show}}
+        <h5>Monthly Loan Amount To be payed:- {{ monthly_amount }}</h5>
 
-    <a type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
-       data-target="#payLoanModel">Pay Loan Installment For this Month</a>
+        <a type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+           data-target="#payLoanModel">Pay Loan Installment For this Month</a>
+    {{else}}
+        <h5>{{completed}}</h5>
+    {{/if}}
+
     <a href="/Employee/{{user.user_id}}" type="button" class="btn btn-primary btn-lg btn-block">Back</a>
 
     <div class="modal fade" id="payLoanModel" tabindex="-1" aria-labelledby="payLoanModelLabel"
