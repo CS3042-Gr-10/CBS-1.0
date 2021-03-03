@@ -33,10 +33,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="bm_dashboard.hbs">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="error reformatting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bm_loan_approval.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_loan_approval.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_customer_acc_details.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_customer_acc_details.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,14 +202,7 @@
       <workItem from="1614616477773" duration="20772000" />
       <workItem from="1614680248168" duration="22181000" />
       <workItem from="1614747087134" duration="466000" />
-      <workItem from="1614750483291" duration="7019000" />
-    </task>
-    <task id="LOCAL-00025" summary="commit before merge">
-      <created>1612676571619</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1612676571619</updated>
+      <workItem from="1614750483291" duration="7603000" />
     </task>
     <task id="LOCAL-00026" summary="resolve and merge">
       <created>1612677543111</created>
@@ -548,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614756541029</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="error reformatting">
+      <created>1614757578147</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1614757578148</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -567,7 +566,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="error corrections" />
     <MESSAGE value="before merge" />
     <MESSAGE value="Report Generation complete need to check front end work fixes #60 and #59 and #56" />
     <MESSAGE value="Adding functionality to change password and username fixes #48" />
@@ -592,7 +590,8 @@
     <MESSAGE value="workspace.xml" />
     <MESSAGE value="merged and resolved development" />
     <MESSAGE value="bm_dashboard.hbs" />
-    <option name="LAST_COMMIT_MESSAGE" value="bm_dashboard.hbs" />
+    <MESSAGE value="error reformatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="error reformatting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
