@@ -129,6 +129,7 @@ async function onlineLoan(req,res){
             if(error) throw error;
 
             const FDdetails = await FixedDeposits.getFDDetailsByID(value.fd_acc);
+            if(!FDdetails) throw new Errors.Forbidden("You don't have any Fixed Deposits to start an Online Loan");
             console.log(FDdetails);
 
             const check = checkOnlineFDAmount(parseFloat(value.amount),FDdetails.balance);
@@ -171,6 +172,7 @@ async function onlineLoan(req,res){
             if(error) throw error;
 
             const FDdetails = await FixedDeposits.getFDDetailsByID(value.fd_acc);
+            if(!FDdetails) throw new Errors.Forbidden("You don't have any Fixed Deposits to start an Online Loan");
             console.log(FDdetails);
 
             const check = checkOnlineFDAmount(parseFloat(value.amount),FDdetails.balance);
@@ -215,33 +217,39 @@ async function onlineLoan(req,res){
 }
 
 async function onlineLoanPage(req,res){
-    const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
-    const loan_plan = await DropdownService.getLoanPlans();
-    const FDs = await FixedDeposits.getFDByUserID(req.session.user.user_id);
-    console.log(FDs);
+    try{
+        const owner_type = await AccountModel.getAccountType(req.session.user.user_id);
+        const loan_plan = await DropdownService.getLoanPlans();
+        const FDs = await FixedDeposits.getFDByUserID(req.session.user.user_id);
+        if(FDs.length === 0 ) throw new Errors.Forbidden("You don't have any Fixed Deposits to start an Online Loan");
+        console.log(FDs);
 
-    if (owner_type.owner_type === "U"){
-        const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
-        res.render('customer_individual_new_loan',{
-            error:req.query.error,
-            success:req.query.success,
-            user:req.session.user,
-            nic:customer.NIC,
-            amount:req.query.amount,
-            loan_plan:loan_plan,
-            FDs,
-        });
-    }else {
-        const organization = await OrganizationModel.getOrgDetails(req.session.user.user_id);
-        res.render('customer_new_loan_organization',{
-            error:req.query.error,
-            success:req.query.success,
-            user:req.session.user,
-            org_id:organization.reg_number,
-            amount:req.query.amount,
-            loan_plan:loan_plan,
-            FDs,
-        });
+        if (owner_type.owner_type === "U"){
+            const customer = await CustomerModel.getCustomerDetailsById(req.session.user.user_id);
+            res.render('customer_individual_new_loan',{
+                error:req.query.error,
+                success:req.query.success,
+                user:req.session.user,
+                nic:customer.NIC,
+                amount:req.query.amount,
+                loan_plan:loan_plan,
+                FDs,
+            });
+        }else {
+            const organization = await OrganizationModel.getOrgDetails(req.session.user.user_id);
+            res.render('customer_new_loan_organization',{
+                error:req.query.error,
+                success:req.query.success,
+                user:req.session.user,
+                org_id:organization.reg_number,
+                amount:req.query.amount,
+                loan_plan:loan_plan,
+                FDs,
+            });
+        }
+    }catch (e) {
+        console.log(e);
+        res.redirect(`/Customer/${req.session.user.user_id}?error=${e}`)
     }
 }
 

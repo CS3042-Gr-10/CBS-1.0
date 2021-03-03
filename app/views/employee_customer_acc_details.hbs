@@ -23,7 +23,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <a class="btn btn-secondary my-2 my-sm-0" href="login.html" role="button">LOG OUT</a>
+                    <a class="btn btn-secondary my-2 my-sm-0" href="/logout" role="button">LOG OUT</a>
                 </ul>
             </div>
         </nav>
@@ -86,8 +86,8 @@
         {{/each}}
     </table>
 
-    <a href="/employee/{{User.user_id}}/customerTransaction" type="button" class="btn btn-primary btn-lg btn-block">Make a transaction</a>
-    <a href="/employee/{{User.user_id}}" type="button" class="btn btn-primary btn-lg btn-block">Back</a>
+    <a href="/employee/{{user.user_id}}/customerTransaction" type="button" class="btn btn-primary btn-lg btn-block">Make a transaction</a>
+    <a href="/employee/{{user.user_id}}" type="button" class="btn btn-primary btn-lg btn-block">Back</a>
 
 
     

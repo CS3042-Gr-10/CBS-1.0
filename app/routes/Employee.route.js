@@ -611,17 +611,6 @@ async function getCustomerDetails(req,res){
 
             const Customer = await CustomerModel.getCustomerDetailsById(account.user);
 
-            console.log({
-                error: req.query.error,
-                user: req.session.user,
-                full_name:`${Customer.first_name} ${Customer.last_name}`,
-                acc_number:account.acc_id,
-                NIC_number:Customer.NIC,
-                open_date:account.created_date,
-                acc_type:account.acc_type,
-                deposits:deposits,
-                withdrawals:withdrawals,
-            });
 
             res.render('employee_customer_acc_details', {
                 error: req.query.error,
