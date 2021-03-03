@@ -636,10 +636,10 @@ async function getCustomerDetails(req,res){
             });
         }else {
             const account = await AccountModel.getAccount(req.query.accNum);
-            if(!account) throw (Errors.NotFound("No such Account Exists"))
+            if(!account) throw new Errors.NotFound("No such Account Exists")
 
             const organization = await OrganizationModel.getOrgDetails(account.user);
-            if (!organization) throw (Errors.NotFound("No such Account Exists"))
+            if (!organization) throw new Errors.NotFound("No such Account Exists")
 
 
             const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);

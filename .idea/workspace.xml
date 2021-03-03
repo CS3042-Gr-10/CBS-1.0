@@ -33,9 +33,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="merged and resolved development">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="bm_dashboard.hbs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bm_loan_approval.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_loan_approval.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,14 +203,7 @@
       <workItem from="1614616477773" duration="20772000" />
       <workItem from="1614680248168" duration="22181000" />
       <workItem from="1614747087134" duration="466000" />
-      <workItem from="1614750483291" duration="5974000" />
-    </task>
-    <task id="LOCAL-00024" summary="resolve and merge">
-      <created>1612665472284</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1612665472284</updated>
+      <workItem from="1614750483291" duration="7019000" />
     </task>
     <task id="LOCAL-00025" summary="commit before merge">
       <created>1612676571619</created>
@@ -547,7 +541,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614756345513</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="bm_dashboard.hbs">
+      <created>1614756541029</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1614756541029</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,7 +567,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="resolved and merged with developer" />
     <MESSAGE value="error corrections" />
     <MESSAGE value="before merge" />
     <MESSAGE value="Report Generation complete need to check front end work fixes #60 and #59 and #56" />
@@ -591,7 +591,8 @@
     <MESSAGE value="improving a bit of front end" />
     <MESSAGE value="workspace.xml" />
     <MESSAGE value="merged and resolved development" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged and resolved development" />
+    <MESSAGE value="bm_dashboard.hbs" />
+    <option name="LAST_COMMIT_MESSAGE" value="bm_dashboard.hbs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
