@@ -51,7 +51,7 @@
                 <hr class="my-4">
                 <h4 style="font-style: italic;">Personal Details</h4>
                 <h6>Name : {{ user.last_name}}</h6>
-                <h6>Branch :  {{bm_branch}}</h6>
+                <h6>Branch :  {{bm_branch.branch_name}}</h6>
             </div>
             <div class="calendar-parent">
                 <div class="calendar-container center">
@@ -80,7 +80,8 @@
             </div>
             <div>
                 <h4>Late Loan Installments' Report</h4>
-                <form action="/BankManager/{{user.user_id}}/LateLoanReport" method="GET">
+                <form action="/BankManager/{{user.user_id}}/LateLoanReport" method="POST">
+                    <input type="hidden" class="form-control" id="branch" name="branch" value="{{bm_branch.branch_id}}">
                     <input type="submit" class="btn btn-block btn-primary mt-4" value="Generate Report">
                 </form>
             </div>

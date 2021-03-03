@@ -33,8 +33,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="improving a bit of front end">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="merged and resolved development">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,21 +202,7 @@
       <workItem from="1614616477773" duration="20772000" />
       <workItem from="1614680248168" duration="22181000" />
       <workItem from="1614747087134" duration="466000" />
-      <workItem from="1614750483291" duration="5364000" />
-    </task>
-    <task id="LOCAL-00022" summary="some changes">
-      <created>1612435770563</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1612435770563</updated>
-    </task>
-    <task id="LOCAL-00023" summary="adding Customer Account done">
-      <created>1612623982559</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1612623982559</updated>
+      <workItem from="1614750483291" duration="5974000" />
     </task>
     <task id="LOCAL-00024" summary="resolve and merge">
       <created>1612665472284</created>
@@ -546,7 +533,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614755445524</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="workspace.xml">
+      <created>1614756124563</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1614756124563</updated>
+    </task>
+    <task id="LOCAL-00072" summary="merged and resolved development">
+      <created>1614756345513</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1614756345513</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,8 +566,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removing errors in login and completing bank manager home" />
-    <MESSAGE value="added loan details functionality" />
     <MESSAGE value="resolved and merged with developer" />
     <MESSAGE value="error corrections" />
     <MESSAGE value="before merge" />
@@ -590,7 +589,9 @@
     <MESSAGE value="report generation error correction" />
     <MESSAGE value=" improvements to front end" />
     <MESSAGE value="improving a bit of front end" />
-    <option name="LAST_COMMIT_MESSAGE" value="improving a bit of front end" />
+    <MESSAGE value="workspace.xml" />
+    <MESSAGE value="merged and resolved development" />
+    <option name="LAST_COMMIT_MESSAGE" value="merged and resolved development" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
