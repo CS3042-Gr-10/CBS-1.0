@@ -607,8 +607,9 @@ async function getCustomerDetails(req,res){
             console.log(account);
 
             const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
+            console.log(deposits);
             const withdrawals = await TransactionModel.getAllWithdrawDetailByID(req.query.accNum);
-
+            console.log(withdrawals);
             const Customer = await CustomerModel.getCustomerDetailsById(account.user);
 
 
@@ -632,8 +633,9 @@ async function getCustomerDetails(req,res){
 
 
             const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
+            console.log(deposits)
             const withdrawals = await TransactionModel.getAllWithdrawDetailByID(req.query.accNum);
-
+            console.log(withdrawals)
 
 
             res.render('employee_organization_acc_details', {

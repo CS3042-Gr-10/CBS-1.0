@@ -213,4 +213,20 @@ function getCurrentAccount(acc_id){
     });
 }
 
+function getAccountsOfCustomer(acc_id){
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from account where acc_id=?',acc_id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+
+            }
+        });
+    });
+}
+
 module.exports = AccountModel;
