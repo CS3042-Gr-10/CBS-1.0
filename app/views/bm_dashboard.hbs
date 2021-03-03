@@ -36,21 +36,22 @@
     </header>
     <main>
         {{#if error}}
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger my-3" role="alert">
                 {{error}}
             </div>
         {{/if}}
         {{#if success}}
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success my-3" role="alert">
                 {{success}}
             </div>
         {{/if}}
         <div class="wrapper_1">
-            <div>
-                <h3>Personal Details</h3>
+            <div style="padding: 5%;">
+                <h3 class="text-primary">Welcome to Seychelles Bank (Pvt) Ltd. !</h3>
                 <hr class="my-4">
-                <h5>Name : {{ user.last_name}}</h5>
-                <h5>Branch :  {{bm_branch}}</h5>
+                <h4 style="font-style: italic;">Personal Details</h4>
+                <h6>Name : {{ user.last_name}}</h6>
+                <h6>Branch :  {{bm_branch}}</h6>
             </div>
             <div class="calendar-parent">
                 <div class="calendar-container center">
@@ -77,15 +78,15 @@
                 </form>
             </div>
             <div>
-                <h4>Late Loan Installment Report</h4>
+                <h4>Late Loan Installments' Report</h4>
                 <form action="/BankManager/{{user.user_id}}/LateLoanReport" method="GET">
-                    <input type="submit" class="btn btn-block btn-primary mt-3" value="Generate Report">
+                    <input type="submit" class="btn btn-block btn-primary mt-4" value="Generate Report">
                 </form>
             </div>
-            <div class="three_buttons">
-                <a href="/employee/register" type="button" class="btn btn-primary btn-lg btn-block">Create an
+            <div>
+                <a href="/employee/register" type="button" class="btn btn-primary btn-lg btn-block mt-2">Create an
                     Employee Account</a>
-                <a href="/BankManager/{{user.user_id}}/ApproveLoan" type="button" class="btn btn-primary btn-lg btn-block">Approve Loans</a>
+                <a href="/BankManager/{{user.user_id}}/ApproveLoan" type="button" class="btn btn-primary btn-lg btn-block mt-2">Approve Loans</a>
             </div>
         </div>
     </main>
@@ -135,7 +136,7 @@
                         <fieldset disabled="disabled">
                             <div class="form-group form-inline mt-1">
                                 <label for="disabledTextInput" class="mr-3 col-sm-2 col-form-label">Username</label>
-                                <input type="text" id="disabledTextInput" class="form-control" placeholder={{ User.username }}>
+                                <input type="text" id="disabledTextInput" class="form-control" placeholder={{ user.username }}>
                             </div>
                         </fieldset>
                         <div class="form-group form-inline">
