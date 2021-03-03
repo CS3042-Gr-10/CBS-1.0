@@ -33,9 +33,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="error reformatting">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="url errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_new_loan_organization.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_new_loan_organization.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/customer_organization_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_organization_profile_check.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/employee_customer_acc_details.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_customer_acc_details.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_organization_acc_details.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_organization_acc_details.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,14 +207,7 @@
       <workItem from="1614616477773" duration="20772000" />
       <workItem from="1614680248168" duration="22181000" />
       <workItem from="1614747087134" duration="466000" />
-      <workItem from="1614750483291" duration="7603000" />
-    </task>
-    <task id="LOCAL-00026" summary="resolve and merge">
-      <created>1612677543111</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1612677543111</updated>
+      <workItem from="1614750483291" duration="11171000" />
     </task>
     <task id="LOCAL-00027" summary="Completed adding Customer Account and current account and a Savings account">
       <created>1612843353051</created>
@@ -547,7 +545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614757578148</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="url errors">
+      <created>1614758159412</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1614758159412</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,7 +571,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="before merge" />
     <MESSAGE value="Report Generation complete need to check front end work fixes #60 and #59 and #56" />
     <MESSAGE value="Adding functionality to change password and username fixes #48" />
     <MESSAGE value="Customer FD mid way done #49" />
@@ -591,7 +595,8 @@
     <MESSAGE value="merged and resolved development" />
     <MESSAGE value="bm_dashboard.hbs" />
     <MESSAGE value="error reformatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="error reformatting" />
+    <MESSAGE value="url errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="url errors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
