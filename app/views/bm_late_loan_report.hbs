@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="shortcut icon" type="png" href="/image/head_logo.png">
-    <link rel="stylesheet" href="/stylesheets/dashboard.css">
-    <link rel="stylesheet" href="/stylesheets/dycalendar.min.css">
+    <link rel="stylesheet" href="/stylesheets/nav_main_footer.css">
     <title>Seychelles Bank (Pvt) Ltd.</title>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Late Loan Installment Report</a>
+            <a class="navbar-brand" href="#">Late Loan Installments' Report</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -26,99 +25,86 @@
             </div>
         </nav>
     </header>
-    <main>
-
-            <div class="container py-4">
-                <h2 class="p-3 text-center">Loan Details</h2>
-                <hr>
-                <div class="container py-4">
-                    <div class="text-center">
-                        {{#if error}}
-                            <div class="row alert alert-danger" role="alert">
-                                {{error}}
-                            </div>
-                        {{/if}}
-                        {{#if success}}
-                            <div class="row alert alert-success" role="alert">
-                                {{success}}
-                            </div>
-                        {{/if}}
-                        <h1>Late Loan Report of {{bm_branch.branch_name}} branch</h1>
-                        <h3>Contact No:- {{bm_branch.contact_No}}</h3>
-                        <pre>
-                            <h5> Loans that have not been paid upto Today </h5>
-                        </pre>
-                        <pre>
-                            {{#if unpaid}}
-                                <h3>Unpaid Loans</h3>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Loan Id</th>
-                                        <th>Loan Type</th>
-                                        <th>Customer ID</th>
-                                        <th>Loan Plan name</th>
-                                        <th>Loan Plan Interest Rate</th>
-                                        <th>Loan Plan Interest Period</th>
-                                        <th>Installment</th>
-                                        <th>Delayed Num of Installments</th>
-                                        <th>Finished Num of Installments</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                    {{#each unpaid}}
-                                        <tr>
-                                            <td>{{this.loan_id}}</td>
-                                            <td>{{this.loan_type}}</td>
-                                            <td>{{this.customer_id}}</td>
-                                            <td>{{this.loan_plan_name}}</td>
-                                            <td>{{this.interrest_rate}}</td>
-                                            <td>{{this.period}}</td>
-                                            <td>{{this.installment_per_month}}</td>
-                                            <td>{{this.delay_installements}}</td>
-                                            <td>{{this.finished_num_installements}}</td>
-                                            <td>{{this.loaned_amount}}</td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            {{else}}
-                                <h5>No unpaid Loans</h5>
-                            {{/if}}
-                            {{#if loan_payments}}
-                                <h3>Loan Payment</h3>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Transaction Id</th>
-                                        <th>Loan ID</th>
-                                        <th>Amount</th>
-                                        <th>Date</th>
-                                    </tr>
-                                    {{#each loan_payments}}
-                                        <tr>
-                                            <td>{{this.trans_id}}</td>
-                                            <td>{{this.loan_id}}</td>
-                                            <td>{{this.amount}}</td>
-                                            <td>{{this.date}}</td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            {{else}}
-                                <h5>No Loan Payments</h5>
-                            {{/if}}
-                            </pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <a href="/BankManager/{{user.user_id}}" type="button" class="btn btn-primary btn-lg btn-block">Back</a>
+    {{#if error}}
+        <div class="row alert alert-danger my-3" role="alert">
+            {{error}}
         </div>
+    {{/if}}
+    {{#if success}}
+        <div class="row alert alert-success my-3" role="alert">
+            {{success}}
+        </div>
+    {{/if}}
+    <main>
+        <div class="card text-center border-dark">
+            <div class="card-header bg-secondary" style="color: white; font-weight: bold;">
+                Late Loan Installments' Report of {{bm_branch.branch_name}} Branch
+            </div>
+            <div class="card-body text-center">Contact No : {{bm_branch.contact_No}}</div>
+            {{#if unpaid}}
+                <div class="card-header bg-secondary" style="color: white;">Deposits</div>
+                <table class="table table-responsive table-bordered table-striped mt-3">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Loan Id</th>
+                            <th>Loan Type</th>
+                            <th>Customer ID</th>
+                            <th>Loan Plan Name</th>
+                            <th>Loan Plan Interest Rate</th>
+                            <th>Loan Plan Interest Period</th>
+                            <th style="vertical-align: middle;">Installment</th>
+                            <th>Delayed No. of Installments</th>
+                            <th>Finished No. of Installments</th>
+                            <th style="vertical-align: middle;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each unpaid}}
+                            <tr>
+                                <td>{{this.loan_id}}</td>
+                                <td>{{this.loan_type}}</td>
+                                <td>{{this.customer_id}}</td>
+                                <td>{{this.loan_plan_name}}</td>
+                                <td>{{this.interrest_rate}}</td>
+                                <td>{{this.period}}</td>
+                                <td>{{this.installment_per_month}}</td>
+                                <td>{{this.delay_installments}}</td>
+                                <td>{{this.finished_num_installments}}</td>
+                                <td>{{this.loaned_amount}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            {{/if}}
+            {{#if loan_payments}}
+                <div class="card-header bg-secondary" style="color: white;">Loan Payments</div>
+                <table class="table table-bordered table-striped mt-3">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Transaction Id</th>
+                            <th>Loan ID</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each loan_payments}}
+                            <tr>
+                                <td>{{this.trans_id}}</td>
+                                <td>{{this.loan_id}}</td>
+                                <td>{{this.amount}}</td>
+                                <td>{{this.date}}</td>
+                            </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{/if}}
+        </div>
+        <a href="/BankManager/{{user.user_id}}" type="button" class="btn btn-info btn-block mt-3">Back</a>
     </main>
-
     <footer class="bottom">Seychells Bank (Pvt) Ltd. - Version 1.0.0 © 2020 | <a href="">Visit Us</a></footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src=/javascript/dycalendar-jquery.min.js"></script>
-    <script>
-        dycalendar.draw({ target: '#dycalendar-today-with-skin-shadow', type: 'month', monthformat: "full", highlighttoday: true, prevnextbutton: "show" });
-    </script>
 </body>
 
 </html>
