@@ -10,6 +10,7 @@ const sendMail = require('../../common/Emailer/send_mail');
 const UserModel = require('../models/User.model');
 const AccountModel = require('../models/Account.model');
 const TransactionModel = require('../models/Transaction.model');
+const ReportModel = require('../models/Report.model');
 const OrganizationModel = require('../models/Organization.model');
 const LoanModel = require('../models/Loan.model');
 const { gen_random_string } = require('../../common/token_generator');
@@ -603,12 +604,14 @@ async function getCustomerDetails(req,res){
 
         if(value.customer_type === 'customer'){
             const account = await AccountModel.getAccount(req.query.accNum);
-            if(!account) throw ( new Errors.NotFound("No such Account Exists"))
             console.log(account);
+            if(!account) throw ( new Errors.NotFound("No such Account Exists"))
 
-            const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
-            const withdrawals = await TransactionModel.getAllWithdrawDetailByID(req.query.accNum);
 
+            const deposits = await ReportModel.getDepositByAccId(req.query.accNum,20);
+            console.log(deposits);
+            const withdrawals = await ReportModel.getWithdrawByAccId(req.query.accNum,20);
+            console.log(withdrawals);
             const Customer = await CustomerModel.getCustomerDetailsById(account.user);
 
 
@@ -631,9 +634,10 @@ async function getCustomerDetails(req,res){
             if (!organization) throw new Errors.NotFound("No such Account Exists")
 
 
-            const deposits = await TransactionModel.getAllDepositDetailByID(req.query.accNum);
-            const withdrawals = await TransactionModel.getAllWithdrawDetailByID(req.query.accNum);
-
+            const deposits = await ReportModel.getDepositByAccId(req.query.accNum,20);
+            console.log(deposits)
+            const withdrawals = await ReportModel.getWithdrawByAccId(req.query.accNum,20);
+            console.log(withdrawals)
 
 
             res.render('employee_organization_acc_details', {

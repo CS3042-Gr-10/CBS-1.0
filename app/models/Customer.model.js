@@ -9,7 +9,24 @@ const CustomerModel = {
     getUserDetails,
     getCustomerSavAccDetail,
     getCustomerFDDetail,
+    getAllAccountsOfCustomer,
     addCustomer
+}
+
+
+function getAllAccountsOfCustomer(user_id) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from account where user',user_id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+            }
+        });
+    });
 }
 
 function getAllCustomerDetails() {

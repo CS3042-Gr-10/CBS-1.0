@@ -299,9 +299,11 @@ async function indexAction(req,res){
             ...req.session.user,
             owner_type,
         }
+        const accounts = await CustomerModel.getAllAccountsOfCustomer(userID);
+        if (accounts.length === 0) throw new Errors.Conflict("Visit your local bank and first make a Bank Account")
 
         const savings_acc = await DropdownService.getSavingsAccountsOfUser(userID);
-        if (savings_acc.length === 0) throw new Errors.Conflict("Visit your local bank and first make a Bank Account")
+
         console.log(savings_acc)
 
 
