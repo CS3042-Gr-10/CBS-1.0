@@ -23,18 +23,6 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown mr-4">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Banking Options</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item active" href="#">Dashboard</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal"
-                                data-target="#accountDetailsModal">Accounts</a>
-                            <a class="dropdown-item" href="#">Loans</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal"
-                                data-target="#fdDetailsModal">Deposits</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown mr-4">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" data-toggle="modal" data-target="#changeUsernameModal">Change
@@ -216,59 +204,6 @@
                         <input type="submit" class="btn btn-primary" value="Save Changes">
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="accountDetailsModal" tabindex="-1" aria-labelledby="accountDetailsModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="accountDetailsModalLabel">Account Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <div id="acc_det_kvp" class="modal-body">
-                    <script id="acc_det_template" type="text/x-handlebars-template">
-                        {{#keyValuePairs}}
-                            <div class="wrapper_3">
-                                <div class="w3_d1 mt-1">
-                                    <h6>{{key}}</h6>
-                                </div>
-                                <div>
-                                    <h6>{{value}}</h6>
-                                </div>
-                            </div>
-                        {{/keyValuePairs}}
-                    </script>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="fdDetailsModal" tabindex="-1" aria-labelledby="fdDetailsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="fdDetailsModalLabel">Fixed Deposit Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <div id="fd_kvp" class="modal-body">
-                    <script id="fd_template" type="text/x-handlebars-template">
-                        {{#keyValuePairs}}
-                            <div class="wrapper_3">
-                                <div class="w3_d1 mt-1">
-                                    <h6>{{key}}</h6>
-                                </div>
-                                <div>
-                                    <h6>{{value}}</h6>
-                                </div>
-                            </div>
-                        {{/keyValuePairs}}
-                    </script>
-                </div>
             </div>
         </div>
     </div>
