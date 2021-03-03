@@ -32,62 +32,55 @@
     </header>
     <main>
         <div class="container py-4">
-            {{!-- <div>
-                <h3>{{ user.first_name }} {{ user.last_name}}</h3>
-                <hr class="my-4">
-                <h5>Bank Manager of {{bm_branch}} branch</h5>
-            </div> --}}
             <h2 class="text-center mb-4">Loan Approval Requests</h2>
             <hr>
             <div class="container mt-4">
                 <div class="text-center">
                     {{#if error}}
-                    <div class="alert alert-danger" role="alert">
-                        {{error}}
-                    </div>
+                        <div class="alert alert-danger" role="alert">
+                            {{error}}
+                        </div>
                     {{/if}}
                     {{#if success}}
-                    <div class="alert alert-success" role="alert">
-                        {{success}}
-                    </div>
+                        <div class="alert alert-success" role="alert">
+                            {{success}}
+                        </div>
                     {{/if}}
                     {{#if loans}}
                     {{#each loans}}
-                    <div class="card mb-2 shadow border-success rounded">
-                        <a class="card-block stretched-link text-decoration-none" href="{{this.url}}"></a>
-                        <div class="card-body">
-                            <div class="row" style="letter-spacing:3;">
-                                <div class="col-md-3 col-sm-6 col-xs-12" style="font-weight: 700; font-size: 17px;">
-                                    <p>Loan ID : {{this.loan_id}}</p>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 text-secondary">
-                                    <div class="row ml-1">
-                                        <p style="font-weight: bold;">Customer ID : </p>
-                                        <p class="badge badge-primary ml-3 mt-1">{{this.acc_type}}</span></p>
+                        <div class="card mb-2 shadow border-success rounded">
+                            <a class="card-block stretched-link text-decoration-none" href="{{this.url}}"></a>
+                            <div class="card-body">
+                                <div class="row" style="letter-spacing:3;">
+                                    <div class="col-md-3 col-sm-6 col-xs-12" style="font-weight: 700; font-size: 17px;">
+                                        <p>Loan ID : {{this.loan_id}}</p>
                                     </div>
-                                    <p> : {{this.customer_id}}</p>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 text-secondary">
-                                    <div class="row ml-1">
-                                        <p style="font-weight: bold;">User Type : </p>
-                                        <p class="badge badge-primary ml-3 mt-1">{{this.acc_type}}</span></p>
+                                    <div class="col-md-3 col-sm-6 col-xs-12 text-secondary">
+                                        <div class="row ml-1">
+                                            <p style="font-weight: bold;">Customer ID : </p>
+                                            <p> : {{this.customer_id}}</p>
+                                        </div>
                                     </div>
-                                    <p> Loan Amount :- {{this.loaned_amount}} </p>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 text-secondary">
-                                    <div class="row ml-1">
-                                        <p style="font-weight: bold;">User Type : </p>
-                                        <p class="badge badge-primary ml-3 mt-1">{{this.acc_type}}</span></p>
+                                    <div class="col-md-3 col-sm-6 col-xs-12 text-secondary">
+                                        <div class="row ml-1">
+                                            <p style="font-weight: bold;">Loan Amount : </p>
+                                            <p> - {{this.loaned_amount}} </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 col-xs-12 text-secondary">
+                                        <div class="row ml-1">
+                                            <p style="font-weight: bold;">User Type : </p>
+                                            <p class="badge badge-primary ml-3 mt-1">{{this.acc_type}}</span></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     {{/each}}
                     {{else}}
-                    <div class="alert alert-warning" role="alert">
-                        <h5>No Loan Approval Requests.</h5>
-                    </div>
+                        <div class="alert alert-warning" role="alert">
+                            <h5>No Loan Approval Requests.</h5>
+                        </div>
                     {{/if}}
                 </div>
 
