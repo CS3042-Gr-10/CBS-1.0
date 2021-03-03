@@ -33,10 +33,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="routing improvement">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="profiles updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Report.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Report.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/customer_individual_profile_check.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/BankManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/BankManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_reg_form.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,14 +205,7 @@
       <workItem from="1614601314545" duration="54000" />
       <workItem from="1614603010964" duration="6275000" />
       <workItem from="1614616477773" duration="20772000" />
-      <workItem from="1614680248168" duration="11845000" />
-    </task>
-    <task id="LOCAL-00017" summary="edits to route">
-      <created>1612285094366</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1612285094366</updated>
+      <workItem from="1614680248168" duration="22181000" />
     </task>
     <task id="LOCAL-00018" summary="changes to route">
       <created>1612328725592</created>
@@ -546,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614696556040</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="profiles updated">
+      <created>1614701338055</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1614701338055</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,7 +569,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding shit" />
     <MESSAGE value="adding registration of oraganization adding accounts functionality" />
     <MESSAGE value="additional fields for employee" />
     <MESSAGE value="registration of organization reformatted" />
@@ -590,7 +593,8 @@
     <MESSAGE value="Access Levels complted" />
     <MESSAGE value="merge and resolved" />
     <MESSAGE value="routing improvement" />
-    <option name="LAST_COMMIT_MESSAGE" value="routing improvement" />
+    <MESSAGE value="profiles updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="profiles updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

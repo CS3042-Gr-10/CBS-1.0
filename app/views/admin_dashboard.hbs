@@ -50,7 +50,7 @@
             <h3>Personal Details</h3>
             <hr class="my-4">
             <h5>Name : {{ user.last_name}}</h5>
-            <h5>Branch :  {{bm_branch}}</h5>
+            <h5>Branch :  {{bm_branch.branch_name}}</h5>
         </div>
         <div class="calendar-parent">
             <div class="calendar-container center">
@@ -72,6 +72,14 @@
                         <label for="end_date" class="col-sm-4 col-form-label">Ending Date</label>
                         <input type="date" class="form-control" id="end_date" name="end_date" placeholder="Ending Date">
                     </div>
+                    <div class="col-lg-2 col-sm-2">
+                        <select class="custom-select" id="branch" name="branch" required>
+                            <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                            {{#each branches}}
+                                <option value="{{this.branch_id}}">{{this.branch_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
                 </div>
                 <input type="submit" class="btn btn-block btn-primary" value="Generate Report">
             </form>
@@ -79,6 +87,14 @@
         <div>
             <h4>Late Loan Installment Report</h4>
             <form action="/BankManager/{{user.user_id}}/LateLoanReport" method="GET">
+                <div class="col-lg-2 col-sm-2">
+                    <select class="custom-select" id="branch" name="branch" required>
+                        <!-- Populate the array "arr" in "branch.js" from the data in the database. -->
+                        {{#each branches}}
+                            <option value="{{this.branch_id}}">{{this.branch_name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
                 <input type="submit" class="btn btn-block btn-primary mt-3" value="Generate Report">
             </form>
         </div>
