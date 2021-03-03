@@ -33,13 +33,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="errors">
+    <list default="true" id="84022201-fc5c-4df9-b220-7a22e2c7c53f" name="Default Changelist" comment="resolve and merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/Customer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Customer.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/BankManager.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/BankManager.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Employee.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Employee.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bm_loan_approval.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_loan_approval.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_create_acc.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_create_acc.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/employee_customer_acc_details.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_customer_acc_details.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema/Customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema/Customer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bm_transaction_report.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bm_transaction_report.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/employee_new_loan_organization.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reg_org.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reg_org.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/Emailer/templates/invitation.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/common/Emailer/templates/invitation.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +128,7 @@
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Academic_PC\Sem 4\DBMS\Project\CBS-1.0\public\image" />
       <recent name="D:\Academic_PC\Sem 4\DBMS\CBS-1.0\app\Middleware" />
     </key>
   </component>
@@ -208,13 +211,6 @@
       <workItem from="1614747087134" duration="466000" />
       <workItem from="1614750483291" duration="11507000" />
       <workItem from="1614772689079" duration="11409000" />
-    </task>
-    <task id="LOCAL-00030" summary="adding Account to existing customer functionality tested Fixes #39">
-      <created>1612933154750</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1612933154750</updated>
     </task>
     <task id="LOCAL-00031" summary="midpoints">
       <created>1613101915100</created>
@@ -552,7 +548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614786463636</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="resolve and merge">
+      <created>1614799339478</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1614799339478</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,7 +574,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Customer FD mid way done #49" />
     <MESSAGE value="Customer FD mid way done #50" />
     <MESSAGE value="transfer funds done #50" />
     <MESSAGE value="middle ground" />
@@ -596,7 +598,8 @@
     <MESSAGE value="url errors" />
     <MESSAGE value="small edits" />
     <MESSAGE value="errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="errors" />
+    <MESSAGE value="resolve and merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolve and merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

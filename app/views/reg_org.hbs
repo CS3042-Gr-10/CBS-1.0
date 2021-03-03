@@ -26,94 +26,109 @@
     </style>
 </head>
 <body>
-    <div class="card border-primary reg_card">
-        <div class="card-header"><h4>Create Account - Organization</h4></div>
-        <div class="card-body">
-            {{#if error}}
-                <div class="row alert alert-danger" role="alert">
-                    {{error}}
-                </div>
-            {{/if}}
-            {{#if success}}
-                <div class="row alert alert-success" role="alert">
-                    {{success}}
-                </div>
-            {{/if}}
-            <form action="/employee/{{user.user_id}}/registerOrganization" method="POST">
-                <div class="form-group row">
-                    <label for="org_name" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Organization Name</label>
-                    <div class="col-lg col-sm">
-                        <input type="text" id="org_name" name="org_name" class="form-control" required value="{{org_name}}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="org_name" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Organization Registration No</label>
-                    <div class="col-lg col-sm">
-                        <input type="text" id="org_id" name="org_id" class="form-control" required value="{{org_id}}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="add_no" class="col-form-label col-sm-3 col-md-3 col-lg-3">Address</label>
-                    <div class="col-lg col-sm input-group">
-                        <input type="text" id="add_no" name="add_no" placeholder="No." class="form-control col-2" required value="{{add_no}}">
-                        <input type="text" id="add_street" name="add_street" placeholder="Street" class="form-control" required value="{{add_street}}">
-                        <input type="text" id="add_city" name="add_city" placeholder="City" class="form-control col-4" required value="{{add_city}}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="postal_code" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Postal Code</label>
-                    <div class="col-lg-3 col-sm-3">
-                        <input type="text" id="postal_code" name="postal_code" class="form-control" required value="{{postal_code}}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="contact" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Contact Number</label>
-                    <div class="input-group col-lg-4 col-sm-4 mb-1">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="contact_code">(+248)</span>
-                        </div>
-                        <input type="tel" id="contact" name="contact" class="form-control"
-                               placeholder="0712345678" maxlength="10" required aria-describedby="contact_code" value="{{contact}}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email" class="col-form-label col-sm-3 col-md-3 col-lg-3">Email</label>
-                    <div class="col-lg-7 col-md-7 col-sm-7">
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required value="{{email}}">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="my-2 col-sm-3 col-md-3 col-lg-2 col-lg-3" for="branch">Branch</label>
-                    <div class="col-lg- col-sm-4">
-                        <select class="custom-select" id="branch" name="branch" required>
-                            <option value="default">Select the Branch...</option>
-                            {{#each branches}}
-                                <option value="{{this.branch_id}}">{{this.branch_name}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="reg_date" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Date</label>
-                    <div class="col-lg-4 col-sm-4">
-                        <input type="date" id="reg_date" name="reg_date" class="form-control" required value="{{reg_date}}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="agree_check" name="agree_check" required>
-                        <label class="form-check-label" for="agree_check">Agree to Terms and Conditions</label>
-                    </div>
-                </div>
-                <a href="#" type="button" class="btn btn-secondary float-right">Close</a>
-                <input type="submit" class="btn btn-primary" value="Save Changes">
-            </form>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Register an Organization</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <a class="btn btn-secondary my-2 my-sm-0" href="/logout" role="button">LOG OUT</a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {{#if error}}
+        <div class="row alert alert-danger m-3" role="alert">
+            {{error}}
         </div>
-    </div>
+    {{/if}}
+    {{#if success}}
+        <div class="row alert alert-success m-3" role="alert">
+            {{success}}
+        </div>
+    {{/if}}
+    <main>
+        <div class="card border-primary reg_card">
+            <div class="card-header"><h4>Organization Registration Form</h4></div>
+            <div class="card-body">
+                <form action="/employee/{{user.user_id}}/registerOrganization" method="POST">
+                    <div class="form-group row">
+                        <label for="org_name" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Organization Name</label>
+                        <div class="col-lg col-sm">
+                            <input type="text" id="org_name" name="org_name" class="form-control" required value="{{org_name}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="org_name" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Organization Registration No</label>
+                        <div class="col-lg col-sm">
+                            <input type="text" id="org_id" name="org_id" class="form-control" required value="{{org_id}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="add_no" class="col-form-label col-sm-3 col-md-3 col-lg-3">Address</label>
+                        <div class="col-lg col-sm input-group">
+                            <input type="text" id="add_no" name="add_no" placeholder="No." class="form-control col-2" required value="{{add_no}}">
+                            <input type="text" id="add_street" name="add_street" placeholder="Street" class="form-control" required value="{{add_street}}">
+                            <input type="text" id="add_city" name="add_city" placeholder="City" class="form-control col-4" required value="{{add_city}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="postal_code" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Postal Code</label>
+                        <div class="col-lg-3 col-sm-3">
+                            <input type="text" id="postal_code" name="postal_code" class="form-control" required value="{{postal_code}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="contact" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Contact Number</label>
+                        <div class="input-group col-lg-4 col-sm-4 mb-1">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="contact_code">(+248)</span>
+                            </div>
+                            <input type="tel" id="contact" name="contact" class="form-control"
+                                placeholder="0712345678" maxlength="10" required aria-describedby="contact_code" value="{{contact}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-form-label col-sm-3 col-md-3 col-lg-3">Email</label>
+                        <div class="col-lg-7 col-md-7 col-sm-7">
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required value="{{email}}">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="my-2 col-sm-3 col-md-3 col-lg-2 col-lg-3" for="branch">Branch</label>
+                        <div class="col-lg- col-sm-4">
+                            <select class="custom-select" id="branch" name="branch" required>
+                                <option value="default">Select the Branch...</option>
+                                {{#each branches}}
+                                    <option value="{{this.branch_id}}">{{this.branch_name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="reg_date" class="col-form-label col-sm-3 col-md-3 col-lg-2 col-lg-3">Date</label>
+                        <div class="col-lg-4 col-sm-4">
+                            <input type="date" id="reg_date" name="reg_date" class="form-control" required value="{{reg_date}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="agree_check" name="agree_check" required>
+                            <label class="form-check-label" for="agree_check">Agree to Terms and Conditions</label>
+                        </div>
+                    </div>
+                    <a href="." type="button" class="btn btn-secondary float-right">Close</a>
+                    <input type="submit" class="btn btn-primary" value="Save Changes">
+                </form>
+            </div>
+        </div>
+    </main>
     <footer class="bottom">Seychells Bank (Pvt) Ltd. - Version 1.0.0 © 2020 | <a href="">Visit Us</a></footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/javascript/branch.js"></script>
 </body>
 </html>
