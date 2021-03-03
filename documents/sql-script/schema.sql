@@ -96,9 +96,14 @@ ALTER TABLE branch add CONSTRAINT branch_manager_fk
 CREATE TABLE `organization` (
   `user_id` int(8) not NULL,
   `name` varchar(25) not NULL,
+  `reg_number` varchar(100) not NULL UNIQUE,
   `contact_No` int(10),
   `branch_id` int(5) not NULL,
   `created_date` date not NULL,
+  `house_No` varchar(25) not NULL,
+  `street` varchar(25) not NULL,
+  `city` varchar(25) not NULL,
+  `postal_code` int(6) not NULL,
   PRIMARY KEY (`user_id`),
   FOREIGN KEY (user_id) REFERENCES account_owner (user_id),
   FOREIGN KEY (branch_id) REFERENCES branch (branch_id)
@@ -160,12 +165,13 @@ CREATE TABLE `fixed_deposit` (
   `branch_id` int(5) not NULL,
   `opened_date` Date,
   `balance` Numeric(20,2),
-  `state` INT(2),
+  `state` varchar(25),
   PRIMARY KEY (`fd_id`),
   FOREIGN KEY (cusotmer_id) REFERENCES account_owner (user_id),
   FOREIGN KEY (acc_plan_id) REFERENCES  fd_account_plan (fd_plan_id),
   FOREIGN KEY (sv_acc_id) REFERENCES saving_account (acc_id),
-  FOREIGN KEY (branch_id) REFERENCES branch (branch_id)
+  FOREIGN KEY (branch_id) REFERENCES branch (branch_id),
+  check (state in ("ACTIVE", "EXPIRED", "DELETED"))
 );
 
 CREATE TABLE `loan` (
@@ -173,13 +179,21 @@ CREATE TABLE `loan` (
   `loan_type` varchar(20) not NULL,
   `customer_id` int(11) not NULL,
   `loaned_amount` Numeric(20,2) not NULL,
-  `loan_interrest_rate` Numeric(4,2),
-  `aggreed_num_installements` int(4) not NULL,
+  `loan_plan_id` int(2) not NULL,
   `finished_num_installements` int(4) not NULL,
   `deleted` INT(2),
   PRIMARY KEY (`loan_id`),
   FOREIGN KEY (customer_id) REFERENCES account_owner (user_id),
+  FOREIGN KEY (loan_plan_id) REFERENCES loan_plan (loan_plan_id),
   Check (loan_type in ("STANDARD", "ONLINE"))
+);
+
+CREATE TABLE `loan_plan` (
+  `loan_plan_id` int(2) AUTO_INCREMENT,
+  `loan_plan_name` varchar(100) UNIQUE not NULL,
+  `interrest_rate` Numeric(4,2) not NULL,
+  `period` int(3) unsigned not NULL,
+  PRIMARY KEY (`loan_plan_id`)
 );
 
 CREATE TABLE `standard_loan` (
@@ -190,7 +204,7 @@ CREATE TABLE `standard_loan` (
   PRIMARY KEY (`loan_id`),
   FOREIGN KEY (loan_id) REFERENCES loan (loan_id),
   FOREIGN KEY (branch_id) REFERENCES branch (branch_id),
-  Check (state in ("PENDING", "PAID", "NOT-PAID", "COMPLETE"))
+  Check (state in ("PENDING", "REJECTED", "PAID", "NOT-PAID", "COMPLETE"))
 );
 
 CREATE TABLE `online_loan` (

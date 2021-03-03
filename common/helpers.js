@@ -13,6 +13,26 @@ const errorsToList = (ObjList) => {
   return list_messages;
 }
 
+const checkOnlineFDAmount = (amount,fd_amount)=>{
+  const percentage = 0.6;
+  const upperlimit = 500000;
+  // console.log(amount);
+
+  let max_possible;
+  if(percentage*fd_amount >= upperlimit){
+    max_possible = upperlimit
+  }else {
+    max_possible = percentage*fd_amount
+  }
+  // console.log(max_possible)
+
+  if(max_possible >= amount){
+    return {max:max_possible,possibility:true};
+  }
+  return {max:max_possible,possibility:false};
+
+};
+
 
 const ObjectToList = (obj) => {
   const list = [];
@@ -50,7 +70,8 @@ const helpers = {
   errorsToList,
   ObjectToList,
   hash_password,
-  bufferToInt
+  bufferToInt,
+  checkOnlineFDAmount,
 }
 
 module.exports = helpers;

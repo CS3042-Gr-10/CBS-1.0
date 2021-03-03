@@ -30,7 +30,6 @@ app.engine('hbs',hbs({
 app.set('view engine', "hbs");
 // var schedule = require('node-schedule');
 
-
 dbfunc.connectionCheck.then((data) =>{
     console.log("DB has connected!!");
  }).catch((err) => {

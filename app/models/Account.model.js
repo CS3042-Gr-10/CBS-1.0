@@ -8,8 +8,12 @@ const AccountModel = {
     depositMoneySvAcc,
     withdrawSvAcc,
     getAccountOwner,
+    getAccountType,
     getAccount,
-    transferMoney
+    transferMoney,
+    getSavingAccount,
+    getCurrentAccount,
+    getCustomerAccDetail,
 }
 
 function addSavingAccount(acc) {
@@ -24,7 +28,7 @@ function addSavingAccount(acc) {
             } else {
 
                 dbFunc.connectionRelease;
-                resolve(rows[0]);
+                resolve(rows[0][0]);
             }
         });
     });
@@ -84,6 +88,24 @@ function getAccountOwner(accNum) {
     });
 }
 
+function getAccountType(accNum) {
+
+    //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/deposit_mn_sv_acc.sql
+    return new Promise((resolve, reject) => {
+        db.query(`select owner_type from account_owner where user_id=?`, accNum, (error, rows, fields) => {
+
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+            }
+        });
+    });
+}
+
 function getAccount(accNum) {
 
     //TODO: set "deposit" attribute appropriate to the data passing -- checkout ../document/sql_scripts/deposit_mn_sv_acc.sql
@@ -108,7 +130,7 @@ function withdrawSvAcc(wth) {
 
     //TODO: set "wth" attribute appropriate to the data passing -- checkout ../document/sql_scripts/withdraw_mn_sv_acc.sql
     return new Promise((resolve, reject) => {
-        db.query(`CALL withdraw_sv_acc(?,?,?)`, wth, (error, rows, fields) => {
+        db.query(`CALL withdraw_mn_sv_acc(?,?,?)`, wth, (error, rows, fields) => {
 
             if (!!error) {
                 dbFunc.connectionRelease;
@@ -134,7 +156,74 @@ function transferMoney(slip) {
             } else {
 
                 dbFunc.connectionRelease;
+                resolve(rows[0][0]);
+            }
+        });
+    });
+}
+
+function getCustomerAccDetail(id) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT acc_id, branch_id, acc_type, created_date from account where user = ?',id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+                return (false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+                return (rows);
+            }
+        });
+    });
+}
+
+function getSavingAccount(acc_id){
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from saving_account natural join saving_account_plan where acc_id=?',acc_id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+                return (false);
+            } else {
+
+                dbFunc.connectionRelease;
                 resolve(rows[0]);
+                return (rows[0]);
+            }
+        });
+    });
+}
+
+function getCurrentAccount(acc_id){
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from current_deposit where acc_id=?',acc_id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+                return (false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows[0]);
+                return (rows[0]);
+            }
+        });
+    });
+}
+
+function getAccountsOfCustomer(acc_id){
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * from account where acc_id=?',acc_id, (error, rows, fields) => {
+            if (!!error) {
+                dbFunc.connectionRelease;
+                reject(false);
+            } else {
+
+                dbFunc.connectionRelease;
+                resolve(rows);
+
             }
         });
     });

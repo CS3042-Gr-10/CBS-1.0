@@ -5,6 +5,7 @@ const userModel = {
   getUserUsername: getUserByUsername,
   getUserByEmail:getUserByEmail,
   getUserByID:getUserByID,
+  userExists
 
 }
 
@@ -21,6 +22,27 @@ function getUserByUsername(username) {
                 return rows[0];
             }
        });
+    });
+}
+
+function userExists(username){
+    return new Promise((resolve,reject) => {
+        db.query(`SELECT user_id FROM user WHERE username = ?`,username,(error,rows,fields)=>{
+            if(!!error) {
+                dbFunc.connectionRelease;
+                reject(error);
+                return error;
+            } else {
+                dbFunc.connectionRelease;
+                console.log(rows)
+                if(rows[0] && rows[0].user_id){
+                    resolve(true);
+                }
+                else{
+                    resolve(false);
+                }
+            }
+        });
     });
 }
 
